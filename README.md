@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # CodeIgniter 2.1 + HMVC + RedBean 3
 
 Setup ready to use CodeIgniter framework with:
@@ -65,3 +66,9 @@ cd4
 
 cd4 LIMS system for Tanzania
 >>>>>>> 5c55f16927783375227cee369ffc6b75907e6742
+=======
+CD4
+===
+
+CD4 LIMS TANZANIA
+>>>>>>> 8b4195f225cf9d15c6f9d8b7630827a6ea84fb04
