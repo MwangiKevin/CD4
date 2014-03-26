@@ -1,0 +1,58 @@
+CodeIgniter Google URL Shortener API Library
+===============
+
+Welcome to the home of the Google URL Shortener API Library, a project that will help you to shorten, expand, analytics long URL.
+
+What is the Google URL Shortener API?
+===============
+The Google URL Shortener at goo.gl is a service that takes long URLs and squeezes them into fewer characters to make a link that is easier to share, tweet, or email to friends.
+The Google URL Shortener API allows you to develop applications that interface with this service. You can use simple HTTP methods to create, inspect, and manage goo.gl short URLs from your desktop, mobile, or web application.
+
+ref : http://code.google.com/intl/zh-TW/apis/urlshortener/
+
+INSTALLATION
+===============
+
+Please download file form http://getsparks.org/packages/google-url-shortener/
+    
+Open config/google_url_api.php file, and configure your shorten api key
+
+    $config['google_api_key'] = "xxxxx";
+    
+USAGE
+===============
+
+shorten example
+
+    echo '<h2>Shorten Example</h2>';
+    $short_url = $this->google_url_api->shorten($url);
+    echo $url . " => " . $short_url->id . "<br />";
+    echo 'Response code: ' . $this->google_url_api->get_http_status();
+
+expand example
+
+    $url = 'http://goo.gl/fbsS';
+    echo '<h2>Expand Example</h2>';
+    $expand_url = $this->google_url_api->expand($url);
+    echo $url . " => " . $expand_url->longUrl . "<br />";
+    echo 'Response code: ' . $this->google_url_api->get_http_status() . "<br />";
+    echo 'Response status: ' . $expand_url->status;
+
+analytics example
+
+    $url = "http://goo.gl/fbsS";
+    echo '<h2>Analytics Example</h2>';         
+    $analytics_url = $this->google_url_api->analytics($url);
+    echo 'Response code: ' . $this->google_url_api->get_http_status() . "<br />";
+    echo 'Response status: ' . $analytics_url->status . "<br />";
+    echo 'Date Created: ' . date("Y-m-d H:i:s", strtotime($analytics_url->created)) . "<br />";
+    print_r($analytics_url);
+    
+If you're having problems, enable debugging mode in your controller:
+
+    $this->google_url_api->enable_debug(TRUE);    
+    
+COPYRIGHT
+===============
+
+Copyright (C) 2011 Bo-Yi Wu ( appleboy AT gmail.com )

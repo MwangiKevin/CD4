@@ -1,0 +1,917 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ser",
+				"serial"
+			],
+			[
+				"eq",
+				"eq_sts"
+			],
+			[
+				"y",
+				"yearmonth"
+			],
+			[
+				"ke",
+				"keycat"
+			],
+			[
+				"ca",
+				"categories"
+			],
+			[
+				"to",
+				"today"
+			],
+			[
+				"equ",
+				"equipment"
+			],
+			[
+				"desc",
+				"description"
+			],
+			[
+				"us",
+				"user_filter_used"
+			],
+			[
+				"region_",
+				"region_id"
+			],
+			[
+				"equi",
+				"equipment"
+			],
+			[
+				"color",
+				"colors"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"user_",
+				"user_groups"
+			],
+			[
+				"ac",
+				"activation_clause"
+			],
+			[
+				"acc",
+				"access_level"
+			],
+			[
+				"usr",
+				"usr_grp"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"re",
+				"reg"
+			],
+			[
+				"u",
+				"usr_grp_id"
+			],
+			[
+				"fac",
+				"fac_eq"
+			],
+			[
+				"fa",
+				"fac_eq"
+			],
+			[
+				"fac_",
+				"fac_eq"
+			],
+			[
+				"pim",
+				"pim_upl"
+			],
+			[
+				"pima_upl",
+				"pima_upload_id"
+			],
+			[
+				"cd",
+				"cd4_test_id"
+			],
+			[
+				"pi",
+				"pim_tst"
+			],
+			[
+				"pima_e",
+				"pima_error_type"
+			],
+			[
+				"pim_",
+				"pima_err"
+			],
+			[
+				"err",
+				"error_id"
+			],
+			[
+				"ht",
+				"html_string"
+			],
+			[
+				"facility_",
+				"facility_equipment"
+			],
+			[
+				"opt",
+				"options"
+			],
+			[
+				"jso",
+				"json_encode"
+			],
+			[
+				"eqi",
+				"equipment"
+			],
+			[
+				"use",
+				"userdata"
+			],
+			[
+				"cd4",
+				"cd4_test_id"
+			],
+			[
+				"is",
+				"is_array"
+			],
+			[
+				"val",
+				"valid_count"
+			],
+			[
+				"bas",
+				"base_url"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"dr",
+				"draw_charts"
+			],
+			[
+				"error",
+				"error_code"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"ro",
+				"row"
+			],
+			[
+				"erro",
+				"error_code"
+			],
+			[
+				"str_r",
+				"str_replace"
+			],
+			[
+				"ch",
+				"chart_data"
+			],
+			[
+				"els",
+				"elseif	elseif …"
+			],
+			[
+				"from",
+				"from_year"
+			],
+			[
+				"te",
+				"tests_val"
+			],
+			[
+				"pima_",
+				"pima_error"
+			],
+			[
+				"WH",
+				"WHERE"
+			],
+			[
+				"Wh",
+				"WHERE"
+			],
+			[
+				"e",
+				"echo	echo \"…\""
+			],
+			[
+				"files",
+				"files_to_move"
+			],
+			[
+				"up",
+				"upload_success"
+			],
+			[
+				"file_",
+				"file_1"
+			],
+			[
+				"repo",
+				"reported_dev"
+			],
+			[
+				"user_de",
+				"user_device_details"
+			],
+			[
+				"User",
+				"user_group"
+			],
+			[
+				"tests",
+				"tests_details"
+			],
+			[
+				"wh",
+				"where_column"
+			],
+			[
+				"sql",
+				"sql_delimiter"
+			],
+			[
+				"set_u",
+				"set_user_filter"
+			],
+			[
+				"ses",
+				"session_data"
+			],
+			[
+				"get_cu",
+				"get_current_user_id"
+			],
+			[
+				"cd4_",
+				"cd4_test"
+			],
+			[
+				"set_s",
+				"set_session_data"
+			],
+			[
+				"prof",
+				"profile_update"
+			],
+			[
+				"red",
+				"redirect_var"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"fil",
+				"filter_desc"
+			],
+			[
+				"tim",
+				"timeout"
+			],
+			[
+				"unse",
+				"unset"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"strrep",
+				"str_replace"
+			],
+			[
+				"j",
+				"json_decode"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"tre",
+				"trends_array"
+			],
+			[
+				"pima",
+				"pima_array"
+			],
+			[
+				"f",
+				"font-size"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"all",
+				"all_plugin_js"
+			],
+			[
+				"login",
+				"loginStatus"
+			],
+			[
+				"T",
+				"TRUE"
+			],
+			[
+				"fc",
+				"fcdrrsAssoc"
+			],
+			[
+				"cre",
+				"createSessionData"
+			],
+			[
+				"msql_q",
+				"msql_query"
+			],
+			[
+				"sessi",
+				"session_start"
+			],
+			[
+				"Faci",
+				"facilityDashboard"
+			],
+			[
+				"m",
+				"menus1"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"array_m",
+				"array_merge"
+			],
+			[
+				"strto",
+				"strtotime"
+			],
+			[
+				"le",
+				"levelSQLDelimiter"
+			],
+			[
+				"el",
+				"elseif	elseif …"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "application/modules/admin/controllers/users.php",
+			"settings":
+			{
+				"buffer_size": 5358,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/modules/admin/views/users_view.php",
+			"settings":
+			{
+				"buffer_size": 14775,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/modules/admin/views/equipment_view.php",
+			"settings":
+			{
+				"buffer_size": 16800,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 46.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/wamp/www/cd4/application/modules/admin/controllers/facilities.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/equipment.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/facilities_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/facilities_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/uploads.php",
+		"/C/Users/Mwas/Downloads/partner_districts.sql",
+		"/C/wamp/www/cd4/application/modules/admin/views/equipment_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/equipment_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/equipment.php",
+		"/C/wamp/www/cd4/application/config/sql.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/equipment_view.php",
+		"/C/wamp/www/cd4/assets/js/admin/facilities.js",
+		"/C/wamp/www/cd4/application/modules/poc/views/sidebar_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/tests_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/tests.php",
+		"/C/wamp/www/cd4/application/core/MY_Model.php",
+		"/C/wamp/www/cd4/application/config/views_sql.php",
+		"/C/wamp/www/cd4/application/modules/admin/models/admin_model.php",
+		"/C/wamp/www/cd4/application/core/MY_Controller.php",
+		"/C/wamp/www/cd4/.gitignore",
+		"/C/wamp/www/cd4/application/modules/home/models/home_model.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/reports_control.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/reports.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/reports_charts.php",
+		"/C/Users/Mwas/Desktop/poc/views/reports_view.php",
+		"/C/wamp/www/cd4/application/config/globals.php",
+		"/C/wamp/www/cd4/application/modules/poc/models/charts_model.php",
+		"/C/Users/Mwas/Downloads/facility_equipment.sql",
+		"/C/Users/Mwas/Downloads/facility_pima.sql",
+		"/C/Users/Mwas/Downloads/facility.sql",
+		"/C/wamp/www/cd4/application/modules/home/controllers/regional.php",
+		"/C/wamp/www/cd4/application/modules/home/views/home_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/template/views/template_view.php",
+		"/C/Users/Mwas/Desktop/de.csv",
+		"/C/wamp/www/cd4/application/modules/home/views/home_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/controllers/tests.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/equipment_tests_table_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/tests_table_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/equipment_pie_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/tests_line_trend_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/equipment_tests_column_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/equipment_tests_pie_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/equipment_table_view.php",
+		"/C/wamp/www/cd4/application/modules/home/controllers/home.php",
+		"/C/wamp/www/cd4/application/modules/charts/controllers/charts.php",
+		"/C/wamp/www/cd4/application/modules/template/controllers/template.php",
+		"/C/wamp/www/cd4/application/modules/charts/controllers/pima_errors.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/tests_pie_view.php",
+		"/C/wamp/www/cd4/application/modules/charts/models/tests_model.php",
+		"/C/wamp/www/cd4/assets/js/admin/equipment.js",
+		"/C/wamp/www/cd4/application/modules/admin/views/sidebar_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/errors_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/models/poc_model.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/pima_error_column_view.php",
+		"/C/wamp/www/cd4/application/config/chart.php",
+		"/C/wamp/www/cd4/application/modules/charts/models/pima_errors_model.php",
+		"/C/wamp/www/cd4/application/modules/charts/controllers/equipment.php",
+		"/C/wamp/www/cd4/application/modules/charts/models/equipment_model.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/tests_pie_view - Copy.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/pima_error_table_view.php",
+		"/C/wamp/www/cd4/application/modules/ajax/controllers/ajax.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/errors.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/errors_view.php",
+		"/C/wamp/www/cd4/application/modules/home/views/reporting_rates_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/poc.php",
+		"/C/wamp/www/cd4/application/modules/poc/models/tests_model.php",
+		"/C/wamp/www/cd4/application/modules/poc/models/home_page_model.php",
+		"/C/wamp/www/cd4/application/modules/home/controllers/reporting_rates.php",
+		"/C/wamp/www/cd4_kenya/xml/commoditymap.php",
+		"/C/wamp/www/cd4/application/modules/home/controllers/equipment.php",
+		"/C/wamp/www/cd4/application/modules/home/controllers/mappings.php",
+		"/C/wamp/www/cd4/application/modules/home/controllers/tests.php",
+		"/C/wamp/www/cd4/application/modules/home/controllers/reporting_cycle.php",
+		"/C/wamp/www/cd4/application/modules/home/views/equipment_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/admin.php",
+		"/C/wamp/www/cd4/application/modules/home/views/stub_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/users_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/reports_view.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/home_page_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/users.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/users_footer_view.php",
+		"/C/wamp/www/cd4/assets/js/admin/users.js",
+		"/C/wamp/www/cd4_kenya/cd4commodity.php",
+		"/C/wamp/www/cd4/application/config/sql1.php",
+		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/config_mp.cfg",
+		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/settings_c.zip.iw5",
+		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/config.cfg",
+		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/admin/mitto.dspl",
+		"/C/Users/Mwas/Downloads/watable/watable/watable.css",
+		"/C/Users/Mwas/Desktop/A.TXT",
+		"/C/Users/Mwas/Downloads/new  1.txt",
+		"/C/wamp/www/cd4_kenya/facilitylogin.php",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/uploadsv1.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/uploads_view.php",
+		"/C/PIMA-EXPORT/PIMA-D-001374_2014-02-18_08-41-20_AssayID_2_(PIMA_CD4).csv",
+		"/C/wamp/www/cd4/application/config/database.php",
+		"/C/wamp/www/getcont/index.php",
+		"/C/wamp/www/cd4/application/config/config.php",
+		"/C/wamp/www/cd4/assets/plugins/notifyjs/notify.js",
+		"/C/wamp/www/cd4/bat/system_upload.bat",
+		"/C/wamp/www/cd4/assets/plugins/Bootstrap/css/bootstrap.css",
+		"/C/Users/Mwas/Downloads/pima_error_type.sql",
+		"/C/Users/Mwas/Downloads/pima_error.sql",
+		"/C/wamp/www/cd4/assets/js/nascop.js",
+		"/C/wamp/www/cd4/application/modules/template/views/footer_View.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/reports.php",
+		"/C/wamp/www/cd4/application/modules/template/views/header_view.php",
+		"/C/Users/Mwas/Documents/Euro Truck Simulator 2/profile/4A75616E204D617274696E/profile.sii",
+		"/C/Users/Mwas/Documents/Euro Truck Simulator 2/mod/speedlimitoff.scs",
+		"/J/cd4/application/modules/poc/views/reports_view.php",
+		"/C/wamp/www/cd4/application/modules/user/controllers/user.php",
+		"/C/Users/Mwas/Downloads/partner_user.sql",
+		"/C/wamp/www/cd4/assets/js/admin/reports.js",
+		"/C/wamp/www/cd4/assets/js/admin/settings.js",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/settings.php",
+		"/C/wamp/www/cd4/application/modules/template/views/utils/filter_view.php",
+		"/C/wamp/www/cd4/application/config/asset.php",
+		"/C/wamp/www/cd4/assets/plugins/pdf/Example10.php",
+		"/C/wamp/www/cd4/application/helpers/asset_helper.php",
+		"/C/wamp/www/cd4/assets/plugins/pdf/buildAll.cmd",
+		"/C/Users/Mwas/Desktop/sql.php",
+		"/C/wamp/www/cd4/application/modules/charts/views/error_table_view.php",
+		"/C/wamp/www/cd4/assets/plugins/Highcharts/examples/column-rotated-labels/index1.htm",
+		"/C/wamp/www/cd4/assets/plugins/Highcharts/js/modules/canvas-tools.js",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/charts.php",
+		"/C/wamp/www/cd4/application/modules/test/controllers/test.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/errors_footer_view2.php",
+		"/C/wamp/www/cd4/assets/css/nascop.css"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dis",
+			"regio",
+			"get_de",
+			"devices_n",
+			"facility_equipment_status",
+			"user_filter_used",
+			"filter",
+			"SELECT 															\n\n															`reg`.`id`					AS `region_id`,\n															`reg`.`name`				AS `region_name`,\n															`reg`.`fusion_id`			AS `region_fusion_id`,\n															`reg`.`name`				AS `region_name`,\n															`reg`.`fusion_id`			AS `region_fusion_id`,\n															`par_reg`.`partner_id`,\n															`par`.`name`				AS `partner_name`,\n															`par`.`email`				AS `partner_email`,\n															`par`.`phone`				AS `partner_phone`,\n															COUNT(`pu`.`partner_id`) 	AS `users_count`,\n\n															`dis`.`name` 				AS `district_name`,\n															`dis`.`status` 				AS `district_status`,\n															`dis`.`id`					AS `district_id`\n\n														FROM `region` `reg`\n															LEFT JOIN `partner_regions` `par_reg`\n															ON `reg`.`id` = `par_reg`.`region_id`\n																LEFT JOIN `partner` `par`\n																ON `par_reg`.`partner_id`=`par`.`id`																			\n																	LEFT JOIN `partner_user` `pu`\n															RIGHT JOIN `district` `dis`\n															ON `dis`.`region_id` = `reg`.`id`\n\n														GROUP BY `region_id`\n														ORDER BY `region_name` ASC",
+			"equipment-table",
+			"equipment_tests_pie",
+			"config",
+			"load",
+			"config",
+			"facilities",
+			"edit_equipment",
+			"get_yearmonth_categories",
+			"get_month_categories",
+			"get_yearmonth_categories",
+			"equipment_tests_column",
+			"tests_line_trend",
+			"html",
+			"user_filter_used",
+			">\n",
+			"equipmenttestspie",
+			"get_user_sql_where_delimiter",
+			"filter_details",
+			"error",
+			"between",
+			"errors_reported",
+			"pima_statistics",
+			"cumulative",
+			"cululative",
+			"user_filter",
+			"user_f",
+			"user",
+			"logout",
+			"php",
+			"config",
+			"key",
+			"encryption",
+			"concat",
+			"facility_equipment_id",
+			"LEFT JOIN \n																		(SELECT `fac`.`id` AS `facility_id`,\n																				`fac`.`name` AS `facility`,\n																				`fac`.`email`,\n																				`fac`.`phone`,\n																				`fac`.`rollout_status` AS `rollout_id`,\n																				`st`.`desc` AS `facility_rollout_status`,\n																				`fac`.`rollout_date`,																	\n																				`dis`.`id` AS `district_id`,\n																				`dis`.`name` AS `district`,\n																				`dis`.`status` AS `district_status`,\n																				`dis`.`region_id`,\n																				`dis`.`region`,\n																				`dis`.`region_status`,\n																				`dis`.`partner_id`,\n																				`dis`.`partner`,\n																				`dis`.`partner_email`,\n																				`dis`.`partner_phone`,\n																				COUNT(`fu`.`facility_id`) AS `users_count`\n																	 		FROM `facility` `fac` \n																	 		LEFT JOIN \n																	 			(SELECT `dis`.*,\n																	 					`reg`.`name` AS `region`,\n					                                                             		`reg`.`status` AS `region_status`,		                                                             		\n					                                                             		`reg`.`partner_id`,\n					                                                             		`reg`.`partner`,\n					                                                             		`reg`.`partner_email`,\n					                                                             		`reg`.`partner_phone`\n																	 				FROM `district` `dis`\n																	 				LEFT JOIN \n																	 					(SELECT `reg`.*,\n																	 							`par_reg`.`partner_id`,\n																	 							`par_reg`.`partner`,\n																	 							`par_reg`.`partner_email`,\n																	 							`par_reg`.`partner_phone`\n																	 						FROM `region` `reg`\n																	 						LEFT JOIN \n																	 							(SELECT `par_reg`.*,\n																	 									`par`.`name` AS `partner`,\n																	 									`par`.`email` AS `partner_email`,\n																	 									`par`.`phone` As `partner_phone`\n																	 								FROM `partner_regions` `par_reg`\n																	 								LEFT JOIN `partner` `par`\n																	 								ON `par_reg`.`partner_id`= `par`.`id`\n																	 								) AS `par_reg`\n																							ON `reg`.`id` = `par_reg`.`region_id` \n																	 						) AS `reg` \n																					ON `dis`.`region_id` =	`reg`.`id` 	 \n																	 				) AS `dis` \n																			ON `fac`.`district_id` =	`dis`.`id` \n																			LEFT JOIN `status` `st`\n																			ON `fac`.`rollout_status`= `st`.`id`  \n																			LEFT JOIN `facility_user` `fu`\n																			ON `fac`.`id`=`fu`.`facility_id`\n																			LEFT JOIN `facility_equipment` `fac_eq`\n																			ON `fac`.`id` = `fac_eq`.`facility_id`\n																			GROUP BY `facility_id`\n																			) AS `fac`\n																	ON 	`fac_eq`.`facility_id` = `fac`.`facility_id`\n																	LEFT JOIN `equipment` `eq`\n																	ON `fac_eq`.`equipment_id`= `eq`.`id`",
+			"(SELECT `fac`.`id` AS `facility_id`,\n																				`fac`.`name` AS `facility`,\n																				`fac`.`email`,\n																				`fac`.`phone`,\n																				`fac`.`rollout_status` AS `rollout_id`,\n																				`st`.`desc` AS `facility_rollout_status`,\n																				`fac`.`rollout_date`,																	\n																				`dis`.`id` AS `district_id`,\n																				`dis`.`name` AS `district`,\n																				`dis`.`status` AS `district_status`,\n																				`dis`.`region_id`,\n																				`dis`.`region`,\n																				`dis`.`region_status`,\n																				`dis`.`partner_id`,\n																				`dis`.`partner`,\n																				`dis`.`partner_email`,\n																				`dis`.`partner_phone`,\n																				COUNT(`fu`.`facility_id`) AS `users_count`\n																	 		FROM `facility` `fac` \n																	 		LEFT JOIN \n																	 			(SELECT `dis`.*,\n																	 					`reg`.`name` AS `region`,\n					                                                             		`reg`.`status` AS `region_status`,		                                                             		\n					                                                             		`reg`.`partner_id`,\n					                                                             		`reg`.`partner`,\n					                                                             		`reg`.`partner_email`,\n					                                                             		`reg`.`partner_phone`\n																	 				FROM `district` `dis`\n																	 				LEFT JOIN \n																	 					(SELECT `reg`.*,\n																	 							`par_reg`.`partner_id`,\n																	 							`par_reg`.`partner`,\n																	 							`par_reg`.`partner_email`,\n																	 							`par_reg`.`partner_phone`\n																	 						FROM `region` `reg`\n																	 						LEFT JOIN \n																	 							(SELECT `par_reg`.*,\n																	 									`par`.`name` AS `partner`,\n																	 									`par`.`email` AS `partner_email`,\n																	 									`par`.`phone` As `partner_phone`\n																	 								FROM `partner_regions` `par_reg`\n																	 								LEFT JOIN `partner` `par`\n																	 								ON `par_reg`.`partner_id`= `par`.`id`\n																	 								) AS `par_reg`\n																							ON `reg`.`id` = `par_reg`.`re",
+			"`pim_tst`.`id` AS `pima_test_id`,\n															`pim_tst`.`device_test_id`,\n															`pim_tst`.`assay_id`,\n															`pim_tst`.`sample_code`,\n															`pim_tst`.`error_id` AS `pima_error_id`,\n															`pim_tst`.`operator`,\n															`pim_tst`.`barcode`,\n															`pim_tst`.`expiry_date`,\n															`pim_tst`.`volume`,\n															`pim_tst`.`device`,\n															`pim_tst`.`reagent`,\n															`pim_tst`.`software_version`,\n															`pim_err`.`error_code`,\n															`pim_err`.`error_detail`,\n															`pim_err`.`pima_error_type`,\n															`err_typ`.`description` AS `error_type_description`,\n															`err_typ`.`action`,\n															`tst_dt`.*",
+			"hasEquip(",
+			"hasEquip",
+			"\"",
+			"pre",
+			"remove_replicated_data",
+			"formatData",
+			"encr",
+			"decode",
+			"get_yearmonth_name",
+			"get_yearmonth_categories",
+			"$this->device_not_recognized($serial_num",
+			"$this->device_not_recognized($serial_num,\"1\")",
+			"$this->device_not_recognized($serial_num,\"2\");",
+			"$this->device_not_recognized($serial_num,\"1\");",
+			"device_not_recognized($serial_num)",
+			"device_not_recognized",
+			"recognized",
+			"insert",
+			" $('#data-table-side').dataTable({\n		\"bProcessing\": true,\n		\"iDisplayLength\": 10,\n	 	\"bJQueryUI\":true\n	});",
+			"district_id",
+			"facility_equipment_id",
+			"test_d",
+			"pima_uploads_details",
+			"get_details",
+			"per",
+			"attempted",
+			"\\\"",
+			"}\n",
+			"\"",
+			".",
+			"\"",
+			"json_de",
+			"json_d",
+			"json_e",
+			"json",
+			"\"",
+			"month_name",
+			"mont",
+			"Mont",
+			"Date",
+			"post",
+			"partner",
+			"container",
+			"clearer",
+			"footer",
+			"tooltip",
+			"vers",
+			"Highcharts",
+			"poc_errors",
+			"pima_test_pass_fail",
+			"config",
+			"json",
+			"titles",
+			"data_to_insert",
+			"encode",
+			"json",
+			"input",
+			"followsymlinks",
+			"poc/sidebar_view",
+			"view",
+			"load->model",
+			"load-model",
+			"Where 1",
+			"yearly_device_test_trends",
+			"$user_group_id",
+			"config",
+			"\");\n",
+			"hover",
+			"checkFacilitymfl",
+			"fcdrrlistsAdmin",
+			" checkFacilitymfl()",
+			" checkFacilitymfl() i",
+			"get_current_user",
+			"get_da",
+			"get_dq",
+			"pima_uploads_details",
+			"commit",
+			"poc_model",
+			"admin_model",
+			"array_merge",
+			"WHERE",
+			"get_current_user_id",
+			"myco"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"\"",
+			"\\\"",
+			"'",
+			"poc_model",
+			"facility",
+			"login_reroute(array(1,2))",
+			"login_reroute(array(3,8,9))",
+			"region",
+			"15%",
+			"cyflow_tests_pead",
+			"cyflow_tests_adults",
+			"count_tests_pead",
+			"count_tests_adults",
+			"calibur_tests_pead",
+			"calibur_tests_adults",
+			"to_date",
+			"from_date",
+			"facility_id",
+			"partner_id",
+			"district_id",
+			"MFL_code",
+			"id"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "application/modules/admin/controllers/users.php",
+					"settings":
+					{
+						"buffer_size": 5358,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5152,
+								5152
+							],
+							[
+								5195,
+								5195
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2273.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/modules/admin/views/users_view.php",
+					"settings":
+					{
+						"buffer_size": 14775,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10104,
+								10100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2897.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/modules/admin/views/equipment_view.php",
+					"settings":
+					{
+						"buffer_size": 16800,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16748,
+								16748
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3393.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 67.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				".gitignore"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 259.0,
+	"status_bar_visible": true
+}
