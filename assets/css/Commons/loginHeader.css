@@ -1,0 +1,43 @@
+body, table,textarea, button{
+	font:1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	line-height:1.5em;
+	color:#444;
+	}	
+body{
+	font-size:12px;
+	background:#FFFFFF;		
+	text-align:left;
+	width:auto;
+	}	
+.center-wrapper {
+	margin: 0 auto;
+	text-align:center;
+}
+
+#rat{
+background: #FFFFFF;	
+}
+
+#broke {
+float: left;
+width: 50%;	
+}
+
+#sere {
+clear: both;
+}
+
+#trans {
+float: left;
+width: 50%;	
+}
+
+#st {
+float: left;
+width: 47.5%;	
+}
+#site-title {
+	font: normal 1.6em serif;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 4px;
+}

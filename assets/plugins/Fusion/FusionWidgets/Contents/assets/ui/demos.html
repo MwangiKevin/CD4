@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>FusionWidgets XT Live Demos</title>
+<script type="text/javascript">
+	window.__orphanarticle = false;
+	window.__doNotPutInCookie = true;
+	
+</script>
+<link href="css/uistyle.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="../../../Charts/FusionCharts.js"></script>
+<script type="text/javascript" src="js/lib.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+<script>
+  /* select the element name, css selector, background etc */
+  DD_belatedPNG.fix('img');
+  
+  /* string argument can be any CSS selector */
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		setBgImages("download-pack-demos dt", 31);
+		//setBgImages("online-demos dt", 31);
+		changeStructure ("download-pack-demos");
+		changeStructure ("online-demos");
+	
+		var dummyChart = new FusionCharts("../../../Charts/SparkColumn.swf", "dummyChartId", 25,15,0,1);
+		dummyChart.setXMLUrl("Data.xml");
+		dummyChart.render("miniChart");
+		
+		
+		showConditionalMessage( "Your borwser does not seem to have Flash Player support. All Flash samples will automatically render JavaScript charts instead.", isJSRenderer(dummyChart) );
+		showConditionalMessage( "Some of the demos here use JavaScript to interact with FusionWidgets XT. Since you are running FusionWidgets XT from your local machine, you will need to allow this interaction to happen, as <a href='../../../Tools/FlashPlayerSecuritySetup/HowToSetup.html' target='_blank'>explained here</a>. However, if you view the examples from a server (even localhost), this is not required.", isLocal() && !isJSRenderer(dummyChart) );
+
+
+		dummyChart.addEventListener( "nodatatodisplay", function() { 
+
+			addConditionalMessage( "<br /><br /><strong>Note:</strong><br />You seem to be running the page from local file system. Your browser restricts JavaScript from accessing local file system owing to security reasons. Some demos which use use data provided to charts as URL, will not work. These samples will run absolutely fine if run form a server, though. When running locally, however, all samples with data provided as XML/JSON string or JSON Object will work fine.", isLocal() && isJSRenderer(dummyChart) );
+		
+			
+			dummyChart.dispose();
+			
+			dummyChart = new FusionCharts("../../../Charts/SparkColumn.swf", "dummyChartId", 25,15,0,1);
+			dummyChart.setXMLData("<chart showValues='0' showYaxisValues='0' canvasBorderAlpha='0' chartLeftMargin='1' plotBorderAlpha='0' plotGradientColor='' showLegend='0' bgAlpha='0,0' canvasBgAlpha='0' chartRightMargin='5' chartTopMargin='0' chartBottomMargin='0' showAlternateHGridColor='0'  divLineAlpha='0' drawAnchors='0' lineThickness='1' borderAlpha='0' showShadow='0' showTooltip='0'><categories><category/> <category/><category/></categories><dataset><set value='8' color='4078E0'/><set value='15' color='F0C010'/>  <set value='12' color='D04010'/></dataset></chart>");
+			dummyChart.render("miniChart");
+			
+		});
+
+		
+		
+	
+	})
+
+	 var setBgImages = function (id, hight) {
+		$("#"+id).each(function(i){
+			$(this).css({
+				"background-position": '0 -' + (i * hight).toString() + 'px'
+			});
+		});
+	 }
+
+	 var changeStructure = function (id) {
+		 var dtCont = [], ddCont = [], dtContTemp = [], ddContTemp = [];
+		 $("#" + id).children().each ( function () {
+			 if ($(this).is("dt")) {
+				 dtCont.push($(this));
+			 }
+			 if ($(this).is("dd")) {
+				 ddCont.push( $(this) );
+			 }
+		 })
+
+		 for (var j in dtCont) {
+			 dtContTemp.push(dtCont[j]);
+			 ddContTemp.push(ddCont[j]);
+			 if ((j+1) % 3 == 0) {
+				 for (i in dtContTemp) {
+					 $("#" + id).append( dtContTemp[i] );
+				 }
+				 for (i in ddContTemp) {
+					 $("#" + id).append( ddContTemp[i] );
+				 }
+				 dtContTemp = [];
+				 ddContTemp = [];
+			 }
+		 }
+	 }
+</script>
+</head>
+<body>
+<!-- wrapper -->
+<div id="wrapper">
+  <!-- header -->
+  <div id="header">
+    <div class="back-to-home"><a href="../../../Index.html">Back to home</a></div>
+    
+    <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com/widgets/?BS=OfflineDocsLogo"><img src="Images/fwxt-logo.png" width="73" height="74" alt="FusionWidgets XT logo" /></a></div><h1 class="brand-name">FusionWidgets XT</h1>
+    <h1 class="logo-text">Live Demos</h1>
+     </div>
+  <!-- content area -->
+  <div class="content-area">
+    <div id="content-area-inner-main">
+      <h2 class="headline">FusionWidgets XT is used in a wide variety of applications like  executive dashboards, live &quot;up-to-the-second&quot; stock monitors, process   monitoring applications and financial applications where KPI's and other   critical data are monitored in real time. Check out the demos below to get inspired! </h2>
+      <!--  demo in download pack block -->
+	  <div id="messageBox" style="margin-left:10px; margin-right:10px; display:none;"></div>
+      <h3 class="headline"><span id="miniChart"></span>Demos available offline</h3>
+      <div class="inner-middle-link-container">
+        <div id="visible-block">
+          <dl class="demo-inner-m-cl" id="download-pack-demos">
+            
+            <dt class="demo-inner-m-cl-1">Demos</dt>
+            <dd class="demo-inner-m-cl-1">
+              <ul class="l-d-list">
+                <li><a href="../../../Code/demos/Rating/Index.html" target="_blank">Rating meter </a></li>
+                <li><a href="../../../Code/demos/RealTimeJS/Index.html"  target="_blank">Real-time stock update </a></li>
+                <li><a href="../../../Code/demos/network-monitor-realtime/index.html" target="_blank">Real-time router monitor </a></li>
+                <li><a href="../../../Code/demos/clock/index.html" target="_blank">Resize-able clock</a></li>
+                <li><a href="../../../Code/MyFirstChart/change-size-percent-incontainer.html" target="_blank">In resizable container</a></li>
+                <li><a href="../../../Code/demos/background-image/index.html"  target="_blank">Background image demo</a></li>
+                <li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/jqdialog.html" target="_blank"><em>LinkedCharts </em> demo</a></li>
+                <li><a href="../../../Code/MyFirstChart/PrintManager_MultipleChart.html" target="_blank">Print Manager demo</a></li>
+                <li><a href="../../../Code/demos/FCStarRater/index.html" target="_blank">Star-rating meter </a></li>
+              </ul>
+            </dd>
+
+				
+	          <dt class="demo-inner-m-cl-2">JavaScript gauges</dt>
+   	          <dd class="demo-inner-m-cl-2">
+	            <ul class="l-d-list">
+	            	<li><a href="../../../Code/demos/js-gauge-charts/Angular.html" target="_blank" >Angular/Dial gauge</a></li>
+   	      	        <li><a href="../../../Code/demos/js-gauge-charts/HLinear.html" target="_blank" >Linear/Scale gauge</a></li>
+   	      	        <li><a href="../../../Code/demos/network-monitor/index.html" target="_blank">Bulb and cylinder</a></li>
+      	   	        <li><a href="../../../Code/demos/js-gauge-charts/Thermometer.html" target="_blank">Thermometer gauge</a></li>
+	                <li><a href="../../../Code/demos/js-gauge-charts/LED.html" target="_blank" >LED gauge</a></li>
+	                <li><a href="../../../Code/demos/js-gauge-charts/Sparks.html" target="_blank">Spark charts</a></li>
+	                <li><a href="../../../Code/demos/js-gauge-charts/Bullet.html" target="_blank" >Bullet chart</a></li>
+	                <li><a href="../../../Code/demos/js-gauge-charts/Funnel.html" target="_blank" >Funnel chart</a></li>
+	                <li><a href="../../../Code/demos/js-gauge-charts/Pyramid.html" target="_blank" >Pyramid chart</a></li>
+	                </ul>
+            </dd>
+
+ 			
+	        <dt class="demo-inner-m-cl-2">Various demos </dt>
+            <dd class="demo-inner-m-cl-2">
+        	    <ul class="l-d-list">
+						<li><a href="../../../Code/demos/alert/alert-manager.html" target="_blank">Using Alert Manager</a> </li>
+						<li><a href="../../../Code/jquery/BasicExample/FirstChart.html" target="_blank">Render using jQuery plugin</a></li>
+						<li><a href="../../../Code/jquery/events/resized.html" target="_blank">Render gauge in jQuery dialog</a></li>
+						<li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/highslide.html" target="_blank"><em>LinkedCharts</em> using HighSlide</a></li>
+					    <li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/ExtJs.html" target="_blank"><em>LinkedCharts</em> using ExtJS</a></li>
+        	            <li>Using c<a href="../../../Code/ExportChartSamples/ClientSide/SimpleExample.html" target="_blank">lient-side export</a></li>
+        	            <li><a href="../../../Code/JavaScript/GetDataAsCSV.html" target="_blank">Get CSV data from chart</a></li>
+        	            <li><a href="../../../Code/RealTime/FeedData_JS.html" target="_blank">JavaScript to update real-time chart </a></li>
+        	            <li><a href="../../../Code/jquery/debugging/JSDebugModeFirebugLite.html" target="_blank">Debugging using Firebug Lite</a> </li>
+       	             </ul>
+            </dd>
+            </dl>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+      <!-- online demos block -->
+      <h3 class="headline">More demos you can view online</h3>
+      <div class="inner-middle-link-container">
+        <div id="online-block">
+          <dl class="inner-m-cl" id="online-demos">
+            <dt class="inner-m-cl-1 inner-link-icon-online-kpi"><a href="http://www.fusioncharts.com/demos/business/kpi-dashboard/view/default.asp" target="_blank">KPI Dashboard</a></dt>
+            <dd class="inner-m-cl-1"><a href="http://www.fusioncharts.com/demos/business/kpi-dashboard/view/default.asp" target="_blank">This dashboard plots many indicators that are relevant for any business, like revenue figures, average order value, average order quantity, top customers and top performing geographies in a compact layout.</a></dd>
+            <dt class="inner-m-cl-2 inner-link-icon-online-cm"><a href="http://www.fusioncharts.com/demos/business/#patient-monitoring-system" target="_blank">Patient Monitoring System</a></dt>
+            <dd class="inner-m-cl-2"><a href="http://www.fusioncharts.com/demos/business/#patient-monitoring-system" target="_blank">This real-time dashboard visualizes all the critical patient vitals and enhances patient acuity by streaming "actual" information that matter the most.</a></dd>
+            <dt class="inner-m-cl-2 inner-link-icon-online-rt"><a href="http://www.fusioncharts.com/demos/business/task-manager-simulation/view/index.html" target="_blank">Task Manager </a></dt>
+            <dd class="inner-m-cl-2"><a href="http://www.fusioncharts.com/demos/business/task-manager-simulation/view/index.html" target="_blank">	This demo simulates the performance tab of the Windows Task Manager. It displays real-time CPU and PF usage, and also their history over time.</a></dd>
+          </dl>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+     
+      <div class="clear"></div>
+      <p>&nbsp;</p>
+      <div class="underline-dull"></div>
+    </div>
+   </div>
+  <!-- footer -->
+  <div id="footer">
+    <ul>
+      <li><a href="../../../Index.html">Home</a></li>
+      <li class="pipe">|</li>
+      <li><a href="howtoinstall.html">How to Install</a></li>
+      <li class="pipe">|</li>
+      <li><a href="../../Index.html">Documentation</a></li>
+      <li class="pipe">|</li>
+      <li><a href="../../../Gallery/index.html">Chart Gallery</a></li>
+      <li class="pipe">|</li>
+      <li><a href="support.html">Help &amp; Support</a></li>
+      <li class="pipe">|</li>
+      <li><a href="license.html">License &amp; Upgrade</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

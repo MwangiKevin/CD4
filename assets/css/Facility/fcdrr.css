@@ -1,0 +1,21 @@
+.fcdrr_header_inputs{
+	width: 150px;
+	font-size: 11px;
+	height: 20px;
+	float: right;
+}
+.fcdrr_small_inputs{
+	width: 50px;	
+	font-size: 11px;
+	height: 20px;
+	float: right;
+}
+.fcdrr_small_selects{
+	width: 127px;	
+	font-size: 11px;
+	float: right;
+}
+.fcdrr_row{
+	height: 15px;
+
+}

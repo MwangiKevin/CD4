@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Gantt Chart - Creating Milestones</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Gantt chart|Overview.html", "Adding Milestones" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Adding  Milestones </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Milestones are an important part of the Gantt chart as they allow you to   visually depict any crucial dates on the chart. FusionWidgets XT allows you to   create your own milestones on the chart based on dates and tasks, i.e., for a given   task you can specify milestones on specific dates and you can customize all the   visual properties of the milestone including shape (star or polygon), size and   colors. </p>
+      <p>Additionally, you can add tool text and link for the milestone. Here, we'll see how to do the same. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="basics"></a>Basics</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>FusionWidgets XT allows you to create a milestone based on each task i.e., you can create milestone for each task at the specified date. As such, to create a milestone, you need to have the following ready:</p>
+      <ul>
+        <li>The task ID to which this milestone relates to. You'll need to define all the tasks on your chart with a task ID.</li>
+        <li>Date of milestone  </li>
+      </ul>
+    <p>Let's quickly see an example where we add a milestone to one of our previous charts - &quot;Gantt Project Schedule&quot;. We'll show two milestones - one to represent <span class="codeInline">Development complete</span> and another one to show <span class="codeInline">Successful global release</span>. The end chart will look as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_MS1.gif" width="575" height="335" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML for the same can be listed as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart dateFormat=&quot;mm/dd/yyyy&quot; caption=&quot;Project Gantt&quot; subCaption=&quot;From 1st Feb 2007 - 31st Aug 2007&quot;&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Q1&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Q2&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Q3&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;03/01/2007&quot; label=&quot;Feb&quot;/&gt;<br />    &lt;category start=&quot;03/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Mar&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;05/01/2007&quot; label=&quot;Apr&quot;/&gt;<br />    &lt;category start=&quot;05/01/2007&quot; end=&quot;06/01/2007&quot; label=&quot;May&quot;/&gt;<br />    &lt;category start=&quot;06/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Jun&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;08/01/2007&quot; label=&quot;Jul&quot;/&gt;<br />    &lt;category start=&quot;08/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Aug&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;processes fontSize=&quot;12&quot; isBold=&quot;1&quot; align=&quot;right&quot;&gt;<br />    &lt;process label=&quot;Identify Customers&quot;/&gt;<br />    &lt;process label=&quot;Survey 50 Customers&quot;/&gt;<br />    &lt;process label=&quot;Interpret Requirements&quot;/&gt;<br />    &lt;process label=&quot;Study Competition&quot;/&gt;<br />    &lt;process label=&quot;Documentation of features&quot;/&gt;<br />    &lt;process label=&quot;Brainstorm concepts&quot;/&gt;<br />    &lt;process label=&quot;Design &amp; Code&quot;/&gt;<br />    &lt;process label=&quot;Testing / QA&quot;/&gt;<br />    &lt;process label=&quot;Documentation of product&quot;/&gt;<br />    &lt;process label=&quot;Global Release&quot;/&gt;<br />  &lt;/processes&gt;<br />  &lt;tasks&gt;<br />    &lt;task start=&quot;02/04/2007&quot; end=&quot;02/10/2007&quot; id=&quot;TSKIDC&quot;/&gt;<br />    &lt;task start=&quot;02/08/2007&quot; end=&quot;02/19/2007&quot; id=&quot;TSKSRC&quot;/&gt;<br />    &lt;task start=&quot;02/19/2007&quot; end=&quot;03/02/2007&quot; id=&quot;TSKINR&quot;/&gt;<br />    &lt;task start=&quot;02/24/2007&quot; end=&quot;03/02/2007&quot; id=&quot;TSKSTC&quot;/&gt;<br />    &lt;task start=&quot;03/02/2007&quot; end=&quot;03/21/2007&quot; id=&quot;TSKDOC&quot;/&gt;<br />    &lt;task start=&quot;03/21/2007&quot; end=&quot;04/06/2007&quot; id=&quot;TSKBRS&quot;/&gt;<br />    &lt;task start=&quot;04/06/2007&quot; end=&quot;07/21/2007&quot; id=&quot;TSKDSC&quot;/&gt;<br />    &lt;task start=&quot;07/21/2007&quot; end=&quot;08/19/2007&quot; id=&quot;TSKTQA&quot;/&gt;<br />    &lt;task start=&quot;07/28/2007&quot; end=&quot;08/24/2007&quot; id=&quot;TSKDCP&quot;/&gt;<br />    &lt;task start=&quot;08/24/2007&quot; end=&quot;08/27/2007&quot; id=&quot;TSKREL&quot;/&gt;<br />  &lt;/tasks&gt;<br />  &lt;milestones&gt;<br />    &lt;milestone date=&quot;8/19/2007&quot; taskId=&quot;TSKTQA&quot; shape=&quot;star&quot; toolText=&quot;Development Complete&quot; color=&quot;FF5904&quot;/&gt;<br />    &lt;milestone date=&quot;8/28/2007&quot; taskId=&quot;TSKREL&quot; shape=&quot;star&quot; toolText=&quot;Successful Global Release&quot; color=&quot;FF5904&quot;/&gt;<br />  &lt;/milestones&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "dateformat": "mm/dd/yyyy",
+    "caption": "Project Gantt",
+    "subcaption": "From 1st Feb 2007 - 31st Aug 2007"
+  },
+  "categories": [
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "04/01/2007",
+          "label": "Q1"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "07/01/2007",
+          "label": "Q2"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "09/01/2007",
+          "label": "Q3"
+        }
+      ]
+    },
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "03/01/2007",
+          "label": "Feb"
+        },
+        {
+          "start": "03/01/2007",
+          "end": "04/01/2007",
+          "label": "Mar"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "05/01/2007",
+          "label": "Apr"
+        },
+        {
+          "start": "05/01/2007",
+          "end": "06/01/2007",
+          "label": "May"
+        },
+        {
+          "start": "06/01/2007",
+          "end": "07/01/2007",
+          "label": "Jun"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "08/01/2007",
+          "label": "Jul"
+        },
+        {
+          "start": "08/01/2007",
+          "end": "09/01/2007",
+          "label": "Aug"
+        }
+      ]
+    }
+  ],
+  "processes": {
+    "fontsize": "12",
+    "isbold": "1",
+    "align": "right",
+    "process": [
+      {
+        "label": "Identify Customers"
+      },
+      {
+        "label": "Survey 50 Customers"
+      },
+      {
+        "label": "Interpret Requirements"
+      },
+      {
+        "label": "Study Competition"
+      },
+      {
+        "label": "Documentation of features"
+      },
+      {
+        "label": "Brainstorm concepts"
+      },
+      {
+        "label": "Design & Code"
+      },
+      {
+        "label": "Testing / QA"
+      },
+      {
+        "label": "Documentation of product"
+      },
+      {
+        "label": "Global Release"
+      }
+    ]
+  },
+  "tasks": {
+    "task": [
+      {
+        "start": "02/04/2007",
+        "end": "02/10/2007",
+        "id": "TSKIDC"
+      },
+      {
+        "start": "02/08/2007",
+        "end": "02/19/2007",
+        "id": "TSKSRC"
+      },
+      {
+        "start": "02/19/2007",
+        "end": "03/02/2007",
+        "id": "TSKINR"
+      },
+      {
+        "start": "02/24/2007",
+        "end": "03/02/2007",
+        "id": "TSKSTC"
+      },
+      {
+        "start": "03/02/2007",
+        "end": "03/21/2007",
+        "id": "TSKDOC"
+      },
+      {
+        "start": "03/21/2007",
+        "end": "04/06/2007",
+        "id": "TSKBRS"
+      },
+      {
+        "start": "04/06/2007",
+        "end": "07/21/2007",
+        "id": "TSKDSC"
+      },
+      {
+        "start": "07/21/2007",
+        "end": "08/19/2007",
+        "id": "TSKTQA"
+      },
+      {
+        "start": "07/28/2007",
+        "end": "08/24/2007",
+        "id": "TSKDCP"
+      },
+      {
+        "start": "08/24/2007",
+        "end": "08/27/2007",
+        "id": "TSKREL"
+      }
+    ]
+  },
+  "milestones": {
+    "milestone": [
+      {
+        "date": "8/19/2007",
+        "taskid": "TSKTQA",
+        "shape": "star",
+        "tooltext": "Development Complete",
+        "color": "FF5904"
+      },
+      {
+        "date": "8/28/2007",
+        "taskid": "TSKREL",
+        "shape": "star",
+        "tooltext": "Successful Global Release",
+        "color": "FF5904"
+      }
+    ]
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, we've:</p>
+      <ul>
+        <li>Specified a task ID for each task. It is using this ID that milestones are related to tasks.</li>
+        <li>Created <span class="codeInline">&lt;milestones&gt;</span> element to contain all milestones for the chart.</li>
+        <li>Created a <span class="codeInline">&lt;milestone&gt;</span> element with lot of properties to indicate each milestone.
+          <ul>
+            <li><span class="codeInline">TaskId</span> refers to the ID of task to which milestone gets attached to</li>
+            <li><span class="codeInline">date</span>   refers to the date of the milestone</li>
+            <li><span class="codeInline">shape</span> can be star or polygon. You've more customizable properties for the milestone, which have been listed in XML Sheet.</li>
+            <li>We've also defined our custom tool text for each milestone, which the user gets to see if he moves his mouse over the milestone.</li>
+            <li>We've defined our own color for each milestone.  </li>
+          </ul>
+        </li>
+        <li>You can also link each milestone by setting <span class="codeInline">&lt;milestone link='link in FusionCharts format' ..&gt; </span></li>
+      </ul>
+    <p>The tooltips show up as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_MS2.gif" width="235" height="116" class="imageBorder" /></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Time based tasks|Time.html","Adding Connectors|Connectors.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

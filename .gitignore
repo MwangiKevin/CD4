@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+application/cache
+application/logs
+logs
+=======
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+>>>>>>> 5c55f16927783375227cee369ffc6b75907e6742

@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Gantt Chart - Basic Configuration</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Gantt chart|Overview.html", "Basic configurations" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Basic Configurations </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>In this section, we'll see a few of the basic configuration properties exposed by the chart. </p>
+      <p class="highlightBlock">Please note that the chart actually offers a lot more properties than what's discussed here - you can find a list of all of them in the XML Sheet. </p>
+      <p>We'll study the following properties here (click on each one of them to directly scroll to the respective section):</p>
+    <ul>
+      <li><a href="#colorp">Customizing color palettes</a></li>
+      <li><a href="#font">Customizing font properties for categories, process names etc. </a></li>
+      <li><a href="#label">Defining task labels and showing/hiding them </a></li>
+      <li><a href="#date">Showing/hiding task start and end dates </a></li>
+      <li><a href="#processheader">Adding process header and customizing its cosmetics</a> </li>
+      <li><a href="#datatable">Adding more columns to data table</a></li>
+	  <li><a href="#hover">Customizing hover effect </a></li>
+      </ul>
+    <p>Let's see each of them in detail. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="colorp" id="colorp"></a>Color Palettes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>FusionWidgets XT Gantt chart  offers 5 pre-defined color palettes for you to choose from.   Each of these palettes is accessible by the numbers 1-5 respectively. To choose a palette, all you need to do is set: </p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette='2' or '3' or ..&gt;</pre></div>
+	<div id="tab2" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot;: { &quot;palette&quot;: &quot;2&quot; or &quot;3&quot; or ...} }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Shown below are a few examples of palettes applied on our previous chart: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table border="0" cellpadding="5" cellspacing="5" >
+      <tr>
+        <td class="text"><div align="center"><img src="Images/Gantt_Palette_2.gif" width="280" height="162" /></div></td>
+        <td class="text"><div align="center"><img src="Images/Gantt_Palette_3.gif" width="280" height="162" /></div></td>
+      </tr>
+      <tr>
+        <td class="text"><div align="center"><span class="codeInline">&lt;chart palette='2'...&gt;</span></div></td>
+        <td width="50%" class="text"><div align="center"><span class="codeInline">&lt;chart palette='3'...&gt;</span></div></td>
+      </tr>
+      <tr>
+         <td class="text">&nbsp;</td>
+         <td class="text">&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="text"><div align="center"><img src="Images/Gantt_Palette_4.gif" width="280" height="162" /></div></td>
+        <td class="text"><div align="center"><img src="Images/Gantt_Palette_5.gif" width="280" height="162" /></div></td>
+      </tr>
+      <tr>
+        <td class="text"><div align="center"><span class="codeInline">&lt;chart palette='4'...&gt;</span></div></td>
+        <td class="text"><div align="center"><span class="codeInline">&lt;chart palette='5'...&gt;</span></div></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>Additionally, you can also define an entire new palette by setting a single theme color using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart paletteThemeColor='669933' ...&gt;</pre></div>
+	<div id="tab4" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot;: { &quot;palettethemecolor&quot;: &quot;669933&quot; ... } }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will create a new palette derived from this color and then color the chart as under:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Palette_Custom.gif" width="579" height="373" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="font" id="font"></a>Customizing font properties</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The Gantt chart offers you multiple ways to customize font properties for various objects, like:</p>
+      <ul>
+        <li>For the caption, sub-caption and legend, you can use the <strong>Styles</strong> feature to individually customize their font properties. Please see the <a href="../Styles/Styles.html">Using Styles</a> section. </li>
+        <li>For categories and category labels, you've individual attributes to specify their font properties.</li>
+        <li>For process names also, you can specify the font properties using individual attributes.</li>
+      </ul>    
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="specifyingprocessesfont"></a>Specifying font properties for processes</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can specify font properties for all processes on the chart as a whole by setting:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;processes font='Arial' fontColor='0372AB'  fontSize='13' isBold='1' isItalic='1' isUnderLine='1' bgColor='FFFFFF' align='center' vAlign='middle' ...&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+	  <pre id="pre-datajson" class="prettyprint code_container">&quot;processes&quot;:{ &quot;font&quot;:&quot;Arial&quot;, &quot;fontcolor&quot;:&quot;0372AB&quot;, fontsize&quot;:&quot;13&quot;, &quot;isbold&quot;:&quot;1&quot;, &quot;isitalic&quot;:&quot;1&quot;, &quot;isunderline&quot;:&quot;1&quot;, &quot;bgcolor&quot;:&quot;FFFFFF&quot;, &quot;align&quot;:&quot;center&quot;, &quot;valign&quot;:&quot;middle&quot; ... } }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>There are a lot more possible attributes which have been discussed in the XML Sheet for Gantt chart.</p>
+    <p>Additionally, you can also over-ride the collective font settings for all processes by specifying the font property of each process individually as under:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint">&lt;process font='Arial' fontColor='0372AB' fontSize='13' isBold='1' isItalic='1'  ...&gt;</pre></div>
+    <div id="tab8" class="tab_content">
+      <pre id="pre-datajson" class="prettyprint code_container">&quot;process&quot;:{ &quot;font&quot;:&quot;Arial&quot;, &quot;fontcolor&quot;:&quot;0372AB&quot;, &quot;fontsize&quot;:&quot;13&quot;, &quot;isbold&quot;:&quot;1&quot;, &quot;isitalic&quot;:&quot;1&quot; } </pre>
+    </div></div></div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="specifyingcategoriesfont"></a>Specifying font properties for categories</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Similar to processes, you can specify the collective font properties of all sub-categories within a <span class="codeInline">&lt;categories&gt;</span> element by specifying:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab9">XML</a></li>
+       <li><a href="#tab10">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab9" class="tab_content">
+	<pre class="code_container prettyprint">&lt;categories font='Arial' fontColor='0372AB'  fontSize='13' isBold='1' isItalic='1' isUnderLine='1' bgColor='FFFFFF' align='center' vAlign='middle' ...&gt;</pre></div>
+<div id="tab10" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;categories&quot;:[{ &quot;font&quot;:&quot;Arial&quot;, &quot;fontcolor&quot;:&quot;0372AB&quot;, &quot;fontsize&quot;:&quot;13&quot;, &quot;isbold&quot;:&quot;1&quot;, &quot;isitalic&quot;:&quot;1&quot;, &quot;isunderline&quot;:&quot;1&quot;, &quot;bgcolor&quot;:&quot;FFFFFF&quot;, &quot;align&quot;:&quot;center&quot;, &quot;valign&quot;:&quot;middle&quot; } ]<br /></pre>
+</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Or, you can specify the font property for each category individually using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab11">XML</a></li>
+       <li><a href="#tab12">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab11" class="tab_content">
+	<pre class="code_container prettyprint">&lt;category font='Arial' fontColor='0372AB'  fontSize='13' isBold='1' isItalic='1'  ...&gt;</pre></div> <div id="tab12" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;categories&quot;:[{ &quot;font&quot;:&quot;Arial&quot;, &quot;fontcolor&quot;:&quot;0372AB&quot;, &quot;fontsize&quot;:&quot;13&quot;, isbold&quot;:&quot;1&quot;, &quot;isitalic&quot;:&quot;1&quot;, &quot;isunderline&quot;:&quot;1&quot;, &quot;bgcolor&quot;:&quot;FFFFFF&quot;, &quot;align&quot;:&quot;center&quot;, &quot;valign&quot;:&quot;middle&quot; } ]</pre>
+	</div></div></div></td></tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="label" id="label"></a>Defining task labels and showing/hiding them </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Apart from the process labels, you can also define task labels for each task and then show/hide them on the chart. To define a task label, you set:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab13">XML</a></li>
+       <li><a href="#tab14">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab13" class="tab_content">
+	<pre class="code_container prettyprint">&lt;task start='04/06/2007' end='07/21/2007' label='Design &amp; Code'/&gt;</pre></div>
+	<div id="tab14" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;task&quot;:{ &quot;start&quot;:&quot;04/06/2007&quot;, &quot;end&quot;:&quot;07/21/2007&quot;, &quot;label&quot;:&quot;Design &amp; Code&quot; }
+	</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Here, we've  defined the task label for a single task. By default, the task label is not visible on the chart. To make the task label visible on the chart, you need to set:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab15">XML</a></li>
+       <li><a href="#tab16">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab15" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart showTaskLabels='1'..&gt;</pre></div>
+	<div id="tab16" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{&quot;chart&quot;:{ &quot;showtasklabels&quot;:&quot;1&quot; } }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+      <p>or</p> </td></tr>
+       <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab17">XML</a></li>
+       <li><a href="#tab18">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab17" class="tab_content">
+	<pre class="code_container prettyprint">&lt;tasks showLabels='1'&gt;</pre></div>
+	<div id="tab18" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;tasks&quot;: {&quot;showlabels&quot;:&quot;1&quot; }<br /></pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+      <p>If you want to show/hide a particular task label, you need to set:</p></td></tr>
+       <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab19">XML</a></li>
+       <li><a href="#tab20">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab19" class="tab_content">
+	<pre class="code_container prettyprint">&lt;task start='04/06/2007' end='07/21/2007' label='Design &amp; Code' showLabel='1'/&gt;</pre></div>
+	  <div id="tab20" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;task&quot;:{ &quot;start&quot;:&quot;04/06/2007&quot;, &quot;end&quot;:&quot;07/21/2007&quot;, &quot;label&quot;:&quot;Design &amp; Code&quot;, &quot;showlabel&quot;:&quot;1&quot; }</pre>
+	  </div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Basically, the above attribute lets you control whether to show labels or not - collectively for all tasks or individually for a single task. </p>
+    <p>When you now view the chart, the task bar will show up with the label. Also, the label of task will appear in the tool text of the task bar: <br />
+        </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Config_Label1.gif" width="429" height="38" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">And the tool text will show as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Config_Label2.gif" width="443" height="40" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Font properties for both task labels and tooltips can either be set using <span class="codeInline">&lt;task&gt;</span> element attributes or using the <a href="../Styles/Font.html"><strong>Styles</strong></a> feature. Refer to the Chart XML Sheet for more on this. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="date" id="date"></a>Showing/hiding task dates </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Apart from showing the task labels, you can also show the task start and end dates by setting:</p>
+    <p><span class="codeInline">&lt;chart showTaskStartDate='1' showTaskEndDate='1' &gt;</span> to show start and end dates for all tasks as shown under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Config_Date1.gif" width="585" height="340" class="imageBorder" /></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>Or, you can opt to show the start and end date for individual task by setting:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab21">XML</a></li>
+       <li><a href="#tab22">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab21" class="tab_content">
+	<pre class="code_container prettyprint">&lt;task start='04/06/2007' end='07/21/2007' label='Design &amp; Code' showLabel='1' showStartDate='1' showEndDate='1'/&gt;</pre></div>
+	<div id="tab22" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;task&quot;:{ &quot;start&quot;:&quot;04/06/2007&quot;, &quot;end&quot;:&quot;07/21/2007&quot;, &quot;label&quot;:&quot;Design &amp; Code&quot;, &quot;showlabel&quot;:&quot;1&quot;, showstartdate=&quot;1&quot;, showenddate=&quot;1&quot; }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Config_Date2.gif" width="575" height="334" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p class="highlightBlock">The format in which the dates are displayed on the chart is customizable. Please see the section <a href="DateFormat.html">&quot;Configuring date formats&quot;</a> on how to do the same.</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="processheader" id="processheader"></a>Adding process header </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can add header (title) for the processes column in data table and customize its cosmetics by setting:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab23">XML</a></li>
+       <li><a href="#tab24">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab23" class="tab_content">
+	<pre class="code_container prettyprint">&lt;processes fontSize='12' isBold='1' align='right' <strong>headerText='What to do?' headerFontSize='18' headerVAlign='bottom' headerAlign='right'</strong>&gt;</pre></div>
+	<div id="tab24" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;processes&quot;:{ &quot;fontsize&quot;:&quot;12&quot;, &quot;isbold&quot;:&quot;1&quot;, &quot;align&quot;:&quot;right&quot;, &quot;headertext&quot;:&quot;What to do?&quot;, &quot;headerfontsize&quot;:&quot;18&quot;, &quot;headervalign&quot;:&quot;bottom&quot;, &quot;headeralign&quot;:&quot;right&quot; }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Config_ProcessH.gif" width="244" height="337" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="datatable" id="datatable"></a>Adding more columns to data table </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Apart from the process labels, the data table can also contain more columns. To do so, you need to add <span class="codeInline">&lt;datatable&gt;</span>, <span class="codeInline">&lt;datacolumn&gt;</span> and <span class="codeInline">&lt;text&gt;</span> elements as under. Each of these elements can have a number of cosmetic attributes which have been defined in Chart XML Sheet. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab25">XML</a></li>
+       <li><a href="#tab26">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab25" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;
+ ...<br />  &lt;datatable headerVAlign=&quot;bottom&quot;&gt;<br />    &lt;datacolumn headerText=&quot;Who does?&quot; headerFontSize=&quot;18&quot; headerVAlign=&quot;bottom&quot; headerAlign=&quot;right&quot; align=&quot;left&quot; fontSize=&quot;12&quot;&gt;<br />      &lt;text label=&quot;John&quot;/&gt;<br />      &lt;text label=&quot;David&quot;/&gt;<br />      &lt;text label=&quot;Mary&quot;/&gt;<br />      &lt;text label=&quot;Andrew&quot;/&gt;<br />      &lt;text label=&quot;Tiger&quot;/&gt;<br />      &lt;text label=&quot;Sharon&quot;/&gt;<br />      &lt;text label=&quot;Neil&quot;/&gt;<br />      &lt;text label=&quot;Harry&quot;/&gt;<br />      &lt;text label=&quot;Chris&quot;/&gt;<br />      &lt;text label=&quot;Richard&quot;/&gt;<br />    &lt;/datacolumn&gt;<br />  &lt;/datatable&gt;
+   ...<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab26" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "datatable": {
+    "headervalign": "bottom",
+    "datacolumn": [
+      {
+        "headertext": "Who does?",
+        "headerfontsize": "18",
+        "headervalign": "bottom",
+        "headeralign": "right",
+        "align": "left",
+        "fontsize": "12",
+        "text": [
+          {
+            "label": "John"
+          },
+          {
+            "label": "David"
+          },
+          {
+            "label": "Mary"
+          },
+          {
+            "label": "Andrew"
+          },
+          {
+            "label": "Tiger"
+          },
+          {
+            "label": "Sharon"
+          },
+          {
+            "label": "Neil"
+          },
+          {
+            "label": "Harry"
+          },
+          {
+            "label": "Chris"
+          },
+          {
+            "label": "Richard"
+          }
+        ]
+      }
+    ]
+    ...
+  }
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>With this, you'll get the following result: </p>
+	<p><img src="Images/Gantt_Config_Scroll.gif" width="580" height="337" /></p>
+	<p>You can add any number of columns to this grid. </p>
+      <p>Since our chart width is relatively small here, a scroll bar comes up and allows the users to scroll through the data table. You can increase the width of data table by:</p>
+      <ul>
+        <li>Either increasing chart width.</li>
+        <li>Or, by setting <span class="codeInline">&lt;chart ganttWidthPercent='0-100' &gt;</span> to a lower value. This attribute indicates the percent space (width) the Gantt pane takes.  </li>
+      </ul>
+    <p>The data grid on the left is both scrollable and resizable i.e., the users can click on the drag handlers (vertical line separating two data columns) and drag them to resize the data column. Additionally, if you wish, you can also explicitly set the width of each data column using:</p>
+    <p><span class="codeInline">&lt;datacolumn width='200' ..&gt;</span> - Sets data column width as 200 pixels</p>
+      <p>or</p>
+      <p><span class="codeInline">&lt;datacolumn width='40%' ..&gt;</span> - Sets data column width as 40% of the entire data grid width </p>
+    <p>If you wish to hide the scroll bar of the data column, you can set:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab27">XML</a></li>
+       <li><a href="#tab28">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab27" class="tab_content">
+	<pre class="code_container prettyprint"> &lt;chart showFullDataTable='0' ...&gt;</pre>
+       </div>
+	<div id="tab28" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{&quot;chart&quot;:{&quot;showfulldatatable&quot;:&quot;0&quot; } }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will wrap &amp; truncate the data labels and try to squeeze them in the required space (only if possible). </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="hover" id="hover"></a>Customizing hover effect </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Starting FusionWidgets XT (v3.3.1) you'll see a veritcal or horizontal colored band when you hover the mouse over or touch any category or process respectively. Additionally, hover effect is also added for <a href="TaskConfiguration.html">tasks</a> and <a href="Connectors.html">connectors</a>. </p> 
+	<p>In this section, we will discuss about the hover effects of categories and processes.</p>
+	  <p class="highlightBlock">This is available for JavaScript Gantt chart only.</p>
+	  </td></tr>
+	  <tr>
+	  <td valign="top" class="text">
+	  <table border="0" cellpadding="5" cellspacing="5" >
+      <tr>
+        <td class="text"><div align="center"><img src="Images/hover_d1.gif" /></div></td>
+        <td class="text"><div align="center"><img src="Images/hover_d2.gif" /></div></td>
+      </tr>
+      <tr>
+        <td class="text"><div align="center"><span class="codeInline">Hover on Process</span></div></td>
+        <td width="50%" class="text"><div align="center"><span class="codeInline">Hover on Category</span></div></td>
+      </tr>
+	  </table>
+	  </td></tr>
+	  <tr>
+	  <td valign="top" class="text">
+	  <p>The JavaScript Gantt chart offers you multiple ways to customize the hovering effect, like:</p>
+      <ul>
+	  <li><a href="#chart_hover">Customize the hovering effect globally</a></li>
+        <li><a href="#processes_hover">Customizing hovering effects for processes</a> </li>
+        <li><a href="#categories_hover">Customizing hovering effects for categories</a></li>
+        
+        <li><a href="#disable_hover_effects">Disable hover effect</a></li>
+      </ul>    
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+   <tr>
+    <td valign="top" class="header"><a name="chart_hover"></a>Customize hovering effect globally  </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can specify the collective hovering properties from the entire <span class="codeInline">&lt;chart&gt;</span> element. This customizes the hover effect of <span class="codeInline">&lt;processes&gt;</span>, <span class="codeInline">&lt;process&gt;</span>, <span class="codeInline">&lt;categories&gt;</span> and <span class="codeInline">&lt;category&gt;</span> elements. You need to specify the following: </p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab41">XML</a></li>
+       <li><a href="#tab42">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab41" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart <strong>hoverBandColor='BEFFFF' hoverBandAlpha='40'</strong> ...&gt;</pre>
+       </div>
+<div id="tab42" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;chart&quot;:[{ <strong>&quot;hoverBandColor&quot;:&quot;BEFFFF&quot;, &quot;hoverBandAlpha&quot;:&quot;40&quot;</strong> ...} ]</pre>
+</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+	<p>The charts below depicts the customization of the hovering effect from the entire <span class="codeInline">&lt;chart&gt;</span> element. </p></td></tr>
+	<tr>
+    <td valign="top" class="text"><table border="0" cellpadding="5" cellspacing="5" >
+      <tr>
+        <td class="text"><div align="center"><img src="Images/hover_5.gif" width="300" height="231" class="imageBorder"/></div></td>
+        <td class="text"><div align="center"><img src="Images/hover_6.gif" width="295" height="231" class="imageBorder" /></div></td>
+		<td class="text"><div align="center"><img src="Images/hover_9.gif" width="332" height="231" class="imageBorder"/></div></td>
+      </tr>   
+	  <tr>
+	  <td class="text" align="center">Categories</td>
+	  <td class="text" align="center">Individual category</td>
+	  <td class="text" align="center">Processes</td>
+	  </tr> 
+    </table>
+	</td></tr>
+	<tr>
+	<td>&nbsp;</td></tr>
+  <tr>
+    <td valign="top" class="header"><a name="processes_hover"></a>Customize hovering effect for processes</td>
+  </tr>
+  <tr>
+  <td class="text"><p>You can  specify the collective hovering properties for all processes globally within <span class="codeInline">&lt;chart&gt;</span> element using:</p></td></tr>
+   <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab33">XML</a></li>
+       <li><a href="#tab34">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab33" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart <strong>processHoverBandColor='D1FFA4' processHoverBandAlpha='40'</strong> ...&gt;</pre>
+       </div>
+	 <div id="tab34" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;chart&quot;:[{ &quot;<strong>processHoverBandColor&quot;:&quot;D1FFA4&quot;, &quot;processHoverBandAlpha&quot;:&quot;40&quot;</strong> ... } ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+    <td valign="top" class="text"><p>The chart below shows the hovering effect for processes.</p>
+	<p><img src="Images/hover_8.gif" width="552" height="288" /></p>
+	
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can customize the hovering properties for all the processes within the <span class="codeInline">&lt;processes&gt;</span> element (horizontal color band) on the chart by setting:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab29">XML</a></li>
+       <li><a href="#tab30">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab29" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ...&gt;
+&lt;processes <strong>hoverBandcolor=&quot;AFFAEC&quot; hoverBandAlpha=&quot;30&quot;</strong> ... &gt;
+&lt;process label=&quot;Identify Customers&quot;/&gt;
+&lt;process label=&quot;Survey 50 Customers&quot;/&gt;
+&lt;process label=&quot;Interpret Requirements&quot;/&gt;
+&lt;process label=&quot;Study Competition&quot;/&gt;
+&lt;process label=&quot;Documentation of features&quot;/&gt;
+&lt;process label=&quot;Brainstorm concepts&quot;/&gt;
+&lt;process label=&quot;Design &amp; Code&quot;/&gt;
+&lt;process label=&quot;Testing / QA&quot;/&gt;
+&lt;process label=&quot;Documentation of product&quot;/&gt;
+&lt;process label=&quot;Global Release&quot;/&gt;
+&lt;/processes&gt;
+...
+&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab30" class="tab_content">
+	  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+  ...
+  &quot;processes&quot;:{
+    <strong>"hoverBandcolor": "AFFAEC",
+    "hoverBandAlpha": "30",</strong>
+    ...
+    "process": [
+      {
+        "label": "Identify Customers"
+      },
+      {
+        "label": "Survey 50 Customers"
+      },
+      {
+        "label": "Interpret Requirements"
+      },
+      {
+        "label": "Study Competition"
+      },
+      {
+        "label": "Documentation of features"
+      },
+      {
+        "label": "Brainstorm concepts"
+      },
+      {
+        "label": "Design & Code"
+      },
+      {
+        "label": "Testing / QA"
+      },
+      {
+        "label": "Documentation of product"
+      },
+      {
+        "label": "Global Release"
+      }
+    ]
+	 }
+	 ...
+ }
+}	 </pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    
+    <p>The chart below shows the hovering effect for all processes.</p>
+	<p><img src="Images/hover_1.gif" width="552" height="288" /></p>
+    <p>Additionally, you can also over-ride the collective hover settings for all processes by specifying the hovering properties of each process individually. This is shown in the code below:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab31">XML</a></li>
+       <li><a href="#tab32">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab31" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ...&gt;
+&lt;processes hoverColor=&quot;AFFAEC&quot; hoverAlpha=&quot;30&quot; ... &gt;
+&lt;process label=&quot;Identify Customers&quot;/&gt;
+&lt;process label=&quot;Survey 50 Customers&quot;/&gt;
+&lt;process label=&quot;Interpret Requirements&quot; <strong>hoverBandcolor=&quot;F0A4FF&quot; hoverBandAlpha=&quot;30&quot;</strong>/&gt;
+&lt;process label=&quot;Study Competition&quot;/&gt;
+&lt;process label=&quot;Documentation of features&quot;/&gt;
+&lt;process label=&quot;Brainstorm concepts&quot;/&gt;
+&lt;process label=&quot;Design &amp; Code&quot;/&gt;
+&lt;process label=&quot;Testing / QA&quot;/&gt;
+&lt;process label=&quot;Documentation of product&quot;/&gt;
+&lt;process label=&quot;Global Release&quot;/&gt;
+&lt;/processes&gt;
+...
+&lt;/chart&gt;</pre>
+       </div>
+    <div id="tab32" class="tab_content">
+      
+	  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  &quot;processes&quot;:{
+    "hoverColor": "AFFAEC",
+    "hoverAlpha": "30",
+    ...
+    "process": [
+      {
+        "label": "Identify Customers"
+      },
+      {
+        "label": "Survey 50 Customers"
+      },
+      {
+        "label": "Interpret Requirements"
+        <strong>"hoverBandcolor": "F0A4FF",
+        "hoverBandAlpha": "30"</strong>
+      },
+      {
+        "label": "Study Competition"
+      },
+      {
+        "label": "Documentation of features"
+      },
+      {
+        "label": "Brainstorm concepts"
+      },
+      {
+        "label": "Design & Code"
+      },
+      {
+        "label": "Testing / QA"
+      },
+      {
+        "label": "Documentation of product"
+      },
+      {
+        "label": "Global Release"
+      }
+	]
+    }
+...
+}</pre>
+    </div></div></div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The chart below shows the hovering effect for individual process.</p>
+	<p><img src="Images/hover_2.gif" width="552" height="288" /></p>
+	<p>There are a lot more possible attributes which have been discussed in the <a href="XMLAPI.html">XML Sheet for Gantt chart</a>.</p>
+	
+	
+      </td></tr>
+    
+  
+  <tr>
+    <td valign="top" class="header"><a name="categories_hover"></a>Customize hovering effect  for categories</td>
+  </tr>
+  <tr>
+  <td class="text"><p>If you have multiple categories you can specify the collective hovering properties globally within the <span class="codeInline">&lt;chart&gt;</span> element using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab39">XML</a></li>
+       <li><a href="#tab40">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab39" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart <strong>categoryHoverBandColor='EFFFA4' categoryHoverBandAlpha='40'</strong> ...&gt;</pre>
+       </div>
+	 <div id="tab40" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;chart&quot;:[{ <strong>&quot;categoryHoverBandColor&quot;:&quot;EFFFA4&quot;, &quot;categoryHoverBandAlpha&quot;:&quot;40&quot;</strong> ... } ]</pre>
+	</div></div></div></td></tr>
+  <tr>
+    <td valign="top" class="text"><p>The chart below shows the hovering effect for all categories including individual category.</p>
+	<p><img src="Images/hover_7.gif" width="552" height="287" /></p></td></tr>
+	
+	
+
+  <tr>
+    <td valign="top" class="text"><p>Similar to processes, you can specify the collective hovering properties of all sub-categories within a <span class="codeInline">&lt;categories&gt;</span> element by specifying:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab35">XML</a></li>
+       <li><a href="#tab36">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab35" class="tab_content">
+	   <pre class="code_container prettyprint">&lt;chart...&gt; <br />...<br />  &lt;categories <strong>hoverBandcolor=&quot;A6FFA4&quot; hoverBandAlpha=&quot;30&quot;</strong> ... &gt; <br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Q1&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Q2&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Q3&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;03/01/2007&quot; label=&quot;Feb&quot;/&gt;<br />    &lt;category start=&quot;03/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Mar&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;05/01/2007&quot; label=&quot;Apr&quot;/&gt;<br />    &lt;category start=&quot;05/01/2007&quot; end=&quot;06/01/2007&quot; label=&quot;May&quot;/&gt;<br />    &lt;category start=&quot;06/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Jun&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;08/01/2007&quot; label=&quot;Jul&quot;/&gt;<br />    &lt;category start=&quot;08/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Aug&quot;/&gt;<br />  &lt;/categories&gt;<br />  ...<br />&lt;/chart&gt;</pre>
+	</div>
+<div id="tab36" class="tab_content">
+	
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "categories":{
+    <strong>"hoverBandcolor": "A6FFA4",
+    "hoverBandAlpha": "30",</strong>
+    ... 
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "04/01/2007",
+          "label": "Q1"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "07/01/2007",
+          "label": "Q2"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "09/01/2007",
+          "label": "Q3"
+        }
+      ]
+    },
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "03/01/2007",
+          "label": "Feb"
+        },
+        {
+          "start": "03/01/2007",
+          "end": "04/01/2007",
+          "label": "Mar"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "05/01/2007",
+          "label": "Apr"
+        },
+        {
+          "start": "05/01/2007",
+          "end": "06/01/2007",
+          "label": "May"
+        },
+        {
+          "start": "06/01/2007",
+          "end": "07/01/2007",
+          "label": "Jun"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "08/01/2007",
+          "label": "Jul"
+        },
+        {
+          "start": "08/01/2007",
+          "end": "09/01/2007",
+          "label": "Aug"
+        }
+      ]
+      ...
+    }
+  ]
+}</pre>
+</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+	<p>The chart below shows the hovering effect of all sub-categories within a <span class="codeInline">&lt;categories&gt;</span> element.</p>
+    <p><img src="Images/hover_3.gif" width="551" height="286" /></p>
+	<p>Or, you can specify the hovering property for each category individually using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab37">XML</a></li>
+       <li><a href="#tab38">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab37" class="tab_content">
+	   <pre class="code_container prettyprint">&lt;chart...&gt; <br />...<br />  &lt;categories hoverColor=&quot;A6FFA4&quot; hoverAlpha=&quot;30&quot; ... &gt; <br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Q1&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Q2&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Q3&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;03/01/2007&quot; label=&quot;Feb&quot;/&gt;<br />    &lt;category start=&quot;03/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Mar&quot; <strong>hoverBandcolor=&quot;FFD3A4&quot; hoverBandAlpha=&quot;30&quot;</strong>/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;05/01/2007&quot; label=&quot;Apr&quot;/&gt;<br />    &lt;category start=&quot;05/01/2007&quot; end=&quot;06/01/2007&quot; label=&quot;May&quot;/&gt;<br />    &lt;category start=&quot;06/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Jun&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;08/01/2007&quot; label=&quot;Jul&quot;/&gt;<br />    &lt;category start=&quot;08/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Aug&quot;/&gt;<br />  &lt;/categories&gt;<br />  ...<br />&lt;/chart&gt;</pre>
+	</div>
+	 <div id="tab38" class="tab_content">
+	<pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "categories":{
+    "hoverColor": "A6FFA4",
+    "hoverAlpha": "30",
+    ... 
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "04/01/2007",
+          "label": "Q1"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "07/01/2007",
+          "label": "Q2",
+          <strong>"hoverBandcolor": "FFD3A4",
+          "hoverBandAlpha": "30"</strong>
+        },
+        {
+          "start": "07/01/2007",
+          "end": "09/01/2007",
+          "label": "Q3"
+        }
+      ]
+    },
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "03/01/2007",
+          "label": "Feb"
+        },
+        {
+          "start": "03/01/2007",
+          "end": "04/01/2007",
+          "label": "Mar"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "05/01/2007",
+          "label": "Apr"
+        },
+        {
+          "start": "05/01/2007",
+          "end": "06/01/2007",
+          "label": "May"
+        },
+        {
+          "start": "06/01/2007",
+          "end": "07/01/2007",
+          "label": "Jun"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "08/01/2007",
+          "label": "Jul"
+        },
+        {
+          "start": "08/01/2007",
+          "end": "09/01/2007",
+          "label": "Aug"
+        }
+      ]
+      ...
+    }
+  ]
+}</pre>
+	
+	</div></div></div></td></tr>
+  <tr>
+    <td valign="top" class="text"><p>The chart below shows the hovering effect for each individual category.</p>
+	<p><img src="Images/hover_4.gif" width="553" height="289" /></p>
+	<p>There are a lot more possible attributes which have been discussed in the <a href="XMLAPI.html">XML Sheet for Gantt chart</a>.</p>
+	</td></tr>
+	<tr>
+	<td class="header"><a name="disable_hover_effects"></a>Disable hover effects</td></tr>
+	<tr>
+	<td class="text"><p>By default, the hovering effects remains enabled for the tasks, connectors, categories and processes. You may opt to disable the hover effects. To do so you need to set the following:</p>
+	</td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab79">XML</a></li>
+       <li><a href="#tab80">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab79" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart <strong>showHoverEffect='0' </strong>...&gt;</pre>
+       </div>
+	 <div id="tab80" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;chart&quot;:[{ <strong>&quot;showHoverEffect&quot;:&quot;0&quot;, </strong>... } ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text"><p>In the above data, we have set <span class="codeInline">showHoverEffect</span> as 0. This will ensure that all the hover effects including tasks, connectors, categories and processes are disabled. Yo may opt to enable the hover effects of the categories and processes only and keep the hover effects of tasks and connectors disabled. To do so, you need to set the following:</p></td></tr>
+	 <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab81">XML</a></li>
+       <li><a href="#tab82">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab81" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart <strong>showHoverEffect='0' showHoverBand='1' </strong>...&gt;</pre>
+       </div>
+	 <div id="tab82" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;chart&quot;:[{ <strong>&quot;showHoverEffect&quot;:&quot;0&quot;, &quot;showHoverBand&quot;:&quot;1&quot; </strong>... } ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+	<p>In the above data, we have set <span class="codeInline">showHoverBand</span> to '1'. This will ensure that, only the hover effect of categories and processes are enabled.</p>
+	<p>You can also opt to disable hover effects for processes, categories, tasks, and connectors. To know more about the attributes please go through the <a href="XMLAPI.html">XML Sheet for Gantt chart</a>.</p></td></tr>
+   
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating a simple Gantt chart|FirstChart.html","Task bar configuration|TaskConfiguration.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

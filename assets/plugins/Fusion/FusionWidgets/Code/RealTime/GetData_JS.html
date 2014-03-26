@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FusionWidgets XT - Getting data using JavaScript</title>
+<script type="text/javascript" src="../../Charts/FusionCharts.js"></script>
+<script type="text/javascript" language="Javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" language="Javascript" src="../assets/ui/js/lib.js"></script>
+<link href="../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+        <script type="text/javascript" src="../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+
+		<script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+<style type="text/css">
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+			.headerbg, .headerbg td , .headerbg th{ background-color:#eee; color:#000 !important;}
+			table, table tr td { padding:5 !important; margin:0 !important; line-height:21px !important; font-size:12px !important; color:#444 !important;}			
+			
+        </style>
+<script language="javascript" type="text/javascript">
+	//FC_ChartUpdated method is called when any real-time chart present in the
+	//page has received new data (either from data-provider page or from JavaScript)
+	function FC_ChartUpdated(DOMId){
+		//Check if DOMId is that of the chart we want
+		if (DOMId=="ChId1"){
+			//Get reference to the chart
+			var chartRef = FusionCharts(DOMId);
+			//Get the current view state data of chart (in array)
+			var arrData = chartRef.getData();
+			//Update our display container
+			updateDisplay(arrData);
+		}
+	}
+	//This method is called when the chart has updated.
+	function updateDisplay(arrData){
+		//Here, we access the array of data, build HTML code to represent
+		//the same data and finally update the page display container.
+		var i,j;
+		var tableCode = "<table class='table' width='500' border='0' align='center' cellpadding='0' cellspacing='0'>";
+		//Iterate through each row in the array;
+		//Note: arrData[0][0] is empty
+		//arrData[0][i] contains data set series names
+		//arrData[i][0] contains category labels (x-axis labels)
+		//Rest of the cells contain data in numeric format (or null).
+		for (i=0; i<arrData.length; i++){
+			//Create a table row for each row
+			tableCode = tableCode + "<tr>";
+			for (j=0; j<arrData[i].length; j++){
+				//If it's the first row, we add data set series name
+				if (i==0){
+					//if it's the first cell [0][0], we add "Time" as header
+					if (j==0){
+						tableCode = tableCode + "<td class='headerbg'>Time</td>";
+					}else{
+						tableCode = tableCode + "<td class='headerbg'>" + arrData[i][j] + "</td>";
+					}
+				}else{
+					//If it's first cell, we add it as category label, else as normal
+					if (j==0){
+						tableCode = tableCode + "<td class='headerbg'>" + arrData[i][j] + "</td>";
+					}else{
+						//We add data only if it's not null
+						if (arrData[i][j]!=null){
+							tableCode = tableCode + "<td>$" + arrData[i][j] + "</td>";
+						}else{
+							tableCode = tableCode + "<td>&nbsp;</td>";
+						}
+					}
+				}
+			}
+			//Close row
+			tableCode = tableCode + "</tr>";			
+		}
+		//Close table element
+		tableCode = tableCode + "</table>";
+		//Update the DIV container with this.
+		var divC = document.getElementById("tableDiv");
+		divC.innerHTML = tableCode;
+		//Return
+		return;
+	}
+</script>
+</head>
+<body>
+<div id="wrapper">
+   <div id="header">
+      <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com/widgets" target="_blank"><img src="../assets/ui/images/fwxt-logo.png" width="73" height="74" alt="FusionWidgets XT logo" /></a></div>
+      <h1 class="brand-name">FusionWidgets XT</h1>
+      <h1 class="logo-text">Real-time charts - Get data</h1>
+   </div>
+   <div class="content-area">
+      <div id="content-area-inner-main">
+         <p class="text" align="center"></p>
+         <div id="messageBox" style="margin-left:130px; margin-right:130px; display:none;"></div>
+         <p>&nbsp;</p>
+         <div class="gen-chart-render">
+            <div id="chart1div"> This text is replaced by the chart. </div>
+            <script type="text/javascript">
+						   var chart1 = new FusionCharts("../../Charts/RealTimeLine.swf", "ChId1", "500", "350", "0", "1");
+						   chart1.setXMLUrl("MultipleDS.xml");
+						   chart1.render("chart1div");
+						</script>
+						<br/>
+			<div align="center" >			
+            <div id="tableDiv" >
+            <table  class="table" width="500" border="0" >
+               <tr>
+                  <td align='center'> <span class='text'>
+                     <p class='highlightBlock'>Once the chart starts updating, this table will be updated using JavaScript. <br />
+                        <br/>
+                        Please wait for a few seconds for the chart to start updating.</p>
+                     </span> </td>
+               </tr>
+            </table>
+            </div>
+			</div>
+            <p>&nbsp;</p>
+            <div class="underline-dull"></div>
+            <div id="footer">
+               <p class="highlightBlock">The above sample showcases how to retrieve data from Real-time charts using JavaScript. Click <a href="../../Contents/Index.html?DataStreaming/JSGet.html" target="_blank">here</a> to know more on how the code of this example works.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script type="text/javascript"><!--//
+			$(document).ready ( function() {
+				
+				if(isJSRenderer(chart1))
+				{
+					showMessage( "Your browser does not seem to have Flash Player support. JavaScript chart is rendered instead.");
+					
+				}
+				if(isLocal())
+				{
+					addMessage( isLocal()+"You need to run it from a web server.");
+				}
+			   
+			});	
+		// -->
+		</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Data-streaming Charts - Troubleshooting</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Data Streaming charts|Overview.html", "Troubleshooting" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Troubleshooting </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>This section helps you debug errors that might crop up with data streaming charts. We've grouped the possible errors and suggested solutions for them. </p>    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="ts1"></a>If you do not see any chart at all </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+       <p>If you see an endless loading progress bar in your browser, or if the right   click menu (right click at the place where the chart is supposed to be) shows   &quot;Movie not loaded&quot;, check the following: </p>
+       <ul>
+        <li>Have you pasted the chart SWF and JavaScript files  (<span class="codeInline">FusionCharts.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Widgets.js </span> and <span class="codeInline">jquery.min.js</span>)  in the required folder? </li>
+        <li>Have you provided the name and path of the chart properly in your code?</li>
+      </ul></td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="ts2"></a>If you get an &quot;Error in Loading Data.&quot; message, check the following:</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Whether you've provided proper path to the XML/JSON data in your code.</li>
+      <li>Whether your XML/JSON file is named properly <span class="codeInline"></span> and not having a <span class="codeInline">.txt</span> extension (as many basic text editors append <span class="codeInline">.txt</span>   after the file name).</li>
+      <li>If you're using an operating system that uses case-sensitive naming for file   system (like mac, linux etc.), check for the names of your XML/JSON and chart file. </li>
+      <li>Whether your chart files (SWF and JavaScript) and XML/JSON data are on the same sub-domain. Cross domain data loading is not allowed. </li>
+    </ul></td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="ts3"></a>If you get an &quot;Invalid Data.&quot; message, it means that the XML/JSON data   is malformed. Check it again for common errors like:         </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <ul>
+        <li>Presence of duplicate attributes in the XML/JSON.</li>
+        <li>Difference in case of tags. <span class="codeInline">&lt;chart&gt;</span> should end with <span class="codeInline">&lt;/chart&gt;</span> and <strong>not</strong> <span class="codeInline">&lt;/Chart&gt;</span> or <span class="codeInline">&lt;/CHART&gt; </span></li>
+        <li>Missing opening/closing quotation marks for any attributes. e.g., <span class="codeInline">&lt;chart numberSuffix=%'</span> should be <span class="codeInline">&lt;chart numberSuffix='%'</span>.  </li>
+        <li>Missing closing tag for any element.</li>
+        </ul>    
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="ts3"></a>If you get a screen showing &quot;The chart will appear within this DIV...&quot; or &quot;Chart.&quot; or &quot;FusionWidgets XT will load here&quot;, check if:</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <ul>
+           <li>You've copied <span class="codeInline">FusionCharts.js</span>, <span class="codeInline">jquery.min.js</span>, <span class="codeInline">FusionCharts.HC.js</span> and <span class="codeInline">FusionCharts.HC.Widgets.js</span> in the right folder.</li>
+           <li>You've included and provided the correct path of <span class="codeInline">FusionCharts.js</span> in your HTML code.</li>
+           <li>There are any JavaScript syntax or runtime errors that might have halted the execution of FusionCharts APIs.</li>
+           <li>Unique names are used for the chart's JavaScript variable, chart's ID&nbsp;and the HMTL DIV's ID?</li>
+         </ul>
+     </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="ts4"></a>If the chart renders initially, but doesn't update in real time, do the following: </td>
+  </tr>
+  
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <ul>
+          <li>Check if you've specified a correct and valid path for <span class="codeInline">dataStreamURL</span> in XML/JSON data</li>
+          <li>Check if you've specified a valid value for <span class="codeInline">refreshInterval</span> in your XML/JSON data</li>
+          <li>Check if <span class="codeInline">dataStreamURL</span> is returning proper data. To test this, just open your browser and run this page. It should return the data in text format.</li>
+          <li>Make sure the output data doesn't contain any carriage returns (new-line characters) or HTML elements. In many scripting languages, these are automatically added. You'll need to remove them.</li>
+          <li>You also need to make sure that the page which provides the incremental update data   to the charts must be hosted on the same sub-domain in which the charts are   hosted - otherwise,  owing to security restrictions, the charts won't   be able to receive updated data. Due to security restrictions, charts are allowed to retrieve data only from the same sub-domain in which the charts are residing. Data can only be loaded from a domain that is an exact match   to the location of the charts, including sub-domains. For this reason, a chart residing   at <span class="codeInline">server1.mydomain.com </span>will not be able to access data from <span class="codeInline">mydomain.com</span>.
+             <p class="highlightBlock">If you wish to load data from a different domain, you can set up a proxy page   at the same sub-domain that will actually request data from the distant domain   and then relay it to the charts. You must be able to upload and run a   server-side script on a server in the same domain as the charts. In this method, a chart accesses the script, which loads the information, retrieves it and returns the information back to the chart. This method   is best if the server hosting the data is not under your control (for example, a   public source or a web service).</p>
+          </li>
+          <li><strong>If you are using Flash charts, switch on the debug mode of chart. It will provide you with a lot of valuable information when debugging.</strong></li>
+       </ul>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("JSON Data Format|JSONFormat.html","Real-time Line chart XML sheet|XMLRealTimeLine.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Bulb Gauge - Elements of the gauge</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Bulb gauge|Overview.html", "Elements of the Bulb gauge" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Elements of the gauge </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>A bulb gauge  consists of the following elements: </p>
+      <ul>
+        <li> <a href="#color">Bulb (which changes color to indicate data value) </a></li>
+        <li><a href="#value">Value Textbox </a></li>
+      </ul>
+      <p>Given below is a simple bulb gauge diagram: <br />
+      </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/BulbAnatomy.jpg" width="160" height="177" class="imageBorder" /><br/><br/></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p class="header"><a name="color"></a>Color Range</p>
+      The bulb gauge is defined by minimum and maximum values.   Within that scale you can create various ranges to classify your data. There can   be any number of ranges as you wish to. For each range, you&rsquo;ll have to specify   the minimum and maximum limits, a name for the range and the hex color for the   range.
+      <p class="highlightBlock">Note: Each color range should have its own unique range index. That is   say, if a range is defined as 0-50, the next range should have the minimum value   as 50 necessarily. Similarly, if the upper limit of the chart is 100, the last   range should have max value as 100 for the chart to function properly.</p>
+    <p class="header"><a name="value" id="value"></a>Value Textbox</p>
+        The value textbox helps you show the value indicated   by the gauge in numeric terms. You can also opt to hide it.
+      <p>Let&rsquo;s now make a sample bulb gauge.<br />
+    </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Introduction|Overview.html","Creating a simple Bulb gauge|Create.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

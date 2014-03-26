@@ -1,0 +1,273 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="&lt;alert&gt; element" >
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="&lt;alerts&gt; element" >
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="&lt;annotation&gt; element" >
+  <key name="annotations" >
+    <topic name="Introduction" url="../../../Annotations/Introduction.html" />
+  </key>
+</key>
+<key name="&lt;annotationGroup&gt; element" >
+  <key name="attributes" >
+    <topic name="Introduction" url="../../../Annotations/Introduction.html" />
+  </key>
+  <key name="set visibility" >
+    <topic name="Setting visibility" url="../../../Annotations/Visible.html" />
+  </key>
+</key>
+<key name="&lt;annotations&gt; element" >
+  <key name="annotations" >
+    <topic name="Introduction" url="../../../Annotations/Introduction.html" />
+  </key>
+</key>
+<key name="&lt;application&gt; element" >
+  <key name="how to use styles" >
+    <topic name="How to Use?" url="../../../Styles/HowToUse.html" />
+  </key>
+</key>
+<key name="&lt;chart&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+  <key name="bullet graphs" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="funnel chart" >
+    <topic name="Creating a simple chart" url="../../../Funnel/Create.html" />
+  </key>
+  <key name="LED gauges" >
+    <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+  </key>
+  <key name="linear gauge" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+  <key name="pyramid chart" >
+    <topic name="Creating a simple chart" url="../../../Pyramid/Create.html" />
+  </key>
+  <key name="spark column chart" >
+    <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+  </key>
+  <key name="spark line chart" >
+    <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+  </key>
+  <key name="spark win/loss chart" >
+    <topic name="Simple Example" url="../../../Spark/WLCreate.html" />
+  </key>
+</key>
+<key name="&lt;color&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+  </key>
+  <key name="bullet graphs" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="LED gauges" >
+    <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+  </key>
+  <key name="linear gauge" >
+    <topic name="Configuration gauge" url="../../../Linear/Configurations.html" />
+  </key>
+</key>
+<key name="&lt;colorRange&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+  <key name="bullet graphs" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="LED gauges" >
+    <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+  </key>
+  <key name="linear gauge" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+</key>
+<key name="&lt;dataset&gt; element" >
+  <key name="spark column chart" >
+    <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+  </key>
+  <key name="spark line chart" >
+    <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+  </key>
+  <key name="spark win/loss chart" >
+    <topic name="Simple Example" url="../../../Spark/WLCreate.html" />
+  </key>
+</key>
+<key name="&lt;definition&gt; element" >
+  <key name="how to use styles" >
+    <topic name="How to Use?" url="../../../Styles/HowToUse.html" />
+  </key>
+</key>
+<key name="&lt;dial&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+</key>
+<key name="&lt;dials&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+</key>
+<key name="&lt;point&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+  </key>
+  <key name="attributes in angular gauge" >
+    <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+  </key>
+  <key name="attributes in linear gauge" >
+    <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+  </key>
+  <key name="linear gauge" >
+    <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+  </key>
+</key>
+<key name="&lt;pointer&gt; element" >
+  <key name="linear gauge" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+</key>
+<key name="&lt;pointers&gt; element" >
+  <key name="linear gauge" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+</key>
+<key name="&lt;set value&gt; element" >
+  <key name="spark column chart" >
+    <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+  </key>
+  <key name="spark line chart" >
+    <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+  </key>
+  <key name="spark win/loss chart" >
+    <topic name="Simple Example" url="../../../Spark/WLCreate.html" />
+  </key>
+</key>
+<key name="&lt;styles&gt; element" >
+  <key name="how to use styles" >
+    <topic name="How to Use?" url="../../../Styles/HowToUse.html" />
+  </key>
+</key>
+<key name="&lt;target&gt; element" >
+  <key name="bullet graphs" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+</key>
+<key name="&lt;trendpoints&gt; element" >
+  <key name="angular gauge" >
+    <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+  </key>
+  <key name="linear gauge" >
+    <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+  </key>
+</key>
+<key name="&lt;value&gt; element" >
+  <key name="bullet graphs" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+</key>
+<key name="action attribute" >
+  <key name="set up action manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="advanced charting features" >
+  <key name="change chart messages" >
+    <topic name="Changing Chart Messages" url="../../../Advanced/ChartMessages.html" />
+    <key name="deprecated methods" >
+      <topic name="Changing Chart Messages#deprecated" url="../../../Advanced/ChartMessages.html#deprecated" />
+    </key>
+    <key name="set background color" >
+      <topic name="Changing Chart Messages#setbg" url="../../../Advanced/ChartMessages.html#setbg" />
+    </key>
+    <key name="set multiple messages" >
+      <topic name="Changing Chart Messages#multiple" url="../../../Advanced/ChartMessages.html#multiple" />
+    </key>
+    <key name="use configure() function" >
+      <topic name="Changing Chart Messages#addvaraible" url="../../../Advanced/ChartMessages.html#addvaraible" />
+    </key>
+  </key>
+  <key name="plot discontinuous data" >
+    <topic name="Plotting Discontinuous data" url="../../../Advanced/DiscData.html" />
+  </key>
+  <key name="set background image for charts" >
+    <topic name="Set backgrounds for charts" url="../../../Advanced/ChartBG.html" />
+    <key name="align image" >
+      <topic name="Set backgrounds for charts#alignment" url="../../../Advanced/ChartBG.html#alignment" />
+    </key>
+    <key name="scale image" >
+      <topic name="Set backgrounds for charts#scale" url="../../../Advanced/ChartBG.html#scale" />
+    </key>
+    <key name="set alpha" >
+      <topic name="Set backgrounds for charts#alpha" url="../../../Advanced/ChartBG.html#alpha" />
+    </key>
+    <key name="set display mode" >
+      <topic name="Set backgrounds for charts#displaymode" url="../../../Advanced/ChartBG.html#displaymode" />
+    </key>
+  </key>
+  <key name="tool tip in multiple lines" >
+    <topic name="Tool Tip in Multiple Lines" url="../../../Advanced/MultilineTT.html" />
+  </key>
+  <key name="use widgets on SSL/HTTPS" >
+    <topic name="Using widgets on SSL/HTTPS" url="../../../Advanced/HTTPS.html" />
+  </key>
+  <key name="using gradient" >
+    <topic name="Using Gradient" url="../../../Advanced/UsingGradients.html" />
+    <key name="specify ratio" >
+      <topic name="Using Gradient" url="../../../Advanced/UsingGradients.html" />
+    </key>
+  </key>
+</key>
+<key name="alert manager" >
+  <topic name="Introduction" url="../../../AlertManager/Introduction.html" />
+  <key name="attributes" >
+    <key name="action attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="CALLJS attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="maxValue attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="minValue attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="occurOnce attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="param attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="PLAYSOUND attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="SHOWANNOTATION attribute" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+  </key>
+  <key name="elements" >
+    <key name="&lt;alert&gt; element" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="&lt;alerts&gt; element" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+    <key name="&lt;chart&gt; element" >
+      <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+    </key>
+  </key>
+  <key name="set up" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+
+</indexdata>

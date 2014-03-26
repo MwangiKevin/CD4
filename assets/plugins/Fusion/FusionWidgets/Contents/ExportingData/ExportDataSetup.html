@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exporting Chart Data - Using Context Menu </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Exporting chart data", "Using context menu" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Exporting Chart Data using context menu </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>FusionWidgets XT allows you to export data from your charts in CSV format. The export of data can be triggered in two ways:</p>
+      <ul>
+        <li>For Flash charts, using the context menu of chart. In  this method, the generated CSV data is copied to clipboard. This is not supported in JavaScript charts </li>
+        <li>Using <a href="ExportDataJS.html">JavaScript API (getDataAsCSV)</a> for data export.In  this method, the CSV data is returned as string in your JavaScript code</li>
+      </ul>
+    <p>Let's study both of them one by one. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="setup" id="setup"></a>Setting up the chart to export data from context menu </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>To allow export of data using context menu, you need to specify the following in data: </p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+	  <div class="container">
+	    <ul class="tabs">
+   	    <li><a href="#tab9">XML</a></li>
+      	 <li><a href="#tab10">JSON</a></li>
+	    </ul>
+   	 <div class="tab_container">
+    		<div id="tab9" class="tab_content"> <pre class="prettyprint code_container">&lt;chart <strong>showExportDataMenuItem='1' </strong>caption='Top 5 Sales Person' numberPrefix='$'<strong> </strong>isSliced='1'&gt; 
+     &lt;set label='Alex' value='25000'  /&gt; 
+     &lt;set label='Mark' value='35000' /&gt; 
+     &lt;set label='David' value='42300' /&gt; 
+     &lt;set label='Graham' value='65300' /&gt; 
+     &lt;set label='John' value='91300' /&gt;
+  &lt;/chart&gt;</pre></div>
+			<div id="tab10" class="tab_content"> <pre class="prettyprint code_container">{
+  "chart":{
+   <strong> &quot;showexportdatamenuitem&quot;:&quot;1&quot;</strong>,
+    "caption":"Top 5 Sales Person",
+    "numberprefix":"$",
+    &quot;issliced&quot;: &quot;1&quot;
+  },
+  "data":[
+    { "label":"Alex",   "value":"25000" },
+    { "label":"Mark",   "value":"35000" },
+    { "label":"David",  "value":"42300" },
+    { "label":"Graham", "value":"65300" },
+    { "label":"John",   "value":"91300" }
+  ]
+}</pre>
+			</div>
+		 </div>
+	  </div><div style="clear:both"></div>
+	 
+	    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As soon as <span class="codeInline">showExportDataMenuItem='1'</span> is set in the chart, a new item is added to the chart's context menu, as shown below: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/ExportDataClip1.jpg" width="442" height="315" />
+    <p>See&nbsp;a <a href="../../Code/JavaScript/Basics/GettingDataBackFromChart/Get_CSV_Data_from_chart.html" target="_blank">live</a> sample!</p><p>The label of this menu item can be customized by setting:</p></td></tr>
+    <tr>
+    <td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+
+      <pre class="code_container prettyprint">&lt;chart ... exportDataMenuItemLabel='Copy data for top 5 sales person to clipboard' ...&gt;</pre></div>
+       <div id="tab2" class="tab_content">
+  
+     <pre id="pre-datajson" class="prettyprint code_container">{   &quot;chart&quot;:{ &quot;exportDataMenuItemLabel&quot;:&quot;Copy data for top 5 sales person to clipboard&quot;,&nbsp;...} }</pre>
+       </div>
+     </div></div></td></tr>
+     <tr><td>
+    <p class="text">When you select this item, the data of this chart will be copied to your clipboard. If you open any text editor and paste the content of the clipboard, you'll get something as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <pre class="prettyprint code_container">&quot;Label&quot;,&quot;Value&quot;
+&quot;Alex&quot;,&quot;25000&quot;
+&quot;Mark&quot;,&quot;35000&quot;
+&quot;David&quot;,&quot;42300&quot;
+&quot;Graham&quot;,&quot;65300&quot;
+&quot;John&quot;,&quot;91300&quot;</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>This is basically the CSV representation of your chart's data.  Let us next see how to format the  CSV data output using various export related XML attributes that FusionWidgets XT exposes. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="format" id="format"></a><a name="csvattributes" id="csvattributes"></a>Customizing the output CSV format</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can customize the following aspects of the output CSV data:</p>
+      <ul>
+        <li>The separator character to be used for data. By default this is CSV.</li>
+        <li>The qualifier character to be used. By default this is double quotes.</li>
+        <li>Whether to output formatted data values (as shown on chart) in CSV, or raw values.   </li>
+      </ul>
+    <p>The following attributes help in configuring this: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="100%" border="0" class="table" cellpadding="2" cellspacing="0">
+      <tr>
+        <td width="15%" valign="top" class="header">Attribute</td>
+        <td width="60%" class="header">Description</td>
+        <td width="25%" class="header">Example</td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top" class="codeInline">exportDataSeparator</td>
+        <td width="60%" class="text">Lets you set the separator for CSV data. For ease of use, this attribute accepts the following pseudo codes for characters:
+          <ul>
+            <li>{tab} - To specify tab character</li>
+            <li>{quot} - To specify double quotes</li>
+            <li>{apos} - To specify single quotes   </li>
+            </ul>
+          <p>You can also specify any other character apart from these pseudo codes. </p></td>
+        <td width="25%" valign="top" class="codeInline">exportDataSeparator='{tab}'</td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top" class="codeInline">exportDataQualifier</td>
+        <td width="60%" class="text">Lets you set the qualifier character for CSV data. For ease of use, this attribute accepts the following pseudo codes for characters:
+          <ul>
+            <li>{tab} - To specify tab character</li>
+            <li>{quot} - To specify double quotes</li>
+            <li>{apos} - To specify single quotes </li>
+          </ul>
+          <p>You can also specify any other character apart from these pseudo codes. </p></td>
+        <td width="25%" valign="top" class="codeInline">exportDataQualifier='{quot}'</td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top" class="codeInline">exportDataFormattedVal</td>
+        <td width="60%" class="text">Boolean value indicating whether to output formatted data values (as shown on chart) in the output CSV.</td>
+        <td width="25%" valign="top" class="codeInline">exportDataFormattedVal='1'</td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>In the next <a href="ExportDataJS.html">section</a>, we'll see how to access this data using JavaScript API. </p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Exporting as Image/PDF - Troubleshooting|../ExportingImage/ECTroubleshooting.html","Using JavaScript API|ExportDataJS.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

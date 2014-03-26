@@ -1,0 +1,196 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="drill-down charts" >
+  <topic name="Simple Example" url="../../../DrillDown/Simple.html" />
+  <key name="add drill-down links" >
+    <topic name="Adding drill-down links to charts" url="../../../FirstChart/Drilldown.html" />
+  </key>
+  <key name="attributes for new window" >
+    <topic name="Links in pop-up windows" url="../../../DrillDown/PopUps.html" />
+  </key>
+  <key name="create links using JSON" >
+    <topic name="Adding drill-down links to charts#json_link" url="../../../FirstChart/Drilldown.html#json_link" />
+  </key>
+  <key name="create simple links using XML" >
+    <topic name="Adding drill-down links to charts#xml_link" url="../../../FirstChart/Drilldown.html#xml_link" />
+  </key>
+  <key name="define links for a chart" >
+    <topic name="Simple Example" url="../../../DrillDown/Simple.html" />
+  </key>
+  <key name="JavaScript functions as links" >
+    <topic name="JavaScript functions as links" url="../../../DrillDown/JavaScript.html" />
+  </key>
+  <key name="link format" >
+    <topic name="FusionWidgets Link format" url="../../../DrillDown/LinkFormat.html" />
+  </key>
+  <key name="LinkedCharts" >
+    <topic name="Creating LinkedCharts" url="../../../DrillDown/LinkedCharts/Overview.html" />
+  </key>
+  <key name="links to frames" >
+    <topic name="Links in frames" url="../../../DrillDown/Frames.html" />
+  </key>
+  <key name="open in new window" >
+    <topic name="Simple Example" url="../../../DrillDown/Simple.html" />
+  </key>
+  <key name="open in pop-up windows" >
+    <topic name="Links in pop-up windows" url="../../../DrillDown/PopUps.html" />
+  </key>
+  <key name="set full chart as a hotspot" >
+    <topic name="Full chart as a hotspot" url="../../../DrillDown/ClickURL.html" />
+  </key>
+  <key name="use J- prefix" >
+    <topic name="JavaScript functions as links" url="../../../DrillDown/JavaScript.html" />
+  </key>
+  <key name="use JavaScript: in JavaScript link" >
+    <topic name="JavaScript functions as links" url="../../../DrillDown/JavaScript.html" />
+  </key>
+  <key name="use simple links" >
+    <topic name="Adding drill-down links to charts#simplelinks" url="../../../FirstChart/Drilldown.html#simplelinks" />
+  </key>
+</key>
+<key name="export chart as image/PDF" >
+  <topic name="Overview" url="../../../ExportingImage/ECOverview.html" />
+  <key name="batch export" >
+    <topic name="Overview" url="../../../ExportingImage/Batch/ECBatchOverview.html" />
+  </key>
+  <key name="client-side export" >
+    <topic name="Overview" url="../../../ExportingImage/Client/ECClientOverview.html" />
+  </key>
+  <key name="debug mode" >
+    <topic name="Debug Mode" url="../../../ExportingImage/ECReferenceDebugJS.html" />
+    <key name="debugging from error codes" >
+      <topic name="Debug Mode" url="../../../ExportingImage/ECReferenceDebugJS.html" />
+    </key>
+    <key name="enable debug mode" >
+      <topic name="Debug Mode" url="../../../ExportingImage/ECReferenceDebugJS.html" />
+    </key>
+  </key>
+  <key name="exporting pure JavaScript charts" >
+    <topic name="Exporting Pure JavaScript Charts" url="../../../ExportingImage/ECPureJS.html" />
+    <key name="customize export feature" >
+      <topic name="Exporting Pure JavaScript Charts" url="../../../ExportingImage/ECPureJS.html" />
+    </key>
+    <key name="enable export" >
+      <topic name="Exporting Pure JavaScript Charts" url="../../../ExportingImage/ECPureJS.html" />
+    </key>
+    <key name="process data on your own server" >
+      <topic name="Exporting Pure JavaScript Charts" url="../../../ExportingImage/ECPureJS.html" />
+    </key>
+  </key>
+  <key name="initiating from JavaScript" >
+    <topic name="Initiating from JavaScript" url="../../../ExportingImage/ECJavaScript.html" />
+    <key name="providing export parameters" >
+      <topic name="Initiating from JavaScript" url="../../../ExportingImage/ECJavaScript.html" />
+    </key>
+    <key name="simple JavaScript triggered export" >
+      <topic name="Initiating from JavaScript" url="../../../ExportingImage/ECJavaScript.html" />
+    </key>
+  </key>
+  <key name="process" >
+    <topic name="How it works?" url="../../../ExportingImage/ECProcess.html" />
+    <key name="generate image" >
+      <topic name="How it works?#fcimage" url="../../../ExportingImage/ECProcess.html#fcimage" />
+    </key>
+  </key>
+  <key name="pure JavaScript rendering (HTML5) export" >
+    <topic name="Overview" url="../../../ExportingImage/ECOverview.html" />
+  </key>
+  <key name="server-side export" >
+    <topic name="Overview" url="../../../ExportingImage/Server/ECServerOverview.html" />
+  </key>
+  <key name="terminologies" >
+    <topic name="Terminologies" url="../../../ExportingImage/ECTerminology.html" />
+    <key name="batch export process" >
+      <topic name="Terminologies#batch" url="../../../ExportingImage/ECTerminology.html#batch" />
+    </key>
+    <key name="client-side component" >
+      <topic name="Terminologies#component" url="../../../ExportingImage/ECTerminology.html#component" />
+    </key>
+    <key name="content menu" >
+      <topic name="Terminologies#content" url="../../../ExportingImage/ECTerminology.html#content" />
+    </key>
+    <key name="export chart triggers" >
+      <topic name="Terminologies#trigger" url="../../../ExportingImage/ECTerminology.html#trigger" />
+    </key>
+    <key name="export component saving mode" >
+      <topic name="Terminologies#saving" url="../../../ExportingImage/ECTerminology.html#saving" />
+    </key>
+    <key name="export component user interface mode" >
+      <topic name="Terminologies#ui" url="../../../ExportingImage/ECTerminology.html#ui" />
+    </key>
+    <key name="export dialog" >
+      <topic name="Terminologies#export" url="../../../ExportingImage/ECTerminology.html#export" />
+    </key>
+    <key name="export handler" >
+      <topic name="Terminologies#handler" url="../../../ExportingImage/ECTerminology.html#handler" />
+    </key>
+    <key name="JavaScript API" >
+      <topic name="Terminologies#api" url="../../../ExportingImage/ECTerminology.html#api" />
+    </key>
+    <key name="process" >
+      <topic name="Terminologies#process" url="../../../ExportingImage/ECTerminology.html#process" />
+    </key>
+    <key name="server-side handler" >
+      <topic name="Terminologies#sshandler" url="../../../ExportingImage/ECTerminology.html#sshandler" />
+    </key>
+  </key>
+  <key name="troubleshoot" >
+    <topic name="Troubleshooting" url="../../../ExportingImage/ECTroubleshooting.html" />
+  </key>
+  <key name="XML attributes" >
+    <topic name="XML Attributes" url="ExportingImage/ECXML.html" />
+  </key>
+</key>
+<key name="export chart data" >
+  <key name="use context menu" >
+    <topic name="Using Context Menu" url="../../../ExportingData/ExportDataSetup.html" />
+    <key name="combination charts" >
+      <topic name="Using Context Menu#csvattributes" url="../../../ExportingData/ExportDataSetup.html#csvattributes" />
+    </key>
+    <key name="customize output CSV format" >
+      <topic name="Using Context Menu#csvattributes" url="../../../ExportingData/ExportDataSetup.html#csvattributes" />
+    </key>
+    <key name="multi-series charts" >
+      <topic name="Using Context Menu#csvattributes" url="../../../ExportingData/ExportDataSetup.html#csvattributes" />
+    </key>
+    <key name="set up" >
+      <topic name="Using Context Menu#setup" url="../../../ExportingData/ExportDataSetup.html#setup" />
+    </key>
+    <key name="stacked charts" >
+      <topic name="Using Context Menu#csvattributes" url="../../../ExportingData/ExportDataSetup.html#csvattributes" />
+    </key>
+  </key>
+  <key name="use JavaScript API" >
+    <topic name="Using JavaScript API" url="../../../ExportingData/ExportDataJS.html" />
+    <key name="customize CSV output" >
+      <topic name="Using JavaScript API#cavattributes" url="../../../ExportingData/ExportDataJS.html#cavattributes" />
+    </key>
+    <key name="set up" >
+      <topic name="Using JavaScript API" url="../../../ExportingData/ExportDataJS.html" />
+    </key>
+  </key>
+</key>
+<key name="FAQ" >
+
+  <key name="FusionWidgets FAQ" >
+    <topic name="Frequently Asked Questions" url="FAQ.html" />
+  </key>
+</key>
+<key name="FC_ChartUpdated() method" >
+  <key name="retrieve data using JavaScript in data streaming charts" >
+    <topic name="JavaScript - Retrieving Data" url="../../../DataStreaming/JSGet.html" />
+  </key>
+</key>
+<key name="FC_ChartUpdated(DOMId) function" >
+  <key name="angular gauge JavaScript API" >
+    <topic name="JavaScript API" url="../../../Angular/JSAPI.html" />
+  </key>
+</key>
+<key name="FC_ExportReady event" >
+  <key name="Set JavaScript callback in client-side export" >
+    <topic name="Setting JavaScript callback" url="../../../ExportingImage/Client/ECClientCallback.html" />
+  </key>
+</key>
+
+
+</indexdata>

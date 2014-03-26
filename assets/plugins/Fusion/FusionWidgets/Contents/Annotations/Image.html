@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Annotation - Image</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Annotations|Introduction.html", "Image" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Image </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Let us take a look at the Image Annotation here. The Image Annotation allows you to display an image on the chart. </p>      </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><img src="Images/Ann_Image1.gif" width="160" height="46" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML/JSON to create the above is: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;
+      &nbsp;&nbsp;&nbsp;...
+      &nbsp;&nbsp;&nbsp;&lt;annotations&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotationGroup id='Grp1' &gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotation type='image' x='125' y='5' URL='logo.gif' /&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/annotationGroup&gt;
+      &nbsp;&nbsp;&nbsp;&lt;/annotations&gt;
+      &nbsp;&nbsp;&nbsp;...
+&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "annotations": {
+    "groups": [
+      {
+        "id": "Grp1",
+        "items": [
+          {
+            "type": "image",
+            "x": "125",
+            "y": "5",
+            "url": "logo.gif"
+          }
+        ]
+      }
+    ]
+    ...
+  }
+}</pre>
+	</div></div></div>
+  <div style="clear:both"></div><br /> 
+  See it <a href="../../Code/Annotations/image.html" target="_blank">live</a>!
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">As it is very clear from the code above, we need to set the annotation type to <span class="codeInline">image</span>, specify the  x and y co-ordinates where we want the image to be placed and finally provide the URL where the image is located. This URL has to lie in the same domain as the URL of the chart. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="scale"></a>Scaling Images </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">You can x-scale and y-scale images using the <span class="codeInline">xScale</span> and <span class="codeInline">yScale</span> attributes. Setting <span class="codeInline">xScale='50' yScale='200'</span> will reduce the image to half horizontally and double it vertically. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Ann_Image2.gif" width="88" height="71" /><br /><br />
+See it <a href="../../Code/Annotations/image.html" target="_blank">live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The various attributes using which the image annotation can be customized are: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="99%" border="0" cellpadding="2" cellspacing="0" class="table">
+      <tr>
+        <td width="25%" class="header"><a name="attributeslist"></a>Attribute Name </td>
+        <td width="20%" class="header">Type / Range </td>
+        <td class="header">Description</td>
+      </tr>
+
+      <tr>
+        <td valign="top" class="codeInline">type</td>
+        <td valign="top" class="text">Rectangle, Circle, Polygon, Line, Arc, Text, Image</td>
+        <td valign="top" class="text">Needs to be set to <span class="codeInline">Rectangle</span> to create a rectangle annotation type. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">x</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">The starting x co-ordinate for the annotation. This x co-ordinate is relative to the x co-ordinate of the annotation group in which the annotation is placed. For example, if you have set the x co-ordinate of the annotation group as 50 and the x co-ordinate of the annotation is 100, then the effective x co-ordinate of the annotation will be 150, w.r.t to the starting position of the chart. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">y</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">The starting y co-ordinate for the annotation. This again is relative to the starting y co-ordinate of the annotation group in which the annotation is placed. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">url</td>
+        <td valign="top" class="text">URL to image (.gif, ,jpeg, .swf, .png) </td>
+        <td valign="top" class="text">The URL of the image to be used as annotation. It should be in the same domain as the   chart. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">xScale</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">This attribute is used to scale the width of the image in percentage. For example, if we set this attribute as 50 then the image width   will be halved, whereas, 200 will make its width to double the actual   width. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">yScale</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">Similar to the <span class="codeInline">xScale</span> attribute, it is used to scale   the height of the image in percentage. </td>
+      </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="application"></a>Application</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Ann_AS2.jpg" width="400" height="201" /><br /><br />
+See it <a href="../../Code/Annotations/image.html" target="_blank">live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML/JSON for the above is: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;    </td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ...&gt;
+&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&lt;annotations origW='400' origH='200'&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotationGroup id='Grp1' showBelow='1' <strong>autoScale='1'</strong>&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotation type='rectangle' x='0' y='0' toX='400' toY='200' radius='10' fillColor='333333, 453269' 
+          fillAngle='180' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotation type='rectangle' x='5' y='5' toX='395' toY='195' radius='10' color='000000' fillAlpha='0' showBorder='1' 
+          borderColor='FFFFFF' borderThickness='3'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/annotationGroup&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotationGroup id='Grp2' showBelow='0' <strong>autoScale='0'</strong>&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&lt;annotation type='image' x='125' y='5' URL='logo.gif' /&gt;</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/annotationGroup&gt;
+&nbsp;&nbsp; &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+       </div>
+<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {...},
+  ...
+  "annotations": {
+    "origw": "400",
+    "origh": "200",
+    "groups": [
+      {
+        "id": "Grp1",
+        "showbelow": "1",
+        "autoscale": "1",
+        "items": [
+          {
+            "type": "rectangle",
+            "x": "0",
+            "y": "0",
+            "tox": "400",
+            "toy": "200",
+            "radius": "10",
+            "fillcolor": "333333, 453269",
+            "fillangle": "180"
+          },
+          {
+            "type": "rectangle",
+            "x": "5",
+            "y": "5",
+            "tox": "395",
+            "toy": "195",
+            "radius": "10",
+            "color": "000000",
+            "fillalpha": "0",
+            "showborder": "1",
+            "bordercolor": "FFFFFF",
+            "borderthickness": "3"
+          }
+        ]
+      },
+      {
+        "id": "Grp2",
+        "showbelow": "0",
+        "autoscale": "0",
+        "items": [
+          {
+            "type": "image",
+            "x": "85",
+            "y": "7",
+            "url": "logo.png"
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Text|Text.html","Using Macros|macros.html");	
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

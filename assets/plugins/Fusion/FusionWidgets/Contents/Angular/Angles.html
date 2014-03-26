@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Angular Gauge - Configuring gauge angles</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Angular gauge|Overview.html", "Configuring angles &amp; origin" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Configuring gauge angles &amp; origin </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>FusionWidgets XT angular gauge allows you to draw the gauge from virtually any start angle to any end angle and in both directions. In all our previous examples we had  created a gauge that spanned 180 degrees.   Here, we&rsquo;ll see how to create gauges with various combinations of angles and   gauge origin.</p>    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="attributes"></a>&lt;chart&gt; element Attributes</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The following attributes of <span class="codeInline">&lt;chart&gt;</span> element   are the main control parameters which help us create charts of various angles   and starting points:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="99%" border="0" cellpadding="2" cellspacing="0" class="table">
+      <tr>
+        <td width="25%" class="header">Attribute Name </td>
+        <td width="20%" class="header">Type / Range </td>
+        <td class="header">Description</td>
+      </tr>
+
+      
+      <tr>
+        <td valign="top" class="codeInline">gaugeStartAngle</td>
+        <td valign="top" class="text">Number (-360-360) </td>
+        <td valign="top" class="text">Angle from where the gauge will start drawing. The default value is 180. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">gaugeEndAngle</td>
+        <td valign="top" class="text">Number (-360-360)</td>
+        <td valign="top" class="text">Angle where the gauge will end drawing. The default value is 0. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">gaugeOriginX</td>
+        <td valign="top" class="text">Number (Pixels)</td>
+        <td valign="top" class="text">You can manually specify the x co-ordinate at which the center of the gauge will be placed. This comes handy when you are designing small angle gauges or when you are using custom objects in the chart to draw certain objects and need to set the exact center position. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">gaugeOriginY</td>
+        <td valign="top" class="text">Number (Pixels)</td>
+        <td valign="top" class="text">You can manually specify the y co-ordinate at which the center of the gauge will be placed. This comes handy when you are designing small angle gauges or when you are using custom objects in the chart to draw certain objects and need to set the exact center position. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">gaugeOuterRadius</td>
+        <td valign="top" class="text">Number (Pixels)</td>
+        <td valign="top" class="text">Outer radius for the color range scale. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">gaugeInnerRadius</td>
+        <td valign="top" class="text">Number (Pixels) or Number (percent) </td>
+        <td valign="top" class="text">Inner radius for color range scale. It can either be in exact pixels or in percentage of outer radius. </td>
+      </tr>
+
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="angles"></a>Understanding angular gauge angles </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">FusionWidgets XT angular gauge comprehends  angles as shown in the images below: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<table border="0" cellspacing="5" cellpadding="5">
+   <tr>
+      <td><img src="Images/Angular_Angles2.jpg" width="308" height="260" /></td>
+      <td><img src="Images/Angular_Angles1.jpg" width="308" height="260" /></td>
+   </tr>
+</table>
+	</td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Each point in the circle can be represented by two angles - a positive one and a negative one. This enables you to plot bi-directional angular gauges. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="examples"></a>Examples</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>We'll now see how to use a combination of <span class="codeInline">gaugeStartAngle</span> and <span class="codeInline">gaugeEndAngle</span> attributes to create gauges of various shapes.</p>
+    <p>We'll start with our basic previous example, where we had specified:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... gaugeStartAngle='180' gaugeEndAngle='0' ...&gt;</pre></div>
+	<div id="tab2" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {
+   ...<br />    &quot;gaugestartangle&quot;: &quot;180&quot;,<br />    &quot;gaugeendangle&quot;: &quot;0&quot;
+   ...<br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>It resulted in:    </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/FirstChart1.jpg" width="414" height="209" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see here, the gauge has started from an angle of 180 degrees (refer to the angle image above) and ended at 0 degree. </p>
+    <p>Similarly, if we wanted the gauge to start from 0 and end and 180, we could set:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... gaugeStartAngle='0' gaugeEndAngle='180' ...&gt;</pre></div>
+	<div id="tab4" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {
+   ...<br />    &quot;gaugestartangle&quot;: &quot;0&quot;,<br />    &quot;gaugeendangle&quot;: &quot;180&quot;
+  ...<br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in an opposite direction of gauge, as shown below: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Angle2.jpg" width="356" height="195" /></td>
+  </tr>
+  
+  <tr>
+    <td><p class="highlightBlock">When specifying the start and end angles for gauges, you should always make sure that the difference between start and end angle should not be more than 360 degrees, else the gauge will not behave as intended. </p>
+      <p>Shown below are some more examples of gauges with different angle combinations: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table class="table" >
+      <tr>
+        <td width="50%" class="text"><div align="center"><img src="Images/Angular_Angle4.jpg" width="200" height="179" /></div></td>
+        <td class="text"><div align="center"><img src="Images/Angular_Angle5.jpg" width="206" height="173" /></div></td>
+      </tr>
+      <tr>
+        <td width="50%" class="text"><div align="center" class="codeInline">gaugeStartAngle='225' <br />
+          gaugeEndAngle='-45'</div></td>
+        <td class="text"><div align="center" class="codeInline">gaugeStartAngle='-45'<br />
+          gaugeEndAngle='225'</div></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text">&nbsp;</td>
+        </tr>
+      <tr>
+        <td width="50%" class="text"><div align="center"><img src="Images/Angular_Angle6.jpg" width="196" height="184" /></div></td>
+        <td class="text"><div align="center"><img src="Images/Angular_Angle7.jpg" width="198" height="187" /></div></td>
+      </tr>
+      <tr>
+        <td width="50%" class="text"><div align="center" class="codeInline">gaugeStartAngle='90' <br />
+          gaugeEndAngle='0'</div></td>
+        <td class="text"><div align="center" class="codeInline"> gaugeStartAngle='0' <br />
+          gaugeEndAngle='90'</div></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="text"><div align="center"><img src="Images/Angular_Angle8.jpg" width="269" height="184" /></div></td>
+        <td class="text"><div align="center"><img src="Images/Angular_Angle9.jpg" width="275" height="185" /></div></td>
+      </tr>
+      <tr>
+        <td class="text"><div align="center" class="codeInline">gaugeStartAngle='135' <br />
+          gaugeEndAngle='45'</div></td>
+        <td class="text"><div align="center" class="codeInline">gaugeStartAngle='45' <br />
+          gaugeEndAngle='135'</div></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="text"><div align="center"><img src="Images/Angular_Angle10.jpg" width="130" height="190" /></div></td>
+        <td class="text"><div align="center"><img src="Images/Angular_Angle11.jpg" width="135" height="190" /></div></td>
+      </tr>
+      <tr>
+        <td class="text"><div align="center" class="codeInline">gaugeStartAngle='90' <br />
+          gaugeEndAngle='-90'</div></td>
+        <td class="text"><div align="center" class="codeInline">gaugeStartAngle='-90'<br />
+          gaugeEndAngle='90'</div></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="origin" id="origin"></a>Automatic positioning of gauge origins</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>Based on the <span class="codeInline">gaugeStartAngle</span> and <span class="codeInline">gaugeEndAngle</span>, an angular gauge automatically positions its  x and y center points (origins).  </p>
+        <p>Shown below are some examples of gauges with various origins based on different angle combinations: </p>
+        <table border="0" cellspacing="5" cellpadding="5" width="520" class="table">
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_1.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_11.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;180&quot; gaugeEndAngle=&quot;0&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;135&quot; gaugeEndAngle=&quot;45&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_2.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_21.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;90&quot; gaugeEndAngle=&quot;0&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;65&quot; gaugeEndAngle=&quot;25&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_3.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_31.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;180&quot; gaugeEndAngle=&quot;90&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;165&quot; gaugeEndAngle=&quot;105&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_4.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_41.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;180&quot; gaugeEndAngle=&quot;-180&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;210&quot; gaugeEndAngle=&quot;-30&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_5.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_51.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;180&quot; gaugeEndAngle=&quot;360&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;224&quot; gaugeEndAngle=&quot;315&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_6.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_61.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;270&quot; gaugeEndAngle=&quot;360&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;295&quot; gaugeEndAngle=&quot;335&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_7.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_71.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;180&quot; gaugeEndAngle=&quot;270&quot; </td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;200&quot; gaugeEndAngle=&quot;240&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_8.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_81.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;90&quot; gaugeEndAngle=&quot;-90&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;45&quot; gaugeEndAngle=&quot;-45&quot;</td>
+           </tr>
+           <tr>
+              <td colspan="2" align="center" valign="top">&nbsp;</td>
+            </tr>
+           <tr>
+              <td align="center" valign="top"><img src="Images/origins_9.jpg" width="253" height="223" /></td>
+              <td align="center" valign="top"><img src="Images/origins_91.jpg" width="253" height="223" /></td>
+           </tr>
+           <tr>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;90&quot; gaugeEndAngle=&quot;270&quot;</td>
+              <td align="center" valign="top" class="codeInline">gaugeStartAngle=&quot;135&quot; gaugeEndAngle=&quot;225&quot;</td>
+           </tr>
+        </table>
+        <p>Try the angles using a live demo from <a href="../../Code/AngularGauge/Origins.html" target="_blank">here</a>.</p>
+        <p class="highlightBlock"><strong>Important note:  </strong>Along with positioning the origins, a JavaScript Angular gauge also scales itself to best-fit into the available space. </p>
+      </td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="header"><a name="manualsettings"></a>Manually setting gauge origins </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>Often you might need to re-position the x and y center points of the chart. For   example, let's build a gauge (400x300px) with following angles:</p>
+    </td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... gaugeStartAngle='135' gaugeEndAngle='45' ...&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {
+   ...<br />    &quot;gaugestartangle&quot;: &quot;135&quot;,<br />    &quot;gaugeendangle&quot;: &quot;45&quot;
+   ...<br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+	
+    <p>It will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Angle12.jpg" width="400" height="300" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see, here we need to:</p>
+      <ul>
+        <li>Change gauge origin X and origin Y to bring it at the center of the chart</li>
+        <li>Increase gauge radius so as to fill the entire canvas</li>
+      </ul>
+    <p>This was done using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... gaugeOriginX='200' gaugeOriginY='270' gaugeOuterRadius='225' ...&gt;</pre>
+       </div>
+	<div id="tab8" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...
+    &quot;gaugeoriginX&quot;: &quot;200&quot;,<br />    &quot;gaugeoriginy&quot;: &quot;270&quot;,
+    &quot;gaugeouterradius&quot;: &quot;225&quot;
+   ...<br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will now result in:   </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Angle13.jpg" width="400" height="300" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p class="highlightBlock">If you even dynamically resize this gauge now with<a href="AutoScaling.html"> proper configuration</a>, as explained in <a href="AutoScaling.html">next</a> section, FusionWidgets XT will automatically resize the origin positions and radius specified. </p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Configuring tick marks|Ticks.html","Dynamic Resizing|AutoScaling.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="angular gauge" >
+  <topic name="Introduction" url="../../../Angular/Overview.html" />
+  <key name="alert manager" >
+    <topic name="Alert Manager" url="../../../Angular/Alert.html" />
+  </key>
+  <key name="annotations" >
+    <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+  </key>
+  <key name="apply styles" >
+    <topic name="Using STYLEs" url="../../../Angular/Style.html" />
+  </key>
+  <key name="auto scale" >
+    <topic name="Auto scaling" url="../../../Angular/AutoScaling.html" />
+  </key>
+  <key name="color range" >
+    <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+  </key>
+  <key name="configuration" >
+    <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+  </key>
+  <key name="configure" >
+    <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    <key name="dial values" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="gauge borders" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="gauge gradient fill" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="gauge radius" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="inner radius" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="pivot properties" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="tick mark cosmetics" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="tick values" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+  </key>
+  <key name="dial" >
+    <key name="add custom tool text" >
+      <topic name="Configuring dials" url="../../../Angular/Dials.html" />
+    </key>
+    <key name="dial configurations" >
+      <topic name="Configuring gauge" url="../../../Angular/Configurations.html" />
+    </key>
+    <key name="dials" >
+      <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+    </key>
+    <key name="multiple dials" >
+      <topic name="Configuring dials" url="../../../Angular/Dials.html" />
+    </key>
+  </key>
+  <key name="edit mode" >
+    <topic name="Edit Mode" url="../../../Angular/Edit.html" />
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+    </key>
+    <key name="&lt;color&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+    </key>
+    <key name="&lt;colorRange&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+    </key>
+    <key name="&lt;dial&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+    </key>
+    <key name="&lt;dials&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+    </key>
+    <key name="&lt;point&gt; element" >
+      <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+    </key>
+    <key name="&lt;point&gt; element attributes" >
+      <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+    </key>
+    <key name="&lt;trendpoint&gt; element" >
+      <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+    </key>
+  </key>
+  <key name="example" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+  <key name="FC_ChartUpdated(DOMId) function" >
+    <topic name="Edit Mode" url="../../../Angular/Edit.html" />
+  </key>
+  <key name="gauge angles" >
+    <topic name="Configuring angles &amp; origin" url="../../../Angular/Angles.html" />
+  </key>
+  <key name="gauge angles configurations" >
+    <topic name="Configuring angles &amp; origin" url="../../../Angular/Angles.html" />
+  </key>
+  <key name="gauge elements" >
+    <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+  </key>
+  <key name="getData(index) method" >
+    <topic name="Edit Mode" url="../../../Angular/Edit.html" />
+  </key>
+  <key name="getDataForId(id) method" >
+    <topic name="Edit Mode" url="../../../Angular/Edit.html" />
+  </key>
+  <key name="JavaScript API troubleshoot" >
+    <topic name="JavaScript API" url="../../../Angular/JSAPI.html" />
+  </key>
+  <key name="JavaScript API1" >
+    <topic name="JavaScript API" url="../../../Angular/JSAPI.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Angular/JSONFormat.html" />
+  </key>
+  <key name="lowerLimit attribute" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+  <key name="manually set gauge origins" >
+    <topic name="Configuring angles &amp; origin" url="../../../Angular/Angles.html" />
+  </key>
+  <key name="message logger" >
+    <topic name="Message Logger" url="../../../Angular/MsgLogger.html" />
+  </key>
+  <key name="real-time support" >
+    <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    <key name="attributes" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="create real-time gauge" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="data format" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="message logger" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="real-time update" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="stop server update" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="troubleshoot" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="update multiple pointers" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="use named ID of dial to update" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+    <key name="use named ID of pointer to update" >
+      <topic name="Real-time support" url="../../../Angular/RealTime.html" />
+    </key>
+  </key>
+  <key name="show trend markers" >
+    <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+  </key>
+  <key name="styles" >
+    <topic name="Using STYLEs" url="../../../Angular/Style.html" />
+  </key>
+  <key name="tick marks" >
+    <key name="configure" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="hide" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="place inside gauge" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="show" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="tick marks" >
+      <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+    </key>
+  </key>
+  <key name="tick values" >
+    <key name="configure" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="hide" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="place inside gauge" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="set padding" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+    <key name="show" >
+      <topic name="Configuring tick marks" url="../../../Angular/Ticks.html" />
+    </key>
+  </key>
+  <key name="tool-tip" >
+    <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+  </key>
+  <key name="trend arcs" >
+    <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+  </key>
+  <key name="trend points" >
+    <topic name="Adding trendpoints" url="../../../Angular/Trendpoints.html" />
+  </key>
+  <key name="trendpoints" >
+    <topic name="Elements of the gauge" url="../../../Angular/Elements.html" />
+  </key>
+</key>
+
+</indexdata>

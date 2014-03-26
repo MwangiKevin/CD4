@@ -1,0 +1,278 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="number formatting" >
+  <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  <key name="add number prefix" >
+    <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  </key>
+  <key name="add number suffix" >
+    <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  </key>
+  <key name="automatic number formatting" >
+    <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  </key>
+  <key name="control decimal precision" >
+    <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  </key>
+  <key name="customize decimal separator character" >
+    <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  </key>
+  <key name="customize thousand separator character" >
+    <topic name="Basics" url="../../../Advanced/NumberFormat/Basics.html" />
+  </key>
+  <key name="input number formatting" >
+    <topic name="Input Number Formatting" url="../../../Advanced/NumberFormat/FormInNum.html" />
+  </key>
+  <key name="number scaling" >
+    <topic name="Number Scaling" url="../../../Advanced/NumberFormat/NumScaling.html" />
+    <key name="add billions to default scaling" >
+      <topic name="Number Scaling" url="../../../Advanced/NumberFormat/NumScaling.html" />
+    </key>
+    <key name="putting time in scale" >
+      <topic name="Number Scaling" url="../../../Advanced/NumberFormat/NumScaling.html" />
+    </key>
+  </key>
+  <key name="recursive number scaling" >
+    <topic name="Recursive Number Scaling" url="../../../Advanced/NumberFormat/RecNumScaling.html" />
+    <key name="control levels of recursion" >
+      <topic name="Recursive Number Scaling" url="../../../Advanced/NumberFormat/RecNumScaling.html" />
+    </key>
+  </key>
+</key>
+<key name="occurOnce attribute" >
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="param attribute" >
+  <key name="animation style type" >
+    <topic name="Animation Style Type" url="../../../Styles/Animation.html" />
+  </key>
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="periodLength attribute" >
+  <key name="spark line chart configuration" >
+    <topic name="Configurations" url="../../../Spark/LineConfiguration.html" />
+  </key>
+</key>
+<key name="PHP script" >
+  <key name="create charts" >
+    <topic name="Creating charts using various server side scripts#php" url="../../../FirstChart/ServerSideScripts.html#php" />
+  </key>
+</key>
+<key name="PLAYSOUND attribute" >
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="prependFusionCharts method" >
+  <key name="use various chart rendering methods in FusionCharts jQuery plugin" >
+    <topic name="Using various chart rendering methods in FusionCharts jQuery plugin#append" url="../../../jQuery/AdvancedRendering.html#append" />
+  </key>
+</key>
+<key name="pyramid chart" >
+  <topic name="Introduction" url="../../../Pyramid/Introduction.html" />
+  <key name="&lt;chart element&gt;" >
+    <topic name="Creating a simple chart" url="../../../Pyramid/Create.html" />
+  </key>
+  <key name="configure" >
+    <topic name="Chart Configurations" url="../../../Pyramid/Configurations.html" />
+    <key name="2D chart" >
+      <topic name="Chart Configurations" url="../../../Pyramid/Configurations.html" />
+    </key>
+    <key name="2D chart shadow" >
+      <topic name="Chart Configurations" url="../../../Pyramid/Configurations.html" />
+    </key>
+    <key name="display labels at center" >
+      <topic name="Chart Configurations" url="../../../Pyramid/Configurations.html" />
+    </key>
+    <key name="display values in percentage" >
+      <topic name="Chart Configurations" url="../../../Pyramid/Configurations.html" />
+    </key>
+    <key name="slice out individual pyramid slice" >
+      <topic name="Chart Configurations" url="../../../Pyramid/Configurations.html" />
+    </key>
+  </key>
+  <key name="create simple chart" >
+    <topic name="Creating a simple chart" url="../../../Pyramid/Create.html" />
+  </key>
+  <key name="features" >
+    <topic name="Introduction" url="../../../Pyramid/Introduction.html" />
+  </key>
+  <key name="isSliced attribute" >
+    <topic name="Creating a simple chart" url="../../../Pyramid/Create.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Pyramid/JSONFormat.html" />
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="../../../Pyramid/XMLAPI.html" />
+  </key>
+</key>
+<key name="refreshInterval attribute" >
+  <key name="debug real-time update" >
+    <topic name="Debugging real-time update" url="../../../Debug/RealTime.html" />
+  </key>
+</key>
+<key name="Ruby on Rails script" >
+  <key name="create charts" >
+    <topic name="Creating charts using various server side scripts#ror" url="../../../FirstChart/ServerSideScripts.html#ror" />
+  </key>
+</key>
+<key name="server-side export" >
+  <topic name="Overview" url="../../../ExportingImage/Server/ECServerOverview.html" />
+  <key name="configure export dialog cosmetics" >
+    <topic name="Configuring export dialog cosmetics" url="../../../ExportingImage/Server/ECExportDialog.html" />
+  </key>
+  <key name="configure output formats and context menu" >
+    <topic name="Configuring output formats and context menu" url="../../../ExportingImage/Server/ECServerFormats.html" />
+    <key name="hide context menu items" >
+      <topic name="Configuring output formats and context menu" url="../../../ExportingImage/Server/ECServerFormats.html" />
+    </key>
+  </key>
+  <key name="returning output as download" >
+    <topic name="Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+    <key name="add export parameters to XML" >
+      <topic name="Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+    </key>
+    <key name="configure file name" >
+      <topic name="Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+    </key>
+    <key name="server-side export handlers" >
+      <topic name="Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+    </key>
+    <key name="set target window for download" >
+      <topic name="Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+    </key>
+  </key>
+  <key name="Saving exported output on server disk" >
+    <topic name="Saving exported output on server disk" url="../../../ExportingImage/Server/ECServerSave.html" />
+    <key name="configure the server-side export handlers" >
+      <topic name="Saving exported output on server disk" url="../../../ExportingImage/Server/ECServerSave.html" />
+    </key>
+    <key name="configuring data" >
+      <topic name="Saving exported output on server disk" url="../../../ExportingImage/Server/ECServerSave.html" />
+    </key>
+    <key name="set up the call back handler" >
+      <topic name="Saving exported output on server disk" url="../../../ExportingImage/Server/ECServerSave.html" />
+    </key>
+  </key>
+</key>
+<key name="setChartAttribute() function" >
+  <key name="change chart properties using JavaScript" >
+    <topic name="Changing chart properties#setchartattribute" url="../../../JavaScript/JS_ChangeChartProperties.html#setchartattribute" />
+  </key>
+</key>
+<key name="SHOWANNOTATION attribute" >
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="spark charts" >
+  <topic name="Introduction" url="../../../Spark/Overview.html" />
+  <key name="features" >
+    <topic name="Introduction" url="../../../Spark/Overview.html" />
+  </key>
+  <key name="spark column chart example" >
+    <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+  </key>
+  <key name="spark line chart example" >
+    <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+  </key>
+  <key name="spark win/loss chart example" >
+    <topic name="Simple Example" url="../../../Spark/WLCreate.html" />
+  </key>
+</key>
+<key name="spark column chart" >
+  <key name="configure" >
+    <topic name="Configurations" url="../../../Spark/ColumnConfiguration.html" />
+    <key name="high column color" >
+      <topic name="Configurations" url="../../../Spark/ColumnConfiguration.html" />
+    </key>
+    <key name="low column color" >
+      <topic name="Configurations" url="../../../Spark/ColumnConfiguration.html" />
+    </key>
+    <key name="specify period block" >
+      <topic name="Configurations" url="../../../Spark/ColumnConfiguration.html" />
+    </key>
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt; element" >
+      <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+    </key>
+    <key name="&lt;dataset&gt; element" >
+      <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+    </key>
+  </key>
+  <key name="example" >
+    <topic name="Simple Example" url="../../../Spark/ColumnCreate.html" />
+  </key>
+  <key name="trend-lines" >
+    <topic name="Configurations" url="../../../Spark/ColumnConfiguration.html" />
+  </key>
+  <key name="trend-zones" >
+    <topic name="Configurations" url="../../../Spark/ColumnConfiguration.html" />
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="../../../Spark/ColumnXMLAPI.html" />
+  </key>
+</key>
+<key name="spark line chart" >
+  <key name="configure" >
+    <topic name="Configurations" url="../../../Spark/LineConfiguration.html" />
+    <key name="anchors" >
+      <topic name="Configurations#line" url="../../../Spark/LineConfiguration.html#line" />
+    </key>
+    <key name="close points" >
+      <topic name="Configurations#ohlc" url="../../../Spark/LineConfiguration.html#ohlc" />
+    </key>
+    <key name="display points only" >
+      <topic name="Configurations#points" url="../../../Spark/LineConfiguration.html#points" />
+    </key>
+    <key name="high points" >
+      <topic name="Configurations#ohlc" url="../../../Spark/LineConfiguration.html#ohlc" />
+    </key>
+    <key name="line" >
+      <topic name="Configurations#line" url="../../../Spark/LineConfiguration.html#line" />
+    </key>
+    <key name="low points" >
+      <topic name="Configurations#ohlc" url="../../../Spark/LineConfiguration.html#ohlc" />
+    </key>
+    <key name="open points" >
+      <topic name="Configurations#ohlc" url="../../../Spark/LineConfiguration.html#ohlc" />
+    </key>
+    <key name="point values" >
+      <topic name="Configurations#ohlc" url="../../../Spark/LineConfiguration.html#ohlc" />
+    </key>
+    <key name="specify period blocks" >
+      <topic name="Configurations#period" url="../../../Spark/LineConfiguration.html#period" />
+    </key>
+    <key name="trend-lines" >
+      <topic name="Configurations#trend" url="../../../Spark/LineConfiguration.html#trend" />
+    </key>
+    <key name="trend-zones" >
+      <topic name="Configurations#trend" url="../../../Spark/LineConfiguration.html#trend" />
+    </key>
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt; element" >
+      <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+    </key>
+    <key name="&lt;dataset&gt; element" >
+      <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+    </key>
+    <key name="&lt;set value&gt; element" >
+      <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+    </key>
+  </key>
+  <key name="example" >
+    <topic name="Simple Example" url="../../../Spark/LineCreate.html" />
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="../../../Spark/LineXMLAPI.html" />
+  </key>
+</key>
+
+</indexdata>

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>What's new in XT</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Introduction", "Version History" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">FusionWidgets Version History </td>
+  </tr>
+ 
+  <tr>
+     <td valign="top" class="text">
+        <p>FusionWidgets XT (v3.3.1) boasts of a plethora of enhancements which are listed below: </p>
+     </td>
+  </tr>
+  <tr>
+     <td valign="top"  class="header"><a name="v331" id="v331"></a>What's new in XT (v3.3.1)</td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionWidgets XT users can learn how to use the new features introduced in FusionWidgets XT <a href="Upgrading.html">here</a>.</p>
+          <p><strong>New Features:</strong>
+		  <ul>
+		  <li>Support for JavaScript variant of Gantt Chart having new features like:
+		  <ul>
+		  <li>Vertical scrolling .</li>
+		  <li>Mouse hover effect on <a href="../Gantt/TaskConfiguration.html#hover">tasks</a>, <a href="../Gantt/Connectors.html#connector_hover">connectors</a>, <a href="../Gantt/Configuration.html#processes_hover">processes</a>, <a href="../Gantt/Configuration.html#categories_hover">categories</a>.</li>
+		  </ul>
+		  </li>
+		  <li>Support for Message logger in JavaScript Realtime charts and gauges.</li>
+		  <li>Added <span class="codeInline">showOnTop</span> attribute  to display the trendline on top or bottom of the dataplots in Flash Spark Column/Line charts. </li>
+		  </ul>
+		  </p>
+		  <p><strong>Fix:</strong>
+		  <ul>
+		  <li>Minor fix in <span class="codeInline">taskDatePadding</span> attribute of Flash Gantt chart. </li>
+		  <li>Minor fix in <span class="codeInline">width</span> attribute within <span class="codeInline">&lt;process&gt;</span> element of Flash Gantt chart.</li>
+		  <li>Font cosmetics can now be applied to start and end date within <span class="codeInline">&lt;tasks&gt;</span> and <span class="codeInline">&lt;task&gt;</span> element of Flash Gantt chart.</li>
+		  <li>Minor fix in rendering of annotations in iPad.</li>
+		  <li>Minor fix in data plot representation&nbsp;when <span class="codeInline">&lt;set&gt;</span> element has zero value in JavaScript Funnel and Pyramid chart.</li>
+		  <li>Minor fix for shadow not being clipped during initial animation of JavaScript Real-time Stacked Area charts.</li>
+		  <li>JavaScript Realtime charts will now update after its container is re-sized.</li>
+		  <li>Minor fix in rendering of canvas shadow while using <span class="codeInline">useRoundEdges='1'</span> in VML Browsers.</li>
+		  <li>Unspecified values are no longer displayed in JavaScript Spark Win/Loss chart.</li>
+		  <li><span class="codeInline">manageLabelOverflow</span> attribute now works properly when set along with <span class="codeInline">baseFontSize</span>, in JavaScript charts.</li>
+		  </ul>
+		  </p>
+    </td></tr>
+  <tr>
+     <td valign="top"  class="header"><a name="v330" id="v330"></a>What's new in XT (v3.3.0)</td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionWidgets XT users can learn how to use the new features introduced in FusionWidgets XT <a href="Upgrading.html">here</a>.</p>
+          <p><strong>New Features:</strong>
+		  <ul>
+		  <li>Exported JavaScript charts and gauges can now be saved to a server (using PHP and JAVA).</li>
+		  </ul>
+		  </p>
+		  <p><strong>Improved:</strong>
+		  <ul>
+		  <li>Better and crisp visualization of JavaScript charts and gauges.</li>
+		  <li>Improved display of low and high anchors in Spark Line chart.</li>
+		  <li>Added support to customize export related context-menu items of JavaScript charts and gauges.</li>
+		  <li>Default value of&nbsp;<span class="codeInline">refreshInterval</span> attribute for Real-Time charts is set to 1 second.</li>
+		  </ul>
+		  </p>
+		  <p><strong>Fix:</strong>          
+		  <ul><li>Links are no more invoked in drag events for Flash charts and gauges.</li>
+		  <li>Common alpha can be set on gradient colors in Flash charts and gauges.</li>
+		  <li>Minor fix for <span class="codeInline">yAxisMinValue</span> in Flash Real-time Stacked charts.</li>
+		  <li>Minor fix in overlapping of divisional line labels for Flash Real-time charts.</li>
+		  <li>Minor fix for&nbsp;<span class="codeInline">sFormatNumberScale</span> in Flash Real-time Dual Y-Axis charts.</li>
+		  <li><span class="codeInline">showFullDataTable='1'</span> now works correctly in <span class="codeInline">&lt;process&gt;</span> element of Flash Gantt chart.</li>
+		  <li>Trendlines now appear behind the data plots when&nbsp;<span class="codeInline">showOnTop='0'</span> in JavaScript Real-time charts.</li>
+		  <li>Minor fix related to displacement of data plot in JavaScript Real-time Line and Real-time Area charts.</li>
+		  <li><span class="codeInline">getSVGString()</span> and&nbsp;<span class="codeInline">exportChart()</span> can now be invoked multiple times in JavaScript charts and gauges.</li>
+		  <li>Chart API and context menu items are now functioning as expected after exporting in JavaScript Real-Time charts.</li>
+		  </ul>
+		  </p>
+	</td></tr>
+  <tr>
+     <td valign="top"  class="header"><a name="XTSR2" id="XTSR2"></a>What's new in XT (v3.2) Service Release 2 </td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionWidgets 3.x users can learn how to use the new features introduced in FusionWidgets XT <a href="Upgrading.html">here</a>.</p>
+        <p><strong>New Features:</strong></p>
+		<ul>
+		 <li>JavaScript Real-time charts now show context menu to start, stop and clear chart updates.</li>
+		 <li>New jQuery API to manage Real-time charts.</li>
+		 <li>Ability to turn off url-decoding of links using the <span class="codeInline">unescapeLinks</span> attribute in JavaScript charts.</li>
+		 </ul>
+		<p><strong>Improved:</strong></p>
+		<ul>
+		 <li>Normalized the default font sizes of caption and sub-caption in Flash Funnel, Pyramid and Real-time charts.</li>
+		 <li>JavaScript Real-time charts now render with smoother visualization and better performance.</li>
+		 <li>Enhanced management of the open, close, high and low anchors in Spark Line chart.</li>
+	   </ul>
+		<p><strong>Fix:</strong></p>
+		<ul>
+		 <li>jQuery 1.8 compatibility issues.</li>
+		 <li>Mixed content browser warning on Internet Explorer when using charts within secured (https) pages.</li>
+		 <li>Exporting issues related to JavaScript <i>LinkedCharts</i>.</li>
+		 <li>Minor fix in label position while using stagger label display mode.</li>
+		 <li>Minor fix related to legend interactivity in JavaScript charts.</li>
+		 <li>Minor fix to improve auto-calculation of axis limits in JavaScript Real-time Stacked charts.</li>
+		 <li>Minor fix related to displacement of dataplot in Line and Area charts.</li>
+		 <li>Flash <i>LinkedCharts</i> overlay button does not disappear anymore while exporting.</li>
+		 <li>Links are no longer invoked when mouse is dragged onto chart from foreign elements.</li>
+		 <li>Real-time JavaScript charts no longer display redundant divisional grid color during real-time data update.</li>
+		 <li>A single dataplot in JavaScript Spark Win/Loss chart no more spreads across the total canvas height.</li>
+		 <li><span class="codeInline">setAdaptiveYMin</span> now remains disabled by default in Flash charts when all the values are negative.</li>
+		 <li>JavaScript charts now export the current state of the charts.</li>
+		 <li>Data labels of JavaScript Real-time charts are now properly visible in the exported images/PDF.</li>
+		 <li>Alpha is now correctly applied when defined through <span class="codeInline">colorRange</span> in Flash Bulb gauge.</li>
+		 <li>Pointer and trend-point labels are now positioned correctly in JavaScript HLinear Gauge.</li>
+		 <li>Bold and Italics styles can now be applied to tool tips in Flash charts.</li>
+		 <li>Flash Real-time charts can now display multiple <span class="codeInline">vLines</span>.</li>
+	   </ul>
+	</td>
+		</tr>
+		<tr>
+		<td valign="top" class="text">&nbsp;</td>
+		</tr>
+  <tr>
+     <td valign="top"  class="header"><a name="XTSR1" id="XTSR1"></a>What's new in XT (v3.2) Service Release 1</td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionWidgets 3.x users can learn how to use the new features introduced in FusionWidgets XT <a href="Upgrading.html">here</a>.</p>
+        <p><strong>New Features:</strong></p>
+	<ul>
+	   <li>Support for real-time JavaScript charts that include 
+	 	  <ul>
+		  	<li>Real-time Line chart</li>
+			<li>Real-time Area chart</li>
+			<li>Real-time Column  chart</li>
+		    <li>Real-time Stacked Area chart</li>
+	 	    <li>Real-time Stacked Column chart </li>
+	 	    <li>Real-time Dual Y-Axis Line chart </li>
+	 	  </ul>
+	    </li><li> Ability to control number formatting for <a href="../Advanced/NumberFormat/Basics.html#thousandSeparatorPosition">Indian and East Asian thousand/lac separation formats</a>.</li>
+	   </ul>
+	<p><strong>Improved:</strong></p>
+	<ul>
+       <li>Considerable reduction of memory leaks upon resize, data-update and dispose of charts.</li>
+	   <li>Text-selection (I-beam) cursor does not appear  when hovered over text.</li>
+	   </ul>
+	<p><strong>Fix:</strong></p>
+	<ul>
+	   <li><span class="codeInline">ExportReady</span> event not being raised in advanced event model.</li>
+	   </ul>
+	
+	</td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+     <td valign="top"  class="header"><a name="32" id="32"></a>What's new in XT (v3.2)</td>
+  </tr>
+  <tr>
+     <td valign="top"  class="text">
+       <p class="highlightBlock">Existing FusionWidgets 3.x users can learn how to use the new features introduced in FusionWidgets XT <a href="Upgrading.html">here</a>.        </p>
+        <ul>
+           <li>Automatic rendering of JavaScript gauges and charts (except Gantt chart) on devices where Flash player is not supported  (like iPad and iPhone). </li>
+           <li>Support for JSON data format.</li>
+           <li>Support for LinkedCharts, where a single data source controls multiple charts.</li>
+           <li>Advanced print management using JavaScript.</li>
+           <li>Additional options for efficient event handling using JavaScript.</li>
+           <li>Support for dynamic update of chart properties using JavaScript.</li>
+           <li>Better management of the position of labels in charts and gauges.</li>
+           <li>Long labels are truncated to prevent cropping of labels or cluttered looks.</li>
+           <li>Charts and gauges  now support percentage (%) based sizes along with dynamic resizing    when parent containers resize.</li>
+           <li>Background image can now be used to fill the gauges and charts in different modes, and custom alignment is possible.</li>
+           <li>Annotations can now be positioned using Macros - variables with dynamic values.</li>
+           <li>A real-time chart or gauge can now ask for instant update when the chart loads (using <span class="codeInline">refreshInstantly='1'</span> in <span class="codeInline">&lt;chart&gt;</span> element). </li>
+           <li>Real-time stacked charts now support 100% stacked mode.</li>
+           <li>Adjustment of minimum Y-axis value in stacked charts now supported.</li>
+           <li>In Line charts, data values can now be positioned either above or   below the dataplots. Automatic positioning of data values is also   supported.</li>
+           <li>Custom alignment of caption and sub caption using <strong><a href="../Styles/Font.html">Styles</a></strong>.</li>
+           <li>Added option to set round edge effect to all charts having columns.</li>
+       </ul>
+     </td>
+  </tr>
+  
+  
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top"  class="header"><a name="3" id="3"></a>What's new in FusionWidgets (v3)</td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text"><p>FusionWidgets v3 offers the following new features over FusionCharts Instrumentation Suite v2:</p>    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="new"></a>Common changes: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<ul>
+      <li>7 new charts:
+        <ul>
+          <li>Real-time stacked column and real-time dual Y line chart</li>
+          <li>Bullet graphs - horizontal and vertical</li>
+          <li>Spark Line, Spark Column and Spark Win/Loss charts</li>
+          </ul>
+      </li>
+      <li>Made using FusionCharts v3 framework, thereby offering:
+        <ul>
+          <li>Easy but advanced integration with JavaScript</li>
+          <li><strong>Styles</strong> support from FusionCharts v3 framework </li>
+          <li>Built in Adobe Flash 8 using ActionScript 2</li>
+          <li>New Debug Mode</li>
+          <li>Gradient Support</li>
+          <li>Palette Support</li>
+          <li>Dashed Line Support</li>
+          <li>Number scale support</li>
+          <li>Better printing support</li>
+          <li>Advanced drill-down features</li>
+          <li>Entire chart as a hotspot</li>
+          <li>Custom tooltip for each data plot item</li>
+          <li>Multiple language support for application messages</li>
+          </ul>
+      </li>
+      <li>Edit mode supported for angular and linear gauges.  </li>
+      <li>Message logger supported in all real-time charts for streaming real-time messages from server to client.</li>
+      <li>Alert Manager supported in all real-time charts.</li>
+      <li>More control over Annotations (previously custom objects) using XML and JavaScript.</li>
+      <li>Context Menu in all real-time charts  to stop/start update, clear chart. Helps user stop an update,   if he feels that this counter is not needed to monitor for the given timeframe.   After stopping, he can also restart the update dynamically. </li>
+      <li>JavaScript API in all real-time charts to stop/start update, clear chart, reload chart etc. at client-side. </li>
+      <li>New JavaScript API to feed data to chart. </li>
+      <li>Single color theme introduced to help you create your own color palettes for the chart, based on a single color. </li>
+      <li>In real-time charts - ability to add a&nbsp;data stamp (similar to timestamp) at the end of real-time   data stream URL - for easy tracking of &quot;what value was last sent to chart?&quot; No   need to use registers, sessions or database fields to control this. Use this   simple and effective technique over stateless environment. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="realtime"></a>Real-time data-streaming charts specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Axis updates each time to reflect the limits from data in current view. </li>
+      <li>Annotations introduced - helps you draw any custom shapes, objects, load   images anywhere on the chart. </li>
+      <li>Canvas Margins can be adjusted allowing you to set increased canvas   margins so that if you've larger data labels or y-axis values, you can adjust the margins accordingly. </li>
+      <li>Selectable (Interactive) Legend - so that you can opt to show/hide a full   dataset at client-side. Helps if you're comparing multiple streams of input and   just want to focus on one - but keep others in frame.&nbsp;</li>
+      <li>Real-time vLines with labels. </li>
+      <li>Ability to send clear command from server - so that chart can be cleared as and   when required.</li>
+      <li>Ability to send <span class="codeInline">stopUpdate</span> command from server, if you need to stop update   of a specific chart. </li>
+      <li>Ability to retrieve the chart's current data view using client-side JavaScript.   </li>
+      <li>JavaScript event <span class="codeInline">FC_ChartUpdated</span> raised when new data feed is received by chart. You can use this event to update your other display containers whenever the   chart updates in real-time. </li>
+      <li>Ability to specify different <span class="codeInline">updateInterval</span> and <span class="codeInline">clearInterval</span> (apart from   <span class="codeInline">refreshInterval</span>) - helps you specify when data is retrieved and queued - and   when chart is refreshed to show new data. Also, you can set pre-defined clear   intervals to clear the chart. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="angulargauge"></a>Angular Gauge specific changes</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li >Gauge can now be drawn in any angle and any direction.</li>
+      <li >Auto-scale facility for the gauge and annotations.</li>
+      <li >Customizable gradient fill mix for color scale.</li>
+      <li >Customizable gradient properties for pivot.</li>
+      <li >Percent based gauge radius supported.</li>
+      <li >Edit mode supported.</li>
+      <li >Option to show value for each dial, with customizable co-ordinates.</li>
+      <li >Ability to add trend-points, trend-arcs &amp; trend-markers.</li>
+      <li >Option to show tick and trend values inside or outside gauge.</li>
+      <li >Message logger supported.</li>
+      <li >Alert Manager supported.</li>
+      <li >Rear-extension supported for each dial to render more realistic gauges.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="ganttchart"></a>Gantt chart specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Supports both date &amp; time now.</li>
+      <li>Customizable output date format.</li>
+      <li>Ability to show each task&rsquo;s completion in percentage as either empty bar or   using a different fill color (slack fill color).</li>
+      <li>Scrolling support for both data table and Gantt pane.</li>
+      <li>Ability to show individual task bars as groups &ndash; to indicate task groups.</li>
+      <li>Customizable tooltip properties &ndash; also, you can opt to show whether to show   task date as part of tooltip content.</li>
+      <li>Ability to add a legend to the chart to show color keys. Fully customizable   legend cosmetics.</li>
+      <li>Ability to define each task&rsquo;s height and top-padding in percentage, instead   of just pixels.</li>
+      <li>Pre-define palettes and single color theme selectors to help you easily set   colors for the chart.</li>
+      <li>Round edged task bars supported.</li>
+      <li>Customizable gradient mix &amp; shadow for task bars.</li>
+      <li>Ability to define annotations over the Gantt chart to show further   information.</li>
+      </ul>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="funnelchart"></a>Funnel Chart specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Ability to draw the same data as either streamlined funnel chart or as section funnel chart.</li>
+      <li>Interactive funnel slices, when clicked can separate from the main funnel.</li>
+      <li>Option to plot funnel slices as hollow or filled.</li>
+      <li>Option to set same slant angle for each funnel slice (or make them dependent on data).</li>
+      <li>Ability to seamlessly convert 3D funnel to 2D funnel, by right clicking on chart and selecting View 2D.</li>
+      <li>Option to render the funnel in 2D mode   itself with more control over border and fill properties.</li>
+      <li>Option to show values as actual values or in percentage.</li>
+      <li>If shown as percentage, you can opt to show it as percentage of the first value or percentage of previous value.</li>
+      <li>Smart labels to avoid overlapping of funnel labels.</li>
+      <li>Option to place labels at side or at center.</li>
+      <li>Custom tool text for each funnel slice.</li>
+    </ul>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="pyramidchart"></a>Pyramid Chart specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Interactive pyramid slices, when clicked can separate from the main pyramid.</li>
+      <li>Ability to seamlessly convert 3D pyramid to 2D pyramid, by right clicking on chart and selecting View 2D</li>
+      <li>Option to render the pyramid in 2D mode   itself with more control over border and fill properties</li>
+      <li>Option to show values as actual values or in percentage</li>
+      <li>Smart labels to avoid overlapping of pyramid labels</li>
+      <li>Option to place labels at side or at center </li>
+      <li>Custom tool text for each pyramid slice</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="lineargauge"></a>Linear Gauge specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Multiple pointers supported.</li>
+      <li>Each pointer can have tool text and link.</li>
+      <li>Edit mode supported.</li>
+      <li>Customizable gradient fill for gauge.</li>
+      <li>Round edged gauges supported.</li>
+      <li>Much better control over tick marks &amp; tick values.</li>
+      <li>Ability to show pointer above or below gauge.</li>
+      <li>Option to create trend-lines/zones.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="ledgauge"></a>LED Gauge specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Better control over tick marks &amp; values.</li>
+      <li>Single color fill supported for entire LED.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="thermometer"></a>Thermometer Gauge specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>2D/3D fill mode.</li>
+      <li>Better control over tick marks &amp; values.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="cylinder"></a>Cylinder Gauge specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Enhanced and realistic 3D look.</li>
+      <li>Better control over tick marks and values.</li>
+      <li>Animation support for fill.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="bulb"></a>Bulb Gauge specific changes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Ability to show value inside or outside the bulb.</li>
+      <li>Option to show color range label as chart value, instead of actual numerical value.</li>
+    </ul></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("JavaScript charting capabilities|JSChartingCapabilities.html","Upgrading from Evaluation|UpgradingEval.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

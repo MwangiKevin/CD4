@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Cylinder Gauge - Creating a simple cylinder gauge</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Cylinder gauge|Overview.html", "Creating a simple Cylinder gauge" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating a simple Cylinder gauge </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>We will create our first cylinder gauge to depict the amount of petrol left in a fuel tanker, whose capacity is 4000 liters. We'll show a value of 2452 liters. The final gauge will look as under: </p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Cylinder_Create.jpg" width="203" height="255" /></td>
+  </tr>
+  
+ 
+  <tr>
+    <td valign="top" class="text"><p>To create this gauge, our tasks can be broken down into the following   segments:</p>
+      <ul>
+        <li><a name="scale"></a>Deciding the minimum and the maximum value that will be plotted on the   gauge. The minimum value is called the lower limit and the maximum value is   termed as the upper limit. The limits are displayed on the vertical scale to the   left/right of the cylinder. Since we are plotting the amount of fuel left in a tanker,   the lower and upper limits have been set to 0 liters and 4000 liters respectively.<br />
+        </li>
+        <li><a name="value"></a>Plotting the desired value on the gauge which will be depicted by filling   up the cylinder to that level on the scale. We've set it to 2,452 liters here.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="data"></a>Data for the gauge </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML/JSON for the gauge can be listed as under: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette=&quot;3&quot; lowerLimit=&quot;0&quot; upperLimit=&quot;4000&quot; numberSuffix=&quot; ltrs.&quot; bgColor=&quot;FFFFFF&quot;&gt;<br />  &lt;value&gt;2452&lt;/value&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "palette": "3",
+    "lowerlimit": "0",
+    "upperlimit": "4000",
+    "numbersuffix": " ltrs.",
+    "bgcolor": "FFFFFF"
+  },
+  "value": "2452"
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+  <td class="text"><p> The cylinder gauge for the above gauge will look as under:</p></td></tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Cylinder_Create.jpg" width="203" height="255" /></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="text">See it<a href="../../Code/Cylinder/FirstCylinder.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="explanation"></a>Explanation</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>First of all comes the <span class="codeInline">&lt;chart&gt;</span> element   which is the starting element for any chart/gauge/graph that you create using FusionWidgets XT.   Now we define the lower and upper limits of the gauge scale. To define the   limits, we use the <span class="codeInline">lowerLimit</span> and <span class="codeInline">upperLimit</span> attributes of the <span class="codeInline">&lt;chart&gt;</span> element. </p>
+      <p>We also set the palette number using the <span class="codeInline">palette</span> attribute and the number suffix as <span class="codeInline">'ltrs'</span> using the <span class="codeInline">numberSuffix</span> attribute. <br />
+    </p></td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette='3' lowerLimit='0' upperLimit='4000' numberSuffix=' ltrs.' bgColor='FFFFFF'&gt; </pre></div>
+	<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "palette": "3",
+    "lowerlimit": "0",
+    "upperlimit": "4000",
+    "numbersuffix": " ltrs.",
+    "bgcolor": "FFFFFF"
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">After that, we set the value of the gauge using the <span class="codeInline">&lt;value&gt;</span> element: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;value&gt;2452&lt;/value&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">"value": "2452"</pre></div></div></div>
+  <div style="clear:both"></div>
+	<p class="highlightBlock">For detailed explanation on JSON data format click <a href="JSONFormat.html">here</a>.
+	</td>
+  </tr>
+   
+  <tr>
+    <td valign="top" class="text">And this finishes our first cylinder gauge. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Elements of the Cylinder gauge|Elements.html","Gauge configurations|Configuration.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

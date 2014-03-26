@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using Macros in Annotations</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+<script type="text/javascript">
+	function getMacroItems(chartType)
+	{
+		var chartAlias = chartType.replace(/chart|gauge|graph|[\s\-\(\)\/]/ig,"").toLowerCase();
+		
+		
+		
+		var chartList = {};
+		chartList["angular"] ="15,16";
+		chartList["cylinder"] ="";
+		chartList["thermometer"] ="";
+		chartList["bulb"] ="13,14,17";
+		chartList["horizontalled"] ="9,10,11,12,13,14";
+		chartList["verticalled"] ="9,10,11,12,13,14";
+		chartList["horizontallinear"] ="9,10,11,12";
+		
+		chartList["realtimeline"] ="18,19,20,21,22,23,24,25";
+		chartList["realtimearea"] ="18,19,20,21,22,23,24,25";
+		chartList["realtimecolumn"] ="18,19,20,21,22,23,24,25";
+		chartList["realtimestackedarea"] ="18,19,20,21,22,23,24,25";
+		chartList["realtimestackedcolumn"] ="18,19,20,21,22,23,24,25";
+		chartList["realtimelinedualy"] ="18,19,20,21,22,23,24,25";
+		chartList["drawingpad"] ="18,19,20,21,22,23,24,25";
+		
+		chartList["sparkline"] ="18,19,20,21,22,23";
+		chartList["sparkcolun"] ="18,19,20,21,22,23";
+		chartList["sparkwinloss"] ="18,19,20,21,22,23";
+		chartList["horizontalbullet"] ="18,19,20,21";
+		chartList["verticalbullet"] ="18,19,20,21";
+		
+		chartList["pyramid"] ="18,19,20,21,22,23,24,25,26,27";
+		chartList["funnel"] ="18,19,20,21,22,23,24,25,26,27";
+		
+		chartList["gantt"] ="";
+		
+		return chartList[chartAlias]?chartList[chartAlias]:""
+		
+		
+	}
+
+	function showMacroList(strMacroIds)
+	{
+		
+		var arrMacroId = strMacroIds.split(/,/);
+		
+		
+		for( var i=9; i<28; i++)
+		{
+			if(jQuery.inArray(i+"", arrMacroId)>=0)
+			{ 
+				$("#tabMacroListByChart #filterdMacroList #macro"+i).show();
+			}
+			else
+			{
+				$("#tabMacroListByChart #filterdMacroList #macro"+i).hide();
+			}
+		}
+	}
+
+	$(document).ready(function() {
+		showMacroList(getMacroItems("angular"));
+		
+		$("#tabMacroListByChart .macroTabLink, #tabMacroListByChart .macroTabLinkHighlight").click(function() { 
+			var chartType = $(this).text();
+			$("#tabMacroListByChart #filterdMacroList #selectedChartName").html(chartType); 
+			$("#tabMacroListByChart .macroTabLinkHighlight").removeClass("macroTabLinkHighlight").addClass("macroTabLink");
+			
+			$(this).removeClass("macroTabLink").addClass("macroTabLinkHighlight");
+			
+			showMacroList(getMacroItems(chartType)); 
+		});
+				
+	});	
+
+</script>
+<style type="text/css">
+
+
+table.table2 {
+	background:#fff;
+}
+table.table2, table.table2 th, table.table2 td {
+	border-collapse: collapse;
+}
+table.table2 td {
+	font: normal 10pt/14pt "Trebuchet MS",Helvetica,sans-serif !important;
+	padding: 5px;
+	border:1px solid #dedede;
+}
+table.table2 td strong {
+	font-weight: bold !important;
+}
+table.table2 td.header {
+	background: #f1f1f6 !important;
+	font: bold 10pt/17pt "Trebuchet MS",Helvetica,sans-serif !important;
+	font-weight: bold !important;
+	color: #5d5d5d !important;
+}
+
+.macroTabLink, .macroTabLinkHighlight
+{
+	padding:0 !important;
+	margin:0 !important;
+}
+
+.macroTabLink, .macroTabLinkHighlight
+{
+	border:1px solid #dedede;
+	color:#46413E !important;
+}
+.macroTabLinkHighlight
+{
+	border-right: 1px solid #E5E8EA !important;
+}
+.macroTabLinkHighlight a
+{
+	background: #E5E8EA !important;
+	color: #000 !important;
+	display:block !important;
+}
+
+.macroTabLink a, .macroTabLinkHighlight a
+{
+	display:block !important;
+	text-decoration:none;
+	border-bottom:none;
+	padding: 10px;
+	padding-right:15px;
+}
+
+.macroTabLink a:hover
+{
+	background:#E5E8EA !important;
+	color:#000 !important;
+}
+
+
+
+</style>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Annotations|Introduction.html", "Using Macros" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Macros</td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">
+          <p>FusionWidgets XT (v3.2) introduces macros for annotations.  Macros are pre-defined   variables which assume values at run-time. These values are generated   dynamically based on the positions of various visual elements of a chart or gauge. The   macros can be set as the value for the x and  y positions of an   annotation or annotation group. For example, the macro <span class="codeInline">$chartCenterX</span> always provides the horizontal-center position of a chart or gauge. If   you want to place a circle annotation at the center of a chart or gauge,   set <span class="codeInline">x=&quot;$chartCenterX&quot;</span> and <span class="codeInline">y=&quot;$chartCenterY&quot;</span> while defining the circle annotation. The circle will be placed at the center of the chart or gauge. </p>
+          <p class="highlightBlock">To enable macros in annotations,  set the <span class="codeInline">manageResize</span> attribute to 1 in the <span class="codeInline">&lt;chart&gt; </span>element of the XML or in the <span class="codeInline">chart </span>Object of the JSON.</p>
+      
+  
+  
+          <p>Let's take an example showing circles around an angular gauge. Suppose we have the following angular gauge that shows a clock:</p>
+          <p><img src="Images/macro-clock.jpg" width="215" height="216" /></p>
+          <p> We provide a circular blue background to the clock as well as a dark blue pivotal circle at the center of the clock. </p>
+          <p>The XML/JSON for the same is: </p>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tab1">XML</a></li>
+                  <li><a href="#tab2">JSON</a></li>
+             </ul>
+              <div class="tab_container">
+                  <div id="tab1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart animation=&quot;0&quot; bgColor=&quot;333333&quot; baseFontColor=&quot;FFFFFF&quot; bgAlpha=&quot;100&quot; 
+   gaugeStartAngle=&quot;90&quot; gaugeEndAngle=&quot;-270&quot; lowerLimit=&quot;0&quot; lowerLimitDisplay=&quot; &quot; 
+   upperLimit=&quot;12&quot; majorTMNumber=&quot;12&quot; majorTMThickness=&quot;3&quot; majorTMColor=&quot;FFFFFF&quot; majorTMHeight=&quot;7&quot; 
+   minorTMNumber=&quot;4&quot; minorTMColor=&quot;FFFFFF&quot; minorTMHeight=&quot;4&quot; placeValuesInside=&quot;1&quot; tickValueStep=&quot;3&quot; tickValueDistance=&quot;20&quot; 
+   gaugeOuterRadius=&quot;95&quot; gaugeInnerRadius=&quot;95&quot; showShadow=&quot;0&quot; pivotRadius=&quot;6&quot; pivotFillColor=&quot;FFFFFF&quot; annRenderDelay=&quot;0&quot; 
+   showToolTip=&quot;0&quot; manageResize=&quot;1&quot; origW=&quot;270&quot; origH=&quot;270&quot; &gt;
+	&lt;dials&gt;
+		&lt;dial id=&quot;hrs&quot; value=&quot;4&quot; color=&quot;FFFFFF&quot; baseWidth=&quot;3&quot; topWidth=&quot;1&quot; radius=&quot;50&quot; rearExtension=&quot;10&quot;/&gt;
+		&lt;dial id=&quot;min&quot; value=&quot;5&quot; color=&quot;FFFFFF&quot; baseWidth=&quot;3&quot; topWidth=&quot;1&quot; radius=&quot;70&quot; rearExtension=&quot;13&quot;/&gt;
+		&lt;dial id=&quot;sec&quot; value=&quot;7&quot; color=&quot;FF0000&quot; baseWidth=&quot;2&quot; topWidth=&quot;1.5&quot; alpha=&quot;100&quot; radius=&quot;86&quot; rearExtension=&quot;20&quot; borderAlpha=&quot;0&quot;/&gt;
+	&lt;/dials&gt;
+	&lt;annotations&gt;
+		&lt;annotationGroup id=&quot;Grp1&quot; showBelow=&quot;1&quot; <strong>x=&quot;$chartCenterX&quot; y=&quot;$chartCenterY&quot;</strong> &gt;
+			&lt;annotation type=&quot;circle&quot; x=&quot;0&quot; y=&quot;0&quot; color=&quot;07476D&quot; radius=&quot;100&quot; /&gt;
+		&lt;/annotationGroup&gt;
+		&lt;annotationGroup id=&quot;Grp2&quot; showBelow=&quot;1&quot; x=&quot;0&quot; y=&quot;0&quot;&gt;
+			&lt;annotation type=&quot;circle&quot; radius=&quot;12&quot; <strong>x=&quot;$chartCenterX&quot; y=&quot;$chartCenterY&quot; </strong>color=&quot;012A46&quot; /&gt;
+	&lt;/annotationGroup&gt;
+&lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                 </div>
+                  <div id="tab2" class="tab_content">
+                      
+                      <pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />    &quot;animation&quot;: &quot;0&quot;,<br />    &quot;bgcolor&quot;: &quot;333333&quot;,<br />    &quot;basefontcolor&quot;: &quot;FFFFFF&quot;,<br />    &quot;bgalpha&quot;: &quot;100&quot;,<br />    &quot;gaugestartangle&quot;: &quot;90&quot;,<br />    &quot;gaugeendangle&quot;: &quot;-270&quot;,<br />    &quot;lowerlimit&quot;: &quot;0&quot;,<br />    &quot;upperlimit&quot;: &quot;12&quot;,<br />    &quot;lowerlimitdisplay&quot;: &quot; &quot;,<br />    &quot;majortmnumber&quot;: &quot;12&quot;,<br />    &quot;majortmthickness&quot;: &quot;3&quot;,<br />    &quot;majortmcolor&quot;: &quot;FFFFFF&quot;,<br />    &quot;majortmheight&quot;: &quot;7&quot;,<br />    &quot;minortmnumber&quot;: &quot;4&quot;,<br />    &quot;minortmcolor&quot;: &quot;FFFFFF&quot;,<br />    &quot;minortmheight&quot;: &quot;4&quot;,<br />    &quot;placevaluesinside&quot;: &quot;1&quot;,<br />    &quot;tickvaluestep&quot;: &quot;3&quot;,<br />    &quot;tickvaluedistance&quot;: &quot;20&quot;,<br />    &quot;gaugeouterradius&quot;: &quot;95&quot;,<br />    &quot;gaugeinnerradius&quot;: &quot;95&quot;,<br />    &quot;showshadow&quot;: &quot;0&quot;,<br />    &quot;pivotradius&quot;: &quot;6&quot;,<br />    &quot;pivotfillcolor&quot;: &quot;FFFFFF&quot;,<br />    &quot;annrenderdelay&quot;: &quot;0&quot;,<br />    &quot;showtooltip&quot;: &quot;0&quot;,<br />    &quot;manageresize&quot;: &quot;1&quot;,<br />    &quot;origw&quot;: &quot;270&quot;,<br />    &quot;origh&quot;: &quot;270&quot;<br />  },<br />  &quot;dials&quot;: {<br />    &quot;dial&quot;: [<br />      {<br />        &quot;id&quot;: &quot;hrs&quot;,<br />        &quot;value&quot;: &quot;4&quot;,<br />        &quot;color&quot;: &quot;FFFFFF&quot;,<br />        &quot;basewidth&quot;: &quot;3&quot;,<br />        &quot;topwidth&quot;: &quot;1&quot;,<br />        &quot;radius&quot;: &quot;50&quot;,<br />        &quot;rearextension&quot;: &quot;10&quot;<br />      },<br />      {<br />        &quot;id&quot;: &quot;min&quot;,<br />        &quot;value&quot;: &quot;5&quot;,<br />        &quot;color&quot;: &quot;FFFFFF&quot;,<br />        &quot;basewidth&quot;: &quot;3&quot;,<br />        &quot;topwidth&quot;: &quot;1&quot;,<br />        &quot;radius&quot;: &quot;70&quot;,<br />        &quot;rearextension&quot;: &quot;13&quot;<br />      },<br />      {<br />        &quot;id&quot;: &quot;sec&quot;,<br />        &quot;value&quot;: &quot;7&quot;,<br />        &quot;color&quot;: &quot;FF0000&quot;,<br />        &quot;basewidth&quot;: &quot;2&quot;,<br />        &quot;topwidth&quot;: &quot;1.5&quot;,<br />        &quot;alpha&quot;: &quot;100&quot;,<br />        &quot;radius&quot;: &quot;86&quot;,<br />        &quot;rearextension&quot;: &quot;20&quot;,<br />        &quot;borderalpha&quot;: &quot;0&quot;<br />      }<br />    ]<br />  },<br />  &quot;annotations&quot;: {<br />    &quot;autoscale&quot;: &quot;1&quot;,<br />    &quot;origw&quot;: &quot;270&quot;,<br />    &quot;origh&quot;: &quot;270&quot;,<br />    &quot;groups&quot;: [<br />      {<br />        &quot;id&quot;: &quot;Grp1&quot;,<br />        &quot;showbelow&quot;: &quot;1&quot;,<br />        <strong>&quot;x&quot;: &quot;$chartCenterX&quot;,<br />        &quot;y&quot;: &quot;$chartCenterY&quot;,</strong><br />        &quot;items&quot;: [<br />          {<br />            &quot;type&quot;: &quot;circle&quot;,<br />            &quot;x&quot;: &quot;0&quot;,<br />            &quot;y&quot;: &quot;0&quot;,<br />            &quot;color&quot;: &quot;07476D&quot;,<br />            &quot;radius&quot;: &quot;100&quot;<br />          }<br />        ]<br />      },<br />      {<br />        &quot;id&quot;: &quot;Grp2&quot;,<br />        &quot;showbelow&quot;: &quot;1&quot;,<br />        &quot;x&quot;: &quot;0&quot;,<br />        &quot;y&quot;: &quot;0&quot;,<br />        &quot;items&quot;: [<br />          {<br />            &quot;type&quot;: &quot;circle&quot;,<br />            &quot;radius&quot;: &quot;12&quot;,<br />            <strong>&quot;x&quot;: &quot;$chartCenterX&quot;,<br />            &quot;y&quot;: &quot;$chartCenterY&quot;,</strong><br />            &quot;color&quot;: &quot;012A46&quot;<br />          }<br />        ]<br />      }<br />    ]<br />  }<br />}</pre>
+            </div></div></div>
+          <div style="clear:both"></div>
+      </td>
+  </tr>
+  
+  <tr>
+     <td valign="top" class="text"><p>See it <a href="../../Code/Annotations/using-macros.html" target="_blank">live</a>!</p>
+       <p>In the above data, you have done the following:</p>
+       <ul>
+         <li>Created two annotation groups</li>
+         <li>Set the <span class="codeInline">x</span> position of the first group using the <span class="codeInline">$chartCenterX</span> macro</li>
+         <li>Set the <span class="codeInline">y</span> position of the first group using the <span class="codeInline">$chartCenterY</span> macro</li>
+         <li>Added a blue circle with <span class="codeInline">x </span>and<span class="codeInline"> y </span> positions set to 0 </li>
+         <li>Set the<span class="codeInline"> x </span>and<span class="codeInline"> y </span>positions of the second group to 0</li>
+         <li>Added a dark blue small circle with the <span class="codeInline">x</span> position set  using <span class="codeInline">$chartCenterX</span> macro and the <span class="codeInline">y</span> position set using <span class="codeInline">$chartCenterY</span> macro</li>
+       </ul>
+     <p>In an angular gauge the <span class="codeInline">$chartCenterX</span> macro and the <span class="codeInline">$chartCenterY</span> macro&nbsp;point to the center of the gauge (which is the common center position of&nbsp;the dials). Thus, the first annotation group is positioned at this central point. The center of the blue circle, with<span class="codeInline"> x</span> and <span class="codeInline">y</span> set to 0, is also set to this center. The second annotation group is positioned at  the top-left corner of the gauge. However, the center  of the small circle is fixed to the center of the gauge using the relevant macros. </p>
+     <p>Note: The values provided by  the macros change dynamically when   a chart or gauge resizes. Thus, irrespective of the size of  the   above rendered gauge, the annotations are always placed at the center of the  gauge. Consider the image shown below:</p>
+     <p><img src="Images/macro-clock-big.jpg" width="274" height="273" /></p>
+     <p>See it <a href="../../Code/Annotations/using-macros.html" target="_blank">live</a>!</p>
+    <p>Here, the  gauge is rendered using a different size. The XML is not changed. However, the positions of the annotations have changed automatically. </p></td>
+  </tr>
+  <tr>
+    <td  class="header"><a name="rules"></a>Where to define macros</td>
+  </tr>
+  <tr>
+    <td class="text">
+       <p>You can set macros in the following attributes of annotation&nbsp;groups and annotations:
+      </p>
+       <ul>
+        <li>You can set  macros to the <span class="codeInline">x</span> attribute of both annotation group and annotation </li>
+        <li>You can set  macros to the <span class="codeInline">y</span> attribute of both annotation group and annotation </li>
+        <li>You can set  macros to the <span class="codeInline">toX</span> and <span class="codeInline">toY </span> attributes</li>
+      </ul>
+    <p class="highlightBlock">You cannot set macros to the <span class="codeInline">xShift</span>, <span class="codeInline">yShift</span>,<span class="codeInline"> xScale</span>, <span class="codeInline">yScale</span>, <span class="codeInline">radius</span>, <span class="codeInline">yRadius</span> and <span class="codeInline">innerRadius</span> attributes.  </p>
+    <a name="macrolist" id="macrolist"></a><p class="header">List of macro names </p>
+    <p>FusionWidgets XT supports the following macros for annotations and annotation groups:</p>
+    <a name="anchorChartName"></a>
+	 	<div class="container">
+			<ul class="tabs">
+			   <li><a href="#tabMacroListByName">List by macros name</a></li>
+			   <li><a href="#tabMacroListByChart">List by chart type</a></li>
+			</ul>
+			<div class="tab_container">
+			   	<div id="tabMacroListByName" class="tab_content">
+					<table border="0" cellpadding="3" cellspacing="0" class="table" width="100%" style="background:#FFFFFF;" >
+					  <tr>
+						<td width="150" valign="top"  class="header">Macro Name</td>
+						<td valign="top"  class="header">Description</td>
+						<td width="200" valign="top"  class="header">Support Chart Type</td>
+				      </tr>
+					  
+					  <tr>
+						 <td valign="top" class="codeInline">$chartStartX</td>
+						 <td valign="top" class="text">Chart 
+						  start <span class="codeInline">X </span>position. It's 0 if you're loading the chart in an 
+						  HTML page. However, if you're loading the chart in another Flash 
+						  movie, it will take the given<span class="codeInline"> X </span>position.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartStartY</td>
+						 <td valign="top" class="text">Chart 
+						  start <span class="codeInline">Y</span> position. It's 0 if you're loading the chart in an 
+						  HTML page. However, if you're loading the chart in another Flash 
+						  movie, it will take the given<span class="codeInline"> Y </span>position.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartEndX</td>
+						 <td valign="top" class="text">End <span class="codeInline">X </span>position of the chart. Same as 
+						  the width of chart if you're loading the chart in  an HTML page.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartEndY</td>
+						 <td valign="top" class="text">End<span class="codeInline"> Y </span>position of the chart. Same as the height of chart if you're 
+						  loading the chart in  an HTML page.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartCenterX</td>
+						 <td valign="top" class="text">Center 
+							<span class="codeInline">X </span>position of the chart.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartCenterY</td>
+						 <td valign="top" class="text">Center 
+							<span class="codeInline">Y </span>position of the chart.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartWidth</td>
+						 <td valign="top" class="text">Width 
+							of the chart.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$chartHeight</td>
+						 <td valign="top" class="text">Height 
+							of the chart.</td>
+						 <td valign="top" class="text">All charts and gauges in FusionWidgets XT</td>
+					  </tr>
+					  
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeStartX</td>
+						 <td valign="top" class="text">Gauge 
+							start <span class="codeInline">X </span>position.</td>
+						 <td valign="top" class="text">Horizontal linear gauge and LED gauges</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeStartY</td>
+						 <td valign="top" class="text">Gauge 
+							start <span class="codeInline">Y</span> position.</td>
+						 <td valign="top" class="text">Horizontal linear gauge and  LED gauges</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeEndX</td>
+						 <td valign="top" class="text">End <span class="codeInline">X </span>position of the gauge. </td>
+						 <td valign="top" class="text">Horizontal linear gauge and  LED gauges</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeEndY</td>
+						 <td valign="top" class="text">End<span class="codeInline"> Y </span>position of the gauge. </td>
+						 <td valign="top" class="text">Horizontal linear gauge and LED gauges</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeCenterX</td>
+						 <td valign="top" class="text">Center <span class="codeInline">X </span>position of the gauge.</td>
+						 <td valign="top" class="text">Bulb gauge and  LED gauges</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeCenterY</td>
+						 <td valign="top" class="text">Center <span class="codeInline">Y </span>position of the gauge.</td>
+						 <td valign="top" class="text">Bulb gauge and  LED gauges</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeStartAngle</td>
+						 <td valign="top" class="text">Start angle of the gauge. </td>
+						 <td valign="top" class="text">Angular gauge</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeEndAngle</td>
+						 <td valign="top" class="text">End angle of the gauge. </td>
+						 <td valign="top" class="text">Angular gauge</td>
+					  </tr>
+					  
+					  <tr>
+						 <td valign="top" class="codeInline">$gaugeRadius</td>
+						 <td valign="top" class="text">Radius of the gauge. </td>
+						 <td valign="top" class="text">Bulb gauge</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasStartX</td>
+						 <td valign="top" class="text">Canvas 
+						  start <span class="codeInline">X</span> position (from left) i.e.,<span class="codeInline"> x</span> co-ordinate of left side of the canvas.</td>
+						 <td valign="top" class="text">All Real-time data-streaming charts, Spark charts, Bullet graphs, Funnel chart, Pyramid chart  and  Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasStartY</td>
+						 <td valign="top" class="text">Canvas 
+						  start <span class="codeInline">Y </span>position (from top) i.e., <span class="codeInline">y</span> co-ordinate of the top of canvas.</td>
+						 <td valign="top" class="text">All Real-time data streaming charts, Spark charts, Bullet graphs, Funnel chart, Pyramid chart and  Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasEndX</td>
+						 <td valign="top" class="text">End <span class="codeInline">X</span> position of canvas i.e., <span class="codeInline">x</span> co-ordinate of right side of canvas.</td>
+						 <td valign="top" class="text">All Real-time data streaming charts, Spark charts, Bullet graphs, Funnel chart, Pyramid chart and  Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasEndY</td>
+						 <td valign="top" class="text">End <span class="codeInline">Y</span> position of canvas i.e.,<span class="codeInline"> y</span> co-ordinate of bottom of canvas.</td>
+						 <td valign="top" class="text">All Real-time data-streaming charts, Spark charts, Bullet graphs, Funnel chart, Pyramid chart and  Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasCenterX</td>
+						 <td valign="top" class="text">Center <span class="codeInline">X</span> position of canvas.</td>
+						 <td valign="top" class="text">All Real-time data-streaming charts, Spark charts, Funnel chart, Pyramid chart and  Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasCenterY</td>
+						 <td valign="top" class="text">Center <span class="codeInline">Y </span>position of canvas.</td>
+						 <td valign="top" class="text">All Real-time data streaming charts, Spark charts, Funnel chart, Pyramid chart and Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasWidth</td>
+						 <td valign="top" class="text">Width 
+						  of canvas.</td>
+						 <td valign="top" class="text">All Real-time data streaming charts, Funnel chart, Pyramid chart and Drawing Pad</td>
+					  </tr>
+					  <tr>
+						 <td valign="top" class="codeInline">$canvasHeight</td>
+						 <td valign="top" class="text">Height 
+						  of canvas.</td>
+						 <td valign="top" class="text">All Real-time data streaming charts, Funnel chart, Pyramid chart and Drawing Pad</td>
+					  </tr>
+					  <tr>
+					    <td valign="top" class="codeInline">$plotWidth</td>
+					    <td valign="top" class="text">Width of the whole Funnel or Pyramid plot</td>
+					    <td valign="top" class="text">Funnel chart and Pyramid charts</td>
+				      </tr>
+					  <tr>
+					    <td valign="top" class="codeInline">$plotSemiWidth</td>
+					    <td valign="top" class="text">Half-width of the whole Funnel or Pyramid plot</td>
+					    <td valign="top" class="text">Funnel chart and Pyramid charts</td>
+				      </tr>
+					</table>				
+		    </div>
+				<div id="tabMacroListByChart" class="tab_content">
+					<table border="0" cellpadding="3" cellspacing="0" class="table2" width="100%">
+					   <tr>
+						  <td valign="top" width="225" class="macroTabLinkHighlight"><a href="#anchorChartName">Angular gauge</a></td>
+						  <td rowspan="22"  valign="top" style="padding:5px;background:#E5E8EA; color: #000;" >
+								<table border="0" cellpadding="3" cellspacing="0" class="table2" width="100%" id="filterdMacroList" height="860" >
+								  <tr>
+								     <td colspan="2" valign="top"  class="text"  style="font-size:16px; padding:10px 5px;" height="40"><strong><span id="selectedChartName">Angular gauge</span></strong></td>
+						          </tr>
+								  <tr>
+									<td width="140" valign="top"  class="header" height="40">Macro Name</td>
+									<td valign="top"  class="header">Description</td>
+							      </tr>
+								  
+								  <tr id="macro1">
+									 <td valign="top" class="codeInline" height="40">$chartStartX</td>
+									 <td valign="top" class="text">Chart 
+									  start <span class="codeInline">X </span>position. It's 0 if you're loading the chart in an 
+									  HTML page. However, if you're loading the chart in another Flash 
+									  movie, it will take the given<span class="codeInline"> X </span>position.</td>
+							      </tr>
+								  <tr id="macro2">
+									 <td valign="top" class="codeInline" height="40">$chartStartY</td>
+									 <td valign="top" class="text">Chart 
+									  start <span class="codeInline">Y</span> position. It's 0 if you're loading the chart in an 
+									  HTML page. However, if you're loading the chart in another Flash 
+									  movie, it will take the given<span class="codeInline"> Y </span>position.</td>
+							      </tr>
+								  <tr id="macro3">
+									 <td valign="top" class="codeInline" height="40">$chartEndX</td>
+									 <td valign="top" class="text">End <span class="codeInline">X </span>position of the chart. Same as 
+									  the width of chart if you're loading the chart in  an HTML page.</td>
+							      </tr>
+								  <tr id="macro4">
+									 <td valign="top" class="codeInline" height="40">$chartEndY</td>
+									 <td valign="top" class="text">End<span class="codeInline"> Y </span>position of the chart. Same as the height of chart if you're 
+									  loading the chart in  an HTML page.</td>
+							      </tr>
+								  <tr id="macro5">
+									 <td valign="top" class="codeInline" height="40">$chartCenterX</td>
+									 <td valign="top" class="text">Center 
+										<span class="codeInline">X </span>position of the chart.</td>
+							      </tr>
+								  <tr id="macro6">
+									 <td valign="top" class="codeInline" height="40">$chartCenterY</td>
+									 <td valign="top" class="text">Center 
+										<span class="codeInline">Y </span>position of the chart.</td>
+							      </tr>
+								  <tr id="macro7">
+									 <td valign="top" class="codeInline" height="40">$chartWidth</td>
+									 <td valign="top" class="text">Width 
+										of the chart.</td>
+							      </tr>
+								  <tr id="macro8">
+									 <td valign="top" class="codeInline" height="40">$chartHeight</td>
+									 <td valign="top" class="text">Height 
+										of the chart.</td>
+							      </tr>
+								  
+								  <tr id="macro9">
+									 <td valign="top" class="codeInline" height="40">$gaugeStartX</td>
+									 <td valign="top" class="text">Gauge 
+										start <span class="codeInline">X </span>position.</td>
+							      </tr>
+								  <tr id="macro10">
+									 <td valign="top" class="codeInline" height="40">$gaugeStartY</td>
+									 <td valign="top" class="text">Gauge 
+										start <span class="codeInline">Y</span> position.</td>
+							      </tr>
+								  <tr id="macro11">
+									 <td valign="top" class="codeInline" height="40">$gaugeEndX</td>
+									 <td valign="top" class="text">End <span class="codeInline">X </span>position of the gauge. </td>
+							      </tr>
+								  <tr id="macro12">
+									 <td valign="top" class="codeInline" height="40">$gaugeEndY</td>
+									 <td valign="top" class="text">End<span class="codeInline"> Y </span>position of the gauge. </td>
+							      </tr>
+								  <tr id="macro13">
+									 <td valign="top" class="codeInline" height="40">$gaugeCenterX</td>
+									 <td valign="top" class="text">Center <span class="codeInline">X </span>position of the gauge.</td>
+							      </tr>
+								  <tr id="macro14">
+									 <td valign="top" class="codeInline" height="40">$gaugeCenterY</td>
+									 <td valign="top" class="text">Center <span class="codeInline">Y </span>position of the gauge.</td>
+							      </tr>
+								  <tr id="macro15">
+									 <td valign="top" class="codeInline" height="40">$gaugeStartAngle</td>
+									 <td valign="top" class="text">Start angle of the gauge. </td>
+							      </tr>
+								  <tr id="macro16">
+									 <td valign="top" class="codeInline" height="40">$gaugeEndAngle</td>
+									 <td valign="top" class="text">End angle of the gauge. </td>
+							      </tr>
+								  
+								  <tr id="macro17">
+									 <td valign="top" class="codeInline" height="40">$gaugeRadius</td>
+									 <td valign="top" class="text">Radius of the gauge. </td>
+							      </tr>
+								  <tr id="macro18">
+									 <td valign="top" class="codeInline" height="40">$canvasStartX</td>
+									 <td valign="top" class="text">Canvas 
+									  start <span class="codeInline">X</span> position (from left) i.e.,<span class="codeInline"> x</span> co-ordinate of left side of the canvas.</td>
+							      </tr>
+								  <tr id="macro19">
+									 <td valign="top" class="codeInline" height="40">$canvasStartY</td>
+									 <td valign="top" class="text">Canvas 
+									  start <span class="codeInline">Y </span>position (from top) i.e., <span class="codeInline">y</span> co-ordinate of the top of canvas.</td>
+							      </tr>
+								  <tr id="macro20">
+									 <td valign="top" class="codeInline" height="40">$canvasEndX</td>
+									 <td valign="top" class="text">End <span class="codeInline">X</span> position of canvas i.e., <span class="codeInline">x</span> co-ordinate of right side of canvas.</td>
+							      </tr>
+								  <tr id="macro21">
+									 <td valign="top" class="codeInline" height="40">$canvasEndY</td>
+									 <td valign="top" class="text">End <span class="codeInline">Y</span> position of canvas i.e.,<span class="codeInline"> y</span> co-ordinate of bottom of canvas.</td>
+							      </tr>
+								  <tr id="macro22">
+									 <td valign="top" class="codeInline" height="40">$canvasCenterX</td>
+									 <td valign="top" class="text">Center <span class="codeInline">X</span> position of canvas.</td>
+							      </tr>
+								  <tr id="macro23">
+									 <td valign="top" class="codeInline" height="40">$canvasCenterY</td>
+									 <td valign="top" class="text">Center <span class="codeInline">Y </span>position of canvas.</td>
+							      </tr>
+								  <tr id="macro24">
+									 <td valign="top" class="codeInline" height="40">$canvasWidth</td>
+									 <td valign="top" class="text">Width 
+									  of canvas.</td>
+							      </tr>
+								  <tr id="macro25">
+									 <td valign="top" class="codeInline" height="40">$canvasHeight</td>
+									 <td valign="top" class="text">Height 
+									  of canvas.</td>
+							      </tr>
+								  <tr  id="macro26">
+								    <td valign="top" class="codeInline" height="40">$plotWidth</td>
+								    <td valign="top" class="text">Width of the whole Funnel or Pyramid plot</td>
+							      </tr>
+								  <tr  id="macro27">
+								    <td valign="top" class="codeInline" height="40">$plotSemiWidth</td>
+								    <td valign="top" class="text">Half-width of the whole Funnel or Pyramid plot</td>
+							      </tr>
+								  <tr>
+								     <td colspan="2" valign="top" class="codeInline">&nbsp;</td>
+						          </tr>
+								</table>						  
+						  </td>
+					   </tr>
+					   <tr>
+					      <td valign="top" class="macroTabLink"><a  href="#anchorChartName" >Bulb gauge</a></td>
+					   </tr>
+					   <tr>
+					      <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Cylinder gauge</a></td>
+					   </tr>
+					   <tr>
+					      <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Horizontal Linear gauge</a></td>
+				       </tr>
+					   <tr>
+					      <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Thermometer gauge </a></td>
+				       </tr>
+					   <tr>
+					      <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Horizontal LED gauge </a></td>
+					   </tr>
+					   <tr>
+					      <td valign="top"class="macroTabLink" ><a href="#anchorChartName" >Vertical  LED gauge </a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Real-time Area chart </a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Real-time Column chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Real-time Line chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Real-time Stacked Area chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Real-time Stacked Column chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Real-time Line (Dual Y) chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Spark Line chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Spark Column chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Spark Win/Loss chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Horizontal bullet graph</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Vertical bullet graph</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Funnel chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Pyramid chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Gantt chart</a></td>
+					   </tr>
+					   <tr>
+						  <td valign="top" class="macroTabLink"><a href="#anchorChartName" >Drawing Pad</a></td>
+					   </tr>
+					</table>
+		 		</div>
+			</div>
+		</div><div style="clear:both;"></div>
+	</td>
+  </tr>
+  <tr>
+    <td>    </td>
+  </tr>
+  
+  <tr>
+    <td>
+       <p class="highlightBlock"><strong>Macro names are case-sensitive. </strong>You need to ensure that the macro names are specified in proper case. For example,  <span class="codeInline">$canvasstarty </span>will not work (and will log an error in the <a href="../Debug/DebugWindow.html">Debug window</a> in case of Flash charts), unless it is specified as <span class="codeInline"> $canvasStartY.</span></p>
+    </td>
+  </tr>
+  <tr>
+    <td class="header"><a name="expressions" id="expressions"></a>Creating macro expressions </td>
+  </tr>
+  <tr>
+    <td class="text">
+       <p>You can also add numeric (integer) values to the macros or subtract numeric (integer) values from macros to offset the annotations. For example,  you may want to draw a rectangle 10 pixels away from the chart borders like the image shown below:</p>
+       <p><img src="Images/macro-expression.jpg" width="400" height="348" /></p>
+      <p>You can define the rectangle as shown in the  snippet below: </p>
+      <div class="container">
+        <ul class="tabs">
+          <li><a href="#tab9">XML</a></li>
+          <li><a href="#tab10">JSON</a></li>
+        </ul>
+        <div class="tab_container">
+          <div id="tab9" class="tab_content">
+            <pre class="prettyprint code_container">&lt;annotation type=&quot;rectangle&quot;  
+<strong>    x=&quot;$chartStartX+10&quot; y=&quot;$chartStartY+10&quot; 
+    toX=&quot;$chartEndX-10&quot; toY=&quot;$chartEndY-10&quot; </strong>
+showBorder=&quot;1&quot;  borderThickness=&quot;5&quot; borderColor=&quot;FFFFFF&quot; fillAlpha=&quot;0&quot; fillColor=&quot;07476D&quot; /&gt;</pre>
+          </div>
+          <div id="tab10" class="tab_content">
+            <pre id="pre-datajson5" class="prettyprint code_container">&quot;items&quot;: [<br />          {<br />            &quot;type&quot;: &quot;rectangle&quot;,<br /><strong>            &quot;x&quot;: &quot;$chartStartX+10&quot;, 
+            &quot;y&quot;: &quot;$chartStartY+10&quot;,
+            &quot;tox&quot;: &quot;$chartEndX-10&quot;,
+            &quot;toy&quot;: &quot;$chartEndY-10&quot;,</strong>
+            &quot;showborder&quot;: &quot;1&quot;,
+            &quot;borderthickness&quot;: &quot;5&quot;,
+            &quot;bordercolor&quot;: &quot;FFFFFF&quot;,
+            &quot;fillalpha&quot;: &quot;0&quot;,
+            &quot;fillcolor&quot;: &quot;07476D&quot; <br />          },
+...<br />        ]</pre>
+          </div>
+        </div>
+      </div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>See it <a href="../../Code/Annotations/using-macros.html#exp" target="_blank">live</a>!</p>
+      <p>In the above defined rectangle annotation we have applied macro expressions as described below:</p>
+      <ul>
+        <li>We have set <strong>$chartStartX+10</strong> to the <span class="codeInline">x</span> position. This positions the rectangle  10 pixels away from the left.</li>
+        <li>We have set <strong>$chartStartY+10</strong> to the <span class="codeInline">y</span> position. This positions the rectangle  10 pixels away from the top.</li>
+        <li>We have set <strong>$chartEndX-10</strong> to the <span class="codeInline">toX</span> position. This positions the end of the rectangle  10 pixels away from the right.</li>
+        <li>We have set <strong>$chartEndY-10</strong> to the <span class="codeInline">toY</span> position. This positions the end of the rectangle 10 pixels away from the bottom.</li>
+      </ul>
+    <p class="highlightBlock">You can only use + or - operators to create a macro expression. You are required to use at least one macro name to create a&nbsp;macro expression. Common mathematical expressions like &quot;30+10-5&quot;, which do not contain a macro, are not allowed. </p>
+    <p class="code_container"><strong>Important Note: </strong>While using the <a href="AutoScale.html">dynamic resizing</a> feature, the values provided by macros are not scaled. Rather, these values are re-set with the new values provided by the resized chart. However, the numeric values present in the macro expressions are  scaled. For example, the value 10 in the expression <strong>$chartStartY+10</strong> is scaled while using dynamic resizing. If do not want this numeric part to be scaled while using the dynamic resizing feature, you need to prefix the number with $. For example, the value 10 in the expression <strong>$chartStartY+$10</strong> is NOT scaled while using dynamic resizing. </p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Image|Image.html","Using IDs|ID.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

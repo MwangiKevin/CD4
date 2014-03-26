@@ -1,0 +1,71 @@
+<html>
+  <head>        
+    <title>Clock</title>
+    <script type="text/javascript" src="../../../Charts/jquery.min.js"></script>   
+    <script type="text/javascript" src="../../../Charts/FusionCharts.js"></script>   
+  </head>   
+  <body style="height:100%; margin:0;padding:0;"> 
+    <div id="chartContainer" style="height:100%;" >
+        Chart will load here</div>          
+
+        <script type="text/javascript"><!--
+		
+			var dataString ='<chart manageResize="1" animation="0" baseFont="Times New Roman" baseFontSize="18" baseFontcolor="FFFFFF" bgColor="333333" bgAlpha="100" gaugeStartAngle="90" gaugeEndAngle="-270" lowerLimit="0" upperLimit="12" lowerLimitDisplay=" " majorTMNumber="12" majorTMThickness="3" majorTMColor="FFFFFF" majorTMHeight="7" minorTMNumber="4" minorTMColor="FFFFFF" minorTMHeight="4" placeValuesInside="1" tickValueStep="3" tickValueDistance="17" gaugeOuterRadius="95" gaugeInnerRadius="95" showShadow="0" pivotFillColor="FFFFFF" pivotRadius="6" annRenderDelay="0" showToolTip="0" \n\
+			 gaugeOriginX="135" gaugeOriginY="135" origW="270" origH="270" >\n\
+				  <dials>\n\
+				   <dial id="hrs" value="0" color="FFFFFF" baseWidth="3" topWidth="1" radius="50" rearExtension="10"/>\n\
+					<dial id="min" value="0" color="FFFFFF" baseWidth="3" topWidth="1" radius="70" rearExtension="13"/>\n\
+					<dial id="sec" value="0" color="FF0000" baseWidth="2" topWidth="1.5" alpha="100" radius="86" rearExtension="20" borderAlpha="0"/>\n\
+				  </dials>\n\
+				<annotations autoScale="1" origW="270" origH="270">\n\
+					<annotationGroup id="Grp1" showBelow="1" x="$chartCenterX" y="$chartCenterY" scaleImages="1">\n\
+						<annotation type="circle" color="EBF0F4,85898C,484C4F,C5C6C8" fillRatio="30,30,30,10" fillAngle="270" radius="120" fillPattern="linear" />\n\
+						<annotation type="circle" color="8E8E8E,83878A,E7E7E7" fillAngle="270" radius="105" fillPattern="linear" />\n\
+						<annotation type="circle" color="07476D,19669E,186AA6,D2EAF6" fillRatio="5,45,40,10" fillAngle="270" radius="103" fillPattern="linear" />\n\
+						<annotation type="circle" color="07476D,19669E,07476D" fillRatio="5,90,5" fillAngle="270" radius="100" fillPattern="linear" />\n\
+						<annotation type="image" x="-62.5" y="-95" URL="FWPower.png" alpha="30" yScale="25" xScale="25" />\n\
+					</annotationGroup>\n\
+					<annotationGroup id="Grp2" showBelow="1" x="$chartCenterX" y="$chartCenterY">\n\
+						<annotation type="circle" radius="12" color="012A46" />\n\
+					</annotationGroup>\n\
+				</annotations>\n\
+			</chart>'; 
+		
+		
+		
+            var chart = new FusionCharts("../../../Charts/AngularGauge.swf", "ChartId", "100%", "100%", "0", "1" );
+           	chart.setXMLData( dataString );
+            chart.render("chartContainer");
+ 
+ 
+ 			
+			window.dataUpdateTimer = null;
+			
+			FusionCharts.addEventListener("Rendered", function(e,a) {
+				updateClock(e);
+				window.dataUpdateTimer = window.setInterval (function (){ updateClock(e); },1000 );
+			});	
+
+			function updateClock(e)
+			{
+				var hrs = (( (new Date().getHours()*3600)+(new Date().getMinutes()*60)+ new Date().getSeconds() ) /3600) % 12;
+				var mins = ( (new Date().getMinutes()*60)+ new Date().getSeconds() ) /60/5;
+				var secs = new Date().getSeconds()/5;
+
+				try {
+				var updater = e.sender.setData? e.sender : null;
+				
+				if(updater) 
+				{	
+					updater.setData(1,hrs);
+					updater.setData(2,mins);
+					updater.setData(3,secs);
+				}	
+				}catch(e) {console.log(e);}			
+			}
+		             
+      // -->     
+    </script>
+  </body> 
+</html>		
+

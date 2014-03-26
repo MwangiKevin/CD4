@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+     <head> <meta name="viewport" content="width=996px"/>
+        <title>Real-time Stacked Area Chart</title>
+        <link href="../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/prettify/prettify.css" rel="stylesheet" type="text/css" />
+        
+      <script type="text/javascript" src="../../Charts/jquery.min.js"></script>
+
+      <script type="text/javascript" src="../../Charts/FusionCharts.js"></script>
+
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+        <script type="text/javascript" src="../assets/ui/js/json2.js"></script>
+         <script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+        <script type="text/javascript" src="../assets/ui/js/date.js"></script>
+		  <script type="text/javascript">
+			var isJSChartNotAvailable = false;
+		</script>
+				 
+<!--[if IE 6]>
+        <script type="text/javascript" src="../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+		  <p>&nbsp;</p>
+		  <P align="center"></P>
+        <![endif]-->
+    </head>
+    <body>
+        
+		<h3 class="chart-title" >Real-time Stacked Area Chart</h3>
+        <p>&nbsp;</p>
+        <script type="text/javascript" src="../Data/String/js/RTStArea.js" ></script>
+        
+        <div id="chartdiv" align="center">Chart will load here</div>
+        <script type="text/javascript">
+			if ((typeof isJSChartNotAvailable=="undefined" || !isJSChartNotAvailable==true) && (GALLERY_RENDERER && GALLERY_RENDERER.search(/javascript|flash/i)==0) )  FusionCharts.setCurrentRenderer(GALLERY_RENDERER); 
+			
+            var chart = new FusionCharts("../../Charts/RealTimeStackedArea.swf", "ChartId", "550", "390", "0", "1" );
+            chart.setXMLData( dataString );
+            chart.render("chartdiv");
+
+
+			window.dataUpdateTimer = null;
+			
+			FusionCharts.addEventListener("Rendered", function(e,a) {
+				if(e.sender.id=="tmpChartId") return;
+			
+				window.dataUpdateTimer = window.setInterval (function (){ 
+					provideRealTimeDataThroughJSAPI(e.sender);
+				},2000 );
+			});			
+				
+			function provideRealTimeDataThroughJSAPI(sender)
+			{
+				var updater= sender.feedData? sender : null;
+				
+				var c1 = Math.round(Math.random()*25);
+				var c2 = Math.round(Math.random()*25);
+				var c3 = Math.round(Math.random()*25);
+				var dateTimeLabel = new Date().toString("HH:mm:ss");
+				if(updater) updater.feedData("&label=" + dateTimeLabel + "&value=" + c1 + "|" + c1 + "|" + c3 );
+			}
+
+
+		</script>
+		
+		
+   	    <p align="center" style="width: 550px; margin:0 auto; margin-top:10px; margin-bottom:20px; padding-left:5px; padding-right:5px;">The chart displays server load and updates itself every 2 seconds.<br /> <br />
+		<strong>Interactive features:</strong> Click on any series name in legend to show/hide the dataset.</p>
+       
+        <div class="qua-button-holder"></div>
+        <div class="show-code-block"></div>
+		
+     </body>
+	 <script type="text/javascript">
+	 	$(document).ready ( function() {
+			  if(chart.options.renderer=="javascript" && isJSChartNotAvailable)
+			  {
+			  	$(".description-text").css( { "visibility": "hidden" } );
+			  	$(".qua-button-holder").css( { "visibility": "hidden" } );
+			  	$(".show-code-block").css( { "visibility": "hidden" } );				
+			  	$(".chart-title").next().addClass("highlightBlock").css({ "text-align": "center" }).html("JavaScript version of Real-time Stacked Area Chart is not supported.");
+
+			  }
+			  else
+			  {
+			  	$(".chart-title").next().removeClass("highlightBlock").html("&nbsp;");
+			  }
+		});	
+	 
+	 </script>	 
+ </html>

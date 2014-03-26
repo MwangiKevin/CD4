@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spark Chart - Spark Line Chart - Simple Example</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Spark charts|Overview.html", "Spark Line", "Creating a Spark Line chart" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating a Spark Line chart  </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll see a simple example of creating a spark line chart. We'll use it to show the weekly stock price of Cisco for a particular year.</p>
+      <p>The chart will look as under:</p>      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/SparkLine1.jpg" width="298" height="29" class="imageBorder" />
+</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="data"></a>Data for the chart</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML/JSON data for the chart will look as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette=&quot;2&quot; caption=&quot;Cisco&quot; setAdaptiveYMin=&quot;1&quot;&gt;<br />  &lt;dataset&gt;<br />    &lt;set value=&quot;27.26&quot;/&gt;<br />    &lt;set value=&quot;37.88&quot;/&gt;<br />    &lt;set value=&quot;38.88&quot;/&gt;<br />    &lt;set value=&quot;22.9&quot;/&gt;<br />    &lt;set value=&quot;39.02&quot;/&gt;<br />    &lt;set value=&quot;23.31&quot;/&gt;<br />    &lt;set value=&quot;30.85&quot;/&gt;<br />    &lt;set value=&quot;27.01&quot;/&gt;<br />    &lt;set value=&quot;33.2&quot;/&gt;<br />    &lt;set value=&quot;21.93&quot;/&gt;<br />    &lt;set value=&quot;34.51&quot;/&gt;<br />    &lt;set value=&quot;24.84&quot;/&gt;<br />    &lt;set value=&quot;39.32&quot;/&gt;<br />    &lt;set value=&quot;37.04&quot;/&gt;<br />    &lt;set value=&quot;27.81&quot;/&gt;<br />    &lt;set value=&quot;22.95&quot;/&gt;<br />    &lt;set value=&quot;24.73&quot;/&gt;<br />    &lt;set value=&quot;37.63&quot;/&gt;<br />    &lt;set value=&quot;29.75&quot;/&gt;<br />    &lt;set value=&quot;22.35&quot;/&gt;<br />    &lt;set value=&quot;34.35&quot;/&gt;<br />    &lt;set value=&quot;27.6&quot;/&gt;<br />    &lt;set value=&quot;27.97&quot;/&gt;<br />    &lt;set value=&quot;32.36&quot;/&gt;<br />    &lt;set value=&quot;22.56&quot;/&gt;<br />    &lt;set value=&quot;24.15&quot;/&gt;<br />    &lt;set value=&quot;24.93&quot;/&gt;<br />    &lt;set value=&quot;35.82&quot;/&gt;<br />    &lt;set value=&quot;23.45&quot;/&gt;<br />    &lt;set value=&quot;37.64&quot;/&gt;<br />    &lt;set value=&quot;26.99&quot;/&gt;<br />    &lt;set value=&quot;29.48&quot;/&gt;<br />    &lt;set value=&quot;36.63&quot;/&gt;<br />    &lt;set value=&quot;35.58&quot;/&gt;<br />    &lt;set value=&quot;32.19&quot;/&gt;<br />    &lt;set value=&quot;27.59&quot;/&gt;<br />    &lt;set value=&quot;26.94&quot;/&gt;<br />    &lt;set value=&quot;32.35&quot;/&gt;<br />    &lt;set value=&quot;22.63&quot;/&gt;<br />    &lt;set value=&quot;25.97&quot;/&gt;<br />    &lt;set value=&quot;25.28&quot;/&gt;<br />    &lt;set value=&quot;26.73&quot;/&gt;<br />    &lt;set value=&quot;23.47&quot;/&gt;<br />    &lt;set value=&quot;20.55&quot;/&gt;<br />    &lt;set value=&quot;34.58&quot;/&gt;<br />    &lt;set value=&quot;29.16&quot;/&gt;<br />    &lt;set value=&quot;34.97&quot;/&gt;<br />    &lt;set value=&quot;24.57&quot;/&gt;<br />    &lt;set value=&quot;20.7&quot;/&gt;<br />    &lt;set value=&quot;32.61&quot;/&gt;<br />  &lt;/dataset&gt;<br />&lt;/chart&gt;<br /></pre></div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "palette": "2",
+    "caption": "Cisco",
+    "setadaptiveymin": "1"
+  },
+  "dataset": [
+    {
+      "data": [
+        {
+          "value": "27.26"
+        },
+        {
+          "value": "37.88"
+        },
+        {
+          "value": "38.88"
+        },
+        {
+          "value": "22.9"
+        },
+        {
+          "value": "39.02"
+        },
+        {
+          "value": "23.31"
+        },
+        {
+          "value": "30.85"
+        },
+        {
+          "value": "27.01"
+        },
+        {
+          "value": "33.2"
+        },
+        {
+          "value": "21.93"
+        },
+        {
+          "value": "34.51"
+        },
+        {
+          "value": "24.84"
+        },
+        {
+          "value": "39.32"
+        },
+        {
+          "value": "37.04"
+        },
+        {
+          "value": "27.81"
+        },
+        {
+          "value": "22.95"
+        },
+        {
+          "value": "24.73"
+        },
+        {
+          "value": "37.63"
+        },
+        {
+          "value": "29.75"
+        },
+        {
+          "value": "22.35"
+        },
+        {
+          "value": "34.35"
+        },
+        {
+          "value": "27.6"
+        },
+        {
+          "value": "27.97"
+        },
+        {
+          "value": "32.36"
+        },
+        {
+          "value": "22.56"
+        },
+        {
+          "value": "24.15"
+        },
+        {
+          "value": "24.93"
+        },
+        {
+          "value": "35.82"
+        },
+        {
+          "value": "23.45"
+        },
+        {
+          "value": "37.64"
+        },
+        {
+          "value": "26.99"
+        },
+        {
+          "value": "29.48"
+        },
+        {
+          "value": "36.63"
+        },
+        {
+          "value": "35.58"
+        },
+        {
+          "value": "32.19"
+        },
+        {
+          "value": "27.59"
+        },
+        {
+          "value": "26.94"
+        },
+        {
+          "value": "32.35"
+        },
+        {
+          "value": "22.63"
+        },
+        {
+          "value": "25.97"
+        },
+        {
+          "value": "25.28"
+        },
+        {
+          "value": "26.73"
+        },
+        {
+          "value": "23.47"
+        },
+        {
+          "value": "20.55"
+        },
+        {
+          "value": "34.58"
+        },
+        {
+          "value": "29.16"
+        },
+        {
+          "value": "34.97"
+        },
+        {
+          "value": "24.57"
+        },
+        {
+          "value": "20.7"
+        },
+        {
+          "value": "32.61"
+        }
+      ]
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the above data, we've:</p>
+      <ul>
+        <li>Created the <span class="codeInline">&lt;chart&gt;</span> element, which is the root element of each chart.</li>
+        <li>Specified the caption, palette number and asked the chart to use adaptive y-axis lower limits. You can specify a lot more properties for the <span class="codeInline">&lt;chart&gt;</span> element, which have been discussed in the <a href="LineConfiguration.html"> next section</a>.</li>
+        <li>Thereafter, we've added the <span class="codeInline">&lt;dataset&gt;</span> element to contain data. Each spark line chart XML can have only one <span class="codeInline">&lt;dataset&gt;</span> element, under which individual data points have been specified using <span class="codeInline">&lt;set value='23.54' /&gt;</span>.</li>
+      </ul>
+	  <p class="highlightBlock">For detailed explanation on JSON data format click <a href="JSONFormat.html">here</a>.
+    <p>When you now view the chart, you'll get something as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/SparkLine1.jpg" width="298" height="29" class="imageBorder" /><br/><br/></td>
+  </tr>
+   <tr>
+  <td class="text">See it<a href="../../Code/SparkCharts/SparkLine/FirstSparkLine.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Next, we'll see how to configure the various aspects of this chart. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Introduction|Overview.html","Chart configurations|LineConfiguration.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

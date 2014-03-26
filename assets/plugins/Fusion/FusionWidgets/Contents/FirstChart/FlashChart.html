@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Creating Flash Charts</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Creating Flash Charts" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Creating Flash Charts</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>In the <a href="FirstChart.html">previous example</a>, we have seen how to build your first chart in JavaScript. Here, we will discuss about how to create charts in Flash using FusionWidgets XT. We will use the same example of &nbsp;&quot;Customer Satisfaction index in percentage&quot; for a fictional company,   which we will plot in&nbsp;an <a href="../Angular/Overview.html">Angular Gauge</a> (dial/speedometer chart). Once done, it should look   as under, although with animation and interactivity when you view it   live.</p>
+       <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstChart</span> folder.</p>
+       <p><img src="Images/FirstChart_flash.jpg" alt="First Chart - Customer Satisfaction" width="395" height="195" class="imageBorder"/></p>
+      
+     
+      <p>For this example, create a copy of <span class="codeInline">customer-satisfaction.html</span> and save it as <span class="codeInline">customer-satisfaction-flash.html</span> in the same folder. Finally, edit the HTML code and replace the JavaScript alias <span class="codeInline">AngularGauge</span> with  the chart SWF file <span class="codeInline">AngularGauge.swf</span>. Let's see how the change is incorporated in the HTML code (in your web page).</p>
+      <pre class="code_container prettyprint">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;My First chart using FusionWidgets XT - Using Flash&lt;/title&gt;
+	&lt;script type=&quot;text/javascript&quot; src=&quot;Charts/FusionCharts.js&quot;&gt;
+	&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id=&quot;chartContainer&quot;&gt;FusionWidgets XT will load here!&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+		var myChart = new FusionCharts( &quot;<strong>Charts/AngularGauge.swf</strong>&quot;, &quot;myChartId&quot;, &quot;400&quot;, &quot;200&quot;, &quot;0&quot;);
+		myChart.setXMLUrl(&quot;Data.xml&quot;);
+		myChart.render(&quot;chartContainer&quot;);
+	// --&gt;
+	&lt;/script&gt;
+&lt;/body&gt; 
+&lt;/html&gt;</pre>
+       
+      <p>And that completes the recipe!</p>
+      <p>Open the HTML file (<span class="codeInline">customer-satisfaction-flash.html</span>) in a <span class="msg_handler"><a>Web Browser</a> &raquo; </span><span class="msg_body veryLightYellowBg">Internet Explorer, Firefox,  Opera, Chrome or Safari (Mac/iPhone/iPad/Windows)</span> and you will see an Angular Gauge similar to the one below:</p>
+      <img src="Images/FirstChart_flash.jpg" alt="First Chart - Customer Satisfaction" class="imageBorder"/>
+      <p>See it <a href="../../Code/MyFirstChart/customer-satisfaction-flash.html" target="_blank">live</a>!</p>
+      
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="how_it_works"></a>How it works? </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Now that you've already rendered a chart, let's get behind the scenes and understand how FusionWidgets XT renders charts in a web page. Essentially, to create a chart, you need the following 4  items:</p>
+      <ol>
+        <li><strong><a href="../Introduction/DownloadC.html#swf">Chart SWF files</a>:</strong> If you want to create an angular gauge using Flash, you'll need the SWF file called <span class="codeInline">AngularGauge.swf</span>. Similarly, for creating a thermometer gauge you'll need <span class="codeInline">Thermometer.swf</span>. For the complete list of chart SWF files, refer to <a href="../Introduction/ChartList.html">Chart List</a>. These files are present in the <span class="codeInline">Charts</span> folder in the root of the <span class="codeInline">Download Package</span>. The chart SWF file is loaded and rendered using Adobe Flash player plugin that is installed on your machine (more specifically, browser). </li>
+        <li><strong><a href="../Introduction/DownloadC.html#js">FusionCharts JavaScript Class files</a>:</strong> These are present in the <span class="codeInline">Charts</span> folder present in the root of the <span class="codeInline">Download Package</span>. The JavaScript class files help in embedding the chart  SWF into a web page, and also help in rendering JavaScript (HTML5)  charts. Additionally, it  provides a JavaScript interface for controlling the chart. </li>
+        <li><strong>Chart data:</strong> FusionWidgets XT data  contains  both data values for plotting and cosmetic/functional configuration for the chart. FusionWidgets XT accepts data in XML and JSON format. The XML or JSON data  can either be produced manually or generated using JavaScript or any server-side scripts that  are connected to your databases or live data sources. In the above example,  we have used a hard-coded  XML file for plotting the chart. </li>
+        <li><strong>HTML wrapper file (or a dynamic web page):</strong> The HTML wrapper file is where the charts are rendered. This file contains the code that integrates all other components (discussed above) to produce the charts.</li>
+      </ol>
+      </td>
+  </tr>
+  <tr>
+  <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  
+  <tr>
+       <td class="header"><a name="force" id="force"></a>Explicitly render Flash charts</td>
+  </tr>
+    <tr>
+      <td class="text">
+          <p>In the <a href="FirstChart.html">previous example</a> you have learnt to create your first chart in JavaScript. You may wish to render Flash charts only using the same HTML code that has been used in the previous example. To do so, keeping the HTML code intact, you  just have to add a line of code as shown below: </p>
+          <pre class="prettyprint lang-js code_container">FusionCharts.setCurrentRenderer('flash')</pre>
+          <p>This code will ask FusionCharts renderer to skip JavaScript rendering and create Flash charts. </p>
+          <p class="highlightBlock">This setting gets applied to all the charts rendered after this line. Hence, if you declare this at the beginning, all the charts in the page will be rendered using JavaScript. You will not need to declare the same for each chart in the page. </p>
+          <p>The modified code will look like the following:</p>
+
+<pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First chart using FusionWidgets XT - Using Flash&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Charts/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;chartContainer&quot;&gt;FusionWidgets XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      <strong>FusionCharts.setCurrentRenderer('flash');</strong>
+
+      var myChart = new FusionCharts( &quot;AngularGauge&quot;, 
+		    &quot;myChartId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      
+      myChart.setXMLUrl(&quot;Data.xml&quot;);
+      
+       myChart.render(&quot;chartContainer&quot;);
+
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+<p>Each chart in FusionWidgets XT is an SWF file that creates a  specific type of chart. The JavaScript class files help in embedding the chart SWF files into a web page. These files (JavaScript class files and the chart SWF file) are present in the <span class="codeInline">Charts</span> folder in the root of the <span class="codeInline">Download Package</span>. The FusionCharts JavaScript class expects the chart SWF file to reside in the same folder where <span class="codeInline">FusionCharts.js</span> is present. However, you may wish to keep the SWF file in a different folder (say <span class="codeInline">Flash</span>). For this, you need to explicitly specify the path of the chart SWF file through <span class="codeInline">swfSrcPath</span> relative to the path of <span class="codeInline">FusionCharts.js</span> which is present in the <span class="codeInline">Charts</span> folder.</p>
+<p class="highlightBlock"><strong>Note:</strong> Use <span class="codeInline">FusionCharts.options.swfSrcPath</span> property to set the path for the chart SWF file relative to the path of <span class="codeInline">FusionCharts.js</span>.</p>
+<p>The modified code for the above scenario is given below:</p>
+<pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First chart using FusionWidgets XT - Using Flash&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Charts/FusionCharts.js&quot;&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+     <strong>FusionCharts.options.swfSrcPath = "../Flash/";</strong>		
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;chartContainer&quot;&gt;FusionWidgets XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+
+      var myChart = new FusionCharts( &quot;AngularGauge&quot;, 
+		    &quot;myChartId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      
+      myChart.setXMLUrl(&quot;Data.xml&quot;);
+      
+       myChart.render(&quot;chartContainer&quot;);
+
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+<p>In the above code, we have declared the relative path of the chart SWF file explicitly using the following property: </p>
+<pre class="lang-html prettyprint code_container"><strong>FusionCharts.options.swfSrcPath = &quot;../Flash/&quot;</strong></pre>
+<p class="highlightBlock"><strong>Important</strong>: The above mentioned property needs to be declared before rendering of  any chart in the  page. To be safe, we have placed this&nbsp;declaration just after including <span class="codeInline">FusionCharts.js</span> in the HTML page.</p>
+
+</td></tr>
+
+
+<tr>
+    <td valign="top" class="header"><a name="trouble"></a>Troubleshooting</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>If for any reason, you do not see a chart, run through the following checks:</p>
+      <p>If you see an endless loading progress bar in your browser, or if the 
+        right click menu (right click at the place where the chart is supposed 
+        to be) shows &quot;<strong>Movie not loaded</strong>&quot;, 
+        check the following:</p>
+      <ul>
+        <li>Have you pasted the JavaScript files  (<span class="codeInline">FusionCharts.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Widgets.js </span> and <span class="codeInline">jquery.min.js</span>) in the <span class="codeInline">Charts</span><span class="text"> folder of </span><span class="codeInline">MyFirstChart</span> folder?</li>
+      
+        <li>Have you pasted the chart SWF  in the <span class="codeInline">Charts</span> folder of <span class="codeInline">MyFirstChart</span> folder?</li>
+        <li>Have you provided the SWF path properly in your<span class="codeInline"> customer-satisfaction.html</span> page?</li>
+      </ul>
+      <p>If you get an &quot;<strong>Error in Loading Data</strong>.&quot; message, check the following:</p>
+      <ul>
+        <li>Whether <span class="codeInline">Data.xml</span> is in the same folder 
+          as the<span class="codeInline"> customer-satisfaction.html</span> HTML file.</li>
+        <li>Whether <span class="codeInline">Data.xml</span> is named as <span class="codeInline">Data.xml</span> and not <span class="codeInline">Data.xml.txt</span> (as many basic 
+          text editors append <span class="codeInline">.txt</span> after the file name).</li>
+        <li>Whether your JavaScript files (SWF files, in case you are using Flash) and XML/JSON data are on the same sub-domain. Cross domain data loading is not allowed. </li>
+      </ul>
+      <p>If you get an &quot;<strong>Invalid Data.</strong>&quot; message, it means that the 
+        XML/JSON data is malformed. Check it again for common errors like:</p>
+      <ul>
+        <li>Presence of duplicate attributes in the XML/JSON.</li>
+        <li>Difference in case of tags. <span class="codeInline">&lt;chart&gt;</span> should end with <span class="codeInline">&lt;/chart&gt;</span> and <strong>not</strong> <span class="codeInline">&lt;/Chart&gt;</span> or<span class="codeInline"> &lt;/CHART&gt;</span>.</li>
+        <li>Missing opening/closing quotation marks for any attributes. e.g., <span class="codeInline">&lt;chart upperLimit=100' </span>should 
+          be <span class="codeInline">&lt;chart upperLimit='100'</span>.</li>
+        <li>Missing closing tag for any element.</li>
+      </ul>
+      <p>To check whether your final XML is ok, open it in your browser and you'll see the error.</p>
+      <p>If  only the text &quot;<strong>FusionWidgets XT will load here!</strong>&quot; is displayed, check with the following:</p>
+      <ul>
+        <li>Have you pasted the <span class="codeInline">FusionCharts.js</span>, <span class="codeInline">jquery.min.js</span>, <span class="codeInline">FusionCharts.HC.js</span> and <span class="codeInline">FusionCharts.HC.Widgets.js</span> files in <span class="codeInline">Charts</span> folder of <span class="codeInline">MyFirstChart</span> folder?</li>
+        <li>Have you included and provided the correct path of <span class="codeInline">FusionCharts.js</span> in your<span class="codeInline"> customer-satisfaction.html</span> page?</li>
+        <li>Are there any JavaScript syntax or runtime errors that might have halted the execution of FusionCharts APIs?</li>
+        <li>Have you given unique names for the chart's JavaScript variable, chart's ID&nbsp;and the HMTL DIV's ID?<br /><br />
+		<div class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </div>
+		</li>
+      </ul></td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating your first chart|FirstChart.html","Using JSON as data source|JSONData.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<chart palette='5' lowerLimit='0' upperLimit='6500' numberSuffix='ltrs' bgColor='DCDCDC' gaugeFillAlpha='100'
+showGaugeBorder='1' gaugeBorderThickness='1'>
+
+<value>3811</value>
+
+</chart>

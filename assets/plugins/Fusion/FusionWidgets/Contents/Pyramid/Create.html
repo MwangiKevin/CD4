@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Pyramid chart - Creating a simple chart</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Pyramid chart|Introduction.html", "Creating a simple Pyramid chart" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating a simple Pyramid chart </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll create a simple pyramid chart to illustrate the sales figures achieved   by employees of a fictional company during the first 7 months of this year.</p>
+      <p>The chart will look as under:</p></td>
+      </tr><tr>
+    <td valign="top" class="text"><img src="Images/Pyramid1.jpg" width="390" height="340" class="imageBorder" /></td>
+  </tr>
+  
+  <tr>
+  <td class="text">
+      <p> The   data can be rendered as under in tabular form: </p></td>
+  </tr>
+
+ 
+  <tr>
+    <td valign="top" class="text"><table width="60%" border="0" cellpadding="2" cellspacing="0" class="table">
+      <tr>
+        <td width="65%" class="header">Employee Name </td>
+        <td width="35%" class="header"><div align="right">Sales ($) </div></td>
+      </tr>
+      <tr>
+        <td class="text">Buchanan</td>
+        <td class="text"><div align="right">20,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Callahan</td>
+        <td class="text"><div align="right">49,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Davolio</td>
+        <td class="text"><div align="right">63,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Dodsworth</td>
+        <td class="text"><div align="right">41,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Fuller</td>
+        <td class="text"><div align="right">74,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">King</td>
+        <td class="text"><div align="right">49,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Leverling</td>
+        <td class="text"><div align="right">77,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Peacock</td>
+        <td class="text"><div align="right">54,000</div></td>
+      </tr>
+      <tr>
+        <td class="text">Suyama</td>
+        <td class="text"><div align="right">14,000</div></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="text">The above data when converted to XML/JSON will look as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart caption=&quot;Sales distribution by Employee&quot; subCaption=&quot;Jan 07 - Jul 07&quot; numberPrefix=&quot;$&quot; isSliced=&quot;1&quot;&gt;<br />  &lt;set label=&quot;Buchanan&quot; value=&quot;20000&quot;/&gt;<br />  &lt;set label=&quot;Callahan&quot; value=&quot;49000&quot;/&gt;<br />  &lt;set label=&quot;Davolio&quot; value=&quot;63000&quot;/&gt;<br />  &lt;set label=&quot;Dodsworth&quot; value=&quot;41000&quot;/&gt;<br />  &lt;set label=&quot;Fuller&quot; value=&quot;74000&quot;/&gt;<br />  &lt;set label=&quot;King&quot; value=&quot;49000&quot;/&gt;<br />  &lt;set label=&quot;Leverling&quot; value=&quot;77000&quot;/&gt;<br />  &lt;set label=&quot;Peacock&quot; value=&quot;54000&quot;/&gt;<br />  &lt;set label=&quot;Suyama&quot; value=&quot;14000&quot;/&gt;<br />&lt;/chart&gt;</pre></div>
+	  <div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "caption": "Sales distribution by Employee",
+    "subcaption": "Jan 07 - Jul 07",
+    "numberprefix": "$",
+    "issliced": "1"
+  },
+  "data": [
+    {
+      "label": "Buchanan",
+      "value": "20000"
+    },
+    {
+      "label": "Callahan",
+      "value": "49000"
+    },
+    {
+      "label": "Davolio",
+      "value": "63000"
+    },
+    {
+      "label": "Dodsworth",
+      "value": "41000"
+    },
+    {
+      "label": "Fuller",
+      "value": "74000"
+    },
+    {
+      "label": "King",
+      "value": "49000"
+    },
+    {
+      "label": "Leverling",
+      "value": "77000"
+    },
+    {
+      "label": "Peacock",
+      "value": "54000"
+    },
+    {
+      "label": "Suyama",
+      "value": "14000"
+    }
+  ]
+}</pre>
+	  </div></div></div>
+  <div style="clear:both"></div>
+	  </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, we've:</p>
+      <ul>
+        <li>Defined the <span class="codeInline">&lt;chart&gt;</span> element with caption, sub-caption, number prefix. </li>
+        <li>Configured each slice to separate them from each other by setting <span class="codeInline">isSliced='1'</span> </li>
+        <li>Provided data for each employee within each <span class="codeInline">&lt;set&gt;</span> element respectively</li>
+        <li>Applied <span class="codeInline"> <a href="../Styles/Styles.html"><strong>Styles </strong></a></span>to increase caption font size</li>
+      </ul>
+	  <p class="highlightBlock">For detailed explanation on JSON data format click <a href="JSONFormat.html">here</a>.
+    <p>When you see this chart, you'll get a result as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Pyramid1.jpg" width="390" height="340" class="imageBorder" /><br/>
+    <br/></td>
+  </tr>
+ <tr>
+  <td class="text">See it<a href="../../Code/Pyramid/FirstPyramid.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, the chart has now rendered each pyramid slice with its height proportional to the value. </p>
+      <p>Also, in this chart, since we've set <span class="codeInline">isSliced='1'</span> at chart level,  the slicing interaction won't work. </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Introduction|Introduction.html","Chart configurations|Configurations.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

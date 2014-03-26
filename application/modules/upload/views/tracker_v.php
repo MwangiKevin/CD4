@@ -1,0 +1,23 @@
+<style>
+	.main-content {
+		padding-bottom: 10%;
+	}
+	.rotate {
+		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+		/* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+		-webkit-transform-origin: 50% 50%;
+		-moz-transform-origin: 50% 50%;
+		-ms-transform-origin: 50% 50%;
+		-o-transform-origin: 50% 50%;
+		transform-origin: 50% 50%;
+		/* Should be unset in IE9+ I think. */
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+</style>
+<div style="width:60%;margin:auto;margin-top:5%">
+	<?php $this->load->view('gantt/gantt_v'); ?>
+</div>

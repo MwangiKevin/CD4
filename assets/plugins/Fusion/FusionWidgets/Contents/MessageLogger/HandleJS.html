@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Message Logger - Handling messages in JavaScript</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Message Logger|Overview.html", "Handling Messages in JavaScript" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Handling messages in JavaScript </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>In our <a href="RealTime.html#examples">previous examples</a>, we saw how to log the messages streamed from server in the in-built visual logger of the chart. However, FusionWidgets XT also provides you an option to pass the entire (or partial) message envelope to your custom JavaScript functions present in the page (that contains chart). Here, we'll see examples of the same.</p>
+       
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="alert()"></a>Using JavaScript alert() to show streamed messages </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To start with, we'll simply use the JavaScript's native <span class="codeInline">alert</span> function to show messages streamed from server to the client. To do that, we need to tell the chart to stream messages to <span class="codeInline">alert</span> function. We do so by setting:</p>
+    <pre class="code_container prettyprint">&lt;chart useMessageLog='1' messageGoesToJS='1' messageJSHandler='alert'..&gt;</pre>
+    <p>When you now run the chart, you'll see the following message being logged in the visual logger, as well as being passed to the <span class="codeInline">alert</span> function.</p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/MsgL_JSAlert.gif" width="550" height="324" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="customfunctionhandler"></a>Using custom function handler and passing all parameters in message envelope</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the previous example, we've used the in-built <span class="codeInline">alert</span> function of JavaScript. However, you can use any of your custom functions and then define the same as <span class="codeInline">messageJSHandler</span> attribute. </p>
+      <p>Also, in this example only the message text was passed to JavaScript. However, you can pass all parameters from the message envelope to your function by setting:</p>
+    <pre class="code_container prettyprint">&lt;chart useMessageLog='1' messageGoesToJS='1' messageJSHandler='myFunction' <strong>messagePassAllToJS</strong>='1'..&gt;</pre>
+    <p>Here, we've defined the function handler as <span class="codeInline">myFunction</span> (which is our own custom function) and asked the chart to pass all parameters received (as part of message) to this JavaScript function.</p>
+    <p>A simple implementation of <span class="codeInline">myFunction</span> can look as under (here, we're simply showing the different parameters to the user, concatenated as a string  - you can instead use it for your own loggers).</p>    </td>
+  </tr>
+  <tr>
+    <td><pre class="code_container prettyprint">function myFunction(strMsgId, strMsgTitle, strMsgText, strMsgType){<br />
+&nbsp;&nbsp;<span class="codeComment">&nbsp;//This method is invoked when the chart streams real-time message to JS. <br />
+&nbsp;&nbsp;&nbsp;//Order of parameters - strMsgId, strMsgTitle, strMsgText, strMsgType<br />
+&nbsp;&nbsp;&nbsp;//- strMsgId - The ID allotted to each message by your server-side code.<br />
+&nbsp;&nbsp;&nbsp;//- strMsgTitle - Title given to each message by your server-side code.<br />
+&nbsp;&nbsp;&nbsp;//- strMsgText - Text of each message.<br />
+&nbsp;&nbsp;&nbsp;//- strMsgType - Type of each message - INFO, ERROR, LITERAL or LINK</span><br />
+&nbsp;&nbsp;&nbsp;alert(&quot;A message was streamed from server. \nMessage Id: &quot; + strMsgId + &quot;\nMessage Title: &quot; + strMsgTitle + &quot;\nMessage Text: &quot; + strMsgText + &quot;\nMessage Type: &quot; + strMsgType);<br />
+}</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>With the server streaming the following data, you'll get an output as shown below: </p>
+    <pre class="code_container codeBlock">&amp;label=12%3A48%3A43+PM&amp;value=23|54&amp;msgId=OSUPD_34534&amp;msgTitle=OS   
+update at 12:28&amp;msgText=Operating system update downloaded automatically.   
+Installation in-process. Reboot due in 8 minutes.</pre>   </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/MsgL_JSCustomF.gif" class="imageBorder" /></td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Streaming messages|RealTime.html","JavaScript API|JSAPI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

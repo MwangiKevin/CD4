@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Annotation - Using Styles</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Annotations|Introduction.html", "Using Styles" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Styles </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In this section, we will have a look at how to apply <a href="../Styles/Styles.html">Styles</a> to annotations. </p>      
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="effects"></a>Applying effects</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Let's say we have a rectangle like this: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Ann_Rect1.gif" width="100" height="100" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">To apply effects to this rectangle, we will have to use <a href="../Styles/Styles.html">Styles</a>. Using Styles, we can apply <a href="../Styles/Shadow.html">Shadow</a>, <a href="../Styles/Glow.html">Glow</a>, <a href="../Styles/Bevel.html">Bevel</a> and <a href="../Styles/Blur.html">Blur</a> effects to the rectangle. Here we will see how to apply a shadow effect. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;
+      ...
+      &lt;annotations&gt;
+                    &lt;annotationGroup id='Grp1' &gt;
+                            &lt;annotation type='rectangle' color='639ACE' x='100' y='100' toX='200' toY='200'/&gt;
+                     &lt;/annotationGroup&gt;
+            &lt;/annotations&gt;
+            &lt;styles&gt;
+                    &lt;definition&gt;
+                            &lt;style name='myShadow' type='shadow' distance='10' /&gt;
+                    &lt;/definition&gt;
+                    &lt;application&gt;
+                            &lt;apply toObject='Grp1' styles='myShadow'/&gt;
+                    &lt;/application&gt;
+            &lt;/styles&gt;
+      ...
+&lt;/chart&gt;
+
+</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "annotations": {
+    "groups": [
+      {
+        "id": "Grp1",
+        "items": [
+          {
+            "type": "rectangle",
+            "color": "639ACE",
+            "x": "100",
+            "y": "100",
+            "tox": "200",
+            "toy": "200"
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "definition": [
+      {
+        "name": "myShadow",
+        "type": "shadow",
+        "distance": "10"
+      }
+    ],
+    "application": [
+      {
+        "toobject": "Grp1",
+        "styles": "myShadow"
+      }
+    ]
+   ...
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>Here, we have made a style called <span class="codeInline">myShadow</span> <a href="../Styles/HowToUse.html">the usual way</a> and then applied it to the annotation group which is referred to using its ID <span class="codeInline">Grp1</span>. So whenever you have to apply Styles to annotations, you have to make an annotation group, put the annotation in the annotation group and then just name the ID in the <span class="codeInline">toObject</span> attribute of the <span class="codeInline">&lt;apply&gt;</span> element. In case you are not familiar with Styles, then please have a look at the <a href="../Styles/Styles.html">Styles</a> section. </p>
+      <p>The rectangle will now look like this: </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><img src="Images/Ann_Styles1.gif" width="116" height="114" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Similarly you can apply Glow, Bevel and Blur effects as well to the annotations. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="animation"></a>Animating annotations  </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Animating annotations is very similar to applying effects to annotations. Just that here we will use the <em><a href="../Styles/Animation.html">Animation</a></em> style instead of the other styles we used to apply effects. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;
+      ...
+       &nbsp;&nbsp;&nbsp;&lt;annotations&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotationGroup id='Grp1' &gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;annotation type='rectangle' color='639ACE' x='50' y='50' toX='150' toY='150'/&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/annotationGroup&gt;
+      &nbsp;&nbsp;&nbsp;&lt;/annotations&gt;
+      &nbsp;&nbsp;&nbsp;&lt;styles&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;definition&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style name='myAnim' type='animation' param='_x' start='-50' easing='Bounce' duration='0.5'/&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/definition&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;application&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;apply toObject='Grp1' styles='myAnim'/&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;
+      &nbsp;&nbsp;&nbsp;&lt;/styles&gt;
+      ...
+&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "annotations": {
+    "groups": [
+      {
+        "id": "Grp1",
+        "items": [
+          {
+            "type": "rectangle",
+            "color": "639ACE",
+            "x": "50",
+            "y": "50",
+            "tox": "150",
+            "toy": "150"
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "definition": [
+      {
+        "name": "myAnim",
+        "type": "animation",
+        "param": "_x",
+        "start": "-50",
+        "easing": "Bounce",
+        "duration": "0.5"
+      }
+    ],
+    "application": [
+      {
+        "toobject": "Grp1",
+        "styles": "myAnim"
+      }
+    ]
+   ...
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">We create an animation style called <span class="codeInline">myAnim</span> which animates the x-position of the object we apply to. Here, we apply it to the annotation group <span class="codeInline">Grp1</span> which contains the rectangle. You can place any number of annotations in <span class="codeInline">Grp1</span> and also create any number of annotation groups and then apply <span class="codeInline">myAnim</span> (or any other animation style) to each of them separately. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Setting visibility|Visible.html","JavaScript API|JSAPI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

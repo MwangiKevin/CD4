@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>JSON Data Format</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Spark charts|Overview.html", "JSON Data Format" ]) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Spark Chart JSON Data Format</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>Starting FusionWidgets XT, charts/gauges can be rendered using JSON (JavaScript Object Notation) data. JSON is a light-weight and simple data format that is easy to read and understand. Though derived from JavaScript, the data structure is language-independent, with encoders and parsers available for virtually every programming language.      </p>
+      <div class="highlightBlock" >
+        <div class="msg_handler_slider"><a>Click here to know a few basic things about JSON data</a> &raquo; </div><div class="msg_body code_container" style="overflow:auto;margin-top:5px;">
+      <ul>
+        <li> JSON data is text based data consisting of key and value pairs in format <span class="codeInline">key : value</span> . The values have data associated with them</li>
+        <li>You can make up your own key-value pairs like <span class="codeInline">name : &quot;John Doe&quot; </span><span class="text"> 
+          to store data</span></li>
+        <li>Every JSON data is enveloped by curly brace and key:value pairs are comma separated, like <span class="codeInline">{ firstName : &quot;John&quot; , lastName: &quot;Doe&quot; }</span><span class="codetext">. In JavaScript, this format is called an Object</span></li>
+        <li>A key can be a value within single or double-quotes  e.g. <span class="codeInline">{ &quot;name&quot; : &quot;John Doe&quot; }</span></li>
+        <li>You can use Objects as values too. For example, <span class="codeInline">{ &quot;employee&quot; : { &quot;name&quot; :  &quot;John Doe&quot; , &quot;department&quot; : &quot;Project Manager&quot; , &quot;age&quot; : 35 }  </span> }</li>
+        <li>In JSON, the basic data types are:<ul><li><span class="codeInline">Number</span> (<span class="codeInline">integer </span><span class="text">or</span><span class="codeInline"> real</span>)</li>
+              <li class="codeInline"> String<span class="text"> (double-quoted Unicode with backslash escaping) </span></li>
+              <li class="codeInline">Boolean <span class="text">(</span>1<span class="text"> or</span> 0 in FusionCharts JSON<span class="text">)</span> </li>
+              <li class="codeInline">null</li>
+              <li class="codeInline">Array <span class="text">(an ordered sequence of values of Number, String, Boolean, null, Object or Array type, comma-separated and enclosed in square brackets) e.g.</span> [ &quot;employees&quot; : [ &quot;Employees&quot; , { &quot;name&quot; : &quot;John Doe&quot; } , 35 ] </li>
+              <li class="codeInline">Object <span class="text">(a collection of key:value pairs, comma-separated and enclosed in curly braces. Value can be of Number, String, Boolean, null, Object or Array type) e.g. </span>{ &quot;employee&quot; : { &quot;name&quot; : &quot;John Doe&quot; , &quot;department&quot; : &quot;Project Manager&quot; , &quot;age&quot; : 35 } } </li>
+              </ul>
+        </li>
+      </ul>
+      <p>A   FusionWidgets XT chart is controlled by a single JSON data source i.e., the same source contains data to plot, functional settings and cosmetic properties. There are many properties that you can define for each chart 
+        type. However, it is not necessary to define all the properties for a given 
+        chart. For example, if you do not want to change the default setting of 
+        the canvas (color, alpha etc.), you don't have to define any property 
+        for the canvas - the default values will be assumed. Thus, each chart 
+        can be generated using minimal properties. </p>
+      </div></div>
+    </td></tr>
+	
+	
+      <tr>
+	  <td class="text"><p>In this page, we will discuss about how to use JSON data to create Spark Line, Spark Column and Spark Win/Loss charts.</p></td></tr>
+	  <tr>
+      <td>
+	  <table cellpadding="2" width="450">
+	  <tr>
+	    <td align="left"><span class="text">Spark Line Chart </span></td>
+	    <td align="left" width="300">
+	      <img src="Images/SparkLine1.jpg" width="298" height="29" class="imageBorder" /></td> 
+	    </tr>
+	  <tr>
+	    <td align="left"><span class="text">Spark Column Chart</span></td>
+	    <td align="left"><img src="Images/SparkColumn1.jpg" width="200" height="39" class="imageBorder" /></td>
+	    </tr>
+	  <tr>
+	    <td class="text" align="left">Spark Win/Loss Chart</td>
+	    <td class="text" align="left"><img src="Images/SparkWinLoss1.jpg" width="207" height="41" class="imageBorder" /></td></tr>
+	  </table>
+       </td></tr><tr> <td> <p>A sample JSON data for a Spark chart looks as under:</p></td>
+  </tr>
+
+  <tr> 
+    <td valign="top" class="text"><pre class="prettyprint code_container" style="height:300px;">{<br />  &quot;chart&quot;: {<br />    &quot;palette&quot;: &quot;2&quot;,<br />    &quot;caption&quot;: &quot;Cisco&quot;,<br />    &quot;setadaptiveymin&quot;: &quot;1&quot;<br />  },<br />  &quot;dataset&quot;: [<br />    {<br />      &quot;data&quot;: [<br />        {<br />          &quot;value&quot;: &quot;27.26&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;37.88&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;38.88&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;22.9&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;39.02&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;23.31&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;30.85&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;27.01&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;33.2&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;21.93&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;34.51&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;24.84&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;39.32&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;37.04&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;27.81&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;22.95&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;24.73&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;37.63&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;29.75&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;22.35&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;34.35&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;27.6&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;27.97&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;32.36&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;22.56&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;24.15&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;24.93&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;35.82&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;23.45&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;37.64&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;26.99&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;29.48&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;36.63&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;35.58&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;32.19&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;27.59&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;26.94&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;32.35&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;22.63&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;25.97&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;25.28&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;26.73&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;23.47&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;20.55&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;34.58&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;29.16&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;34.97&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;24.57&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;20.7&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;32.61&quot;<br />        }<br />      ]<br />    }<br />  ]<br />}</pre> 
+    <br /> </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="header"><a name="explanation"></a>Brief Explanation</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"> <p>The <span class="codeInline">chart</span> 
+        Object defines all the settings that help to manipulate the chart. 
+        You can find the list of all the attributes for this Object in the <strong>XML Sheet</strong> of each chart.</p>
+       <p>In the most general form, chart attributes represent the following JSON format:<br />
+          <br />
+        <span class="codeInline">&quot;attributeName&quot; : &quot;Value&quot;<br />
+        e.g., &quot;caption&quot; : &quot;Cisco&quot;</span><br />
+        <br />
+       The attributes can be arranged in any order, with values either in single or in double quotes, 
+        like <span class="codeInline">caption:'Cisco'. </span>However, 
+        you need to make sure that a particular attribute occurs only once for 
+        a given element.    </p>
+      <p class="highlightBlock">Please note that the XML attributes declared in the <strong>XML Sheet</strong> for Spark charts are same as the JSON keys in FusionWidgets XT JSON data format.</p>
+       <p>The <span class="codeInline">dataset</span> Object contains the data for the chart. Each Spark chart can have only one element in the <span class="codeInline">dataset</span> Array. This Object contains a   <span class="codeInline">data</span> Array. The <span class="codeInline">data</span> Array is a set of Objects, each passing a single value through the <span class="codeInline">value</span> property&nbsp;as shown below:</p>
+    <pre class="prettyprint code_container">
+ &quot;dataset&quot;: [<br />    {<br />      &quot;data&quot;: [<br />        {<br />          &quot;value&quot;: &quot;27.26&quot;<br />        },<br />        {<br />          &quot;value&quot;: &quot;37.88&quot;<br />        },
+...
+      ]
+    }
+  ]
+</pre> <br />
+ </td></tr>
+<tr>
+  <td>
+    <div class="highlightBlock">Please note that in Spark Win/Loss chart, the values&nbsp;for the value key are not numeric. You can pass either W or L as the value as shown in the snippet below:<br />
+  <br />
+      
+  <pre class="code_container">... 
+	data":
+    [
+        {
+          "value": "L"
+        },
+        {
+          "value": "W"
+        },
+  	...
+    ]
+ ...
+    </pre></div>
+    
+  <p class="highlightBlock"><strong>Important</strong>: To use JSON data format with FusionWidgets XT, you'll need to embed the charts using FusionCharts JavaScript Class (<span class="codeInline">FusionCharts.js</span>), as the charts internally still use XML. The JavaScript class provides the bridge between JSON and XML.</p></td></tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Spark Win/Loss chart XML Sheet|WLXMLAPI.html","Bullet graphs|../Bullet/Overview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

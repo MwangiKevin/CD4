@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Number Formatting - Using formatted input numbers</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../Introduction/Overview.html", "Advanced Charting", "Number Formatting|Basics.html", "Input Number Formatting" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td width="100%" class="pageHeader">Using formatted input numbers </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In some countries, commas are used as decimal separators and dots as thousand   separators. But, if you directly specify such numbers in FusionWidgets XT XML, it   will give an error while converting to number. FusionWidgets XT introduces a   smart way to let you specify numbers in your own format in XML. </p>      
+      <p>Consider the XML/JSON below (for a pyramid chart): </p></td>
+  </tr>
+ 
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart caption=&quot;Sales distribution by Employee&quot; subCaption=&quot;Jan 07 - Jul 07&quot; numberPrefix=&quot;$&quot; isSliced=&quot;1&quot; <strong>inThousandSeparator=&quot;.&quot; inDecimalSeparator=&quot;,&quot;&gt;</strong><br />  &lt;set label=&quot;Buchanan&quot; value=&quot;20.231,54&quot;/&gt;<br />  &lt;set label=&quot;Callahan&quot; value=&quot;49.457,78&quot;/&gt;<br />  &lt;set label=&quot;Davolio&quot; value=&quot;63.190,51&quot;/&gt;<br />  &lt;set label=&quot;Dodsworth&quot; value=&quot;41.286,51&quot;/&gt;<br />  &lt;set label=&quot;Fuller&quot; value=&quot;74.779,52&quot;/&gt;<br />  &lt;set label=&quot;King&quot; value=&quot;49.890,21&quot;/&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "caption": "Sales distribution by Employee",
+    "subcaption": "Jan 07 - Jul 07",
+    "numberprefix": "$",
+    "issliced": "1",
+    "inthousandseparator": ".",
+    "indecimalseparator": ","
+  },
+  "data": [
+    {
+      "label": "Buchanan",
+      "value": "20.231,54"
+    },
+    {
+      "label": "Callahan",
+      "value": "49.457,78"
+    },
+    {
+      "label": "Davolio",
+      "value": "63.190,51"
+    },
+    {
+      "label": "Dodsworth",
+      "value": "41.286,51"
+    },
+    {
+      "label": "Fuller",
+      "value": "74.779,52"
+    },
+    {
+      "label": "King",
+      "value": "49.890,21"
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><p>In this XML/JSON, we're providing the numbers in the non-standard convention -   i.e., we've used dot as the thousand separator and comma as the decimal   separator (as followed in some European countries). Now, to make sure that   FusionWidgets XT reads these numbers in the right way, we convey our input decimal   and thousand separator characters as under:</p>
+      <p class="codeInline">&lt;chart ... inThousandSeparator='.' inDecimalSeparator=','   ..&gt; </p>
+      <p>This tells FusionWidgets XT that it should treat dot in the input numbers as   thousands (instead of normal decimals) and comma as decimals. </p>
+      <p>When you now view this chart, you'll get the following output: </p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><img src="../Images/AC_InNumFormat1.jpg" width="391" height="344" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">You can see that FusionWidgets XT has interpreted the numbers properly and   automatically converted the numbers into the standard format. If you want to   output the numbers again in the non-conventional format, you can use the   following XML: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart caption=&quot;Sales distribution by Employee&quot; subCaption=&quot;Jan 07 - Jul 07&quot; numberPrefix=&quot;$&quot; isSliced=&quot;1&quot; inThousandSeparator=&quot;.&quot; inDecimalSeparator=&quot;,&quot; <strong>thousandSeparator=&quot;.&quot; decimalSeparator=&quot;,&quot;</strong> formatNumberScale=&quot;0&quot;&gt;<br />  &lt;set label=&quot;Buchanan&quot; value=&quot;20.231,54&quot;/&gt;<br />  &lt;set label=&quot;Callahan&quot; value=&quot;49.457,78&quot;/&gt;<br />  &lt;set label=&quot;Davolio&quot; value=&quot;63.190,51&quot;/&gt;<br />  &lt;set label=&quot;Dodsworth&quot; value=&quot;41.286,51&quot;/&gt;<br />  &lt;set label=&quot;Fuller&quot; value=&quot;74.779,52&quot;/&gt;<br />  &lt;set label=&quot;King&quot; value=&quot;49.890,21&quot;/&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "caption": "Sales distribution by Employee",
+    "subcaption": "Jan 07 - Jul 07",
+    "numberprefix": "$",
+    "issliced": "1",
+    "inthousandseparator": ".",
+    "indecimalseparator": ",",
+    "thousandseparator": ".",
+    "decimalseparator": ",",
+    "formatnumberscale": "0"
+  },
+  "data": [
+    {
+      "label": "Buchanan",
+      "value": "20.231,54"
+    },
+    {
+      "label": "Callahan",
+      "value": "49.457,78"
+    },
+    {
+      "label": "Davolio",
+      "value": "63.190,51"
+    },
+    {
+      "label": "Dodsworth",
+      "value": "41.286,51"
+    },
+    {
+      "label": "Fuller",
+      "value": "74.779,52"
+    },
+    {
+      "label": "King",
+      "value": "49.890,21"
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">You will get the following chart: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../Images/AC_InNumFormat2.jpg" width="400" height="351" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Notice how . is used for thousand separator and , for decimal separator. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Recursive Number Scaling|RecNumScaling.html","Using Multi-lingual text|../SpChars/SpChar.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

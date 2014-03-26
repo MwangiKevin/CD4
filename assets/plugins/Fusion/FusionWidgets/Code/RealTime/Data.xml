@@ -1,0 +1,16 @@
+<chart caption='Stock Price Monitor' subCaption='Google' dataStreamURL='StockPrice.asp' refreshInterval='60' 
+numberPrefix='$' setAdaptiveYMin='1' xAxisName='Time' showRealTimeValue='1' labelDisplay='Rotate' slantLabels='1' numDisplaySets='15'>
+	<categories>
+	</categories>
+	<dataset seriesName='Google' showValues='0'>
+	</dataset>
+	<styles>
+		<definition>
+			<style type='font' name='captionFont' size='14' />
+		</definition>
+		<application>
+			<apply toObject='Caption' styles='captionFont' />
+			<apply toObject='Realtimevalue' styles='captionFont' />
+		</application>
+	</styles>
+</chart>

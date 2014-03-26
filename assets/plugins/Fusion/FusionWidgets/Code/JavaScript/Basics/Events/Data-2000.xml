@@ -1,0 +1,6 @@
+<chart caption='Annual Revenue' numberPrefix='$'>
+      <set label='Electronics' value='14400' />
+      <set label='Apparel' value='19600' />
+      <set label='Jewelry' value='24000' />
+      <set label='Sports' value='15700' />
+</chart>

@@ -1,0 +1,6 @@
+<chart caption="Top 5 Sales Person" numberPrefix="$" isSliced="1">
+						<set label="Alex" value="25000"  /> 
+						<set label="Mark" value="35000" /> 
+						<set label="David" value="42300" /> 
+						<set label="John" value="91300" /> 
+					</chart>

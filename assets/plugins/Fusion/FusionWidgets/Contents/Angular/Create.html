@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Angular Gauge - Simple Example</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Angular gauge|Overview.html", "Creating a simple Angular gauge" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating a simple Angular gauge </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>As a first angular gauge, we will be plotting the value of Customer Satisfaction   Survey, on a scale of 0 to 100%. The final result will look something as under:</p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/FirstChart1.jpg" width="414" height="209" /></td>
+  </tr>
+  <tr>
+  <td class="text" height="15"></td></tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>The various tasks involved in building this gauge are:</p>
+      <ul>
+        <li>Defining the minimum and maximum value which will be plotted on the gauge   scale. They are termed as the lower and upper limits of the gauge scale and in   this case setting them to 0 and 100 respectively will suit our purpose just   fine - as we're plotting the gauge indicating a %, which cannot go below 0 or   beyond 100. The limits are displayed at the starting and ending points of the   circular scale as in the image above.<br />
+        </li>
+        <li>Dividing the gauge scale into 3 regions, the ones shown in red, yellow and   green above which convey the Customer Satisfaction Index to be in the bad,   satisfactory and good regions respectively. <br />
+        </li>
+        <li>Pointing the dial of the angular gauge to a certain value, 92 in the above   image. </li>
+    </ul>
+    </td>
+  </tr>
+<tr>
+<td class="text">&nbsp;</td></tr>
+  <tr>
+    <td valign="top" class="header">Data for the gauge </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p> Since we're plotting customer satisfaction index for a fictional   company, let us first define the scales for measuring this index. The scales   will look as under in a tabular form: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table border="0" cellpadding="2" cellspacing="0" class="table">
+      <tr>
+        <td width="61" class="header">Range</td>
+        <td width="199" class="header"><div align="left">What it means? </div></td>
+        <td width="192" class="header">Color to be represented in </td>
+      </tr>
+      <tr>
+        <td class="text">0-75%</td>
+        <td class="text"><div align="left">Bad customer satisfaction </div></td>
+        <td class="text">Red</td>
+      </tr>
+      <tr>
+        <td class="text">75-90%</td>
+        <td class="text"><div align="left">Moderate customer satisfaction </div></td>
+        <td class="text">Yellow</td>
+      </tr>
+      <tr>
+        <td class="text">90-100%</td>
+        <td class="text"><div align="left">Good customer satisfaction </div></td>
+        <td class="text">Green</td>
+      </tr>
+    </table>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+ 
+    
+  <tr>
+    <td valign="top" class="text"><a name="scale"></a>The XML/JSON for the entire gauge can be listed as under: </td>
+  </tr>
+    <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart lowerLimit=&quot;0&quot; upperLimit=&quot;100&quot; lowerLimitDisplay=&quot;Bad&quot; upperLimitDisplay=&quot;Good&quot; gaugeStartAngle=&quot;180&quot; gaugeEndAngle=&quot;0&quot; palette=&quot;1&quot; numberSuffix=&quot;%&quot; tickValueDistance=&quot;20&quot; showValue=&quot;1&quot;&gt;<br />  &lt;colorRange&gt;<br />    &lt;color minValue=&quot;0&quot; maxValue=&quot;75&quot; code=&quot;FF654F&quot;/&gt;<br />    &lt;color minValue=&quot;75&quot; maxValue=&quot;90&quot; code=&quot;F6BD0F&quot;/&gt;<br />    &lt;color minValue=&quot;90&quot; maxValue=&quot;100&quot; code=&quot;8BBA00&quot;/&gt;<br />  &lt;/colorRange&gt;<br />  &lt;dials&gt;<br />    &lt;dial value=&quot;92&quot; rearExtension=&quot;10&quot;/&gt;<br />  &lt;/dials&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "lowerlimit": "0",
+    "upperlimit": "100",
+    "lowerlimitdisplay": "Bad",
+    "upperlimitdisplay": "Good",
+    "gaugestartangle": "180",
+    "gaugeendangle": "0",
+    "palette": "1",
+    "numbersuffix": "%",
+    "tickvaluedistance": "20",
+    "showvalue": "1"
+  },
+  "colorrange": {
+    "color": [
+      {
+        "minvalue": "0",
+        "maxvalue": "75",
+        "code": "FF654F"
+      },
+      {
+        "minvalue": "75",
+        "maxvalue": "90",
+        "code": "F6BD0F"
+      },
+      {
+        "minvalue": "90",
+        "maxvalue": "100",
+        "code": "8BBA00"
+      }
+    ]
+  },
+  "dials": {
+    "dial": [
+      {
+        "value": "92",
+        "rearextension": "10"
+      }
+    ]
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+  <td class="text"><p> The angular gauge for the above data will look as under:</p></td></tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/FirstChart1.jpg" width="414" height="209" /></td>
+  </tr>
+  <tr>
+  <td class="text" height="15"></td></tr>
+ <tr>
+  <td class="text">See it<a href="../../Code/AngularGauge/FirstAngular.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="explanation"></a>Explanation</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>First comes the <span class="codeInline">&lt;chart&gt;</span> element   which is the starting element for any chart/gauge/graph that you create using FusionWidgets XT.   Now we define the lower and upper limits of the gauge scale. To define the   limits, we use the <span class="codeInline">lowerLimit</span> and <span class="codeInline">upperLimit</span> attributes of the <span class="codeInline">&lt;chart&gt; </span>element. We've asked the gauge to show lower limit text as <span class="codeInline">Bad</span> and upper limit text as <span class="codeInline">Good</span>. </p>
+      <p>We have also set the gauge angles using the <span class="codeInline">gaugeStartAngle</span> and <span class="codeInline">gaugeEndAngle</span> attributes. The <span class="codeInline">palette</span> attribute is used to set the palette number and the <span class="codeInline">numberSuffix</span> attribute is used to specify the suffix of the numbers (the character which will show up at the end of  the numbers). </p></td>
+  </tr>
+  <tr>
+  <td>
+  <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab9">XML</a></li>
+       <li><a href="#tab10">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab9" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart lowerLimit='0' upperLimit='100' lowerLimitDisplay='Bad' upperLimitDisplay='Good' gaugeStartAngle='180' gaugeEndAngle='0' palette='1' numberSuffix='%' tickValueDistance='20' showValue='1'&gt;</pre></div>
+<div id="tab10" class="tab_content">
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "lowerlimit": "0",
+    "upperlimit": "100",
+    "lowerlimitdisplay": "Bad",
+    "upperlimitdisplay": "Good",
+    "gaugestartangle": "180",
+    "gaugeendangle": "0",
+    "palette": "1",
+    "numbersuffix": "%",
+    "tickvaluedistance": "20",
+    "showvalue": "1"
+  },
+  "parsererror": {
+    "style": "display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black",
+    "h3": {},
+    "div": {
+      "style": "font-family:monospace;font-size:12px"
+    }
+  }
+}</pre></div></div></div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>There are other attributes of the <span class="codeInline">&lt;chart&gt;   </span>element which we will not be delving into now, because of this being a really   basic angular gauge.</p>
+      <p>Next, we need to define our color range. As we had  seen earlier, this gauge   has 3 color ranges. To define the color range, we use the <span class="codeInline">&lt;colorRange&gt;</span> element, which is an immediate child of   the <span class="codeInline">&lt;chart&gt;</span> element. Under each <span class="codeInline">&lt;colorRange&gt;</span> element, we place a <span class="codeInline">&lt;color&gt;</span> element specifying a single color range as   shown in the code below. The <span class="codeInline">minValue</span> attribute is used to define the lower limit of the color range and the <span class="codeInline">maxValue</span> attribute is used to define the upper limit of the color range. The <span class="codeInline">label</span> attribute is used to specify a name of the particular color range and the <span class="codeInline">code</span> attribute specifies the color of the range.</p>    </td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;colorRange&gt;<br />  &lt;color minValue=&quot;0&quot; maxValue=&quot;75&quot; code=&quot;FF654F&quot;/&gt;<br />  &lt;color minValue=&quot;75&quot; maxValue=&quot;90&quot; code=&quot;F6BD0F&quot;/&gt;<br />  &lt;color minValue=&quot;90&quot; maxValue=&quot;100&quot; code=&quot;8BBA00&quot;/&gt;<br />&lt;/colorRange&gt;</pre>
+       </div>
+<div id="tab4" class="tab_content">
+  <pre id="pre-datajson" class="prettyprint code_container">"colorrange": {
+    "color": [
+      {
+        "minvalue": "0",
+        "maxvalue": "75",
+        "code": "FF654F"
+      },
+      {
+        "minvalue": "75",
+        "maxvalue": "90",
+        "code": "F6BD0F"
+      },
+      {
+        "minvalue": "90",
+        "maxvalue": "100",
+        "code": "8BBA00"
+      }
+    ]
+  }</pre></div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Now that we've the color ranges in place, we need the dials to point to the   desired value (92% in our case). We create the dials using the <span class="codeInline">&lt;dials&gt;&lt;dial ...&gt;&lt;/dials&gt;</span> elements, as   shown below.</p></td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dials&gt;<br />  &lt;dial value=&quot;92&quot; rearExtension=&quot;10&quot;/&gt;<br />&lt;/dials&gt;</pre>
+       </div>
+	<div id="tab6" class="tab_content">
+  <pre id="pre-datajson" class="prettyprint code_container">"dials": {
+    "dial": [
+      {
+        "value": "92",
+        "rearextension": "10"
+      }
+    ]
+  }</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can customize the dial's visual properties using the attributes of <span class="codeInline">&lt;dial&gt;</span> element. For example, to change the   background color of the dial, the <span class="codeInline">bgColor</span> attribute   is used. Similarly, the border color of the dial can be customized using the   <span class="codeInline">borderColor</span> attribute. Thus, a <span class="codeInline">&lt;dial&gt;</span> with custom visual properties will look   something as under:</p></td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dials&gt;<br />  &lt;dial value=&quot;92&quot; bgColor=&quot;FF5904&quot; borderColor=&quot;FF0000&quot;/&gt;<br />&lt;/dials&gt;</pre>
+       </div>
+	<div id="tab8" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">"dials": {
+    "dial": [
+      {
+        "value": "92",
+        "bgcolor": "FF5904",
+        "bordercolor": "FF0000"
+      }
+    ]
+  }</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>FusionWidgets XT angular gauge  allows you to have multiple dials on a   single gauge. To have multiple dials, just keep on adding <span class="codeInline">&lt;dial...&gt;</span> element within the <span class="codeInline">&lt;dials&gt;</span> tag with the required attributes.</p>
+	  <p class="highlightBlock">For detailed explanation on JSON data format click <a href="JSONFormat.html">here</a>.
+   <p> Bingo - you just made your first angular gauge. You can now create the HTML   container for this page as we had earlier explained under <a href="../FirstChart/FirstChart.html">Creating Your First   Chart &gt; Your First Chart</a>.</p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Elements of the gauge|Elements.html","Configuring gauge|Configurations.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

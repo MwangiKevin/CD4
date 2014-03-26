@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>LED Gauge - Configurations</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "LED gauges|Overview.html", "Gauge configurations" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Configurations </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>The LED gauge chart from FusionWidgets XT pack offers you a lot of   configuration options. Here, we'll see how to:</p>
+      <ul>
+        <li><a href="#palette">Using palettes</a></li>
+        <li><a href="#singlecolor"> Using single color for LED fill/LED background</a></li>
+        <li><a href="#gauge">Customizing gauge properties </a></li>
+        <li><a href="#led">Configuring LED  Size &amp; Gap </a></li>
+        <li><a href="#value">Hiding chart value </a></li>
+        <li><a href="#tick"> Configuring tick marks &amp; values</a></li>
+    </ul>      </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="palette" id="palette"></a>Using palettes </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The LED gauge offer 5 pre-defined color palettes for you to choose from.   Each of these palettes is accessible by the numbers 1-5 respectively. To choose a palette,   all you need to do is set: </p></td></tr>
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette='2' or '3' or ..&gt;</pre></div>
+	<div id="tab2" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	
+	<tr>
+	<td class="text">
+    <p>Shown below are a few examples of palettes applied on our previous chart: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Palette2.jpg" width="356" height="106" /></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Palette 2 applied </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Palette3.jpg" width="353" height="103" /></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Palette 3 applied </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><p>Additionally,  you can also define an entire new palette by setting a   single theme color using:</p></td></tr>
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart paletteThemeColor='669933' ..&gt;</pre></div>
+	  <div id="tab4" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will create a new palette derived from this color and then color the   chart as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Palette4.jpg" width="356" height="104" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"> <a name="singlecolor" id="singlecolor"></a>Using single color for LED fill/LED background</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>When you divide the LED scale into color range, the LED bars in each zone take up the fill color of that color range. However, if you want the entire LED bars to be filled with a single color (color of the range in whose zone the current value is falling), you can set:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... useSameFillColor='1' ...&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This results in:   </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Color1.jpg" width="355" height="104" /></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">As you can see above, all the LED bars are now colored in green, since the value of chart (102) is in green zone. Similarly, if value was say 67 (in yellow zone 60-90), it will appear as under: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Color2.jpg" width="356" height="108" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can also make the non-activated (background) LEDs of the same color using:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... useSameFillBgColor='1' ...&gt;</pre></div>
+	<div id="tab8" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">&nbsp;</td></tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="gauge" id="gauge"></a>Customizing gauge properties </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can hide the gauge border using:</p></td></tr>
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab9">XML</a></li>
+       <li><a href="#tab10">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab9" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart  showGaugeBorder='0' ...&gt;</pre></div>
+	  <div id="tab10" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+      <p>Or, you can customize gauge border properties using:</p></td></tr>
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab11">XML</a></li>
+       <li><a href="#tab12">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab11" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... gaugeBorderColor='FFFFFF' gaugeBorderThickness='2' gaugeBorderAlpha='100' ...&gt;</pre></div>
+	<div id="tab12" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+      <p>This will result in:</p>      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Gauge1.jpg" width="354" height="105" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To configure the background color for gauge, you can set:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab13">XML</a></li>
+       <li><a href="#tab14">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab13" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... gaugeFillColor='CCCCCC' ...&gt;</pre></div>
+	<div id="tab14" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div>
+	</td>
+  </tr>
+ <tr>
+ <td class="text">&nbsp;</td></tr>
+  <tr>
+    <td valign="top" class="header"><a name="led" id="led"></a>Configuring LED Size &amp; Gap </td>
+  </tr>
+   
+  <tr>
+    <td valign="top" class="text"><p>You can configure LED size &amp; gap in pixels using:</p></td>
+      </tr><tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab15">XML</a></li>
+       <li><a href="#tab16">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab15" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... ledSize='5' ledGap='5' ..&gt;</pre></div>
+	<div id="tab16" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This results in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_LED1.jpg" width="353" height="105" />    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To make the LEDs continuous, you can set <span class="codeInline">ledGap</span> as 0, as under: </p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab17">XML</a></li>
+       <li><a href="#tab18">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab17" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... ledSize='1' ledGap='0' ...&gt;</pre></div>
+	<div id="tab18" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This results in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_LED2.jpg" width="353" height="106" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="value" id="value"></a>Hiding chart value </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to hide chart value using: </p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab19">XML</a></li>
+       <li><a href="#tab20">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab19" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart showValue='0' ...&gt;</pre></div>
+	<div id="tab20" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Value.jpg" width="353" height="103" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="tick" id="tick"></a>Configuring tick marks &amp; values </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to hide all tick marks &amp; values using:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab21">XML</a></li>
+       <li><a href="#tab22">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab21" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... showTickMarks='0' showTickValues='0' ...&gt;</pre></div>
+	<div id="tab22" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Tick1.jpg" width="354" height="104" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can place the ticks above gauge (or on left/right in vertical LED) using:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab23">XML</a></li>
+       <li><a href="#tab24">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab23" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... ticksBelowGauge='0' ..&gt;<br/> or <br/>&lt;chart ... ticksOnRight='0' ...&gt;</pre></div>
+	<div id="tab24" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Tick2.jpg" width="355" height="106" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure the number of tick marks as under: </p></td></tr>
+          <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab25">XML</a></li>
+       <li><a href="#tab26">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab25" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... majorTMNumber='8' minorTMNumber='3' ...&gt;</pre></div>
+		<div id="tab26" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+      <p>It will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Tick4.jpg" width="354" height="105" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The chart can automatically adjust the number of major ticks to a best   feasible value. However, if you do not want the chart to do the same, you can   add:</p> </td></tr> 
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab27">XML</a></li>
+       <li><a href="#tab28">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab27" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... adjustTM='0' majorTMNumber='8' minorTMNumber='3' ...&gt;</pre></div>
+	<div id="tab28" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+       <p>This will result in:</p></td>
+	   </tr>
+	   <tr>
+    <td valign="top" class="text"><img src="Images/LED_Tick6.jpg" /></td>
+  </tr>
+      <tr>
+	  <td valign="top" class="text"><p>You can opt to show every nth tick value by setting:</p></td></tr>
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab29">XML</a></li>
+       <li><a href="#tab30">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab29" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... tickValueStep='2' ...&gt;</pre></div>
+	  <div id="tab30" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in every 2nd major tick mark's value being shown, as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Tick3.jpg" width="356" height="105" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure tick mark cosmetics using: </p></td></tr>
+        <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab31">XML</a></li>
+       <li><a href="#tab32">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab31" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... majorTMColor='333333' majorTMAlpha='100'   majorTMHeight='10' majorTMThickness='2' minorTMColor='666666' minorTMAlpha='100'   minorTMHeight='7' minorTMThickness='1' ...&gt;</pre></div>
+	<div id="tab32" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container"></pre></div></div></div></td></tr>
+    <tr>
+	<td class="text">
+	<p>This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Tick5.jpg" width="355" height="106" /></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating a simple LED gauge|Create.html","Real-time support|RealTime.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

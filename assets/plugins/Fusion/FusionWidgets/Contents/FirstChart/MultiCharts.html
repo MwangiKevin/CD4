@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Creating your first chart - Multiple charts in a single page</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Creating your first chart|FirstChart.html", "Creating multiple charts in a page" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Creating multiple charts in a single page </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Using FusionWidgets XT, you can embed any number of charts in a single HTML page.  You can even combine charts from <a href="http://www.fusioncharts.com" target="_blank">FusionCharts XT</a> and <a href="http://www.fusioncharts.com/PowerCharts" target="_blank">PowerCharts XT</a>, maps from <a href="http://www.fusioncharts.com/maps" target="_blank">FusionMaps XT</a>, and gauges from <a href="http://www.fusioncharts.com/widgets" target="_blank">FusionWidgets XT</a> in the same page.</p>
+      <p>In this example, we will add an Angular gauge, a Horizontal Linear gauge and a Bullet graph. The page will look as under: </p>
+	  
+	  <p><img src="Images/MultiChart.jpg" width="410" height="444" class="imageBorder" /></p>
+  	<p class="highlightBlock">Code examples and data files discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstChart</span> folder. We have used multiple XML files for this sample that are also present in the same folder. </p>
+	  <p>The process of embedding multiple charts is similar to that of embedding a single chart. You just need to take care of the following:</p>
+      <ul>
+        <li>Each  chart on the page should have a unique ID (which is specified in the JavaScript  constructor).</li>
+        <li>Each chart       should be denoted by a unique JavaScript variable name (e.g., <span class="codeInline">var myChart1 = new FusionCharts (...); var myChart2 = new       FusionCharts(...); </span>etc.).</li>
+        <li>Each  chart should be rendered in separate HTML container (DIV, SPAN etc), each container having unique ID. The  chart embedding code must contain a reference to the ID of the container where the  chart is to be rendered (e.g., <span class="codeInline">render(&quot;chartContainerCustSatisfaction&quot;) ; .. render(&quot;chartContainerDownload&quot;);</span> etc.).</li>
+      </ul>
+      <p>The following sample code embeds three charts into a single HTML page (<span class="codeInline">multiple-charts.html</span>):</p></td>
+  </tr>
+  <tr>
+    <td>
+       <pre class="code_container prettyprint">&lt;html&gt;
+&lt;head&gt;
+    &lt;script language=&quot;JavaScript&quot; src=&quot;../Charts/FusionCharts.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#ffffff&quot;&gt;
+      &lt;div id=&quot;chartContainerCustSatisfaction&quot; align=&quot;center&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        The chart will appear within this DIV. This text will be replaced by the chart.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var myChart1 = new FusionCharts(&quot;../Charts/AngularGauge.swf&quot;, &quot;myChartId1&quot;, &quot;400&quot;, &quot;200&quot;, &quot;0&quot;);
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChart1.setXMLUrl(&quot;Data.xml&quot;);
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChart1.render(&quot;chartContainerCustSatisfaction&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+
+      &lt;div id=&quot;chartContainerDownload&quot; align=&quot;center&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The chart will appear within this DIV. This text will be replaced by the chart.
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var myChart2 = new FusionCharts(&quot;../Charts/HLinearGauge.swf&quot;, &quot;myChartId2&quot;, &quot;400&quot;, &quot;100&quot;, &quot;0&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChart2.setXMLUrl(&quot;CostPerDownload.xml&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChart2.render(&quot;chartContainerDownload&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;chartContainerProfit&quot; align=&quot;center&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The chart will appear within this DIV. This text will be replaced by the chart.
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var myChart3 = new FusionCharts(&quot;../Charts/HBullet.swf&quot;, &quot;myChartId3&quot;, &quot;400&quot;, &quot;60&quot;, &quot;0&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChart3.setXMLUrl(&quot;ProfitPerSale.xml&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myChart3.render(&quot;chartContainerProfit&quot;);
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>See it <a href="../../Code/MyFirstChart/multiple-charts.html" target="_blank">live</a>!</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	As you can see here, we've embedded three charts in the page:<br/><br/>
+      <ol>
+        <li><span class="codeInline">AngularGauge.swf</span> with chart ID as <span class="codeInline">myChartId1</span>, div ID as <span class="codeInline">chartContainerCustSatisfaction</span> and chart variable as <span class="codeInline">myChart1</span></li>
+        <li><span class="codeInline">HLinearGauge.swf</span> with chart ID as <span class="codeInline">myChartId2</span>, div ID as <span class="codeInline">chartContainerDownload</span> and chart variable as <span class="codeInline">myChart2</span></li>
+        <li><span class="codeInline">HBullet.swf</span> with chart ID as <span class="codeInline">myChartId3</span>, div ID as <span class="codeInline">chartContainerProfit</span> and chart variable as <span class="codeInline">myChart3</span></li>
+      </ol>
+      <p>We've used the same customer satisfaction XML data  for angular gauge from our <a href="FirstChart.html#xml">first chart example</a> and also built 2 new XMLs for the linear gauge and bullet graph. We've not shown them here, as we'll cover them in the XML structure of the respective charts. </p>
+      <p>When you finally view the HTML page (with some formatting applied to above code), you'll get a result as shown under: </p>
+      <p><img src="Images/MultiChart.jpg" width="410" height="444" class="imageBorder" /></p>
+      <div class="highlightBlock"><strong>What happens if Flash player is not available?</strong><br />
+           <br/>
+        In case Flash Player is not available on certain devices (like iPad/iPhone), FusionCharts JavaScript Class automatically renders the same chart using JavaScript. If you are running the sample from local file system, please note that you need to provide the data using <a href="../HowFWworks/DataXMLExp.html">Data String method</a>, i.e., passing the data (XML/JSON) to the chart as String or JSON Object. Many browsers restrict JavaScript from accessing local file system owing   to security reasons. In the above example, since you had provided data   as a URL, the JavaScript charts will not be able to access the same,   when running locally. If you run the files from a server, it will run   absolutely fine, though. When running locally,  if you provide   the data as string (using the <a href="../HowFWworks/DataXMLExp.html">Data String method</a>), it works fine.<br />
+         <br />
+         
+		 <span class="msg_handler_slider"><a href="#">Click here to view the above code snippet modified to use Data String method</a> &raquo; </span>
+	    <div class="msg_body">
+	  <pre class="code_container prettyprint lang-html">&lt;html&gt;
+&lt;head&gt;
+    &lt;script language=&quot;JavaScript&quot; src=&quot;../Charts/FusionCharts.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#ffffff&quot;&gt;
+      &lt;div id=&quot;chartContainerCustSatisfaction&quot; align=&quot;center&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        The chart will appear within this DIV. This text will be replaced by the chart.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			var myChart1 = new FusionCharts(&quot;../Charts/AngularGauge.swf&quot;, &quot;myChartId1&quot;, &quot;400&quot;, &quot;200&quot;, &quot;0&quot;);
+			myChart1.setXMLData(&quot;&lt;chart lowerLimit='0' upperLimit='100' "+
+				"lowerLimitDisplay='Bad' upperLimitDisplay='Good' showValue='1' numberSuffix='%'&gt;&quot;+
+					"&lt;colorRange&gt;"+
+						"&lt;color minValue='0' maxValue='75' code='FF654F'/&gt;&quot;+
+						"&lt;color minValue='75' maxValue='90' code='F6BD0F'/&gt;&quot;+
+						"&lt;color minValue='90' maxValue='100' code='8BBA00'/&gt;&quot;+
+					&quot;&lt;/colorRange&gt;&quot;+
+					&quot;&lt;dials&gt;&quot;+
+						&quot;&lt;dial value='92' /&gt;&quot;+
+					&quot;&lt;/dials&gt;&quot;+
+				&quot;&lt;/chart&gt;&quot;);
+			myChart1.render(&quot;chartContainerCustSatisfaction&quot;);
+		&lt;/script&gt;
+
+      &lt;div id=&quot;chartContainerDownload&quot; align=&quot;center&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The chart will appear within this DIV. This text will be replaced by the chart.
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			var myChart2 = new FusionCharts(&quot;../Charts/HLinearGauge.swf&quot;, &quot;myChartId2&quot;, &quot;400&quot;, &quot;100&quot;, &quot;0&quot;);
+			myChart2.setXMLData("&lt;chart bgColor='FFFFFF' lowerLimit='0' upperLimit='30' gaugeRoundRadius='5' "+
+				"showGaugeBorder='1' numberPrefix='$'&gt; "+
+					"&lt;colorRange&gt;"+
+						"&lt;color minValue='0' maxValue='30' name='Cost Per Download'  /&gt;"+
+					"&lt;/colorRange&gt;"+
+					"&lt;pointers&gt;"+
+						"&lt;pointer value='17.9' borderColor='000000' borderThickness='0' "+
+						  "bgColor='FF5904' toolText='My own' /&gt;"+
+					"&lt;/pointers&gt;"+
+			"&lt;/chart&gt;");
+			myChart2.render(&quot;chartContainerDownload&quot;);
+		&lt;/script&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;chartContainerProfit&quot; align=&quot;center&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The chart will appear within this DIV. This text will be replaced by the chart.
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			var myChart3 = new FusionCharts(&quot;../Charts/HBullet.swf&quot;, &quot;myChartId3&quot;, &quot;400&quot;, &quot;60&quot;, &quot;0&quot;);
+			myChart3.setXMLData(&quot;&lt;chart palette='1' lowerLimit='0' upperLimit='100' "+
+			      "caption='Profit' subCaption='per sale' roundRadius='5' numberPrefix='$' showValue='1'&gt; "+
+						"&lt;colorRange&gt; "+
+        					"&lt;color minValue='0' maxValue='30' /&gt; "+
+							"&lt;color minValue='30' maxValue='50' /&gt; "+
+							"&lt;color minValue='50' maxValue='70' /&gt; "+
+							"&lt;color minValue='70' maxValue='85' /&gt; "+
+							"&lt;color minValue='85' maxValue='100' /&gt; "+
+						"&lt;/colorRange&gt; "+
+						"&lt;value&gt;78.9&lt;/value&gt; "+
+						"&lt;target&gt;84&lt;/target&gt; "+
+					"&lt;/chart&gt;&quot;";
+			myChart3.render(&quot;chartContainerProfit&quot;);
+		&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+	  <br />
+	  See it <a href="../../Code/MyFirstChart/multiple-charts-dataString.html" target="_blank">live</a>!	  </div>
+	  </div>
+    </td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Changing chart dimensions|ChangeSize.html","Using HTML embedding method|HTMLEmbed.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

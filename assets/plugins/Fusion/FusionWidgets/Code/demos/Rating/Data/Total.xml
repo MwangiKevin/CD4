@@ -1,0 +1,31 @@
+<chart manageResize='1' origW='380' origH='320' bgColor='004D69' bgAlpha='100' showBorder='1' borderColor='004D69' borderAlpha='100'  
+		  gaugestartAngle='235' gaugeendAngle='-55' lowerLimit='0' upperLimit='5' majorTMNumber='6' majorTMThickness='5' majorTMColor='F48900' majorTMHeight='15' 
+		  minorTMNumber='9' minorTMThickness='2' minorTMColor='FFFFFF' minorTMHeight='13' placeValuesInside='1' gaugeOuterRadius='140' gaugeInnerRadius='85%' 
+		  baseFontColor='FFFFFF' baseFont='Impact' baseFontSize='30' showShadow='0' 
+		  pivotRadius='20' pivotFillColor='00394F,004D69' pivotFillType='linear' pivotFillRatio='50,50' pivotFillAngle='240' annRenderDelay='0' defaultAnimation='0' showValue='1'>
+				<dials>
+					<dial value='0' color='F48900' borderColor='F48900' baseWidth='25' topWidth='1' radius='85'  valueY='270'/>
+				</dials>
+				<trendpoints>
+						<point startValue='4' endValue='5'  radius='140' innerRadius='0' color='F48900' alpha='25' showBorder='0'/>
+				</trendpoints>
+				<annotations autoScale='0'>
+					<annotationGroup id='Grp1' showBelow='0' xScale='200' yScale='120' x='$chartCenterX' y='$chartCenterY'>
+						<annotation type='circle' x='0' y='8' color='FFFFFF' alpha='15' radius='7' />
+					</annotationGroup>
+				</annotations>
+				<styles>
+					<definition>
+						<style name='pivotGlow' type='glow' color='F48900' blurX='15' blurY='15' alpha='60'/>
+						<style name='circleBlur' type='blur'/>
+						<style name='TTipFont' type='font' color='F48900' bgColor='00394F' borderColor='F48900' font='Verdana' size='10' />
+						<style name='valueFont' type='font' color='F48900' />
+					</definition>
+					<application>
+						<apply toObject='PIVOT' styles='pivotGlow' />
+						<apply toObject='Grp1' styles='circleBlur' />
+						<apply toObject='TOOLTIP' styles='TTipFont' />
+						<apply toObject='VALUE' styles='valueFont' />
+					</application>
+				</styles>
+			</chart>

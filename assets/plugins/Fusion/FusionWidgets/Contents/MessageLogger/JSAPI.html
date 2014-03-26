@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Message Logger - Client-side JavaScript API</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Message Logger|Overview.html", "JavaScript API" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Client-side JavaScript API </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>FusionWidgets XT allows you to control few aspects of the message logger using its client-side JavaScript API. Basically, you can do the following:</p>
+      <ul>
+        <li>Show/hide the logger using client-side JavaScript</li>
+        <li>Clear the logger using client-side JavaScript</li>
+      </ul>
+    <p>Here, we'll see how to do these. </p>
+   
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="client-sidejs"></a>Manipulating the logger using client-side JavaScript </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>You can manipulate the message logger using JavaScript APIs. For this, you need to <a href="../JavaScript/JS_ChartInstance.html">get the reference to the chart</a>. To get the reference to a chart, you can use the DOMID of the chart and pass it using any of the following ways:</p>
+       <pre class="code_container prettyprint">var chartRef = FusionCharts(&quot;myChartId&quot;);</pre>
+       <p>or</p>
+       <pre class="code_container prettyprint">var chartRef = FusionCharts.items[&quot;myChartId&quot;]; </pre>
+       <p>The legacy function <span class="codeInline">getChartFromId()</span> still works as show below:</p>
+       <pre  class="code_container prettyprint">var chartRef =  getChartFromId(&quot;myChartId&quot;); </pre>
+       <p>However, note that <span class="codeInline">getChartFromId()</span> has been deprecated.</p>
+      <p class="highlightBlock">You can call the JavaScript APIs of a chart only after it has rendered. You can use the  <a href="../JavaScript/JS_EventOverview.html#simple" class="codeInline">FC_Rendered</a><a href="../JavaScript/JS_EventOverview.html"> event tracker </a> or the <a href="../JavaScript/JS_EventOverview.html#advanced" class="codeInline">Rendered</a><a href="../JavaScript/JS_EventOverview.html#simple"> event listener</a> to check if a chart has rendered. For more information, please see  <a href="../JavaScript/JS_Overview.html">FusionWidgets XT and JavaScript</a> section.</p>
+       <p>Once the reference to chart is attained, you can use any of the functions below  on the chart's logger (provided it's set to on):</p>
+    <ul>
+      <li><span class="codeInline">chartRef.showLog()</span> - To show the log, if it's not already visible. </li>
+      <li><span class="codeInline">chartRef.hideLog()</span> - To hide the log, if it's visible. </li>
+      <li><span class="codeInline">chartRef.clearLog()</span> - To clear the contents of log. </li>
+      </ul>
+    <p>If you get  JavaScript errors when accessing the above functions, make sure of following:</p>
+    <ol>
+      <li>You've<a href="Use.html"> enabled the message logger </a>for the chart. </li>
+      <li>You're accessing these functions after the chart has rendered (i.e., in <a href="../JavaScript/JS_EventOverview.html#simple">FC_Rendered</a><a href="../JavaScript/JS_EventOverview.html"> event tracker code block</a> or in the <a href="../JavaScript/JS_EventOverview.html#advanced">Rendered</a><a href="../JavaScript/JS_EventOverview.html#simple"> event listener</a>)  </li>
+      <li>You're not running the chart from local file system (i.e., C:\, D:\ etc.). Instead, run it from a server (localhost or remote server). This is because the Flash Player security settings do not allow chart to JavaScript interaction on local file system by default,<a href="../../Tools/FlashPlayerSecuritySetup/HowToSetup.html" target="_blank"> unless otherwise specifically set</a>.</li>
+    </ol>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Handling messages in JavaScript|HandleJS.html","Alert Manager|../AlertManager/Introduction.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

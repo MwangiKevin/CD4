@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Annotation - Dynamic Resizing</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Annotations|Introduction.html", "Dynamic Resizing" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Dynamic Resizing</td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">
+          <p>Using the dynamic resizing feature of  FusionWidgets XT, the annotations in all charts and gauges <a href="../FirstChart/ChangeSize.html#dynamic">resize dynamically</a> when the parent containers of the charts and gauges resize. In this page we will discuss the following:</p>
+          <ul>
+              <li><a href="#enable">How to enable the dynamic resizing feature of annotations</a></li>
+              <li><a href="#renderresize">How are the annotations rendered and resized</a></li>
+              <li><a href="#unconstrained">How to enable unconstrained scaling in rectangle and line annotations</a></li>
+              <li><a href="#scaletext">How to enable scaling of text</a></li>
+              <li><a href="#scaleimages">How to enable scaling of images</a></li>
+              <li><a href="#align">How to keep the annotations aligned with the chart elements while resizing</a></li>
+              <li><a href="#dynamiccontainers">How to use dynamically resizable annotations in  containers with dynamic dimensions</a></li>
+              <li><a href="#311">Notes for FusionWidgets v3.1.1 users<br />
+                  <br />
+              </a></li>
+          </ul>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="enable" id="enable"></a>How to enable the dynamic resizing feature of annotations</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>To enable the dynamic resizing feature, do the following:</p>
+          <ul>
+              <li>Set the chart's or gauge's width and height in percentage</li>
+              <li>Set the   container's dimensions such that it can  resize dynamically   (using code or  due to user interaction) </li>
+              <li>Set the <span class="codeInline">manageResize</span> attribute to 1 in the XML/JSON data<br />
+                  <br />
+                  <div class="container">
+                      <ul class="tabs">
+                          <li><a href="#tabZ1">XML</a></li>
+                          <li><a href="#tabZ2">JSON</a></li>
+                      </ul>
+                      <div class="tab_container">
+                          <div id="tabZ1" class="tab_content">
+                              <pre class="code_container prettyprint">&lt;chart manageResize='1' ...&gt;</pre>
+                          </div>
+                          <div id="tabZ2" class="tab_content">
+                              <pre id="pre-datajson3" class="prettyprint code_container">{ &quot;chart&quot;: { &quot;manageResize&quot;: &quot;1&quot;, ... }, ...}</pre>
+                          </div>
+                      </div>
+                  </div>
+                  <div style="clear:both"></div>
+             </li>
+          </ul>
+          <div style="clear:both"></div>
+          <p>These  make a chart or gauge and all its elements including annotations resize and scale  automatically whenever the dimensions of the parent container of the chart/gauge change.</p>
+          <p class="highlightBlock"><strong>Note</strong>: The dynamic resizing feature does not work if <span class="codeInline">autoScale</span> attribute is set to <span class="codeInline">0</span>. This attribute can be set in the <span class="codeInline">chart </span>or <span class="codeInline">annotations</span> element.</p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="renderresize"></a>How are the annotations rendered and resized</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>By default, when a chart is rendered initially (before resizing), it draws the annotations based on the coordinates and size provided in the XML/JSON. It does not scale the annotations. Shown below a simple gauge  (with background created using rectangle annotations)  rendered inside a dynamically resizable container.</p>
+          <p><img src="Images/Ann_DR0001.jpg" width="435" height="231" /></p>
+          <p>Try the simple example <a href="../../Code/DynamicResizing/SimpleAnnotation.html" target="_blank">live</a>! </p>
+          <p>On  resizing (dynamically), the annotation groups and the annotation elements are scaled in the following way:</p>
+          <ul>
+              <li>The x and y positions of the annotation groups are first re-calculated and scaled.</li>
+              <li>Scaling of the x and y positions of the annotation groups is done without maintaining proportions.</li>
+              <li>Scaling is <strong>not</strong> applied on the values passed through the <span class="codeInline">xShift </span>and <span class="codeInline">yShift</span> attributes.</li>
+              <li>Scaling is also <strong>not</strong> applied on the values provided by annotation macros.  However, the numeric values (if not prefixed by a $) present in the macro expressions are scaled. </li>
+              <li>Scaling is further applied on the position (<span class="codeInline">x</span>, <span class="codeInline">y</span>, <span class="codeInline">toX</span> and <span class="codeInline">toY</span>) and size (<span class="codeInline">radius</span> etc.) of  the annotation elements. </li>
+              <li>All the annotation elements (rectangle, line, arc, circle, and polygon) are  scaled proportionally, that is,  preserving the proportions of the shapes to avoid distortion. To  maintain proportion, the annotations scale based on the least change between  the height and the width. </li>
+      </ul>
+          <ul>
+              <li>You can  scale the line and rectangle annotations without maintaining proportions by setting <span class="codeInline">constrainedScale='0'</span>. </li>
+              <li>To allow scaling of text and image annotations, you need to set <span class="codeInline">scaleText='1'</span> and <span class="codeInline">scaleImages='1'</span> respectively, in the <span class="codeInline">&lt;annotationGroup&gt;</span> element.</li>
+         </ul>
+          <p class="highlightBlock">While trying  the above sample, you might have noticed that the annotations are not always fitting to the resized space of the gauge. This is deliberately made such in this example to showcase how annotations are scaled and resized in proportions. We will also see how this can be resolved in the <a href="#unconstrained">next</a> section.      </p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="unconstrained"></a>How to enable unconstrained scaling in rectangle and line annotations</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>While resizing dynamically, all the annotation elements (rectangle, line, arc, circle, and polygon) are primarily scaled proportionally (using constrained scaling), that is,  preserving the proportions of the shapes to avoid distortion. To  maintain proportion, the annotations scale based on the least change between  the height and the width. You can however disproportionately  (unconstrained) scale all the line and rectangle annotations by setting the <span class="codeInline">constrainedScale</span> attribute to <span class="codeInline">0</span> in the <span class="codeInline">annotations</span> element as shown below:</p>
+           <div class="container">
+                      <ul class="tabs">
+                          <li><a href="#tabZA1">XML</a></li>
+                          <li><a href="#tabZA2">JSON</a></li>
+                      </ul>
+                      <div class="tab_container">
+                          <div id="tabZA1" class="tab_content">
+                              <pre class="code_container prettyprint">&lt;chart ...&gt;
+    &lt;annotations constrainedScale='0' ...&gt;
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                          </div>
+                          <div id="tabZA2" class="tab_content">
+                              <pre id="pre-datajson3" class="prettyprint code_container">{ 
+ ...
+  &quot;annotations&quot;:
+   {
+	&quot;constrainedScale&quot;: &quot;0&quot;,
+	...
+   }
+ ...
+}</pre>
+                          </div>
+                      </div>
+         </div>
+            <div style="clear:both"></div><div style="clear:both"></div>
+          
+          <p>You can selectively disable constrained scaling in a particular annotation group  using:</p>
+          <div class="container">
+                      <ul class="tabs">
+                          <li><a href="#tabZ1">XML</a></li>
+                          <li><a href="#tabZ2">JSON</a></li>
+                      </ul>
+                      <div class="tab_container">
+                          <div id="tabZ1" class="tab_content">
+                              <pre class="code_container prettyprint">&lt;chart ...&gt;
+    &lt;annotations ...&gt;
+        &lt;annotationGroup constrainedScale='0' ...&gt;
+          ....
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                          </div>
+                          <div id="tabZ2" class="tab_content">
+                              <pre id="pre-datajson3" class="prettyprint code_container">{ 
+ ...
+  &quot;annotations&quot;:
+   {
+
+	&quot;groups&quot;:[
+		{
+			...
+			&quot;constrainedScale&quot;: &quot;0&quot;,
+			&quot;items&quot; : [ { ... } ]
+		},
+	...
+	]
+   }
+ ...
+}</pre>
+                          </div>
+                      </div>
+         </div>
+            <div style="clear:both"></div><div style="clear:both"></div>
+          <p>With the above modification, if you run the previous sample, you will notice that the annotations behind the gauge always fit to the resized dimensions of the gauge. The images below show some of the resized dimensions of the modified sample:</p>
+          <p><img src="Images/Ann_DR0002.jpg" width="283" height="237" /></p>
+          <p><img src="Images/Ann_DR0003.jpg" width="456" height="143" /></p>
+          <p><img src="Images/Ann_DR0004.jpg" width="412" height="302" /></p>
+          <p>See the modified sample <a href="../../Code/DynamicResizing/SimpleAnnotationUnConstrained.html" target="_blank">live</a>!</p>
+          <p class="highlightBlock">NOTE: To avoid distortion, you cannot apply <strong>Unconstrained Scaling</strong> on  circles, arcs and polygons.</p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="scaletext"></a>How to enable scaling of text</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>By default, the text annotations are not scaled during dynamic resizing. You can however, enable scaling of all the text annotations using the <span class="codeInline">scaleText</span> attribute of the <span class="codeInline">annotations</span> element.</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabZB1">XML</a></li>
+                  <li><a href="#tabZB2">JSON</a></li>
+              </ul>
+              <div class="tab_container">
+                  <div id="tabZB1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+    &lt;annotations scaleText='1' ...&gt;
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                  </div>
+                  <div id="tabZB2" class="tab_content">
+                      <pre id="pre-datajson5" class="prettyprint code_container">{ 
+ ...
+  &quot;annotations&quot;:
+   {
+	&quot;scaleText&quot;: &quot;1&quot;,
+	...
+   }
+ ...
+}</pre>
+                  </div>
+              </div>
+      </div>
+          <div style="clear:both"></div>
+          <div style="clear:both"></div>
+          <p>The same attribute can also be used with the <span class="codeInline">annotationGroup</span> element to control the scaling of text in an annotation group. </p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabZC1">XML</a></li>
+                  <li><a href="#tabZC2">JSON</a></li>
+              </ul>
+              <div class="tab_container">
+                  <div id="tabZC1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+    &lt;annotations ...&gt;
+        &lt;annotationGroup scaleText='1' ...&gt;
+          ....
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                  </div>
+                  <div id="tabZC2" class="tab_content">
+                      <pre id="pre-datajson5" class="prettyprint code_container">{ 
+ ...
+  &quot;annotations&quot;:
+   {
+
+	&quot;groups&quot;:[
+		{
+			...
+			&quot;scaleText&quot;: &quot;1&quot;,
+			&quot;items&quot; : [ { ... } ]
+		},
+	...
+	]
+   }
+ ...
+}</pre>
+                  </div>
+              </div>
+          </div>
+          <div style="clear:both"></div>
+          <div style="clear:both"></div>
+        
+
+
+          <p>The image below shows &quot;FusionWidgets&quot; as the text annotation  in a gauge.</p>
+          <p><img src="Images/Ann_DR0007.jpg" width="301" height="300" /></p>
+          <p>The image below shows how the text annotation is  scaled during dynamic resizing:</p>
+          <p><img src="Images/Ann_DR0005.jpg" width="387" height="392" /></p>
+          <p>The image below shows how the text annotation is  not scaled during dynamic resizing:</p>
+          <p><img src="Images/Ann_DR0006.jpg" width="400" height="401" /></p>
+          <p class="highlightBlock">Setting <span class="codeInline">scaleText</span> to <span class="codeInline">0</span> will imply that the text annotations are not to be scaled.      </p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="scaleimages" id="scaleimages"></a>How to enable scaling of images</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>While dynamically resizing a chart, the image annotations are not scaled by default. You can however, enable scaling of all the image annotations using the <span class="codeInline">scaleImages</span> attribute of the <span class="codeInline">annotations</span> element.          </p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabZD1">XML</a></li>
+                  <li><a href="#tabZD2">JSON</a></li>
+              </ul>
+              <div class="tab_container">
+                  <div id="tabZD1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+    &lt;annotations scaleImages='1' ...&gt;
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                  </div>
+                  <div id="tabZD2" class="tab_content">
+                      <pre id="pre-datajson6" class="prettyprint code_container">{ 
+ ...
+  &quot;annotations&quot;:
+   {
+	&quot;scaleImages&quot;: &quot;1&quot;,
+	...
+   }
+ ...
+}</pre>
+                  </div>
+              </div>
+      </div>
+          <div style="clear:both"></div>
+          <div style="clear:both"></div>
+          <p>The same attribute can also be used with the <span class="codeInline">annotationGroup</span> element to control the scaling of images in an annotation group. </p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabZE1">XML</a></li>
+                  <li><a href="#tabZE2">JSON</a></li>
+              </ul>
+              <div class="tab_container">
+                  <div id="tabZE1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+    &lt;annotations ...&gt;
+        &lt;annotationGroup scaleImages='1' ...&gt;
+          ....
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                  </div>
+                  <div id="tabZE2" class="tab_content">
+                      <pre id="pre-datajson6" class="prettyprint code_container">{ 
+ ...
+  &quot;annotations&quot;:
+   {
+
+	&quot;groups&quot;:[
+		{
+			...
+			&quot;scaleImages&quot;: &quot;1&quot;,
+			&quot;items&quot; : [ { ... } ]
+		},
+	...
+	]
+   }
+ ...
+}</pre>
+                  </div>
+              </div>
+          </div>
+          <div style="clear:both"></div>
+          <div style="clear:both"></div>
+          <p>The image below shows the FusionWidgets logo as the image annotation  in a gauge.</p>
+          <p><img src="Images/Ann_DR0008.jpg" width="328" height="227" /></p>
+          <p>The image below shows how the image annotation is  scaled during dynamic resizing:</p>
+          <p><img src="Images/Ann_DR0009.jpg" width="493" height="333" /></p>
+          <p>The image below shows how the image annotation is  not scaled during dynamic resizing:</p>
+          <p><img src="Images/Ann_DR00091.jpg" width="443" height="306" /></p>
+          <p class="highlightBlock">Setting <span class="codeInline">scaleImages</span> to <span class="codeInline">0</span> will imply that the image annotations are not to be scaled.      </p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="align"></a>How to keep the annotations aligned with the chart elements while resizing</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>During  dynamic resizing, it is important that the annotations remain aligned with the other visual elements of the chart (like aligning the center of a circle annotation with the center of an angular gauge). Hence, while designing the annotations, it is imperative that you  follow a few simple thumb-rules, as stated below: </p>
+          <ol>
+              <li><a href="#tr1">Position the annotation groups  (using <span class="codeInline">x</span>, <span class="codeInline">y</span>, <span class="codeInline">xShift</span> and <span class="codeInline">yShift</span> attributes) with respect to the other elements of the gauge</a>. For example, align the annotation groups' origins with  center of an angular gauge.</li>
+              <li><a href="#tr2">Position an  annotation element relative to the position of  its annotation group. </a></li>
+              <li><a href="#tr3">Make proper use of the newly introduced macros for annotations</a> to set dynamic positions to the annotation groups and individual annotation elements.</li>
+         </ol>
+          <p>Let us consider a few examples to illustrate the above mentioned points:</p>
+          <p class="header"><a name="tr1" id="tr1"></a>1. Position the annotation groups  with respect to the other elements of the gauge</p>
+          <p>The image below shows an angular gauge with a silver dial around it and a blue background behind it.</p>
+          <p><img src="Images/Ann_DR0010.jpg" width="299" height="298" /></p>
+          <p> The silver dial and the blue background are created using circle annotations. Considering the width and height&nbsp;of the gauge to be 270x270 pixels,  135 is set to both the x and y positions of the circles. The annotations group's x and y positions are not defined.</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabAA1">XML</a></li>
+                  <li><a href="#tabAA2">JSON</a></li>
+             </ul>
+              <div class="tab_container" >
+                  <div id="tabAA1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+...<br />  &lt;annotations&gt;<br />    &lt;!--circles behind the gauge--&gt;<br />    &lt;annotationGroup id=&quot;Grp1&quot; showBelow=&quot;1&quot;&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;135&quot; y=&quot;135&quot; color=&quot;EBF0F4,85898C,484C4F,C5C6C8&quot; 
+           fillRatio=&quot;30,30,30,10&quot; fillAngle=&quot;270&quot; radius=&quot;120&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;135&quot; y=&quot;135&quot; color=&quot;8E8E8E,83878A,E7E7E7&quot; fillAngle=&quot;270&quot; 
+           radius=&quot;105&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;135&quot; y=&quot;135&quot; color=&quot;07476D,19669E,186AA6,D2EAF6&quot; 
+           fillRatio=&quot;5,45,40,10&quot; fillAngle=&quot;270&quot; radius=&quot;103&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;135&quot; y=&quot;135&quot; color=&quot;07476D,19669E,07476D&quot; fillRatio=&quot;5,90,5&quot; 
+           fillAngle=&quot;270&quot; radius=&quot;100&quot; fillPattern=&quot;linear&quot;/&gt;<br />    &lt;/annotationGroup&gt;<br />    &lt;!--Circle behind the pivot--&gt;<br />    &lt;annotationGroup id=&quot;Grp2&quot; showBelow=&quot;1&quot;&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;135&quot; y=&quot;135&quot; radius=&quot;12&quot; color=&quot;012A46&quot;/&gt;<br />    &lt;/annotationGroup&gt;<br />  &lt;/annotations&gt;<br />&lt;/chart&gt;</pre>
+                 </div>
+                  <div id="tabAA2" class="tab_content" style="background-color:#FFFFFF !important;">
+                      <pre id="pre-datajson4" class="prettyprint code_container">{
+  ....
+  &quot;annotations&quot;: {
+    &quot;groups&quot;: [
+      {
+        &quot;id&quot;: &quot;Grp1&quot;,
+        &quot;showbelow&quot;: &quot;1&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;135&quot;,
+            &quot;y&quot;: &quot;135&quot;,
+            &quot;color&quot;: &quot;EBF0F4,85898C,484C4F,C5C6C8&quot;,
+            &quot;fillratio&quot;: &quot;30,30,30,10&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;120&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          },
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;135&quot;,
+            &quot;y&quot;: &quot;135&quot;,
+            &quot;color&quot;: &quot;8E8E8E,83878A,E7E7E7&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;105&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          },
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;135&quot;,
+            &quot;y&quot;: &quot;135&quot;,
+            &quot;color&quot;: &quot;07476D,19669E,186AA6,D2EAF6&quot;,
+            &quot;fillratio&quot;: &quot;5,45,40,10&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;103&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          },
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;135&quot;,
+            &quot;y&quot;: &quot;135&quot;,
+            &quot;color&quot;: &quot;07476D,19669E,07476D&quot;,
+            &quot;fillratio&quot;: &quot;5,90,5&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;100&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Grp2&quot;,
+        &quot;showbelow&quot;: &quot;1&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;135&quot;,
+            &quot;y&quot;: &quot;135&quot;,
+            &quot;radius&quot;: &quot;12&quot;,
+            &quot;color&quot;: &quot;012A46&quot;
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+                 </div>
+             </div>
+         </div>
+          <div style="clear:both;"></div>
+          <div style="clear:both;"></div>
+          <p>When the container of this gauge is resized disproportionately, the annotations fail to remain aligned to the center of the gauge&nbsp;as shown below:</p>
+          <p><img src="Images/Ann_DR0011.jpg" width="411" height="277" /></p>
+          <p>To take care of this, you can align the x and y positions of the annotation groups to the gauge's center and then re-calculate the center of the circles with respect to the x and y positions of the annotation&nbsp;groups&nbsp;as shown in the code below:</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabAB1">XML</a></li>
+                  <li><a href="#tabAB2">JSON</a></li>
+             </ul>
+              <div class="tab_container" >
+                  <div id="tabAB1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+...<br />  &lt;annotations&gt;<br />    &lt;!--circles behind the gauge--&gt;<br />    &lt;annotationGroup id=&quot;Grp1&quot; showBelow=&quot;1&quot; <strong>x=&quot;135&quot; y=&quot;135&quot;</strong>&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;0&quot; y=&quot;0&quot; color=&quot;EBF0F4,85898C,484C4F,C5C6C8&quot; 
+           fillRatio=&quot;30,30,30,10&quot; fillAngle=&quot;270&quot; radius=&quot;120&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;0&quot; y=&quot;0&quot; color=&quot;8E8E8E,83878A,E7E7E7&quot; fillAngle=&quot;270&quot; 
+           radius=&quot;105&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;0&quot; y=&quot;0&quot; color=&quot;07476D,19669E,186AA6,D2EAF6&quot; 
+           fillRatio=&quot;5,45,40,10&quot; fillAngle=&quot;270&quot; radius=&quot;103&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;0&quot; y=&quot;0&quot; color=&quot;07476D,19669E,07476D&quot; fillRatio=&quot;5,90,5&quot; 
+           fillAngle=&quot;270&quot; radius=&quot;100&quot; fillPattern=&quot;linear&quot;/&gt;<br />    &lt;/annotationGroup&gt;<br />    &lt;!--Circle behind the pivot--&gt;<br />    &lt;annotationGroup id=&quot;Grp2&quot;  <strong>x=&quot;135&quot; y=&quot;135&quot;</strong>  showBelow=&quot;1&quot;&gt;<br />      &lt;annotation type=&quot;circle&quot; x=&quot;0&quot; y=&quot;0&quot; radius=&quot;12&quot; color=&quot;012A46&quot;/&gt;<br />    &lt;/annotationGroup&gt;<br />  &lt;/annotations&gt;<br />&lt;/chart&gt;</pre>
+                 </div>
+                  <div id="tabAB2" class="tab_content" style="background-color:#FFFFFF !important;">
+                      <pre id="pre-datajson4" class="prettyprint code_container">{
+  ....
+  &quot;annotations&quot;: {
+    &quot;groups&quot;: [
+      {
+        <strong>&quot;x&quot;: &quot;135&quot;,
+        &quot;y&quot;: &quot;135&quot;,</strong>
+        &quot;id&quot;: &quot;Grp1&quot;,
+        &quot;showbelow&quot;: &quot;1&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;0&quot;,
+            &quot;y&quot;: &quot;0&quot;,
+            &quot;color&quot;: &quot;EBF0F4,85898C,484C4F,C5C6C8&quot;,
+            &quot;fillratio&quot;: &quot;30,30,30,10&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;120&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          },
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;0&quot;,
+            &quot;y&quot;: &quot;0&quot;,
+            &quot;color&quot;: &quot;8E8E8E,83878A,E7E7E7&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;105&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          },
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;0&quot;,
+            &quot;y&quot;: &quot;0&quot;,
+            &quot;color&quot;: &quot;07476D,19669E,186AA6,D2EAF6&quot;,
+            &quot;fillratio&quot;: &quot;5,45,40,10&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;103&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          },
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;0&quot;,
+            &quot;y&quot;: &quot;0&quot;,
+            &quot;color&quot;: &quot;07476D,19669E,07476D&quot;,
+            &quot;fillratio&quot;: &quot;5,90,5&quot;,
+            &quot;fillangle&quot;: &quot;270&quot;,
+            &quot;radius&quot;: &quot;100&quot;,
+            &quot;fillpattern&quot;: &quot;linear&quot;
+          }
+        ]
+      },
+      {
+        <strong>&quot;x&quot;: &quot;135&quot;,
+        &quot;y&quot;: &quot;135&quot;,</strong>
+
+        &quot;id&quot;: &quot;Grp2&quot;,
+        &quot;showbelow&quot;: &quot;1&quot;,
+        &quot;items&quot;: [
+          {
+            &quot;type&quot;: &quot;circle&quot;,
+            &quot;x&quot;: &quot;0&quot;,
+            &quot;y&quot;: &quot;0&quot;,
+            &quot;radius&quot;: &quot;12&quot;,
+            &quot;color&quot;: &quot;012A46&quot;
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+                 </div>
+             </div>
+         </div>
+          <div style="clear:both;"></div>
+          <div style="clear:both;"></div>
+          <p>Now, you'll find that the annotations remain aligned with the gauge center while resizing.</p>
+          <p><img src="Images/Ann_DR0012.jpg" width="440" height="298" /></p>
+          <p class="header"><a name="tr2" id="tr2"></a>2. Position an  annotation element relative to the position of  its annotation group</p>
+          <p>The previous example shows how the individual annotation&nbsp;elements (circles) are placed relative to the positions of the annotation groups. In that example the x and y positions of the circles are set to 0.&nbsp;You can further tweak the positions by setting a positive or a negative number. For example, you can add a text annotation 30px above the gauge's center using:</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabAC1">XML</a></li>
+                  <li><a href="#tabAC2">JSON</a></li>
+             </ul>
+              <div class="tab_container" >
+                  <div id="tabAC1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+...<br />  &lt;annotations&gt;<br />	...   <br />    &lt;annotationGroup id=&quot;Grp2&quot;  <strong>x=&quot;135&quot; y=&quot;135&quot;</strong>  showBelow=&quot;1&quot;&gt;<br />		...
+		<strong>&lt;annotation type='text' color='EBF0F4' label=&quot;FusionWidgets&quot; y='-30' /&gt;<br /> </strong>   &lt;/annotationGroup&gt;<br />  &lt;/annotations&gt;<br />&lt;/chart&gt;</pre>
+                 </div>
+                  <div id="tabAC2" class="tab_content" style="background-color:#FFFFFF !important;">
+                      <pre id="pre-datajson4" class="prettyprint code_container">{
+  ....
+  &quot;annotations&quot;: {
+    &quot;groups&quot;: [
+	   ...<br />      {
+        <strong>&quot;x&quot;: &quot;135&quot;,
+        &quot;y&quot;: &quot;135&quot;,</strong>
+
+        &quot;id&quot;: &quot;Grp2&quot;,
+        &quot;showbelow&quot;: &quot;1&quot;,
+        &quot;items&quot;: [
+		   ...
+          {<strong>
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;y&quot;: &quot;-30&quot;,
+            &quot;label&quot;: &quot;FusionWidgets&quot;,
+            &quot;color&quot;: &quot;EBF0F4&quot;</strong>
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+                 </div>
+             </div>
+         </div>
+          <div style="clear:both;"></div>
+          <div style="clear:both;"></div>
+          <p>The text is placed above the center of the gauge&nbsp;as shown below (in any resized state):</p>
+          <p><img src="Images/Ann_DR0040.jpg" width="298" height="296" /></p>
+          <p><img src="Images/Ann_DR0041.jpg" width="513" height="326" /></p>
+          <p class="header"><a name="tr3" id="tr3"></a>3. Make  use of macros</p>
+          <p><a href="macros.html">Macros</a> for annotations help you  define&nbsp;smart positions for the annotation groups and the annotation elements. You can  edit the above examples and replace the manual values set for the centers of the annotation groups with macros&nbsp;- <span class="codeInline">$chartCenterX</span> and <span class="codeInline">$chartCenterY</span> as shown below:</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabAD1">XML</a></li>
+                  <li><a href="#tabAD2">JSON</a></li>
+             </ul>
+              <div class="tab_container" >
+                  <div id="tabAD1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+...<br />  &lt;annotations&gt;<br />	...   <br />    &lt;annotationGroup ... <strong>x=&quot;$chartCenterX&quot; y=&quot;$chartCenterY&quot;</strong> ...&gt;<br />		...
+  &lt;/annotations&gt;<br />&lt;/chart&gt;</pre>
+                 </div>
+                  <div id="tabAD2" class="tab_content" style="background-color:#FFFFFF !important;">
+                      <pre id="pre-datajson4" class="prettyprint code_container">{
+  ....
+  &quot;annotations&quot;: {
+    &quot;groups&quot;: [
+	   ...<br />      {
+        <strong>&quot;x&quot;: &quot;$chartCenterX&quot;,
+        &quot;y&quot;: &quot;$chartCenterY&quot;,</strong>
+
+		   ...
+        ]
+      }
+    ]
+  }
+}</pre>
+                 </div>
+             </div>
+         </div>
+          <div style="clear:both;"></div>
+          <div style="clear:both;"></div>
+          <p>This always places the circles at the center of the gauge, irrespective of the dynamic size of the gauge.</p>
+          <p>You can also define dynamic borders around a chart using macros. These borders  fit to a dynamically resized chart, as shown below:</p>
+          <p><img src="Images/Ann_DR01.jpg" width="165" height="186" /></p>
+          <p><img src="Images/Ann_DR02.jpg" width="246" height="284" /></p>
+          <p>The borders can be defined easily as shown&nbsp;in the snippet below:</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabAD1">XML</a></li>
+                  <li><a href="#tabAD2">JSON</a></li>
+             </ul>
+              <div class="tab_container" >
+                  <div id="tabAD1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart ...&gt;
+...<br />  &lt;annotations&gt;<br />	...   <br />    &lt;annotationGroup id=&quot;border1&quot;&gt;<br />      &lt;annotation type=&quot;rectangle&quot; &nbsp;x=&quot;$chartStartX+1&quot; y=&quot;$chartStartY+1&quot; toX=&quot;$chartEndX-1&quot; toY=&quot;$chartEndY-1&quot; 
+         color=&quot;FFFFFF&quot; alpha=&quot;100&quot; showBorder=&quot;1&quot; borderColor=&quot;CC0000&quot; borderThickness=&quot;2&quot; radius=&quot;10&quot;/&gt;
+    &lt;/annotationGroup&gt;<br />  &lt;/annotations&gt;<br />&lt;/chart&gt;</pre>
+                 </div>
+                  <div id="tabAD2" class="tab_content" style="background-color:#FFFFFF !important;">
+                      <pre id="pre-datajson4" class="prettyprint code_container">{
+  ....
+  &quot;annotations&quot;: {
+    &quot;groups&quot;: [
+	   ...<br />      {
+        &quot;id&quot;: &quot;border1&quot;,
+        &quot;items&quot;: [
+		   ...
+          {<strong>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;type&quot;: &quot;rectangle&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;x&quot;: &quot;$chartStartX+1&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;y&quot;: &quot;$chartStartY+1&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;tox&quot;: &quot;$chartEndX-1&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;toy&quot;: &quot;$chartEndY-1&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;color&quot;: &quot;FFFFFF&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;alpha&quot;: &quot;100&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;showborder&quot;: &quot;1&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;bordercolor&quot;: &quot;CC0000&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;borderthickness&quot;: &quot;2&quot;,<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;radius&quot;: &quot;10&quot;<br /></strong>          }
+        ]
+      }
+    ]
+  }
+}</pre>
+                 </div>
+             </div>
+         </div>
+          <div style="clear:both;"></div>
+          <div style="clear:both;"></div>
+          <p>Shown below are a few more examples, where macros are used&nbsp;to create dynamically resizable annotations:</p>
+          <p><img src="Images/Ann_DR04.jpg" width="380" height="79" /></p>
+          <p>The <a href="../../Gallery/Linear/Linear4.html" target="_blank">blue glass gauge with its reflection</a> is created using macros like <span class="codeInline">$gaugeStartX</span>, <span class="codeInline">$gaugeEndX</span>&nbsp;etc.</p>
+          <p><img src="Images/Ann_DR03.jpg" width="472" height="332" /></p>
+          <p>The <a href="../../Gallery/Pyramid/Pyramid4.html" target="_blank">circles at the center of the pyramid</a> are created using the <span class="codeInline">$canvasCenterX</span> macro.</p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="dynamiccontainers" class="header" id="dynamiccontainers"></a>Using dynamically resizable annotations and charts  containers with dynamic dimensions</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>Mostly, while designing  annotation elements, you may set  values to the radius and other coordinates of the annotations based on a specific width and height of the chart. We name these dimensions as the original width and the original height of the chart. </p>
+          <p>By default, when a chart is rendered initially (before resizing), it draws the annotations based on the coordinates and size provided in the XML/JSON. It does not scale the annotations on initial render. When this chart is resized, it scales  these values or coordinates based on the dimensions of the initially rendered gauge, that is,  the width and height of the chart when rendered for the first time. Hence, the annotations will scale perfectly when the initial width and height of the chart are same as the original width and height of the chart.</p>
+          <p>Click <a href="../../Code/DynamicResizing/Annotation_RenderedWithOriginalSize.html" target="_blank">here</a> to see an  example to showcase this. It shows a dynamically resizable clock whose annotations (the blue background and the silver border around the clock) are designed based on the original width of 270x and original height of 270px. The clock is initially rendered using the same dimensions. When you resize the clock (dragging the corners of the&nbsp;borders around the clock) you will notice that all the annotations (along with the clock) resize and fit properly into the resized space. The images below show how the clock appears in various sizes.</p>
+          <p><img src="Images/Ann_DR0053.jpg" width="300" height="300" /></p>
+          <p><img src="Images/Ann_DR0052.jpg" width="254" height="241" /></p>
+          <p><img src="Images/Ann_DR0051.jpg" width="433" height="354" /></p>
+          <p>The same clock will, however, not render properly if the initial dimensions of the clock is not same as the original width and height. The clock may appear cropped or with lots of empty spaces all around as shown in the images below:</p>
+          <p><img src="Images/Ann_DR0061.jpg" width="245" height="247" /></p>
+          <p><img src="Images/Ann_DR0062.jpg" width="493" height="493" /></p>
+          <p>See it <a href="../../Code/DynamicResizing/Annotation_RenderedWithUnknownSize.html" target="_blank">live</a>!</p>
+          <p class="highlightBlock">This scenario is apparent in  applications having containers with dynamic dimensions like web parts, panels etc. These containers are not set with fixed dimensions. Rather, they derive their dimensions based on various conditions like available space, number of columns and rows etc. </p>
+          <p>To take care of this  situation, you need to pass the original width and height (based on which you had designed the annotations) to the chart. On receiving the original width and height, the chart  always checks the current dimensions against the original width and height  then scales everything accordingly. </p>
+          <p>You can pass the original width through the <span class="codeInline">origW</span> attribute and original height through the <span class="codeInline">origH</span> attribute&nbsp;of the of the <span class="codeInline">chart</span> element.</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabZF1">XML</a></li>
+                  <li><a href="#tabZF2">JSON</a></li>
+              </ul>
+              <div class="tab_container">
+                  <div id="tabZF1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart manageResize='1' origW='270' origH='270' ...&gt;
+...
+&lt;/chart&gt;</pre>
+                  </div>
+                  <div id="tabZF2" class="tab_content">
+                      <pre id="pre-datajson7" class="prettyprint code_container">{ &quot;chart&quot;: {... &quot;manageresize&quot;:&quot;1&quot;, &quot;origw&quot;: &quot;270&quot;, &quot;origh&quot;: &quot;270&quot; ... } ... }</pre>
+                  </div>
+              </div>
+      </div>
+          <div style="clear:both"></div>
+          <div style="clear:both"></div>
+          <p>The same attribute can also be used with the <span class="codeInline">annotations</span> element.</p>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tabZG1">XML</a></li>
+                  <li><a href="#tabZG2">JSON</a></li>
+              </ul>
+              <div class="tab_container">
+                  <div id="tabZG1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart  manageResize='1'...&gt;
+    &lt;annotations  origW='270' origH='270' ...&gt;
+	...
+    &lt;/annotations&gt;
+&lt;/chart&gt;</pre>
+                  </div>
+                  <div id="tabZG2" class="tab_content">
+                      <pre id="pre-datajson7" class="prettyprint code_container">{ &quot;chart&quot; : { &quot;manageresize&quot;: &quot;1&quot;, ....} 
+ ...
+  &quot;annotations&quot;:
+   {
+	&quot;origw&quot;: &quot;270&quot;,
+	&quot;origh&quot;: &quot;270&quot;,
+	...
+   }
+ ...
+}</pre>
+                  </div>
+              </div>
+          </div>
+          <div style="clear:both"></div>
+          <div style="clear:both"></div>
+          <p>Let us check the modified XML/JSON data for the clock:</p>
+<div class="container">
+    <ul class="tabs">
+       <li style="background-color:#FFFFFF !important; "><a href="#tabZI1">XML</a></li>
+       <li style="background-color:#FFFFFF !important; "><a href="#tabZI2">JSON</a></li>
+    </ul>
+    <div class="tab_container"  style="background-color:#FFFFFF !important; ">
+       <div id="tabZI1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart <strong>manageResize=&quot;1&quot; origW=&quot;270&quot; origH=&quot;270&quot; </strong>bgColor=&quot;333333&quot; bgAlpha=&quot;100&quot; gaugeStartAngle=&quot;90&quot; gaugeEndAngle=&quot;-270&quot; lowerLimit=&quot;0&quot; upperLimit=&quot;12&quot; lowerLimitDisplay=&quot; &quot; upperLimitDisplay=&quot;12&quot; majorTMNumber=&quot;12&quot; majorTMThickness=&quot;3&quot; majorTMColor=&quot;FFFFFF&quot; majorTMHeight=&quot;7&quot; minorTMNumber=&quot;4&quot; minorTMColor=&quot;FFFFFF&quot; minorTMHeight=&quot;4&quot; placeValuesInside=&quot;1&quot; tickValueStep=&quot;3&quot; tickValueDistance=&quot;20&quot; gaugeOuterRadius=&quot;95&quot; gaugeInnerRadius=&quot;95&quot; showShadow=&quot;0&quot; pivotRadius=&quot;6&quot; pivotFillColor=&quot;FFFFFF&quot; annRenderDelay=&quot;0&quot;&gt;<br />  &lt;dials&gt;<br />    &lt;dial value=&quot;5&quot; color=&quot;FFFFFF&quot; baseWidth=&quot;3&quot; topWidth=&quot;1&quot; radius=&quot;70&quot; rearExtension=&quot;12&quot;/&gt;<br />  &lt;/dials&gt;<br />  &lt;annotations&gt;<br />    &lt;annotationGroup id=&quot;Grp1&quot; showBelow=&quot;1&quot; x=&quot;$chartCenterX&quot; y=&quot;$chartCenterY&quot;&gt;<br />      &lt;annotation type=&quot;circle&quot; color=&quot;EBF0F4,85898C,484C4F,C5C6C8&quot; fillRatio=&quot;30,30,30,10&quot; fillAngle=&quot;270&quot; radius=&quot;120&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; color=&quot;8E8E8E,83878A,E7E7E7&quot; fillAngle=&quot;270&quot; radius=&quot;105&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; color=&quot;07476D,19669E,186AA6,D2EAF6&quot; fillRatio=&quot;5,45,40,10&quot; fillAngle=&quot;270&quot; radius=&quot;103&quot; fillPattern=&quot;linear&quot;/&gt;<br />      &lt;annotation type=&quot;circle&quot; color=&quot;07476D,19669E,07476D&quot; fillRatio=&quot;5,90,5&quot; fillAngle=&quot;270&quot; radius=&quot;100&quot; fillPattern=&quot;linear&quot;/&gt;<br />    &lt;/annotationGroup&gt;<br />    &lt;annotationGroup id=&quot;Grp2&quot; showBelow=&quot;1&quot; x=&quot;$chartCenterX&quot; y=&quot;$chartCenterY&quot;&gt;<br />      &lt;annotation type=&quot;circle&quot; radius=&quot;12&quot; color=&quot;012A46&quot;/&gt;<br />    &lt;/annotationGroup&gt;<br />  &lt;/annotations&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+	  <div id="tabZI2" class="tab_content" style="background-color:#FFFFFF !important;">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+<strong>    "manageResize": "1",
+    "origW": "270",
+    "origH": "270",
+</strong>    "bgcolor": "333333",
+    "bgalpha": "100",
+    "gaugestartangle": "90",
+    "gaugeendangle": "-270",
+    "lowerlimit": "0",
+    "upperlimit": "12",
+    "lowerlimitdisplay": " ",
+    "upperlimitdisplay": "12",
+    "majortmnumber": "12",
+    "majortmthickness": "3",
+    "majortmcolor": "FFFFFF",
+    "majortmheight": "7",
+    "minortmnumber": "4",
+    "minortmcolor": "FFFFFF",
+    "minortmheight": "4",
+    "placevaluesinside": "1",
+    "tickvaluestep": "3",
+    "tickvaluedistance": "20",
+    "gaugeouterradius": "95",
+    "gaugeinnerradius": "95",
+    "showshadow": "0",
+    "pivotradius": "6",
+    "pivotfillcolor": "FFFFFF",
+    "annrenderdelay": "0"
+  },
+  "dials": {
+    "dial": [
+      {
+        "value": "5",
+        "color": "FFFFFF",
+        "basewidth": "3",
+        "topwidth": "1",
+        "radius": "70",
+        "rearextension": "12"
+      }
+    ]
+  },
+  "annotations": {
+    "groups": [
+      {
+        "id": "Grp1",
+        "x": "$chartCenterX",
+        "y": "$chartCenterY",		
+        "showbelow": "1",
+        "items": [
+          {
+            "type": "circle",
+            "color": "EBF0F4,85898C,484C4F,C5C6C8",
+            "fillratio": "30,30,30,10",
+            "fillangle": "270",
+            "radius": "120",
+            "fillpattern": "linear"
+          },
+          {
+            "type": "circle",
+            "color": "8E8E8E,83878A,E7E7E7",
+            "fillangle": "270",
+            "radius": "105",
+            "fillpattern": "linear"
+          },
+          {
+            "type": "circle",
+            "color": "07476D,19669E,186AA6,D2EAF6",
+            "fillratio": "5,45,40,10",
+            "fillangle": "270",
+            "radius": "103",
+            "fillpattern": "linear"
+          },
+          {
+            "type": "circle",
+            "color": "07476D,19669E,07476D",
+            "fillratio": "5,90,5",
+            "fillangle": "270",
+            "radius": "100",
+            "fillpattern": "linear"
+          }
+        ]
+      },
+      {
+        "id": "Grp2",
+        "x": "$chartCenterX",
+        "y": "$chartCenterY",		
+        "showbelow": "1",
+        "items": [
+          {
+            "type": "circle",
+            "radius": "12",
+            "color": "012A46"
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+	  </div></div></div>
+  <div style="clear:both"></div>
+<p>When you <a href="../../Code/DynamicResizing/Annotation_RenderedWithUnknownSizeFix.html" target="_blank">run</a> the modified sample, you will notice&nbsp;that the annotations (along with the clock) now fit proportionately  to any given initial dimensions.</p>
+<p><img src="Images/Ann_DR0064.jpg"  /></p>
+<p><img src="Images/Ann_DR0063.jpg"  /></p>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"> <a name="311" id="311"></a>Note for users of FusionWidgets 3.1.1 or earlier:</td>
+  </tr>
+  <tr>
+      <td valign="top">
+          <p>If you are already using the Auto Scale feature of FusionWidgets v3.1.1 (setting <span class="codeInline">autoScale='1' </span>in the <span class="codeInline">&lt;chart&gt;</span>, <span class="codeInline">&lt;annotations&gt;</span> or <span class="codeInline">&lt;annotationGroup&gt;</span> element) to auto-scale annotations, you can continue to use it in FusionWidgets XT without facing any problem. <br />
+              <br />
+              However, if you want to use the dynamic resizing feature and macros introduced in FusionWidgets XT, you can set <span class="codeInline">manageResize='1'</span>. Also, please note that you may require to tweak your existing annotations to make them work (without getting distorted) in dynamically resizable charts. While tweaking, please remember the following:</p>
+          <ol>
+              <li>Position the annotation groups  (using <span class="codeInline">x</span>, <span class="codeInline">y</span>, <span class="codeInline">xShift</span> and <span class="codeInline">yShift</span> attributes) with respect to the other elements of the gauge. For example, align the annotation groups' origins with  center of an angular gauge.</li>
+              <li>Position an  annotation element relative to the position of  its annotation group. </li>
+              <li>Make proper use of the newly introduced <a href="macros.html">macros for annotations</a> to set dynamic positions to the annotation groups and individual annotation elements.</li>
+              <li><strong>Unconstrained scaling on circle, arc and  polygons will not be   applied </strong>while using the  dynamic resizing feature. </li>
+            </ol>
+        </td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("JavaScript API|JSAPI.html","Annotations XML Sheet|XMLAPI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

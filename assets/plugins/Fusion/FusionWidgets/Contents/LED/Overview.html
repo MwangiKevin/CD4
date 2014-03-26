@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>LED Gauge - Overview</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "LED gauges", "Introduction" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">LED Gauges </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>An LED Gauge is essentially similar to an angular gauge chart but with a   horizontal/vertical scale instead of a circular one. It uses bars that change color, or   marks out different regions in different colors to indicate whether data is   within preset parameters. The colors can be selected to suit the application   such as green for satisfactory, yellow for caution and red for alarm. </p>
+      <p>LED Gauges are of two types - horizontal and vertical. The horizontal LED   gauge has the bar placed horizontally while the vertical LED has it vertically. </p>
+      <p>LED Gauges are used in financial applications like management dashboards,   factory operation output reports etc.</p>
+      <p>A few outputs of FusionWidgets XT LED Gauge can be reproduced as under:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table border="0" cellspacing="5" cellpadding="5">
+      <tr>
+        <td width="50%"><div align="center"><img src="Images/G_VLed_1.gif" width="164" height="172" /></div></td>
+        <td><div align="center"><img src="Images/G_VLed_2.gif" width="97" height="175" /></div></td>
+      </tr>
+      <tr>
+        <td width="50%"><div align="center"><img src="Images/G_HLed_1.gif" width="236" height="70" /></div></td>
+        <td><div align="center"><img src="Images/G_HLed_2.gif" width="245" height="77" /></div></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The chart is defined by minimum and maximum values. Within that scale you can   create various ranges to classify your data. Its purpose is to classify that   value as belonging to a predetermined range. For example, you might define a   range called &ldquo;Best&rdquo; that consists of values between 60 and 100. Or you might   create a range called &ldquo;Weak&rdquo; that consists of values between 30 and 60. For each   range, you define a color, which helps visually distinguish the ranges from each   other.</p>
+      <p>To create an LED Gauge, you need to:</p>
+      <ul>
+        <li>Decide the <a href="Create.html#scale">lower and upper limits</a> of chart </li>
+        <li>Decide the <a href="Configurations.html">visual properties</a> of the chart </li>
+        <li>Decide the <a href="Elements.html#color">color range</a> for the chart. That is, suppose you are plotting a   volume meter chart, the color range could be:<br />
+          0-60 dB &ndash; Faint &ndash;   Green<br />
+          60-90 dB &ndash; Moderate - Yellow<br />
+          90-120 dB &ndash; Loud - Red </li>
+        <li>Decide the chart <a href="Elements.html#value">value</a></li>
+      </ul><br/>
+	  
+    Let&rsquo;s study the anatomy of an LED gauge before we move to the XML structure of   the chart.</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Linear gauge XML Sheet|../Linear/XMLAPI.html","Elements of the LED gauge|Elements.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

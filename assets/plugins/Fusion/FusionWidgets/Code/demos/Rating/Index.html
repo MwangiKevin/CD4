@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+      	<title>FusionWidgets XT - Edit Mode Demo</title>
+        <link href="../../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/jquery.ui/jquery-ui.css"/>
+        <script type="text/javascript" src="../../../Charts/FusionCharts.js"></script>
+		<script type="text/javascript" src="../../assets/jquery.ui/jquery.min.js"></script>
+		<script type="text/javascript" src="../../assets/jquery.ui/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+        <!--[if IE 6]>
+		<script type="text/javascript" src="../../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+
+        <style type="text/css">
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+			.headerbg, .headerbg td , .headerbg th{ background-color:#eee; color:#000 !important;}
+			table, table tr td { padding:0 !important; margin:0 !important; line-height:21px !important; font-size:12px !important;}
+						
+        </style>
+
+
+
+<script language="javascript">
+	//FC_ChartUpdated method is called when user has changed pointer value.
+	function FC_ChartUpdated(DOMId){
+		//Check if DOMId is any of the linear gauges
+		if (DOMId=="ChId1" || DOMId=="ChId2" || DOMId=="ChId3" || DOMId=="ChId4"){
+			//Get reference to each of the chart and calculate the sum of values 
+			var chart1Ref = getChartFromId("ChId1");
+			var chart2Ref = getChartFromId("ChId2");
+			var chart3Ref = getChartFromId("ChId3");
+			var chart4Ref = getChartFromId("ChId4");
+			//Get the value and average them
+			var ratingValue = (chart1Ref.getData(1) + chart2Ref.getData(1) + chart3Ref.getData(1) + chart4Ref.getData(1))/4;
+			//Round to 1 decimal place
+			ratingValue = Math.round(ratingValue*10)/10;
+			//Convey it to angular gauge
+			var angularRef = getChartFromId("ChIdA");
+			angularRef.setData(1,ratingValue);
+		}
+	}	
+</script>
+<style type="text/css">
+.text{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	color:#004D69;
+}
+.style1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#004D69;
+}
+.style3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color:#FFFFFF;
+}
+.style4 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color:#004D69;}
+</style>
+</head>
+<body topmargin="30">
+
+    
+
+        <div id="wrapper">
+
+            <div id="header">
+                
+
+               <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com/widgets" target="_blank"><img src="../../assets/ui/images/fwxt-logo.png" width="73" height="74" alt="FusionWidgets XT logo" /></a></div>
+				 <h1 class="brand-name">FusionWidgets XT</h1>
+                 <h1 class="logo-text">Rating Meter</h1>
+            </div>
+			
+			 <div class="content-area">
+                <div id="content-area-inner-main">
+                    <p class="text" align="center">The rating meter is a new and interactive way to rate products. It breaks down the overall rating of a product into individual parameters like product quality, documentation and support. Based on the rating you give to each of these parameters, the overall rating is updated real-time and displayed alongside.</p>
+					<div id="messageBox" style="margin-left:130px; margin-right:130px; display:none;"></div>
+					<p>&nbsp;</p>
+
+                    <div class="gen-chart-render" style="margin-left:65px;">
+<table width="760" border="0" align="center" cellpadding="0" cellspacing="0"  style='border:#004D69 1px solid;'>
+  <tr height='40' bgcolor='#004D69'>
+    <td colspan="2" align="center">
+       <p class="style3">Rating Meter </p>
+      </td>
+  </tr>
+  <tr height='30' >
+    <td width="380" align="center" bgcolor="#eeeeee" class="style4" >Drag the red pointers below to rate us </td>
+    <td width="380" bgcolor="#eeeeee" class="style4"><div align="center">Overall rating given by you </div></td>
+  </tr>
+  <tr>
+    <td width="380" align="center" style="background-color:#004D69;">
+		<div id="chart1div"></div>
+		<script type="text/javascript">
+
+		  	var productQData = "<chart  manageResize='1' origW='380' origH='80'  animation='0' editMode='1' lowerLimit='0' upperLimit='5' decimals='1' showshadow='0' \n\
+				charttopmargin='8' chartbottommargin='10' chartleftmargin='30' chartrightmargin='30' \n\
+				placeticksinside='1' placevaluesinside='1' pointerontop='0' ticksbelowgauge='0' valuepadding='0' \n\
+				majorTMNumber='5' minorTMNumber='4' minortmheight='4' majortmheight='8' tickValueDistance='-2' \n\
+				majortmcolor='264C69' majortmthickness='.5' minortmthickness='.5' \n\
+				pointerradius='5' pointerbgcolor='E00000' pointerbordercolor='E00000' showgaugeborder='0' gaugeFillMix='' gaugeFillAlpha='0' \n\
+				basefontcolor='FFFFFF' bgColor='004D69' bgAlpha='100' showBorder='1' borderColor='004D69' borderAlpha='100'>\n\
+				<colorRange> \n\
+						<color minValue='0' maxValue='5' alpha='0'/>\n\
+				</colorRange>\n\
+				<value>0</value>\n\
+				<annotations>\n\
+					<annotationGroup id='Grp1' showBelow='1' >\n\
+						<!--The gradient rectangle which replaces the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='004D69' />\n\
+						<!--Border around the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeEndY+5' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='055472,1D89AF' fillAngle='90'/>\n\
+						<!--The extended deep blue rectangle-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$gaugeEndY+3' radius='8' color='09DBFE,32A6CF,0177A7' fillRatio='20,40,40' fillAngle='90'/>\n\
+						<!--Gauge reflection-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-15' y='$gaugeStartY+4' toX='$gaugeEndX+15' toY='$gaugeEndY+1' radius='8' color='09DBFE,32A6CF,C1DFEA' fillRatio='20,40,40' fillAngle='90'/>\n\
+					</annotationGroup>\n\
+					<annotationGroup id='Grp2' showBelow='1'>\n\
+						<annotation type='text' label='Product Quality' size='12' color='004D69' bold='1' x='190' y='43'/>\n\
+					</annotationGroup>\n\
+				</annotations>\n\
+				<styles>\n\
+					<definition>\n\
+						<style name='TTipFont' type='Font' color='FFFFFF' bgColor='004D69' borderColor='0C3443'/>\n\
+					</definition>\n\
+					<application>\n\
+						<apply toObject='TOOLTIP' styles='TTipFont' />\n\
+					</application>	\n\
+				</styles>\n\
+			</chart>";
+		  
+		   var chart1 = new FusionCharts({ swfUrl: "../../../Charts/HLinearGauge.swf",  width: "380", height: "80", id: "ChId1", renderAt: "chart1div", dataSource: productQData, dataFormat: "xml"});
+		   chart1.setTransparent(true);
+		   chart1.render(); 
+		</script>
+       </td>
+    <td width="380" rowspan="4" style="background-color:#004D69;">
+	<div id="chartAdiv"></div>
+
+		  <script type="text/javascript">
+		  
+		  
+		  
+		  var totalData = "<chart manageResize='1' origW='380' origH='320' bgColor='004D69' bgAlpha='100' showBorder='1' borderColor='004D69' borderAlpha='100'  \n\
+		  gaugestartAngle='235' gaugeendAngle='-55' lowerLimit='0' upperLimit='5' majorTMNumber='6' majorTMThickness='5' majorTMColor='F48900' majorTMHeight='15' \n\
+		  minorTMNumber='9' minorTMThickness='2' minorTMColor='FFFFFF' minorTMHeight='13' placeValuesInside='1' gaugeOuterRadius='140' gaugeInnerRadius='85%' \n\
+		  baseFontColor='FFFFFF' baseFont='Impact' baseFontSize='30' showShadow='0' \n\
+		  pivotRadius='20' pivotFillColor='00394F,004D69' pivotFillType='linear' pivotFillRatio='50,50' pivotFillAngle='240' annRenderDelay='0' defaultAnimation='0' showValue='1'>\n\
+				<dials>\n\
+					<dial value='0' color='F48900' borderColor='F48900' baseWidth='25' topWidth='1' radius='85'  valueY='270'/>\n\
+				</dials>\n\
+				<trendpoints>\n\
+						<point startValue='4' endValue='5'  radius='140' innerRadius='0' color='F48900' alpha='25' showBorder='0'/>\n\
+				</trendpoints>\n\
+				<annotations autoScale='0'>\n\
+					<annotationGroup id='Grp1' showBelow='0' xScale='200' yScale='120' x='$chartCenterX' y='$chartCenterY'>\n\
+						<annotation type='circle' x='0' y='8' color='FFFFFF' alpha='15' radius='7' />\n\
+					</annotationGroup>\n\
+				</annotations>\n\
+				<styles>\n\
+					<definition>\n\
+						<style name='pivotGlow' type='glow' color='F48900' blurX='15' blurY='15' alpha='60'/>\n\
+						<style name='circleBlur' type='blur'/>\n\
+						<style name='TTipFont' type='font' color='F48900' bgColor='00394F' borderColor='F48900' font='Verdana' size='10' />\n\
+						<style name='valueFont' type='font' color='F48900' />\n\
+					</definition>\n\
+					<application>\n\
+						<apply toObject='PIVOT' styles='pivotGlow' />\n\
+						<apply toObject='Grp1' styles='circleBlur' />\n\
+						<apply toObject='TOOLTIP' styles='TTipFont' />\n\
+						<apply toObject='VALUE' styles='valueFont' />\n\
+					</application>\n\
+				</styles>\n\
+			</chart>";
+		   var chartA = new FusionCharts({ swfUrl : "../../../Charts/AngularGauge.swf",  width: "380", height: "320", id : "ChIdA", renderAt : "chartAdiv", dataSource : totalData, dataFormat : "xml"});
+		   chartA.setTransparent(true);
+		   chartA.render(); 
+
+		</script>
+        
+	</td>
+  </tr>
+  <tr>
+    <td width="380" style="background-color:#004D69;">
+		<div id="chart2div"></div>
+
+		  <script type="text/javascript">
+		  
+		   var featuresData = "<chart manageResize='1' origW='380' origH='80' animation='0' editMode='1' lowerLimit='0' upperLimit='5' decimals='1' showshadow='0'\n\
+				charttopmargin='8' chartbottommargin='10' chartleftmargin='30' chartrightmargin='30'\n\
+				placeticksinside='1' placevaluesinside='1' pointerontop='0' ticksbelowgauge='0' valuepadding='0' \n\
+				majorTMNumber='5' minorTMNumber='4' minortmheight='4' majortmheight='8' tickValueDistance='-2' \n\
+				majortmcolor='222A30' majortmthickness='.5' minortmthickness='.5'\n\
+				pointerradius='5' pointerbgcolor='E00000' pointerbordercolor='E00000' showgaugeborder='0' gaugeFillMix='' gaugeFillAlpha='0' \n\
+				basefontcolor='FFFFFF' bgColor='004D69' bgAlpha='100' showBorder='1' borderColor='004D69' borderAlpha='100'>\n\
+				<colorRange> \n\
+						<color minValue='0' maxValue='5' alpha='0'/>\n\
+				</colorRange>\n\
+				<value>0</value>\n\
+				<annotations>\n\
+					<annotationGroup id='Grp1' showBelow='1' >\n\
+						<!--The gradient rectangle which replaces the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='004D69' />\n\
+						<!--Border around the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeEndY+5' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='055472,1D89AF' fillAngle='90'/>\n\
+						<!--The extended deep blue rectangle-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$gaugeEndY+3' radius='8' color='09DBFE,32A6CF,0177A7' fillRatio='20,40,40' fillAngle='90'/>\n\
+						<!--Gauge reflection-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-15' y='$gaugeStartY+4' toX='$gaugeEndX+15' toY='$gaugeEndY+1' radius='8' color='09DBFE,32A6CF,C1DFEA' fillRatio='20,40,40' fillAngle='90'/>\n\
+					</annotationGroup>\n\
+					<annotationGroup id='Grp2' showBelow='1'>\n\
+						<annotation type='text' label='Features' size='12' color='004D69' bold='1' x='190' y='43'/>\n\
+					</annotationGroup>\n\
+				</annotations>\n\
+				<styles>\n\
+					<definition>\n\
+						<style name='TTipFont' type='Font' color='FFFFFF' bgColor='004D69' borderColor='0C3443'/>\n\
+					</definition>\n\
+					<application>\n\
+						<apply toObject='TOOLTIP' styles='TTipFont' />\n\
+					</application>	\n\
+				</styles>\n\
+			</chart>";
+		  
+		   var chart2 = FusionCharts.render({ swfUrl : "../../../Charts/HLinearGauge.swf",  width: "380", height: "80", id : "ChId2", renderAt : "chart2div", dataSource : featuresData, dataFormat : "xml"});
+		   chart2.setTransparent(true);
+		   chart2.render(); 
+
+		</script>
+        </td>
+  </tr>
+  <tr>
+    <td width="380" style="background-color:#004D69;">
+		<div id="chart3div"></div>
+
+		  <script type="text/javascript">
+		   
+		  var documentationData = "<chart  manageResize='1' origW='380' origH='80' animation='0' editMode='1' lowerLimit='0' upperLimit='5' decimals='1' showshadow='0'\n\
+				charttopmargin='8' chartbottommargin='10' chartleftmargin='30' chartrightmargin='30'\n\
+				placeticksinside='1' placevaluesinside='1' pointerontop='0' ticksbelowgauge='0' valuepadding='0' \n\
+				majorTMNumber='5' minorTMNumber='4' minortmheight='4' majortmheight='8' tickValueDistance='-2' \n\
+				majortmcolor='222A30' majortmthickness='.5' minortmthickness='.5'\n\
+				pointerradius='5' pointerbgcolor='E00000' pointerbordercolor='E00000' showgaugeborder='0' gaugeFillMix='' gaugeFillAlpha='0' \n\
+				basefontcolor='FFFFFF' bgColor='004D69' bgAlpha='100' showBorder='1' borderColor='004D69' borderAlpha='100'>\n\
+				<colorRange> \n\
+        	<color minValue='0' maxValue='5' alpha='0'/>\n\
+	</colorRange>\n\
+	<value>0</value>\n\
+	<annotations>\n\
+		<annotationGroup id='Grp1' showBelow='1' >\n\
+						<!--The gradient rectangle which replaces the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='004D69' />\n\
+						<!--Border around the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeEndY+5' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='055472,1D89AF' fillAngle='90'/>\n\
+						<!--The extended deep blue rectangle-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$gaugeEndY+3' radius='8' color='09DBFE,32A6CF,0177A7' fillRatio='20,40,40' fillAngle='90'/>\n\
+						<!--Gauge reflection-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-15' y='$gaugeStartY+4' toX='$gaugeEndX+15' toY='$gaugeEndY+1' radius='8' color='09DBFE,32A6CF,C1DFEA' fillRatio='20,40,40' fillAngle='90'/>\n\
+		</annotationGroup>\n\
+		<annotationGroup id='Grp2' showBelow='1'>\n\
+			<annotation type='text' label='Documentation' size='12' color='004D69' bold='1' x='190' y='43' />\n\
+		</annotationGroup>\n\
+	</annotations>\n\
+	<styles>\n\
+		<definition>\n\
+			<style name='TTipFont' type='Font' color='FFFFFF' bgColor='004D69' borderColor='0C3443'/>\n\
+		</definition>\n\
+		<application>\n\
+			<apply toObject='TOOLTIP' styles='TTipFont' />\n\
+		</application>	\n\
+	</styles>\n\
+</chart>";
+		  
+		   var chart3 = new FusionCharts({ swfUrl : "../../../Charts/HLinearGauge.swf",  width: "380", height: "80", id : "ChId3", renderAt : "chart3div", dataSource : documentationData, dataFormat : "xml" });
+		   chart3.setTransparent(true);
+		   chart3.render(); 
+
+		</script>
+       </td>
+  </tr>
+  <tr>
+    <td width="380" style="background-color:#004D69;">
+		<div id="chart4div"></div>
+		
+		  <script type="text/javascript">
+		  	var supportData ="<chart  manageResize='1' origW='380' origH='80' animation='0' editMode='1' lowerLimit='0' upperLimit='5' decimals='1' showshadow='0'\n\
+				charttopmargin='8' chartbottommargin='10' chartleftmargin='30' chartrightmargin='30'\n\
+				placeticksinside='1' placevaluesinside='1' pointerontop='0' ticksbelowgauge='0' valuepadding='0' \n\
+				majorTMNumber='5' minorTMNumber='4' minortmheight='4' majortmheight='8' tickValueDistance='-2' \n\
+				majortmcolor='222A30' majortmthickness='.5' minortmthickness='.5'\n\
+				pointerradius='5' pointerbgcolor='E00000' pointerbordercolor='E00000' showgaugeborder='0' gaugeFillMix='' gaugeFillAlpha='0' \n\
+				basefontcolor='FFFFFF' bgColor='004D69' bgAlpha='100' showBorder='1' borderColor='004D69' borderAlpha='100'>\n\
+				<colorRange> \n\
+						<color minValue='0' maxValue='5' alpha='0'/>\n\
+				</colorRange>\n\
+				<value>0</value>\n\
+				<annotations>\n\
+					<annotationGroup id='Grp1' showBelow='1' >\n\
+						<!--The gradient rectangle which replaces the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='004D69' />\n\
+						<!--Border around the gauge-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeEndY+5' toX='$gaugeEndX+17' toY='$chartEndY-8' radius='8' color='055472,1D89AF' fillAngle='90'/>\n\
+						<!--The extended deep blue rectangle-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-17' y='$gaugeStartY+2' toX='$gaugeEndX+17' toY='$gaugeEndY+3' radius='8' color='09DBFE,32A6CF,0177A7' fillRatio='20,40,40' fillAngle='90'/>\n\
+						<!--Gauge reflection-->\n\
+						<annotation type='rectangle' x='$gaugeStartX-15' y='$gaugeStartY+4' toX='$gaugeEndX+15' toY='$gaugeEndY+1' radius='8' color='09DBFE,32A6CF,C1DFEA' fillRatio='20,40,40' fillAngle='90'/>\n\
+					</annotationGroup>\n\
+					<annotationGroup id='Grp2' showBelow='1'>\n\
+						<annotation type='text' label='Support' size='12' color='004D69' bold='1' x='190' y='43' />\n\
+					</annotationGroup>\n\
+				</annotations>\n\
+				<styles>\n\
+					<definition>\n\
+						<style name='TTipFont' type='Font' color='FFFFFF' bgColor='004D69' borderColor='0C3443'/>\n\
+					</definition>\n\
+					<application>\n\
+						<apply toObject='TOOLTIP' styles='TTipFont' />\n\
+					</application>\n\
+				</styles>\n\
+			</chart>";
+		  
+		   var chart4 = new FusionCharts({ swfUrl : "../../../Charts/HLinearGauge.swf",  width: "380", height: "80", id : "ChId4", renderAt : "chart4div", dataSource : supportData, dataFormat : "xml" });
+  		   chart4.setTransparent(true);
+		   chart4.render(); 
+
+		</script>
+        </td>
+  </tr>
+  <tr height='30'>
+    <td colspan="2" bgcolor="#f1f1f1" class="style1"><div align="center">Thank you for your feedback! </div></td>
+  </tr>
+</table>
+<br />
+ </div>
+            </div>
+			<div id="footer">
+                <ul>
+                    <li><a href="../../../Contents/assets/ui/demos.html"><span>&laquo; Back to list of Demos</span></a></li>
+                </ul>
+            </div>
+        </div>
+		 <script type="text/javascript"><!--//
+			$(document).ready ( function() {
+			   showConditionalMessage( "Your browser does not seem to have Flash Player support. JavaScript charts are rendered instead.", isJSRenderer(chart1) );
+			});	
+		// -->
+		</script>
+    </div></body>
+</html>

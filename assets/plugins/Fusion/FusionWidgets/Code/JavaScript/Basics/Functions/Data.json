@@ -1,0 +1,29 @@
+{
+  "chart": {
+    "caption": "Top 5 Sales Person",
+    "numberprefix": "$",
+    "issliced": "1"
+  },
+  "data": [
+    {
+      "label": "Alex",
+      "value": "25000"
+    },
+    {
+      "label": "Mark",
+      "value": "35000"
+    },
+    {
+      "label": "David",
+      "value": "42300"
+    },
+    {
+      "label": "Graham",
+      "value": "65300"
+    },
+    {
+      "label": "John",
+      "value": "91300"
+    }
+  ]
+}

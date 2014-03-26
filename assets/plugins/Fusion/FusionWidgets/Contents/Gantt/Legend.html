@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Gantt Chart - Adding Legend</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Gantt chart|Overview.html", "Adding Legend" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Adding Legend </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>FusionWidgets XT Gantt chart allows you to add legend with custom keys &amp; colors to your chart. This is useful when you've used some color encoding in your chart and need to explain the color keys. Here, we'll see an example. </p>    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="addlegend"></a>Adding legend to our &quot;Projected vs. Actual&quot; Gantt </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Recall the chart that we had built in the section <span class="codeInline">Multi-tasked Processes</span> &gt; <span class="codeInline">Showing projected vs actual dates</span>. The chart looked as under: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_TaskC_MultiTask2.gif" width="592" height="378" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, we've used color coding to distinguish between actual dates and projected dates. In the chart above, we've repeatedly used the labels &quot;Planned&quot; and &quot;Actual&quot; to show what color indicates what. However, there's a better way to do this using the legend. </p>
+    <p>We can have a chart as under with the legend: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Legend1.gif" width="589" height="378" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The XML for the chart can be listed as under: </p>    </td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette=&quot;2&quot; caption=&quot;Construction Timeline&quot; dateFormat=&quot;dd/mm/yyyy&quot; outputDateFormat=&quot;ddds mns&quot;&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;1/5/2008&quot; end=&quot;31/8/2008&quot; label=&quot;Months&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;1/5/2008&quot; end=&quot;31/5/2008&quot; label=&quot;May&quot;/&gt;<br />    &lt;category start=&quot;1/6/2008&quot; end=&quot;30/6/2008&quot; label=&quot;June&quot;/&gt;<br />    &lt;category start=&quot;1/7/2008&quot; end=&quot;31/7/2008&quot; label=&quot;July&quot;/&gt;<br />    &lt;category start=&quot;1/8/2008&quot; end=&quot;31/8/2008&quot; label=&quot;August&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;processes headerText=&quot;Task&quot; headerFontSize=&quot;16&quot; fontSize=&quot;12&quot;&gt;<br />    &lt;process label=&quot;Terrace&quot; id=&quot;TRC&quot;/&gt;<br />    &lt;process label=&quot;Inspection&quot; id=&quot;INS&quot;/&gt;<br />    &lt;process label=&quot;Wood Work&quot; id=&quot;WDW&quot;/&gt;<br />    &lt;process label=&quot;Interiors&quot; id=&quot;INT&quot;/&gt;<br />  &lt;/processes&gt;<br />  &lt;tasks showEndDate=&quot;1&quot;&gt;<br />    &lt;task processId=&quot;TRC&quot; start=&quot;5/5/2008&quot; end=&quot;2/6/2008&quot; id=&quot;5-1&quot; color=&quot;4567aa&quot; height=&quot;25%&quot; topPadding=&quot;20%&quot;/&gt;<br />    &lt;task processId=&quot;TRC&quot; start=&quot;10/5/2008&quot; end=&quot;2/6/2008&quot; id=&quot;5&quot; color=&quot;EEEEEE&quot; height=&quot;25%&quot; topPadding=&quot;55%&quot;/&gt;<br />    &lt;task processId=&quot;INS&quot; start=&quot;11/5/2008&quot; end=&quot;12/6/2008&quot; id=&quot;6-1&quot; color=&quot;4567aa&quot; height=&quot;25%&quot; topPadding=&quot;20%&quot;/&gt;<br />    &lt;task processId=&quot;INS&quot; start=&quot;13/5/2008&quot; end=&quot;19/6/2008&quot; id=&quot;6&quot; color=&quot;EEEEEE&quot; height=&quot;25%&quot; topPadding=&quot;55%&quot;/&gt;<br />    &lt;task processId=&quot;WDW&quot; start=&quot;1/6/2008&quot; end=&quot;12/7/2008&quot; id=&quot;7-1&quot; color=&quot;4567aa&quot; height=&quot;25%&quot; topPadding=&quot;20%&quot;/&gt;<br />    &lt;task processId=&quot;WDW&quot; start=&quot;2/6/2008&quot; end=&quot;19/7/2008&quot; id=&quot;7&quot; color=&quot;EEEEEE&quot; height=&quot;25%&quot; topPadding=&quot;55%&quot;/&gt;<br />    &lt;task processId=&quot;INT&quot; start=&quot;1/6/2008&quot; end=&quot;12/8/2008&quot; id=&quot;8-1&quot; color=&quot;4567aa&quot; height=&quot;25%&quot; topPadding=&quot;20%&quot;/&gt;<br />    &lt;task processId=&quot;INT&quot; start=&quot;1/6/2008&quot; end=&quot;19/8/2008&quot; Id=&quot;8&quot; color=&quot;EEEEEE&quot; height=&quot;25%&quot; topPadding=&quot;55%&quot;/&gt;<br />  &lt;/tasks&gt;<br />  &lt;legend&gt;<br />    &lt;item label=&quot;Planned&quot; color=&quot;4567aa&quot;/&gt;<br />    &lt;item label=&quot;Actual&quot; color=&quot;999999&quot;/&gt;<br />  &lt;/legend&gt;<br />  &lt;styles&gt;<br />    &lt;definition&gt;<br />      &lt;style type=&quot;font&quot; name=&quot;legendFont&quot; size=&quot;13&quot;/&gt;<br />    &lt;/definition&gt;<br />    &lt;application&gt;<br />      &lt;apply toObject=&quot;Legend&quot; styles=&quot;legendFont&quot;/&gt;<br />    &lt;/application&gt;<br />  &lt;/styles&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "palette": "2",
+    "caption": "Construction Timeline",
+    "dateformat": "dd/mm/yyyy",
+    "outputdateformat": "ddds mns"
+  },
+  "categories": [
+    {
+      "category": [
+        {
+          "start": "1/5/2008",
+          "end": "31/8/2008",
+          "label": "Months"
+        }
+      ]
+    },
+    {
+      "category": [
+        {
+          "start": "1/5/2008",
+          "end": "31/5/2008",
+          "label": "May"
+        },
+        {
+          "start": "1/6/2008",
+          "end": "30/6/2008",
+          "label": "June"
+        },
+        {
+          "start": "1/7/2008",
+          "end": "31/7/2008",
+          "label": "July"
+        },
+        {
+          "start": "1/8/2008",
+          "end": "31/8/2008",
+          "label": "August"
+        }
+      ]
+    }
+  ],
+  "processes": {
+    "headertext": "Task",
+    "headerfontsize": "16",
+    "fontsize": "12",
+    "process": [
+      {
+        "label": "Terrace",
+        "id": "TRC"
+      },
+      {
+        "label": "Inspection",
+        "id": "INS"
+      },
+      {
+        "label": "Wood Work",
+        "id": "WDW"
+      },
+      {
+        "label": "Interiors",
+        "id": "INT"
+      }
+    ]
+  },
+  "tasks": {
+    "showenddate": "1",
+    "task": [
+      {
+        "processid": "TRC",
+        "start": "5/5/2008",
+        "end": "2/6/2008",
+        "id": "5-1",
+        "color": "4567aa",
+        "height": "25%",
+        "toppadding": "20%"
+      },
+      {
+        "processid": "TRC",
+        "start": "10/5/2008",
+        "end": "2/6/2008",
+        "id": "5",
+        "color": "EEEEEE",
+        "height": "25%",
+        "toppadding": "55%"
+      },
+      {
+        "processid": "INS",
+        "start": "11/5/2008",
+        "end": "12/6/2008",
+        "id": "6-1",
+        "color": "4567aa",
+        "height": "25%",
+        "toppadding": "20%"
+      },
+      {
+        "processid": "INS",
+        "start": "13/5/2008",
+        "end": "19/6/2008",
+        "id": "6",
+        "color": "EEEEEE",
+        "height": "25%",
+        "toppadding": "55%"
+      },
+      {
+        "processid": "WDW",
+        "start": "1/6/2008",
+        "end": "12/7/2008",
+        "id": "7-1",
+        "color": "4567aa",
+        "height": "25%",
+        "toppadding": "20%"
+      },
+      {
+        "processid": "WDW",
+        "start": "2/6/2008",
+        "end": "19/7/2008",
+        "id": "7",
+        "color": "EEEEEE",
+        "height": "25%",
+        "toppadding": "55%"
+      },
+      {
+        "processid": "INT",
+        "start": "1/6/2008",
+        "end": "12/8/2008",
+        "id": "8-1",
+        "color": "4567aa",
+        "height": "25%",
+        "toppadding": "20%"
+      },
+      {
+        "processid": "INT",
+        "start": "1/6/2008",
+        "end": "19/8/2008",
+        "id": "8",
+        "color": "EEEEEE",
+        "height": "25%",
+        "toppadding": "55%"
+      }
+    ]
+  },
+  "legend": {
+    "item": {
+      "label": "Actual",
+      "color": "999999"
+    }
+  },
+  "styles": {
+    "definition": [
+      {
+        "type": "font",
+        "name": "legendFont",
+        "size": "13"
+      }
+    ],
+    "application": [
+      {
+        "toobject": "Legend",
+        "styles": "legendFont"
+      }
+    ]
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, we've:</p>
+      <ul>
+        <li>Removed the label for each individual task</li>
+        <li>Added a legend containing two items and showing the intended colors. To add legend we use the <span class="codeInline">&lt;legend&gt;</span> element and to add each item we use <span class="codeInline">&lt;item label='Label of item' color='Hex code without #' /&gt;</span> </li>
+        <li>Customized the legend font using <a href="../Styles/Styles.html"><strong>Styles</strong></a> to show a bigger font size </li>
+      </ul>    
+    </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="legendproperties"></a>Customizing legend properties </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>There are a lot of legend properties which can be customized using the <span class="codeInline">&lt;chart&gt;</span> element attributes.</p>
+      <p>You can add a caption to legend by setting:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart legendCaption='Color Key : ' ..&gt;</pre></div>
+	<div id="tab4" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot;:{&quot;legendcaption&quot;:&quot;Color Key :&quot; } }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This results in:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Legend2.gif" width="281" height="46" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can customize the cosmetics using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... legendBorderThickness='2' legendBorderAlpha='50' legendBgColor='e1f5ff' legendBgAlpha='20' legendShadow='0' ...&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot;:{ &quot;legendborderthickness&quot;:&quot;2&quot;, &quot;legendborderalpha&quot;:&quot;50&quot;, &quot;legendbgcolor&quot;:&quot;e1f5ff&quot;, &quot;legendbgalpha&quot;:&quot;20&quot;, &quot;legendshadow&quot;:&quot;0&quot; } }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This results in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Legend3.gif" width="275" height="38" /></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Adding Trendlines|Trendline.html","JSON Data Format|JSONFormat.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>
