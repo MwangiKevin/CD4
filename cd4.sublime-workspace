@@ -400,38 +400,26 @@
 	"buffers":
 	[
 		{
-			"file": "application/modules/admin/controllers/users.php",
+			"file": "/C/wamp/www/lims/application/config/config.php",
 			"settings":
 			{
-				"buffer_size": 5358,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/modules/admin/views/users_view.php",
-			"settings":
-			{
-				"buffer_size": 14775,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/modules/admin/views/equipment_view.php",
-			"settings":
-			{
-				"buffer_size": 16800,
-				"line_ending": "Windows"
+				"buffer_size": 12848,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"git",
+				"Git: Init"
+			]
 		],
-		"width": 0.0
+		"width": 392.0
 	},
 	"console":
 	{
@@ -448,14 +436,27 @@
 	},
 	"file_history":
 	[
-		"/C/wamp/www/cd4/application/modules/admin/controllers/facilities.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/users_view.php",
+		"/C/Users/Mwas/Downloads/bootswatch (1).less",
+		"/C/Users/Mwas/Downloads/bootstrap.min.css",
+		"/C/wamp/www/lims/application/config/autoload.php",
+		"/C/Users/Mwas/Downloads/variables.less",
+		"/C/wamp/www/cd4/application/modules/admin/views/users_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/users.php",
+		"/C/wamp/www/cd4/assets/js/admin/users.js",
+		"/C/wamp/www/cd4/application/modules/admin/views/reports_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/equipment_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/equipment_view.php",
+		"/C/Users/Mwas/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Mwas/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/wamp/www/cd4/application/config/views_sql.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/admin.php",
 		"/C/wamp/www/cd4/application/modules/admin/controllers/equipment.php",
+		"/C/wamp/www/cd4/application/modules/admin/controllers/facilities.php",
 		"/C/wamp/www/cd4/application/modules/admin/views/facilities_view.php",
 		"/C/wamp/www/cd4/application/modules/admin/views/facilities_footer_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/uploads.php",
 		"/C/Users/Mwas/Downloads/partner_districts.sql",
-		"/C/wamp/www/cd4/application/modules/admin/views/equipment_footer_view.php",
-		"/C/wamp/www/cd4/application/modules/admin/views/equipment_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/equipment.php",
 		"/C/wamp/www/cd4/application/config/sql.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/equipment_view.php",
@@ -464,7 +465,6 @@
 		"/C/wamp/www/cd4/application/modules/poc/views/tests_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/tests.php",
 		"/C/wamp/www/cd4/application/core/MY_Model.php",
-		"/C/wamp/www/cd4/application/config/views_sql.php",
 		"/C/wamp/www/cd4/application/modules/admin/models/admin_model.php",
 		"/C/wamp/www/cd4/application/core/MY_Controller.php",
 		"/C/wamp/www/cd4/.gitignore",
@@ -522,14 +522,9 @@
 		"/C/wamp/www/cd4/application/modules/home/controllers/tests.php",
 		"/C/wamp/www/cd4/application/modules/home/controllers/reporting_cycle.php",
 		"/C/wamp/www/cd4/application/modules/home/views/equipment_view.php",
-		"/C/wamp/www/cd4/application/modules/admin/controllers/admin.php",
 		"/C/wamp/www/cd4/application/modules/home/views/stub_view.php",
-		"/C/wamp/www/cd4/application/modules/admin/views/users_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/reports_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/home_page_view.php",
-		"/C/wamp/www/cd4/application/modules/admin/controllers/users.php",
-		"/C/wamp/www/cd4/application/modules/admin/views/users_footer_view.php",
-		"/C/wamp/www/cd4/assets/js/admin/users.js",
 		"/C/wamp/www/cd4_kenya/cd4commodity.php",
 		"/C/wamp/www/cd4/application/config/sql1.php",
 		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/config_mp.cfg",
@@ -568,14 +563,7 @@
 		"/C/wamp/www/cd4/assets/plugins/pdf/Example10.php",
 		"/C/wamp/www/cd4/application/helpers/asset_helper.php",
 		"/C/wamp/www/cd4/assets/plugins/pdf/buildAll.cmd",
-		"/C/Users/Mwas/Desktop/sql.php",
-		"/C/wamp/www/cd4/application/modules/charts/views/error_table_view.php",
-		"/C/wamp/www/cd4/assets/plugins/Highcharts/examples/column-rotated-labels/index1.htm",
-		"/C/wamp/www/cd4/assets/plugins/Highcharts/js/modules/canvas-tools.js",
-		"/C/wamp/www/cd4/application/modules/poc/controllers/charts.php",
-		"/C/wamp/www/cd4/application/modules/test/controllers/test.php",
-		"/C/wamp/www/cd4/application/modules/poc/views/errors_footer_view2.php",
-		"/C/wamp/www/cd4/assets/css/nascop.css"
+		"/C/Users/Mwas/Desktop/sql.php"
 	],
 	"find":
 	{
@@ -593,6 +581,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"config",
 			"dis",
 			"regio",
 			"get_de",
@@ -719,8 +708,7 @@
 			"admin_model",
 			"array_merge",
 			"WHERE",
-			"get_current_user_id",
-			"myco"
+			"get_current_user_id"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -761,90 +749,31 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/modules/admin/controllers/users.php",
+					"file": "/C/wamp/www/lims/application/config/config.php",
 					"settings":
 					{
-						"buffer_size": 5358,
+						"buffer_size": 12848,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5152,
-								5152
-							],
-							[
-								5195,
-								5195
+								541,
+								541
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2273.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "application/modules/admin/views/users_view.php",
-					"settings":
-					{
-						"buffer_size": 14775,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10104,
-								10100
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2897.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "application/modules/admin/views/equipment_view.php",
-					"settings":
-					{
-						"buffer_size": 16800,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								16748,
-								16748
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3393.0,
+						"translation.y": 4017.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

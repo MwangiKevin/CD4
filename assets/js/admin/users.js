@@ -30,9 +30,9 @@ $().ready(function() {
 		"bProcessing": true,
 		"iDisplayLength": 10,
 	 	"bJQueryUI":true,
-		"sScrollX": "10%",
-		"sScrollXInner": "150%",
-		"bScrollCollapse": true,
+		// "sScrollX": "10%",
+		// "sScrollXInner": "150%",
+		// "bScrollCollapse": true,
 	});	
 
 });
