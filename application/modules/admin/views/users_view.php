@@ -39,13 +39,13 @@
 						$class = "";
 						$color = "";
 
-						if($user['status']==5){	
+						if($user['status']==4){	
 							$class = "glyphicon glyphicon-minus-sign";
 							$color = "#2d6ca2";
 						}elseif($user['status']==1){
 							$class = "glyphicon glyphicon-ok-sign";
 							$color = "#3e8f3e";							
-						}elseif($user['status']==4){
+						}elseif($user['status']==5){
 							$class = "glyphicon glyphicon-remove-sign";
 							$color = "#c12e2a";							
 						}else{
@@ -54,29 +54,39 @@
 						}
 					?>
 
-						<a title =" User Status (<?php echo $user['username'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_user(<?php echo $user['user_id'];?>,'<?php echo $user["username"] ?>','<?php echo $user["user_group"] ?>','<?php echo $user["name"] ?>','<?php echo $user["email"] ?>','<?php echo $user["phone"] ?>','<?php echo $user["status"] ?>')"> 
-							<span style="font-size: 1.3em;color:<?php echo $color;?>;" class="<?php echo $class;?>"></span>  <?php echo $user['status_desc'];?>
-						</a>
+						<center>
+							<a title =" User Status (<?php echo $user['username'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_user(<?php echo $user['user_id'];?>,'<?php echo $user["username"] ?>','<?php echo $user["user_group"] ?>','<?php echo $user["name"] ?>','<?php echo $user["email"] ?>','<?php echo $user["phone"] ?>','<?php echo $user["status"] ?>')"> 
+								<span style="font-size: 1.3em;color:<?php echo $color;?>;" class="<?php echo $class;?>"></span>  <?php echo $user['status_desc'];?>
+							</a>
+						</center>
 					</td>
 					<td>
-						<a title =" Reset User (<?php echo $user['username'];?>) Password" href="users/actions/reset_password/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" onclick="reset_password(<?php echo $user['user_id'];?>)"> 
-							<span style="font-size: 1.4em;color: #eb9316;" class="glyphicon glyphicon-pencil"></span>
-						</a>
+						<center>
+							<a title =" Reset User (<?php echo $user['username'];?>) Password" href="users/actions/reset_password/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" onclick="reset_password(<?php echo $user['user_id'];?>)"> 
+								<span style="font-size: 1.4em;color: #eb9316;" class="glyphicon glyphicon-pencil"></span>
+							</a>
+						</center>
 					</td>				
 					<td>
-						<a title =" Activate (<?php echo $user['username'];?>)" href="users/actions/activate_user/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" > 
-							<span style="font-size: 1.3em;color:#3e8f3e;;" class="glyphicon glyphicon-ok-sign"></span>
-						</a>						
+						<center>
+							<a title =" Activate (<?php echo $user['username'];?>)" href="users/actions/activate_user/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" > 
+								<span style="font-size: 1.3em;color:#3e8f3e;;" class="glyphicon glyphicon-ok-sign"></span>
+							</a>	
+						</center>					
 					</td>
 					<td>
-						<a title =" Remove User (<?php echo $user['username'];?>) " href="users/actions/remove_user/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" > 
-							<span style="font-size: 1.4em;color: #2d6ca2;" class="glyphicon glyphicon-minus-sign"></span>
-						</a>
+						<center>
+							<a title =" Remove User (<?php echo $user['username'];?>) " href="users/actions/remove_user/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" > 
+								<span style="font-size: 1.4em;color: #c12e2a;" class="glyphicon glyphicon-remove-sign"></span>
+							</a>
+						</center>
 					</td>
 					<td>
-						<a title =" Edit User (<?php echo $user['username'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_user(<?php echo $user['user_id'];?>,'<?php echo $user["username"] ?>','<?php echo $user["user_group"] ?>','<?php echo $user["name"] ?>','<?php echo $user["email"] ?>','<?php echo $user["phone"] ?>','<?php echo $user["status"] ?>')"> 
-							<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span>
-						</a>
+						<center>
+							<a title =" Edit User (<?php echo $user['username'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_user(<?php echo $user['user_id'];?>,'<?php echo $user["username"] ?>','<?php echo $user["user_group"] ?>','<?php echo $user["name"] ?>','<?php echo $user["email"] ?>','<?php echo $user["phone"] ?>','<?php echo $user["status"] ?>')"> 
+								<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span>
+							</a>
+						</center>
 					</td>
 				</tr>
 				<?php
@@ -248,7 +258,7 @@
 
 	
 <div class="modal fade" id="editdetailsdiv">
-	<div class="modal-dialog" style="width:60%;margin-bottom:2px;">
+	<div class="modal-dialog" style="width:69%;margin-bottom:2px;">
 		<div class="modal-content" >
 			<div class="modal-header">
 	    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -319,8 +329,8 @@
 						<span class="input-group-addon" style="width: 40%;">Status :</span>
 						<span class="input-group-addon" style="width: 10%;"><input type="radio" name="editstatus" value="1">  Active  <span style="font-size: 1.4em;color: #3e8f3e;" class="glyphicon glyphicon-ok-sign"></span></input></span>
 						<span class="input-group-addon" style="width: 10%;"><input type="radio" name="editstatus" value="2">  Pending Activation  <span style="font-size: 1.4em;color: #eb9316;" class="glyphicon glyphicon-question-sign"></span></input></span>
-						<span class="input-group-addon" style="width: 10%;"><input disabled type="radio" name="editstatus" value="3">  locked  <span style="font-size: 1.4em;color: #c12e2a;" class="glyphicon glyphicon-remove-sign"></span></input></span>
-						<span class="input-group-addon" style="width: 10%;"><input disabled type="radio" name="editstatus" value="4">  Password Reset  <span style="font-size: 1.4em;color: #c12e2a;" class="glyphicon glyphicon-pencil"></span></input></span>
+						<span class="input-group-addon" style="width: 10%;"><input disabled type="radio" name="editstatus" value="3">  lock(ed)  <span style="font-size: 1.4em;color: #eb9316;" class="glyphicon glyphicon-remove-sign"></span></input></span>
+						<span class="input-group-addon" style="width: 10%;"><input disabled type="radio" name="editstatus" value="4">  Password Reset  <span style="font-size: 1.4em;color: #eb9316;" class="glyphicon glyphicon-pencil"></span></input></span>
 						<span class="input-group-addon" style="width: 10%;"><input type="radio" name="editstatus" value="5">  Remove(d)  <span style="font-size: 1.4em;color: #c12e2a;" class="glyphicon glyphicon-remove-sign"></span></input></span>
 	                </div>
 					<div class="modal-footer" style="height:11px;padding-top:11px;">								

@@ -36,7 +36,7 @@
  *						-- swf/
  *						-- upload/
  *						-- xml/
- *					- application/
+     *					-- application/
  * 						-- config/asset.php
  * 						-- helpers/asset_helper.php
  */

@@ -48,16 +48,6 @@ class users extends MY_Controller {
 		$fac 			=	(int) $this->input->post("fac");
 
 
-		// echo	$name 		."<br/>";
-		// echo	$username 	."<br/>";
-		// echo	$email 		."<br/>";
-		// echo	$phone 		."<br/>";
-		// echo	$usr_grp 	."<br/>";
-		// echo	$par 		."<br/>";
-		// echo	$reg 		."<br/>";
-		// echo	$dis 		."<br/>";
-		// echo	$fac 		."<br/>";
-
 		$default_password ="";
 		$access_level =3;
 		$activation_clause = $this->create_activation_clause();
@@ -178,7 +168,7 @@ class users extends MY_Controller {
 
 		}
 
-		$this->home_page();
+		redirect("admin/users");
 	}
 	public function save_user_group(){
 		$usr_grp		=	$this->input->post("usr_grp2");
@@ -193,7 +183,7 @@ class users extends MY_Controller {
 								"
 			);
 
-		$this->home_page();	
+		redirect("admin/users");
 		
 	}
 
@@ -220,7 +210,7 @@ class users extends MY_Controller {
 
 		$this->db->query($sql);
 
-		$this->home_page();
+		redirect("admin/users");
 
 	}
 
@@ -270,8 +260,7 @@ class users extends MY_Controller {
 		
 		$sql 	 	=	"UPDATE `user` 
 							SET 
-								`password`='$default_password',
-								`status`='4'
+								`password`='$default_password'
 							WHERE 
 								`id`='$user_id'
 						";
