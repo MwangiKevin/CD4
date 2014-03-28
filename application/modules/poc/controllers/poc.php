@@ -24,6 +24,8 @@ class poc extends MY_Controller {
 
 		$data['menus']	= 	$this->poc_model->menus(1);
 		$this -> template($data);
+
+		redirect("poc/uploads");
 	}
 	
 }

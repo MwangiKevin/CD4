@@ -400,11 +400,11 @@
 	"buffers":
 	[
 		{
-			"file": "/C/wamp/www/lims/application/config/config.php",
+			"file": "application/modules/test/modules/innermodule/controllers/innermodule.php",
 			"settings":
 			{
-				"buffer_size": 12848,
-				"line_ending": "Unix"
+				"buffer_size": 645,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -436,9 +436,11 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/cd4/application/config/database.php",
+		"/C/Users/Mwas/Downloads/bootstrap.min.css",
+		"/C/wamp/www/lims/application/config/config.php",
 		"/C/wamp/www/cd4/application/modules/admin/views/users_view.php",
 		"/C/Users/Mwas/Downloads/bootswatch (1).less",
-		"/C/Users/Mwas/Downloads/bootstrap.min.css",
 		"/C/wamp/www/lims/application/config/autoload.php",
 		"/C/Users/Mwas/Downloads/variables.less",
 		"/C/wamp/www/cd4/application/modules/admin/views/users_footer_view.php",
@@ -538,7 +540,6 @@
 		"/C/wamp/www/cd4/application/modules/poc/controllers/uploadsv1.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/uploads_view.php",
 		"/C/PIMA-EXPORT/PIMA-D-001374_2014-02-18_08-41-20_AssayID_2_(PIMA_CD4).csv",
-		"/C/wamp/www/cd4/application/config/database.php",
 		"/C/wamp/www/getcont/index.php",
 		"/C/wamp/www/cd4/application/config/config.php",
 		"/C/wamp/www/cd4/assets/plugins/notifyjs/notify.js",
@@ -562,8 +563,7 @@
 		"/C/wamp/www/cd4/application/config/asset.php",
 		"/C/wamp/www/cd4/assets/plugins/pdf/Example10.php",
 		"/C/wamp/www/cd4/application/helpers/asset_helper.php",
-		"/C/wamp/www/cd4/assets/plugins/pdf/buildAll.cmd",
-		"/C/Users/Mwas/Desktop/sql.php"
+		"/C/wamp/www/cd4/assets/plugins/pdf/buildAll.cmd"
 	],
 	"find":
 	{
@@ -749,31 +749,31 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/wamp/www/lims/application/config/config.php",
+					"file": "application/modules/test/modules/innermodule/controllers/innermodule.php",
 					"settings":
 					{
-						"buffer_size": 12848,
+						"buffer_size": 645,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								541,
-								541
+								595,
+								595
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4017.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
