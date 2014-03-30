@@ -343,7 +343,7 @@ $sql["v_pima_tests_details"] = 						"SELECT
 															`usr`.`name`,
 															`usr`.`phone`,
 															`usr`.`email`,
-															(CASE WHEN `tst`.`valid`= '1'    THEN 'VALID' ELSE 'ERROR' END) AS `validity`,
+															(CASE WHEN `tst`.`valid`= '1'    THEN 'SUCCESSFUL TEST' ELSE 'ERROR' END) AS `validity`,
 															`fac`.`id` 				AS `facility_id`,
 															`fac`.`name` 			AS `facility_name`,
 															`fac`.`email` 			AS `facility_email`,

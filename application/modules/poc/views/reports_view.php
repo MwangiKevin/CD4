@@ -32,7 +32,7 @@
 									<select name='device' id='device' style='border-radius:0px 5px 5px 0px;'; class="textfield form-control">
 										<option value='' selected='selected'>*Select Device*</option>
 										<?php foreach($devices as $device){ ?>
-										<option value='<?php echo $device["facility_pima_id"]; ?>'><?php echo "<b>".$device["facility_name"]."</b>&nbsp&nbsp&nbsp&nbsp(".$device["serial_number"].")"; ?></option>
+										<option value='<?php echo $device["facility_equipment_id"]; ?>'><?php echo "<b>".$device["facility_name"]."</b>&nbsp&nbsp&nbsp&nbsp(".$device["serial_number"].")"; ?></option>
 										<?php } ?>
 									</select>
 									<span id='locationInfo'></span>
