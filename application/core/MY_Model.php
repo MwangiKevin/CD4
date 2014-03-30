@@ -18,54 +18,54 @@ class MY_Model extends CI_Model{
 	}
 	public function get_yearmonth_categories($from,$to){
 
-            $datemonth = array();  
+		$datemonth = array();  
 
-            $from_year        = (int) Date("Y",strtotime($from));
-            $from_month       = (int) Date("m",strtotime($from));
-            $to_year          = (int) Date("Y",strtotime($to));
-            $to_month         = (int) Date("m",strtotime($to));
+		$from_year        = (int) Date("Y",strtotime($from));
+		$from_month       = (int) Date("m",strtotime($from));
+		$to_year          = (int) Date("Y",strtotime($to));
+		$to_month         = (int) Date("m",strtotime($to));
 
-            for($y=$from_year; $y <= $to_year;$y++){
-                  for($m=1;($m <= 12);$m++){
-                        if( $y==$from_year ){
-                              if($m>=$from_month ){
-                                    $datemonth[] = $y."-".$m;
-                              }
-                        }elseif( $y==$to_year ){
-                              if($m<=$to_month ){
-                                    $datemonth[] = $y."-".$m;
-                              }
-                        }else{
-                              $datemonth[] = $y."-".$m;
-                        }
-                  }
-            }
+		for($y=$from_year; $y <= $to_year;$y++){
+			for($m=1;($m <= 12);$m++){
+				if( $y==$from_year ){
+					if($m>=$from_month ){
+						$datemonth[] = $y."-".$m;
+					}
+				}elseif( $y==$to_year ){
+					if($m<=$to_month ){
+						$datemonth[] = $y."-".$m;
+					}
+				}else{
+					$datemonth[] = $y."-".$m;
+				}
+			}
+		}
 
             //print_r($datemonth);
 
-            return $datemonth;
+		return $datemonth;
 
-      }
-      public  function get_month_categories($from,$to){
+	}
+	public  function get_month_categories($from,$to){
 
-            $datemonth = array();  
+		$datemonth = array();  
 
-            $from_year        = (int) Date("Y",strtotime($from));
-            $from_month       = (int) Date("m",strtotime($from));
-            $to_year          = (int) Date("Y",strtotime($to));
-            $to_month         = (int) Date("m",strtotime($to));
+		$from_year        = (int) Date("Y",strtotime($from));
+		$from_month       = (int) Date("m",strtotime($from));
+		$to_year          = (int) Date("Y",strtotime($to));
+		$to_month         = (int) Date("m",strtotime($to));
 
-            for($y=$from_year; $y <= $to_year;$y++){
-                  for($m=$from_month;($m <= $to_month);$m++){
-                        $datemonth[] = $m;
-                  }
-            }
+		for($y=$from_year; $y <= $to_year;$y++){
+			for($m=$from_month;($m <= $to_month);$m++){
+				$datemonth[] = $m;
+			}
+		}
 
            //print_r($datemonth);
 
-            return $datemonth;
+		return $datemonth;
 
-      }
+	}
 	public function get_month_name($month){
 		$d= "1";	
 		$y= date('Y');
@@ -80,13 +80,58 @@ class MY_Model extends CI_Model{
 	}
 
 	//
-	public function db_filtered_view($name,$user_filter_used){
+	public function db_filtered_view($name,$user_filter_used,$and ="",$group_by = array(), $order_by = array(), $order_by_direction="" ){
 
 		$user_group_id = $this->session->userdata("user_group_id");
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
 
-		$sql = "SELECT * FROM `$name` WHERE 1 $user_delimiter ";
+		$sql = "SELECT * FROM `$name` WHERE 1 $user_delimiter $and ";
+
+		/**
+		* Concat GROUP BY
+		*/
+		if(sizeof($group_by)>0 && $group_by[0]!=""){
+
+			$sql.=" GROUP BY ";
+
+			for ($i=0; $i < sizeof($group_by) ; $i++) { 
+
+				if($i+1 == sizeof($group_by)){
+
+					$sql.=" `".$group_by[$i]."` ";
+
+				}else{				
+
+					$sql.=" `".$group_by[$i]."`, ";
+				}
+			}
+		}
+
+		/**
+		* Concat ORDER BY
+		*/
+		if(sizeof($order_by)>0 && $order_by[0]!=""){
+
+			$sql.=" ORDER BY ";
+
+			for ($i=0; $i < sizeof($order_by) ; $i++) { 
+
+				if($i+1 == sizeof($order_by)){
+
+					$sql.=" `".$order_by[$i]."` ";
+
+				}else{				
+
+					$sql.=" `".$order_by[$i]."`, ";
+				}
+			}
+			$sql.=" $order_by_direction ";
+		}
+
+		// echo $sql;
+
+		// exit;
 
 		return R::getAll($sql);
 	}
@@ -121,8 +166,8 @@ class MY_Model extends CI_Model{
 
 		if($name=="pima_uploads_details"||$name=="pima_uploads"){
 
-				$sql .=	" ORDER BY `upl`.`upload_date` DESC
-							LIMIT 2000 ";
+			$sql .=	" ORDER BY `upl`.`upload_date` DESC
+			LIMIT 2000 ";
 		}
 		//echo $sql;
 		return R::getAll($sql);
@@ -173,13 +218,13 @@ class MY_Model extends CI_Model{
 			}elseif($details=="tests_details"){
 				$sql_delimiter = $preset_sql[$details];
 				$sql_delimiter ="RIGHT JOIN (".$sql_delimiter.") AS `filter_details`
-									ON ".$column_to_join." = `filter_details`.`cd4_test_id`
-								";
+				ON ".$column_to_join." = `filter_details`.`cd4_test_id`
+				";
 			}elseif($details=="equipment_details"){
 				$sql_delimiter = $preset_sql[$details];
 				$sql_delimiter ="RIGHT JOIN (".$sql_delimiter.") AS `filter_details`
-									ON ".$column_to_join." = `filter_details`.`facility_equipment_id`
-								";
+				ON ".$column_to_join." = `filter_details`.`facility_equipment_id`
+				";
 			}			
 			return $sql_delimiter;
 		}else{
