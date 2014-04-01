@@ -178,6 +178,14 @@
 				"buffer_size": 9576,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "/C/xampp/apache/conf/httpd.conf",
+			"settings":
+			{
+				"buffer_size": 18203,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -516,7 +524,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -544,7 +552,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -572,7 +580,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -598,6 +606,34 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 2520.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/xampp/apache/conf/httpd.conf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
