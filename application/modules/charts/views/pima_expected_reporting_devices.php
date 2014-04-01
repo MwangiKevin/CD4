@@ -1,33 +1,29 @@
-<script id = 'testslinetrendscript'>
-    function tests_line_trend(){
-            $('#cd4testtrends').highcharts({
-                 chart: {   
+<script id = 'expected_reporting_devices_script'>
+    function expected_reporting_devices(){
+            $('#expected_reporting_devices').highcharts({
+                 chart: { 
                     plotBackgroundColor: null,
                     plotBorderWidth: 2,
-                    plotShadow: true,    
+                    plotShadow: true,       
                     zoomType: 'x',
                     type: 'area',
                     height:350
                 },
                 title: {
-                    text: 'Testing Trends (last 4 years)',
+                    text: 'Expected Reporting Devices (Year <?php echo $year;?>)',
                     x: -20 //center   
                 },
-                // subtitle: {
-                //     text: 'Source: WorldClimate.com',
-                //     x: -20
-                // },
                 xAxis: {
-                    categories: <?php echo json_encode($chart["categories"]);?>,
+                    categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
                     labels: {
                         rotation: -45,
-                        step : 3,
+                        step : 0,
                         align: "right"
                     }
                 },
                 yAxis: {
                     title: {
-                        text: '# Tests'
+                        text: '# Pima Devices'
                     },
                     plotLines: [{
                         value: 0,
@@ -51,11 +47,11 @@
                 },
                 tooltip: {
                     shared: true,
-                    valueSuffix: ' Tests',
+                    valueSuffix: ' Devices',
                     crosshairs: [true,false],
                     //pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>{series.data.percentage:.1f}%</b></div>'
                 },
-                series: <?php echo json_encode($chart["series_data"]);?>
+                series: <?php echo json_encode($chart);?>
             });
     }
 </script>

@@ -1,38 +1,22 @@
 <script>
 	$().ready(function() {
-	    //draw_charts(0,0);
       equipment_pie();
       tests_pie();
       equipment_tests_pie();
       equipment_tests_column();
       tests_line_trend();
+      expected_reporting_devices();
 
 	});
 
 	function draw_charts(user_group_id,user_filter_used){
-
-    var spinner = '<img src="http://localhost/cd4/img/spinner.gif">';
-
-    // $("#equipmentpie").html(spinner); 
-    // $("#equipment-table").html(spinner); 
-    // $("#testspiescript").html(spinner);
-    // $("#equipment-tests-table").html(spinner);  
-    // $("#equipmenttestspie").html(spinner); 
-    // $("#equipmenttestscolumn").html(spinner); 
-    // $("#testslinetrend").html(spinner);
-    // $("#filter-identifier").html(spinner); 
-
 
 
 		$.ajax({
           type:"POST",
           async:false,          
 
-            url:"<?php echo base_url()."charts/equipment/equipment_pie/"; ?>"+user_group_id+"/"+user_filter_used,  
-            beforeSend : function (){                
-              $("#equipmentpie").html(spinner); 
-              $('#main :input').prop('disabled', true);
-          },
+            url:"<?php echo base_url()."charts/equipment/equipment_pie/"; ?>"+user_group_id+"/"+user_filter_used,             
             success:function(data) {
                   $("#equipmentpiescript").html(data); 
                   equipment_pie();    
@@ -127,3 +111,5 @@
 <?php $this->equipment->equipment_tests_column(0,0); ?>
 
 <?php $this->tests->tests_line_trend(0,0); ?>
+
+<?php $this->pima->expected_reporting_devices(0,0); ?>

@@ -1058,3 +1058,13 @@ height:auto;
 .filter li.tab:hover{
 	background-color: #FBFBFC;
 }
+.dashboard-item {
+	padding 	:	2px;
+	margin 		:	3px;
+	background-color: #eeeeee;
+	background-style: solid;
+	border-color: gray;
+	border-width: 2px;
+
+
+}
