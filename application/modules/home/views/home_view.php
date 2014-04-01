@@ -48,7 +48,8 @@
 
 	</div>
 	<div style="width:100%;float:left;">
-		<div id="cd4testtrends"></div>
+		<div id="cd4testtrends"></div>		
+		<div id="expected_reporting_devices"></div>	
 	</div>
 	<br/>
 	<br/>

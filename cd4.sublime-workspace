@@ -400,45 +400,13 @@
 	"buffers":
 	[
 		{
-			"file": "application/modules/poc/controllers/reports.php",
-			"settings":
-			{
-				"buffer_size": 1770,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/modules/poc/views/reports_footer_view.php",
-			"settings":
-			{
-				"buffer_size": 11071,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"contents": "",
-			"file": "/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/admin/mitto.dspl",
+			"file": "/C/Users/Mwas/Desktop/xampp-portable-win32-1.8.2-3-VC9/xampp/apache/conf/httpd.conf",
 			"file_size": -1,
 			"file_write_time": -1,
 			"settings":
 			{
 				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/modules/poc/views/reports_view.php",
-			"settings":
-			{
-				"buffer_size": 9487,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/modules/admin/views/equipment_view.php",
-			"settings":
-			{
-				"buffer_size": 15817,
 				"line_ending": "Windows"
 			}
 		}
@@ -471,12 +439,28 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Mwas/Desktop/httpd.conf",
+		"/C/wamp/www/cd4/application/modules/poc/controllers/reports.php",
+		"/C/Users/Mwas/Desktop/New Text Document.txt",
+		"/C/wamp/www/cd4/application/modules/poc/views/reports_view.php",
+		"/C/wamp/www/cd4/application/core/MY_Model.php",
+		"/C/wamp/www/cd4/application/core/MY_Controller.php",
+		"/C/wamp/www/cd4/application/config/views_sql.php",
+		"/C/wamp/www/cd4/application/modules/utils/controllers/worksheets.php",
+		"/C/Users/Mwas/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/wamp/www/cd4/application/modules/utils/controllers/migrate.php",
+		"/C/wamp/www/cd4/application/modules/ajax/controllers/ajax.php",
+		"/C/wamp/www/cd4/application/modules/poc/views/reports_footer_view.php",
+		"/C/wamp/www/cd4/application/modules/admin/views/equipment_view.php",
+		"/C/wamp/www/cd4/application/modules/utils/controllers/pdf.php",
+		"/C/wamp/www/cd4/application/modules/utils/controllers/email.php",
+		"/C/wamp/www/cd4/application/modules/utils/controllers/alerts.php",
+		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/admin/mitto.dspl",
 		"/E/Games/FIFA 2014/Game/data2.sh",
 		"/C/Users/Mwas/Desktop/poc/views/reports_view.php",
 		"/C/wamp/www/cd4/application/config/autoload.php",
 		"/C/wamp/www/cd4/application/modules/poc/models/reports_model.php",
 		"/C/wamp/www/cd4/application/config/globals.php",
-		"/C/wamp/www/cd4/application/modules/poc/views/reports_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/errors_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/errors_footer_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/models/reports_charts_model_hawi.php",
@@ -499,9 +483,6 @@
 		"/C/wamp/www/cd4/assets/js/admin/users.js",
 		"/C/wamp/www/cd4/application/modules/admin/views/reports_view.php",
 		"/C/wamp/www/cd4/application/modules/admin/views/equipment_footer_view.php",
-		"/C/wamp/www/cd4/application/modules/admin/views/equipment_view.php",
-		"/C/Users/Mwas/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
-		"/C/wamp/www/cd4/application/config/views_sql.php",
 		"/C/wamp/www/cd4/application/modules/admin/controllers/admin.php",
 		"/C/wamp/www/cd4/application/modules/admin/controllers/equipment.php",
 		"/C/wamp/www/cd4/application/modules/admin/controllers/facilities.php",
@@ -515,12 +496,9 @@
 		"/C/wamp/www/cd4/application/modules/poc/views/sidebar_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/views/tests_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/tests.php",
-		"/C/wamp/www/cd4/application/core/MY_Model.php",
-		"/C/wamp/www/cd4/application/core/MY_Controller.php",
 		"/C/wamp/www/cd4/.gitignore",
 		"/C/wamp/www/cd4/application/modules/home/models/home_model.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/reports_control.php",
-		"/C/wamp/www/cd4/application/modules/poc/controllers/reports.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/reports_charts.php",
 		"/C/wamp/www/cd4/application/modules/poc/models/charts_model.php",
 		"/C/Users/Mwas/Downloads/facility_equipment.sql",
@@ -554,7 +532,6 @@
 		"/C/wamp/www/cd4/application/modules/charts/models/equipment_model.php",
 		"/C/wamp/www/cd4/application/modules/charts/views/tests_pie_view - Copy.php",
 		"/C/wamp/www/cd4/application/modules/charts/views/pima_error_table_view.php",
-		"/C/wamp/www/cd4/application/modules/ajax/controllers/ajax.php",
 		"/C/wamp/www/cd4/application/modules/poc/controllers/errors.php",
 		"/C/wamp/www/cd4/application/modules/home/views/reporting_rates_view.php",
 		"/C/wamp/www/cd4/application/modules/poc/models/tests_model.php",
@@ -573,7 +550,6 @@
 		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/config_mp.cfg",
 		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/settings_c.zip.iw5",
 		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/players2/config.cfg",
-		"/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/admin/mitto.dspl",
 		"/C/Users/Mwas/Downloads/watable/watable/watable.css",
 		"/C/Users/Mwas/Desktop/A.TXT",
 		"/C/Users/Mwas/Downloads/new  1.txt",
@@ -590,15 +566,7 @@
 		"/C/Users/Mwas/Downloads/pima_error.sql",
 		"/C/wamp/www/cd4/assets/js/nascop.js",
 		"/C/wamp/www/cd4/application/modules/template/views/footer_View.php",
-		"/C/wamp/www/cd4/application/modules/admin/controllers/reports.php",
-		"/C/wamp/www/cd4/application/modules/template/views/header_view.php",
-		"/C/Users/Mwas/Documents/Euro Truck Simulator 2/profile/4A75616E204D617274696E/profile.sii",
-		"/C/Users/Mwas/Documents/Euro Truck Simulator 2/mod/speedlimitoff.scs",
-		"/J/cd4/application/modules/poc/views/reports_view.php",
-		"/C/wamp/www/cd4/application/modules/user/controllers/user.php",
-		"/C/Users/Mwas/Downloads/partner_user.sql",
-		"/C/wamp/www/cd4/assets/js/admin/reports.js",
-		"/C/wamp/www/cd4/assets/js/admin/settings.js"
+		"/C/wamp/www/cd4/application/modules/admin/controllers/reports.php"
 	],
 	"find":
 	{
@@ -616,6 +584,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"xampp",
+			"xampph",
+			"xampp",
+			"xammp",
+			"xampplite",
+			"case",
+			"result",
+			"get_details",
+			"sql_user_delimiter",
+			"find",
+			"search",
+			"ctrl+p\"",
+			"ctrl+p",
+			"db_f",
 			"<?php \n\n										$this_year = (int) Date(\"Y\");\n										for($i=$starting_year;$i<=$this_year;$i++){ \n\n											?>\n											<option value=\"<?php echo $i; ?>\"><?php echo $i; ?></option>\n\n\n											<?php } ?>  ",
 			"grid",
 			"inline",
@@ -729,21 +711,7 @@
 			"input",
 			"followsymlinks",
 			"poc/sidebar_view",
-			"view",
-			"load->model",
-			"load-model",
-			"Where 1",
-			"yearly_device_test_trends",
-			"$user_group_id",
-			"config",
-			"\");\n",
-			"hover",
-			"checkFacilitymfl",
-			"fcdrrlistsAdmin",
-			" checkFacilitymfl()",
-			" checkFacilitymfl() i",
-			"get_current_user",
-			"get_da"
+			"view"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -751,6 +719,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"xampp",
 			"<?php \n\n										$this_year = (int) Date(\"Y\");\n										for($i=$starting_year;$i<=$this_year;$i++){ \n\n											?>\n											<option value=\"<?php echo $i; ?>\"><?php echo $i; ?></option>\n											<?php \n										} \n										?> ",
 			"inherit",
 			"grid",
@@ -790,67 +759,12 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/modules/poc/controllers/reports.php",
-					"settings":
-					{
-						"buffer_size": 1770,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "application/modules/poc/views/reports_footer_view.php",
-					"settings":
-					{
-						"buffer_size": 11071,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 564.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/Users/Mwas/Desktop/New folder/COD-Modern Warfare 3/admin/mitto.dspl",
+					"file": "/C/Users/Mwas/Desktop/xampp-portable-win32-1.8.2-3-VC9/xampp/apache/conf/httpd.conf",
 					"settings":
 					{
 						"buffer_size": 0,
@@ -866,64 +780,12 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "application/modules/poc/views/reports_view.php",
-					"settings":
-					{
-						"buffer_size": 9487,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 153.0,
-						"translation.y": 304.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "application/modules/admin/views/equipment_view.php",
-					"settings":
-					{
-						"buffer_size": 15817,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4457.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

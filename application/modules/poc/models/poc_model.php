@@ -3,13 +3,13 @@
 class poc_model extends MY_Model{
 	public function menus($selected){
 		$menus = array(
-						// array(	'num'			=>	1,
-						// 		'name'			=>	'Home Page',
-						// 		'url'			=>	base_url()."poc",
-						// 		'other'			=>	"",
-					 // 			'selected'		=>	false,
-					 // 			'selectedString'=>	"",							
-						// 		),
+						array(	'num'			=>	1,
+								'name'			=>	'Home Page',
+								'url'			=>	base_url()."poc",
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 						array(	'num'			=>	2,
 								'name'			=>	'POC Device Uploads',
 								'url'			=>	base_url()."poc/uploads",

@@ -1,16 +1,5 @@
 <?php
 class MY_Model extends CI_Model{
-	// public $partner_tests_sql_delimiter 		=		"";
-	// public $partner_devices_sql_delimiter 		=		"";
-	// public $partner_facilities_sql_delimiter 	=		"";
-
-	// public $regional_tests_sql_delimiter 		=		"";
-	// public $regional_devices_sql_delimiter 		=		"";
-	// public $regional_facilities_sql_delimiter 	=		"";
-
-	// public $district_tests_sql_delimiter 		=		"";
-	// public $district_devices_sql_delimiter 		=		"";
-	// public $district_facilities_sql_delimiter 	=		"";
 
 	public function __construct(){
 		parent::__construct();

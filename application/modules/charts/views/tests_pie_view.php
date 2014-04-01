@@ -32,6 +32,9 @@ function tests_pie(){
         // Create the chart
         $('#testspie').highcharts({
             chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: true, 
                 type: 'pie',
                 height: 290
 
