@@ -53,7 +53,7 @@
                     shared: true,
                     valueSuffix: ' Tests',
                     crosshairs: [true,false],
-                    //pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>{series.data.percentage:.1f}%</b></div>'
+                    //pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>{point.percentage:.1f}%</b></div>'
                 },
                 series: <?php echo json_encode($chart["series_data"]);?>
             });

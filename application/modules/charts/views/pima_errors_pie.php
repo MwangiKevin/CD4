@@ -1,12 +1,11 @@
 <script id="errors_pie_script" type="text/javascript" >	  
 	function errors_pie(){
-
     	// Build the chart
         $('#pima_errors_pie').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: false,                
+                plotShadow: false,
                 height:290
             },
             title: {
@@ -27,6 +26,9 @@
             },            
             credits:{
                 enabled:false
+            },
+            legend:{
+                maxHeight:60
             },
             series: [{
                 type: 'pie',

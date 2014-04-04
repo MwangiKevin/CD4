@@ -247,12 +247,6 @@ class pima_errors extends MY_Controller {
     $json_data         = json_encode($data);
     $json_categories   = json_encode($categories);
 
-    // print "<pre>";
-    // print_r($data);
-    // print_r($categories);
-    // echo json_encode($categories);
-    // echo json_encode($data);
-    // print "</pre>"; 
         $script = "<script id = 'errortypepiescript'>
 
                         function error_type_pie(){
@@ -386,6 +380,26 @@ class pima_errors extends MY_Controller {
       //echo $data["data"]; 
       //print "</pre>";
     $this->load->view('pima_error_column_view',$data);
+  }
+  public function error_yearly_trends($user_group_id,$user_filter_used){
+
+    $this->load->model('pima_errors_model');
+
+    $data           =   $this->pima_errors_model->error_yearly_trends($user_group_id,$user_filter_used,$this->get_date_filter_year());
+
+
+    $this->load->view("pima_error_trend_view",$data);
+
+  }
+
+  public function error_types_col($user_group_id,$user_filter_used){
+
+    $this->load->model('pima_errors_model');
+
+    $data   =   $this->pima_errors_model->error_types_col($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());
+
+    $this->load->view("pima_error_types_col_view",$data);
+
   }
 
 }

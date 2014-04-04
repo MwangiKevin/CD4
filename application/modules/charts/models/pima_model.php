@@ -40,7 +40,54 @@ class pima_model extends MY_Model{
 
 		return $data;
 
+	}
+	public function tests_table($from,$to,$user_group_id,$user_filter_used){
 
+		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
+
+		$sql 	= 	"SELECT 
+							COUNT(*) AS `total`,
+							SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
+							SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
+							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
+							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
+						FROM `v_tests_details`
+
+						WHERE `result_date` BETWEEN '$from' AND '$to'
+						AND `equipment_id` = '4' 
+						$user_delimiter
+
+					";
+		$tests 	=	R::getAll($sql);
+
+		$tests[0]["title"]= 'Tests';
+
+		$failed =	$tests[0]["failed"];
+		$passed =	$tests[0]["passed"];
+		$total =	$tests[0]["total"];
+		$errors =	$tests[0]["errors"];
+		$valid =	$tests[0]["valid"];
+
+		if($total>0){
+
+			$row["title"]	= 'Percentages';
+			$row["total"]	= null;
+			$row["passed"]	= round(($passed/$total)*100,2)."%";
+			$row["failed"]	= round(($failed/$total)*100,2)."%";	
+			$row["errors"]	= round(($errors/$total)*100,2)."%";	
+			$row["valid"]	= round(($valid/$total)*100,2)."%";	
+		}else{
+			$row["title"]	= 'Percentages';
+			$row["total"]	= null;
+			$row["passed"]	= "0 %";
+			$row["failed"]	= "0 %";	
+			$row["errors"]	= "0 %";	
+			$row["valid"]	= "0 %";
+		}
+
+		$tests[1]	=	$row;
+
+		return $tests;
 	}
 	public function errors_pie($user_group_id,$user_filter_used,$from,$to){
 

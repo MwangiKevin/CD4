@@ -1,4 +1,4 @@
-<div id="tests-table">
+<div id="pima-tests-table">
 	<table style = "border: 1px solid #DDD;height:240px;vertical-align:center;" >
 		<thead class="even" style="background:#f0f0f0" >
 			<tr style = "border: 1px solid #DDD;" >

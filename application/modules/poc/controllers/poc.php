@@ -27,6 +27,7 @@ class poc extends MY_Controller {
 		
 		$this->load->module("charts/pima");
 		$this->load->module("charts/tests");
+		$this->load->module("charts/pima_errors");
 	}
 
 	public function index(){

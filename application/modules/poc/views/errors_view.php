@@ -62,19 +62,19 @@
 				 	<h3 class="panel-title">Error Trends For <?php echo $date_filter_desc;?></h3>
 				</div>
 			 	<div class="panel-body">			    	
-			    	<div style="width: 100%;float:left; border:solid;border-color:aliceblue;">
+			    	<div style="width: 100%;float:left; border:solid;border-color:#EEE;">
 			    		<div id="monthlyerrortrend">
 			    		</div>
 			    	</div>
-			    	<div style="width: 60%;float:left; border:solid;border-color:aliceblue;">
+			    	<div style="width: 60%;float:left; border:solid;border-color:#EEE;">
 			    		<div id="errortypepie">
 			    		</div>
 			    	</div>
-			    	<div style="width: 40%;float:left;border:solid;border-color:aliceblue;">
+			    	<div style="width: 40%;float:left;border:solid;border-color:#EEE;">
 			    		<div id="errortable" style="">
 			    		</div>
 			    	</div>
-			    	<div style="width: 100%;float:left; border:solid;border-color:aliceblue;">
+			    	<div style="width: 100%;float:left; border:solid;border-color:#EEE;">
 			    		<div id="errorscolumn">
 			    		</div>
 			    	</div>
