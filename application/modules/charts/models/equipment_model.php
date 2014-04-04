@@ -146,7 +146,7 @@ class equipment_model extends MY_Model{
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
 
 		$sql 	=	"SELECT 
-							`equipment`,
+							`equipment_name`,
 							COUNT(*) as `count`,
 							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,							
 							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`				
@@ -154,8 +154,8 @@ class equipment_model extends MY_Model{
 							WHERE 1
 							$user_delimiter
 							AND `result_date` BETWEEN '$from' AND '$to'
-						GROUP BY `equipment`
-						ORDER BY `equipment` ASC
+						GROUP BY `equipment_name`
+						ORDER BY `equipment_name` ASC
 					";
 
 		$equipment 			= R::getAll($sql_eq);
@@ -171,8 +171,8 @@ class equipment_model extends MY_Model{
 	
 
 			foreach ($equip_tst as $value1) {
-				if($value["equipment"]==$value1["equipment"]){			
-					$value['equipment'] 			=	$value1['equipment'] ;
+				if($value["equipment"]==$value1["equipment_name"]){			
+					$value['equipment'] 			=	$value1['equipment_name'] ;
 					$value['count'] 				=	$value1['count'] 	;
 					$value['valid'] 				=	$value1['valid'] 	;
 					$value['errors'] 				=	$value1['errors'] 	;
@@ -192,7 +192,7 @@ class equipment_model extends MY_Model{
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
 
 		$sql 	=	"SELECT 
-							`equipment`,
+							`equipment_name`,
 							COUNT(*) as `count`,
 							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,							
 							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`				
@@ -200,8 +200,8 @@ class equipment_model extends MY_Model{
 							WHERE 1
 							$user_delimiter							
 							AND `result_date` BETWEEN '$from' AND '$to'
-						GROUP BY `equipment`
-						ORDER BY `equipment` ASC
+						GROUP BY `equipment_name`
+						ORDER BY `equipment_name` ASC
 					";
 
 
@@ -218,7 +218,7 @@ class equipment_model extends MY_Model{
 			$row['selected'] 		=	false;
 
 			foreach ($equip_tst as $value1) {
-				if($value["equipment"]==$value1["equipment"]){					
+				if($value["equipment"]==$value1["equipment_name"]){					
 					$row['y'] 		=	(int) $value1['count'] 	;
 				}
 			}

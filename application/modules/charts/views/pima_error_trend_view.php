@@ -1,6 +1,6 @@
-<script id = 'expected_reporting_devices_script'>
-    function expected_reporting_devices(){
-            $('#expected_reporting_devices').highcharts({
+<script id = 'pima_error_trend_script'>
+    function pima_error_trend(){
+            $('#pima_error_trend').highcharts({
                  chart: { 
                     plotBackgroundColor: null,
                     plotBorderWidth: 2,
@@ -10,7 +10,7 @@
                     height:350
                 },
                 title: {
-                    text: 'Expected Reporting Devices (Year <?php echo $year;?>)',
+                    text: 'Error Trends (Year <?php echo $date_filter_year;?>)',
                     x: -20 //center   
                 },
                 xAxis: {
@@ -23,7 +23,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: '# Pima Devices'
+                        text: '# '
                     },
                     plotLines: [{
                         value: 0,
@@ -33,7 +33,7 @@
                 },
                 plotOptions: {
                     area: {
-                        stacking: null,
+                        stacking: 'percent',
                         lineColor: '#666666',
                         lineWidth: 1,
                         marker: {
@@ -47,10 +47,19 @@
                 },
                 tooltip: {
                     shared: true,
-                    valueSuffix: ' Devices',
+                    valueSuffix: ' #',
                     crosshairs: [true,false],
-                    //pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>{series.data.percentage:.1f}%</b></div>'
+                    pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>({point.percentage:.2f}) %</b></div>'
                 },
+                // tooltip: {
+                //     formatter: function() {
+                //         var perc = ((this.y)/(this.point.stackTotal))*100;
+                //         return '<b>'+ this.x +'</b><br/>'+
+                //             this.series.name +': '+ this.y +'<br/>'+
+                //             'Percentage: '+ perc +'%<br/>'+
+                //             'Total: '+ this.point.stackTotal;
+                //     }
+                // },
                 series: <?php echo json_encode($chart);?>
             });
     }
