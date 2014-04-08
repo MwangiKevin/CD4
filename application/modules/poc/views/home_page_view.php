@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="tabbable span12">
 		<ul class="nav nav-tabs">
-			<li id ="tabSummary" ><a id = "linkSummary"  href="#tabs1-summary" data-toggle="tab">Summary</a></li>
+			<!-- <li id ="tabSummary" ><a id = "linkSummary"  href="#tabs1-summary" data-toggle="tab">Summary</a></li> -->
 			<li id ="tabPima" class="active"><a id = "linkPima" href="#tabs1-pima" data-toggle="tab" onclick = "draw_charts(<?php echo $user_group_id;?>,<?php echo $user_filter_used;?>)">PIMA</a></li>
 		</ul>
 		<div class="tab-content" >

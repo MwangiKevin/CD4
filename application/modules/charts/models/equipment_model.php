@@ -241,15 +241,15 @@ class equipment_model extends MY_Model{
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
 
 		$sql 	=	"SELECT 
-							`equipment`,
+							`equipment_name`,
 							YEAR(`result_date`) AS `year`,
 							COUNT(*) as `count`,
 							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`			
 						FROM `v_tests_details`
 							WHERE 1
 							$user_delimiter	
-						GROUP BY `equipment`,`year` 
-						ORDER BY `equipment` ASC
+						GROUP BY `equipment_name`,`year` 
+						ORDER BY `equipment_name` ASC
 					";
 
 
@@ -277,7 +277,7 @@ class equipment_model extends MY_Model{
 			$row['data']	=	$categories_initialize;
 
 			foreach ($equip_tst as $value1) {
-				if($value["equipment"]==$value1["equipment"]){					
+				if($value["equipment"]==$value1["equipment_name"]){					
 					foreach ($categories as $keycat =>$cat) {
 						if((int)$value1["year"]==(int)$cat){
 							$row['data'][$keycat]= (int)$value1["valid"];
