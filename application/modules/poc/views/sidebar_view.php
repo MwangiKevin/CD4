@@ -13,7 +13,7 @@
 			<div class="notice">
 				<a  href="#devicesnotreported" data-toggle="modal">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					 <?php echo sizeof($devices_not_reported); ?> Devices Awaiting Results Upload.
+					 <?php echo sizeof($devices_not_reported); ?> Devices Did not upload Last Month.
 				</a>
 			</div>			
 			<?php 
@@ -22,7 +22,7 @@
 			<div class="success">
 				<a  href="#devicesnotreported" data-toggle="modal">
 					<i class="glyphicon glyphicon-ok"></i> 
-					 All devices have uploaded
+					 All devices uploaded last month
 				</a>
 			</div>
 			<?php 
@@ -31,7 +31,7 @@
 			<div class="notice">
 				<a href="errors" onclick="error_notification()">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo (($errors_agg["error"]/$errors_agg["total"])*100);}else{ echo "0";}?>%)</b> reported out of <?php echo $errors_agg["total"];?> tests
+					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo round((($errors_agg["error"]/$errors_agg["total"])*100),2);}else{ echo "0";}?>%)</b> reported last month out of <?php echo $errors_agg["total"];?> tests
 				</a>
 			</div>
 		</div>
@@ -68,18 +68,12 @@
 	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        		<h4 class="modal-title">Devices <?php 
 
-	        		$user_group  = $this->session->userdata("user_group_id");
+	        		$user_filter = $this->session->userdata("user_filter");
 
-	        		if($user_group==3){
-	        			echo " for ".$devices_not_reported[0]['partner']." "; 
-	        		}elseif($user_group==8){
-	        			echo " in ".$devices_not_reported[0]['district']." "; 
-	        		}elseif($user_group==9){
-	        			echo " in ".$devices_not_reported[0]['region']." "; 
-	        		}
-	        		
+	        		echo "(".$user_filter[0]["user_filter_name"].")";
+
 	        		?> 
-	        		not reported for <?php echo Date("Y,F");?></h4>
+	        		not reported for <?php echo Date("Y,F", strtotime("last month"));?></h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
 	            	<table id="data-table-side">
@@ -96,12 +90,12 @@
 							?>
 							<tr>
 								<td><?php echo $i;?></td>
-								<td><?php echo $equipment['facility'];?></td>
+								<td><?php echo $equipment['facility_name'];?></td>
 								<td>
 									<?php
-										if($equipment['equipment']=="Alere PIMA"){
+										if($equipment['equipment_id']=="4"){
 									?>
-									<a title =" view Equipment (<?php echo $equipment['facility'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
+									<a title =" view Equipment (<?php echo $equipment['facility_name'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
 										<span style="" class="glyphicon glyphicon-list-alt">
 										</span>
 										<?php echo $equipment['equipment'];?>

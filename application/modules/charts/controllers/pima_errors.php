@@ -202,7 +202,7 @@ class pima_errors extends MY_Controller {
     $error_types    = R::getAll("SELECT `description` FROM `pima_error_type`");        
     $errors         = R::getAll("SELECT `error_code`,`description` AS `type` ,CONCAT(`error_detail`,'(',`error_code`,')') AS `cat` FROM `pima_error` LEFT JOIN `pima_error_type` ON `pima_error_type`.`id` = `pima_error`.`pima_error_type`");
     $data           = array();
-    $colors         = array("#a4d53a","#aa1919","#33c6e7","#624289");
+    $colors         = array("#a4d53a","#aa1919","#33c6e7","#624289","#624289","#624289","#624289");
 
     // main categories
     $categories = array();
@@ -215,6 +215,11 @@ class pima_errors extends MY_Controller {
     foreach ($error_types as $type) {
         $data[$i]["y"]      =  0; 
         $data[$i]["color"]  =  $colors[$c];
+        $data[$i]["drilldown"]["name"]          =   $type["description"] ;
+        $data[$i]["drilldown"]["color"]         =   $colors[$c] ;
+        $data[$i]["drilldown"]["error_codes"]   = array();
+        $data[$i]["drilldown"]["categories"]    = array();
+        $data[$i]["drilldown"]["data"]          = array();
 
         foreach ($errors as $err) {
           if($err["type"]==$type["description"]){
@@ -228,6 +233,7 @@ class pima_errors extends MY_Controller {
         $i++;
         $c++;
     }
+
 
     foreach ($res as $row) {
         $i=0;
@@ -244,6 +250,11 @@ class pima_errors extends MY_Controller {
         }
     }
     
+
+    echo "<pre>"; 
+    //print_r($data);
+    echo "</pre>";
+
     $json_data         = json_encode($data);
     $json_categories   = json_encode($categories);
 
