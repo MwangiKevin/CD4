@@ -13,7 +13,7 @@
 			<div class="notice">
 				<a  href="#devicesnotreported" data-toggle="modal">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					 <?php echo sizeof($devices_not_reported); ?> Devices Awaiting Results Upload.
+					<?php echo sizeof($devices_not_reported); ?> Devices Did not upload Last Month.
 				</a>
 			</div>			
 			<?php 
@@ -31,7 +31,7 @@
 			<div class="notice">
 				<a href="javascript:void(null);">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo (($errors_agg["error"]/$errors_agg["total"])*100);}else{ echo "0";}?>%)</b> reported out of <?php echo $errors_agg["total"];?> tests
+					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo round((($errors_agg["error"]/$errors_agg["total"])*100),2);}else{ echo "0";}?>%)</b> reported last month out of <?php echo $errors_agg["total"];?> tests
 				</a>
 			</div>
 			<?php 
@@ -133,12 +133,12 @@
 							?>
 							<tr>
 								<td><?php echo $i;?></td>
-								<td><?php echo $equipment['facility'];?></td>
+								<td><?php echo $equipment['facility_name'];?></td>
 								<td>
 									<?php
-										if($equipment['equipment']=="Alere PIMA"){
+										if($equipment['equipment_id']=="4"){
 									?>
-									<a title =" view Equipment (<?php echo $equipment['facility'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
+									<a title =" view Equipment (<?php echo $equipment['facility_name'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
 										<span style="" class="glyphicon glyphicon-list-alt">
 										</span>
 										<?php echo $equipment['equipment'];?>

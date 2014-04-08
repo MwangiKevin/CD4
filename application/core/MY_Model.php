@@ -249,69 +249,52 @@ class MY_Model extends CI_Model{
 		}
 	}
 
-	public function monthname_to_char(){
-
-	}
 	public function user_devices(){
 
-		$user_delimiter 	= 	"";
-
-		$user_group  = $this->session->userdata("user_group_id");
+		$user_group_id  = $this->session->userdata("user_group_id");
 		$user_filter= $this->session->userdata("user_filter");
 
-		if($user_group==3 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `partner_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}elseif($user_group==8 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `district_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}elseif($user_group==9 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `region_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}
+		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		$this->config->load('sql');
+		$sql = 	"SELECT 
+						* 
+					FROM `v_facility_equipment_details`
+					WHERE 1
 
-		$preset_sql = $this->config->item("preset_sql");
+					AND `equipment_id` = '4'
+					$user_delimiter
+				";
+		return R::getAll($sql);
 
-		$sql 	=	$preset_sql["equipment_details"];
-
-		$sql 	=	$sql.$user_delimiter;
-
-		$user_device_details 	= 	R::getAll($sql);
-
-		return $user_device_details;
 	}
+
+
 
 	public function devices_reported(){
 
-		$today =  Date("Y-m-d");
+		$from 	= Date("Y-m-1" 	, strtotime("first day of last month"));
+		$to 	= Date("Y-m-t" 	, strtotime("last day of last month"));
 
-		$from 	= Date("Y-m-1" 	, strtotime($today));
-		$to 	= Date("Y-m-t" 	, strtotime($today));
-
-		$user_group  = $this->session->userdata("user_group_id");
+		$user_group_id  = $this->session->userdata("user_group_id");
 		$user_filter= $this->session->userdata("user_filter");
 
-		$this->config->load('sql');
+		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		$preset_sql = $this->config->item("preset_sql");
+		$sql 	= 	"SELECT 
+							`facility_equipment_id`
+						FROM `v_tests_details`
+						WHERE 1
 
-		$sql 	=	$preset_sql["tests_details"];
+						AND `result_date` BETWEEN '$from' AND '$to'
+						$user_delimiter
 
-		$user_delimiter 	= 	"AND 1 ";
+						GROUP BY `facility_equipment_id`
+					";					
 
-		if($user_group==3 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `partner_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}elseif($user_group==8 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `district_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}elseif($user_group==9 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `region_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}
+		return R::getAll($sql);			
 
-		$sql 	=	$sql.$user_delimiter." AND `tst`.`result_date` between '$from' and '$to' GROUP BY `tst`.`facility_equipment_id` ";
-
-		$reported_dev 	= 	R::getAll($sql);
-
-		return $reported_dev;
 	}
+
 	public function devices_not_reported(){
 
 		$user_device_details 	= 	$this->user_devices();	
@@ -331,56 +314,37 @@ class MY_Model extends CI_Model{
 
 		return $devices_not_reported;
 	}
+
 	public function errors_reported(){
 
-		$today =  Date("Y-m-d");
+		$from 	= Date("Y-m-1" 	, strtotime("first day of last month"));
+		$to 	= Date("Y-m-t" 	, strtotime("last day of last month"));
 
-		$from 	= Date("Y-m-1" 	, strtotime($today));
-		$to 	= Date("Y-m-t" 	, strtotime($today));
-
-		$user_group  = $this->session->userdata("user_group_id");
+		$user_group_id  = $this->session->userdata("user_group_id");
 		$user_filter= $this->session->userdata("user_filter");
 
-		$this->config->load('sql');
 
-		$preset_sql = $this->config->item("preset_sql");
+		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		$sql 	=	$preset_sql["tests_details"];
+		$sql  	=	"SELECT 
+							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `succ_test`,
+							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `error`,
+							COUNT(*) AS `total`
+						FROM `v_tests_details`
+						WHERE 1
 
-		$user_delimiter 	= 	"AND 1 ";
+						AND `result_date` BETWEEN '$from' AND '$to'
+						$user_delimiter
+					";
 
-		if($user_group==3 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `partner_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}elseif($user_group==8 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `district_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}elseif($user_group==9 && sizeof($user_filter)> 0 ){
-			$user_delimiter 	= 	" AND `region_id` ='".$user_filter[0]['user_filter_id']."' ";
-		}
+		$rs 	=	 R::getAll($sql); 
 
-		$sql 	=	$sql.$user_delimiter." AND `tst`.`result_date` between '$from' and '$to' "; 
-
-		//echo $sql;
-
-		$reported_tests 	= 	R::getAll($sql);
-
-		$succ_test = 0;
-
-		$error     = 0;
-
-		foreach ($reported_tests as $test) {
-			if($test['valid']=1){
-				$succ_test++;
-			}else{
-				$error++;
-			}
-
-		}
-
-		$agg["succ_test"]	= $succ_test;
-		$agg["error"]		= $error;
-		$agg["total"]       = $succ_test	+	$error;
+		$agg["succ_test"]	= (int) $rs[0]["succ_test"];
+		$agg["error"]		= (int) $rs[0]["error"];
+		$agg["total"]       = (int) $rs[0]["total"];
 
 		return $agg;
+
 	}
 	
 }
