@@ -6,7 +6,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 2,
                 plotShadow: true, 
-                type:"column",
+                type:"bar",
                 height:"350",
                 //width:"1150"
             },
