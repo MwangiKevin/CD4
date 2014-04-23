@@ -13,6 +13,10 @@ $config["login_timeout_max"]		=	30;		//minutes
 $config['default_admin_password']  	= "qwerty";
 $config['default_user_password']  	= "123456";
 
+$config['pima_export']				=	"C:/FTP/PIMA-Export";
+$config['pima_uploaded']			=	"C:/FTP/PIMA-Uploaded";
+$config['pima_user_uploaded']		=	"C:/FTP/PIMA-User-Uploaded";
+
 /*Tables*/
 $config['user_table'] = 'user';
 $config['access_level_table'] = "user_access_level";
@@ -49,7 +53,7 @@ $config['temp_indicator'] = "Temp";
 /*System Variables*/
 $config['banner_title'] = "Ministry of Health ";
 $config['banner_subtitle'] = "ARV Drugs Supply Chain Management Tool";
-$config['firm_name'] = "NASCOP";
+$config['firm_name'] = "NACP";
 $config['default_home_controller'] = "home";
 $config['module_after_login'] = "partner";
 
@@ -64,9 +68,9 @@ $config['alpha_password_pool'] = "abcdefghijklmnopqrstuvwxyz";
 $config['numeric_password_pool'] = "0123456789";
 
 /*Email Variables*/
-$config['email_sender'] = "webadt.chai@gmail.com";
-$config['email_sender_title'] = "NASCOP SYSTEM";
-$config['reset_mail_subject'] = "NASCOP User Account Password Reset";
+$config['email_sender'] 		= "webadt.chai@gmail.com";
+$config['email_sender_title'] 	= "NACP SYSTEM";
+$config['reset_mail_subject'] 	= "NACP User Account Password Reset";
 
 /* End of file globals.php */
 /* Location: ./application/config/globals.php */

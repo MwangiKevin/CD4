@@ -13,7 +13,7 @@ class reports extends MY_Controller {
 		$this->data['title'] = "Reports";
 		$this->data['sidebar']	= "poc/sidebar_view";
 		$this->data['filter']	=	false;
-		$this->data	=array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
+		$this->data		=	array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
 
 		$this->load->model('poc_model');
 
@@ -33,6 +33,8 @@ class reports extends MY_Controller {
 		$this -> template($this->data);
 	}
 	public function submit(){
+
+		ini_set("memory_limit","128M");
 
 		$report_type	=	(int) $this->input->post("report_type");
 		$criteria		=	(int) $this->input->post("criteria");
@@ -100,7 +102,7 @@ class reports extends MY_Controller {
 				$row_data[$key+1][6] 	=	Date("Y, F, d",strtotime($value["result_date"]));
 			}
 		}else{
-			$row_data[0] = array("Facility","Pima Device","Sample Code", "CD4 Count (cells/mm)", "Successful tests", "Device Operator","Date of Result");
+			$row_data[0] = array("Facility","Pima Device","Sample Code", "CD4 Count (cells/mm)", "SUCCESSFUL TESTS", "Device Operator","Date of Result");
 			foreach ($res as $key => $value) {
 				$row_data[$key+1][0] 	=	$value["facility_name"]; 
 				$row_data[$key+1][1] 	=	$value["equipment_serial_number"]; 
