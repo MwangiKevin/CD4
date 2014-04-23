@@ -13,7 +13,7 @@ class MY_Controller extends MX_Controller{
 
 	public function __construct(){
 		parent::__construct();
-		$this->user_log_table 			= 	$this->config->item("user_log_table")			;
+		$this->user_log_table =	$this->config->item("user_log_table")			;
 
 		if(!$this-> session-> userdata('date_filter_start')){
 			$this->date_filter("Default",NULL);
@@ -23,6 +23,7 @@ class MY_Controller extends MX_Controller{
 		}
 		$this->timeout();
 	}
+	
 	protected function timeout(){
 		$timeout_max = $this->config->item('login_timeout_max');
 
@@ -40,6 +41,7 @@ class MY_Controller extends MX_Controller{
 			$this -> session -> set_userdata('last_activity', strtotime($this->now()));
 		}
 	}
+	
 	protected function login_reroute($users_type){
 		$sess_login_status 	=	$this -> session -> userdata("login_status");
 		$sess_user_type 	=	$this -> session -> userdata("user_group_id");
@@ -63,10 +65,11 @@ class MY_Controller extends MX_Controller{
 			redirect($redirect_var);
 		}
 	}
+	
 	public function cookies(){
-
 		echo "this is a stub";
 	}
+	
 	public function load_libraries($arr){
 
 		array_unshift($arr, "jquery","jqueryui","bootstrap","nascop","site","calendar_css_only","dataTables");
@@ -86,10 +89,6 @@ class MY_Controller extends MX_Controller{
 		$all_js			=	$this->config->item('js_files');
 		$all_plugin_css	=	$this->config->item('plugin_css_files');
 		$all_plugin_js	=	$this->config->item('plugin_js_files');
-
-
-		
-
 		//load css
 		foreach ($arr as $css) {
 			foreach($all_css as $all){
@@ -125,14 +124,17 @@ class MY_Controller extends MX_Controller{
 		}	
 		return 	$libs;
 	}
+	
 	protected function template($data) {
 		$this -> load -> module('template');
 		$this -> template ->load_template($data);
 	}
+	
 	protected function template_headerless($data) {
 		$this -> load -> module('template');
 		$this -> template -> load_template_headerless($data);
 	}
+	
 	protected function get_current_user_id(){
 		$user_id = 0;
 
@@ -141,6 +143,7 @@ class MY_Controller extends MX_Controller{
 		}
 		return $user_id;
 	}
+	
 	protected function get_current_user_details(){
 		$id = $this->get_current_user_id();
 
@@ -152,6 +155,7 @@ class MY_Controller extends MX_Controller{
 			return $user_details[0];
 		}
 	}
+	
 	public function logout() {
 		$user_id = $this -> session -> userdata("id");
 		$access_type = "logout";
@@ -159,6 +163,7 @@ class MY_Controller extends MX_Controller{
 		$this -> session -> sess_destroy();
 		redirect("home");
 	}
+	
 	protected function write_log($user_id, $access_type) {
 		$log = R::dispense($this->config->item("user_log_table"));
 		$log -> user = $user_id;

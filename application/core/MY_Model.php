@@ -33,8 +33,8 @@ class MY_Model extends CI_Model{
             //print_r($datemonth);
 
 		return $datemonth;
-
 	}
+	
 	public  function get_month_categories($from,$to){
 
 		$datemonth = array();  
@@ -53,8 +53,8 @@ class MY_Model extends CI_Model{
            //print_r($datemonth);
 
 		return $datemonth;
-
 	}
+	
 	public function get_month_name($month){
 		$d= "1";	
 		$y= date('Y');
