@@ -168,7 +168,6 @@
 							</td>
 							<td>
 								<div class="mycontainer" id="full">
-
 									<div class="input-group" style="width: 100%;padding:4px;">
 										<span class="input-group-addon" style="width: 40%;">Format :</span>
 										<span class="input-group-addon" style="width: 30%;"><img src="<?php echo img_url();?>pdf.png" width="25" height="25">&nbsp;&nbsp;&nbsp;<input type="radio" name="format" disabled value="pdf">PDF</span>

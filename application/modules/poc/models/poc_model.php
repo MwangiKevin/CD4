@@ -12,7 +12,7 @@ class poc_model extends MY_Model{
 								),
 						array(	'num'			=>	2,
 								'name'			=>	'POC Device Uploads',
-								'url'			=>	base_url()."poc/uploads",
+								'url'			=>	base_url()."poc/upload",
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
@@ -80,6 +80,33 @@ class poc_model extends MY_Model{
 			}
 		}
 		return $menus;
+	}
+
+	public function get_Upload_details($user_group_id,$user_filter_used){
+
+		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
+
+		$sql 	=	"SELECT 
+							`pima_upload_id`,
+							`upload_date`,
+							`equipment_serial_number`,
+							`facility_name`,
+							`uploader_name`,
+							COUNT(`pima_test_id`) AS `total_tests`,
+							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid_tests`,
+							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,
+							SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` < 350 THEN 1 ELSE 0 END) AS `failed`,
+							SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` >= 350 THEN 1 ELSE 0 END) AS `passed`
+						FROM `v_pima_uploads_details`
+						WHERE 1 
+						$user_delimiter 
+						GROUP BY `pima_upload_id`
+						ORDER BY `upload_date` DESC
+						LIMIT 500
+					";
+		return $res 	=	R::getAll($sql);
+
+
 	}
 
 

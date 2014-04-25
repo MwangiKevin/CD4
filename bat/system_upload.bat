@@ -1,1 +1,1 @@
-START Http://localhost/cd4/poc/uploads/server_upload
+START Http://localhost/cd4/uploads/server_upload
