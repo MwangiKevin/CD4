@@ -32,6 +32,7 @@ class upload extends MY_Controller {
 		$this->load->module('uploads');
 
 	}
+	
 	public function index(){	
 
 		$this -> template($this->data);
