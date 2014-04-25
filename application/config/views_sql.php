@@ -564,7 +564,6 @@ $sql["v_pima_uploads_details"] = 						"SELECT
 													";
 $sql["v_pima_upload_details"]	=					"SELECT 
 															`pim_upl`.`id` AS `upload_id`,
-															`pim_upl`.`upload_type`,
 															`pim_upl`.`upload_date`,
 															`pim_upl`.`facility_pima_id`,
 															`pim_upl`.`uploaded_by` AS `uploaded_by_id`,
