@@ -12,7 +12,6 @@
 		
 		$cssTag="link";
 		$cssTagType=" type='text/css'";
-
 		
 	if(is_array($css_files)){
 		foreach($css_files as $file){
@@ -30,12 +29,6 @@
 		}
 	}
 	if(is_array($js_files)){
-		foreach($js_files as $file){
-			echo "<".$jsTag." src='".base_url()."assets/js/".$file."'".$jsTagType."></".$jsTag.">\n";
-		}
-
-	}
-	if(is_array($js_files)){	
 		foreach($js_files as $file){
 			echo "<".$jsTag." src='".base_url()."assets/js/".$file."'".$jsTagType."></".$jsTag.">\n";
 		}

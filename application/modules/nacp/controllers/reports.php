@@ -33,7 +33,7 @@ class reports extends MY_Controller {
 	}	
 	
 	public function index(){
-		$this->login_reroute(array(3,8,9,6));
+		$this->login_reroute(array(4));
 		$this->template($this->data);
 	}
 public function submit(){

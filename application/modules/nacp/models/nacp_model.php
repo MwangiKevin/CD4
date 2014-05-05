@@ -12,14 +12,14 @@ class nacp_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-						array(	'num'			=>	2,
-								'name'			=>	'Regional Drilldown',
+						// array(	'num'			=>	2,
+						// 		'name'			=>	'Regional Drilldown',
 
-								'url'			=>	base_url()."nacp/drilldown",
+						// 		'url'			=>	base_url()."nacp/drilldown",
 
-					 			'selected'		=>	false,
-					 			'selectedString'=>	"",							
-								),
+					 // 			'selected'		=>	false,
+					 // 			'selectedString'=>	"",							
+						// 		),
 						array(	'num'			=>	3,
 								'name'			=>	'Reporting Cycle',
 
@@ -36,15 +36,15 @@ class nacp_model extends MY_Model{
 					 // 			'selected'		=>	false,
 					 // 			'selectedString'=>	"",							
 						// 		),
-						array(	'num'			=>	4,
-								'name'			=>	'Facilities',
+						// array(	'num'			=>	4,
+						// 		'name'			=>	'Facilities',
 
-								'url'			=>	base_url()."nacp/facilities",
+						// 		'url'			=>	base_url()."nacp/facilities",
 
-								'other'			=>	"",
-					 			'selected'		=>	false,
-					 			'selectedString'=>	"",							
-								),
+						// 		'other'			=>	"",
+					 // 			'selected'		=>	false,
+					 // 			'selectedString'=>	"",							
+						// 		),
 						array(	'num'			=>	5,
 								'name'			=>	'Reports',
 

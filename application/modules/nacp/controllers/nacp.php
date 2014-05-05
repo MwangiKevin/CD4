@@ -37,7 +37,8 @@ class nacp extends MY_Controller {
 	
 	public function home(){
 		//echo("Still workin");
-		$this->login_reroute(array(3,8,9));//selects page depending on the person logged in
+
+		$this->login_reroute(array(4));//selects page depending on the person logged in
 
 		$this -> template($this->data);
 	}
