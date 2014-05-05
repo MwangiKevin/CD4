@@ -508,10 +508,10 @@ $sql["v_pima_uploads_details"] = 						"SELECT
 															`pim_tst`.`software_version`,
 															`pim_upl`.`upload_date`,
 															`pim_upl`.`uploaded_by`,
-															`usr`.`username`,
-															`usr`.`name`,
-															`usr`.`phone`,
-															`usr`.`email`,
+															`usr`.`username`	AS `uploader_username`,
+															`usr`.`name`	AS `uploader_name`,
+															`usr`.`phone`	AS `uploader_phone`,
+															`usr`.`email`	AS `uploader_email`,
 															(CASE WHEN `tst`.`valid`= '1'    THEN 'VALID' ELSE 'ERROR' END) AS `validity`,
 															`fac`.`id` 				AS `facility_id`,
 															`fac`.`name` 			AS `facility_name`,
@@ -619,6 +619,7 @@ $sql["v_pima_upload_details"]	=					"SELECT
 																				ON `fac`.`rollout_status`= `st`.`id` 
 																	LEFT JOIN `user` `usr`
 																	ON `pim_upl`.`uploaded_by` = `usr`.`id`
+
 
 														GROUP BY `upload_yearmonth`,`fac`.`id`
 														ORDER BY `upload_id` DESC

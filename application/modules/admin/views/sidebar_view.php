@@ -22,7 +22,7 @@
 			<div class="success">
 				<a  href="#devicesnotreported" data-toggle="modal">
 					<i class="glyphicon glyphicon-ok"></i> 
-					 All devices have uploaded
+					 All devices uploaded results for last month
 				</a>
 			</div>
 			<?php 
@@ -228,7 +228,7 @@
           type:"POST",
           async:false,
           data:"",
-            url:"<?php echo base_url()."poc/uploads/server_upload"; ?>",  
+            url:"<?php echo base_url()."uploads/server_upload"; ?>",  
             success:function(data) {
                            $('#modalbody').html(data);
                            $('#data-table1').dataTable({
