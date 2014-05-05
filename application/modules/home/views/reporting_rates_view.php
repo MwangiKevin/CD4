@@ -1,5 +1,7 @@
 <div>
+
 	<div style="width:40%; float: left;">
+
 		<div id='mapDiv' style=""></div>
 		<script type="text/javascript">									
 			var map = new FusionMaps("<?php echo base_url();?>assets/plugins/Fusion/FusionMaps/FCMap_Tanzania.swf", "Tanzania","570","460","0","0");
@@ -84,3 +86,4 @@
 </div>
 
 <?php $this->load->view("home_footer_view");?>
+

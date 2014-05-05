@@ -5,21 +5,26 @@ class nacp_model extends MY_Model{
 		$menus = array(
 						array(	'num'			=>	1,
 								'name'			=>	'Dash Board',
+
 								'url'			=>	base_url()."nacp/nacp",
+
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	2,
 								'name'			=>	'Regional Drilldown',
+
 								'url'			=>	base_url()."nacp/drilldown",
-								'other'			=>	"",
+
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	3,
 								'name'			=>	'Reporting Cycle',
+
 								'url'			=>	base_url()."nacp/reporting_cycle",
+
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
@@ -33,14 +38,18 @@ class nacp_model extends MY_Model{
 						// 		),
 						array(	'num'			=>	4,
 								'name'			=>	'Facilities',
+
 								'url'			=>	base_url()."nacp/facilities",
+
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	5,
 								'name'			=>	'Reports',
+
 								'url'			=>	base_url()."nacp/reports",
+
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
@@ -189,6 +198,7 @@ public function  reporting_map_data(){
 		// die();
 		return $res1;
 	}
+
 
 
 	

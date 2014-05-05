@@ -27,6 +27,7 @@ class reporting_rates extends MY_Controller {
 		$this->load->module('charts/equipment');
 		$this->load->module('charts/tests');
 		$this->load->module("charts/pima");	
+
 	}
 
 	public function index(){

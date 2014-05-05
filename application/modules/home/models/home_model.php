@@ -235,6 +235,7 @@ class home_model extends MY_Model{
 		// die();
 		return $res1;
 	}
+
 }
 /* End of file home_model.php */
 /* Location: ./application/modules/poc/models/home_model.php */

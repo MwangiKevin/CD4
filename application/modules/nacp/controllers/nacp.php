@@ -25,7 +25,7 @@ class nacp extends MY_Controller {
 		$this->load->model('nacp_model');
 		$this->data['menus'] = $this->nacp_model->menus(1);
 		
-			
+
 		$this->load->module('charts/equipment');
 		$this->load->module('charts/tests');
 		$this->load->module("charts/pima");		

@@ -29,6 +29,7 @@ class reports extends MY_Controller {
 		$this->data['starting_year'] = $this->config->item("starting_year");
 				
 		//sets the menu to the reports page
+
 		$this->data['menus']	= 	$this->poc_model->menus(6);
 	}
 

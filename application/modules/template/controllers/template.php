@@ -10,6 +10,7 @@ class template extends MY_Controller {
 	public function load_template($data){
 
 		$data["menuless"] = false;	
+
 		
 		$data["filter_used"]		=	 $this->get_filter_used();
 		$data['date_filter_year']	=	$this->get_date_filter_year();		
