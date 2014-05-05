@@ -109,29 +109,6 @@ class pima_errors extends MY_Controller {
             $user_errors      = $user_errors_temp;
             $device_errors    = $device_errors_temp;
 
-           //  echo "<br/>";
-           //  echo "<br/>";
-           //  print_r($categories);
-           //  echo "<br/>";
-           //  echo "<br/>";
-           //  print_r($categoriesnum);
-           //  echo "<br/>";            
-           //  echo "<br/>";
-           //  print_r($tests);
-           //  echo "<br/>";
-           //  echo "<br/>";
-           //  print_r($errors);
-           //  echo "<br/>";            
-           //  echo "<br/>";
-           //  print_r($user_errors);
-           //  echo "<br/>";            
-           //  echo "<br/>";
-           //  print_r($device_errors);
-           //  echo "<br/>";
-           //  echo "<br/>";
-           //  foreach ($tests as $key => $value) {
-           //      echo $value."<br/>";
-           //  }
 
             $chart_data = $this->config->item("hgc_column_stacked_grouped");
             $chart_data["xAxis"]["categories"]= $categories;
@@ -251,9 +228,9 @@ class pima_errors extends MY_Controller {
     }
     
 
-    echo "<pre>"; 
-    //print_r($data);
-    echo "</pre>";
+    // echo "<pre>"; 
+    // //print_r($data);
+    // echo "</pre>";
 
     $json_data         = json_encode($data);
     $json_categories   = json_encode($categories);

@@ -24,6 +24,10 @@ class reports extends MY_Controller {
 		$this->data['starting_year'] = $this->config->item("starting_year");		
 
 		$this->data['menus']	= 	$this->poc_model->menus(6);
+
+		$this->load->module("charts/pima");
+		$this->load->module("charts/tests");
+		$this->load->module("charts/pima_errors");
 	}
 
 	public function index(){

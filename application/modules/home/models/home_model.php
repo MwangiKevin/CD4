@@ -129,7 +129,7 @@ class home_model extends MY_Model{
 		return 			$entities;
 	}
 	public function  reporting_map_data(){		
-		return "<entity id='TZ.AS' value='50' link='home/regional/region/1' toolText='Arusha {br}kjhgfdfghj' />";
+		return "<entity id='TZ.AS' value='60' link='home/regional/region/1' toolText='Arusha {br}Expected 50 {br}Reported 30' />";
 	}
 	
 
