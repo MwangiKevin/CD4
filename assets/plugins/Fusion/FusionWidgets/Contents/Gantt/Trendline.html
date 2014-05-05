@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Gantt Chart - Trendlines &amp; Zones</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Gantt chart|Overview.html", "Adding Trendlines" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Adding Trendlines &amp; Zones </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>FusionWidgets XT Gantt chart allows you to add trend lines and trend zones to your Gantt chart. These are helpful when you want to show an event for a particular date - like say, you want to draw a line for &quot;Today&quot; or color the vacations. Here, we'll see how to:
+      <ul>
+	  <li><a href="#trendline">Create a trendline</a></li>
+	  <li><a href="#trendzones">Create a trendzone</a></li>
+	  </ul> </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="trendline"></a>Creating a trend line </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">For a simple example, we'll create a trend line showing today in our &quot;Gantt Project&quot; example. The final result will look as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Trend1.gif" width="582" height="352" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML for the chart looks as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart dateFormat=&quot;mm/dd/yyyy&quot; caption=&quot;Project Gantt&quot; subCaption=&quot;From 1st Feb 2007 - 31st Aug 2007&quot;&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Q1&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Q2&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Q3&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;03/01/2007&quot; label=&quot;Feb&quot;/&gt;<br />    &lt;category start=&quot;03/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Mar&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;05/01/2007&quot; label=&quot;Apr&quot;/&gt;<br />    &lt;category start=&quot;05/01/2007&quot; end=&quot;06/01/2007&quot; label=&quot;May&quot;/&gt;<br />    &lt;category start=&quot;06/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Jun&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;08/01/2007&quot; label=&quot;Jul&quot;/&gt;<br />    &lt;category start=&quot;08/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Aug&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;processes fontSize=&quot;12&quot; isBold=&quot;1&quot; align=&quot;right&quot;&gt;<br />    &lt;process label=&quot;Identify Customers&quot;/&gt;<br />    &lt;process label=&quot;Survey 50 Customers&quot;/&gt;<br />    &lt;process label=&quot;Interpret Requirements&quot;/&gt;<br />    &lt;process label=&quot;Study Competition&quot;/&gt;<br />    &lt;process label=&quot;Documentation of features&quot;/&gt;<br />    &lt;process label=&quot;Brainstorm concepts&quot;/&gt;<br />    &lt;process label=&quot;Design &amp; Code&quot;/&gt;<br />    &lt;process label=&quot;Testing / QA&quot;/&gt;<br />    &lt;process label=&quot;Documentation of product&quot;/&gt;<br />    &lt;process label=&quot;Global Release&quot;/&gt;<br />  &lt;/processes&gt;<br />  &lt;tasks&gt;<br />    &lt;task start=&quot;02/04/2007&quot; end=&quot;02/10/2007&quot;/&gt;<br />    &lt;task start=&quot;02/08/2007&quot; end=&quot;02/19/2007&quot;/&gt;<br />    &lt;task start=&quot;02/19/2007&quot; end=&quot;03/02/2007&quot;/&gt;<br />    &lt;task start=&quot;02/24/2007&quot; end=&quot;03/02/2007&quot;/&gt;<br />    &lt;task start=&quot;03/02/2007&quot; end=&quot;03/21/2007&quot;/&gt;<br />    &lt;task start=&quot;03/21/2007&quot; end=&quot;04/06/2007&quot;/&gt;<br />    &lt;task start=&quot;04/06/2007&quot; end=&quot;07/21/2007&quot;/&gt;<br />    &lt;task start=&quot;07/21/2007&quot; end=&quot;08/19/2007&quot;/&gt;<br />    &lt;task start=&quot;07/28/2007&quot; end=&quot;08/24/2007&quot;/&gt;<br />    &lt;task start=&quot;08/24/2007&quot; end=&quot;08/27/2007&quot;/&gt;<br />  &lt;/tasks&gt;<br />  &lt;trendlines&gt;<br />    &lt;line start=&quot;08/14/2007&quot; displayValue=&quot;Today&quot; color=&quot;333333&quot; thickness=&quot;2&quot; dashed=&quot;1&quot;/&gt;<br />  &lt;/trendlines&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "dateformat": "mm/dd/yyyy",
+    "caption": "Project Gantt",
+    "subcaption": "From 1st Feb 2007 - 31st Aug 2007"
+  },
+  "categories": [
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "04/01/2007",
+          "label": "Q1"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "07/01/2007",
+          "label": "Q2"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "09/01/2007",
+          "label": "Q3"
+        }
+      ]
+    },
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "03/01/2007",
+          "label": "Feb"
+        },
+        {
+          "start": "03/01/2007",
+          "end": "04/01/2007",
+          "label": "Mar"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "05/01/2007",
+          "label": "Apr"
+        },
+        {
+          "start": "05/01/2007",
+          "end": "06/01/2007",
+          "label": "May"
+        },
+        {
+          "start": "06/01/2007",
+          "end": "07/01/2007",
+          "label": "Jun"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "08/01/2007",
+          "label": "Jul"
+        },
+        {
+          "start": "08/01/2007",
+          "end": "09/01/2007",
+          "label": "Aug"
+        }
+      ]
+    }
+  ],
+  "processes": {
+    "fontsize": "12",
+    "isbold": "1",
+    "align": "right",
+    "process": [
+      {
+        "label": "Identify Customers"
+      },
+      {
+        "label": "Survey 50 Customers"
+      },
+      {
+        "label": "Interpret Requirements"
+      },
+      {
+        "label": "Study Competition"
+      },
+      {
+        "label": "Documentation of features"
+      },
+      {
+        "label": "Brainstorm concepts"
+      },
+      {
+        "label": "Design & Code"
+      },
+      {
+        "label": "Testing / QA"
+      },
+      {
+        "label": "Documentation of product"
+      },
+      {
+        "label": "Global Release"
+      }
+    ]
+  },
+  "tasks": {
+    "task": [
+      {
+        "start": "02/04/2007",
+        "end": "02/10/2007"
+      },
+      {
+        "start": "02/08/2007",
+        "end": "02/19/2007"
+      },
+      {
+        "start": "02/19/2007",
+        "end": "03/02/2007"
+      },
+      {
+        "start": "02/24/2007",
+        "end": "03/02/2007"
+      },
+      {
+        "start": "03/02/2007",
+        "end": "03/21/2007"
+      },
+      {
+        "start": "03/21/2007",
+        "end": "04/06/2007"
+      },
+      {
+        "start": "04/06/2007",
+        "end": "07/21/2007"
+      },
+      {
+        "start": "07/21/2007",
+        "end": "08/19/2007"
+      },
+      {
+        "start": "07/28/2007",
+        "end": "08/24/2007"
+      },
+      {
+        "start": "08/24/2007",
+        "end": "08/27/2007"
+      }
+    ]
+  },
+  "trendlines": [
+    {
+      "line": [
+        {
+          "start": "08/14/2007",
+          "displayvalue": "Today",
+          "color": "333333",
+          "thickness": "2",
+          "dashed": "1"
+        }
+      ]
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, we've added the trendline under the <span class="codeInline">&lt;trendlines&gt;</span> element. All trend lines of the chart need to be defined within this element.</p>
+    <p>Each trend line on the chart is represented by <span class="codeInline">&lt;line&gt;</span> element and can have a number of attributes. Here, we've used:</p>
+    <ul>
+      <li>The <span class="codeInline">start</span> attribute to indicate the start date of trend line. If you're using trend zones (explained below), then you'll need to specify the <span class="codeInline">end</span> attribute too. Also, <span class="codeInline">end</span> attribute can be used if you want a slanted trend line.</li>
+      <li>The <span class="codeInline">displayValue</span> attribute to specify the label for the trend line.</li>
+      <li>Various cosmetic properties, which have been discussed in detail in the <a href="XMLAPI.html">Chart XML Sheet</a>.  </li>
+    </ul>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="trendzones"></a>Creating trend zones </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">If you need to highlight a block of dates, you can use trend zones to do so. Shown below is an example, where we highlight a full week as &quot;Vacation&quot; </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Gantt_Trend2.gif" width="587" height="395" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML for the chart looks as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart dateFormat=&quot;mm/dd/yyyy&quot; caption=&quot;Project Gantt&quot; subCaption=&quot;From 1st Feb 2007 - 31st Aug 2007&quot;&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Q1&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Q2&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Q3&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;categories&gt;<br />    &lt;category start=&quot;02/01/2007&quot; end=&quot;03/01/2007&quot; label=&quot;Feb&quot;/&gt;<br />    &lt;category start=&quot;03/01/2007&quot; end=&quot;04/01/2007&quot; label=&quot;Mar&quot;/&gt;<br />    &lt;category start=&quot;04/01/2007&quot; end=&quot;05/01/2007&quot; label=&quot;Apr&quot;/&gt;<br />    &lt;category start=&quot;05/01/2007&quot; end=&quot;06/01/2007&quot; label=&quot;May&quot;/&gt;<br />    &lt;category start=&quot;06/01/2007&quot; end=&quot;07/01/2007&quot; label=&quot;Jun&quot;/&gt;<br />    &lt;category start=&quot;07/01/2007&quot; end=&quot;08/01/2007&quot; label=&quot;Jul&quot;/&gt;<br />    &lt;category start=&quot;08/01/2007&quot; end=&quot;09/01/2007&quot; label=&quot;Aug&quot;/&gt;<br />  &lt;/categories&gt;<br />  &lt;processes fontSize=&quot;12&quot; isBold=&quot;1&quot; align=&quot;right&quot;&gt;<br />    &lt;process label=&quot;Identify Customers&quot;/&gt;<br />    &lt;process label=&quot;Survey 50 Customers&quot;/&gt;<br />    &lt;process label=&quot;Interpret Requirements&quot;/&gt;<br />    &lt;process label=&quot;Study Competition&quot;/&gt;<br />    &lt;process label=&quot;Documentation of features&quot;/&gt;<br />    &lt;process label=&quot;Brainstorm concepts&quot;/&gt;<br />    &lt;process label=&quot;Design &amp; Code&quot;/&gt;<br />    &lt;process label=&quot;Testing / QA&quot;/&gt;<br />    &lt;process label=&quot;Documentation of product&quot;/&gt;<br />    &lt;process label=&quot;Global Release&quot;/&gt;<br />  &lt;/processes&gt;<br />  &lt;tasks&gt;<br />    &lt;task start=&quot;02/04/2007&quot; end=&quot;02/10/2007&quot;/&gt;<br />    &lt;task start=&quot;02/08/2007&quot; end=&quot;02/19/2007&quot;/&gt;<br />    &lt;task start=&quot;02/19/2007&quot; end=&quot;03/02/2007&quot;/&gt;<br />    &lt;task start=&quot;02/24/2007&quot; end=&quot;03/02/2007&quot;/&gt;<br />    &lt;task start=&quot;03/02/2007&quot; end=&quot;03/21/2007&quot;/&gt;<br />    &lt;task start=&quot;03/21/2007&quot; end=&quot;04/06/2007&quot;/&gt;<br />    &lt;task start=&quot;04/06/2007&quot; end=&quot;07/21/2007&quot;/&gt;<br />    &lt;task start=&quot;07/21/2007&quot; end=&quot;08/19/2007&quot;/&gt;<br />    &lt;task start=&quot;07/28/2007&quot; end=&quot;08/24/2007&quot;/&gt;<br />    &lt;task start=&quot;08/24/2007&quot; end=&quot;08/27/2007&quot;/&gt;<br />  &lt;/tasks&gt;<br />  &lt;trendlines&gt;<br />    &lt;line start=&quot;05/3/2007&quot; end=&quot;05/10/2007&quot; displayValue=&quot;Vacation&quot; isTrendZone=&quot;1&quot; alpha=&quot;20&quot; color=&quot;FF5904&quot;/&gt;<br />  &lt;/trendlines&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "dateformat": "mm/dd/yyyy",
+    "caption": "Project Gantt",
+    "subcaption": "From 1st Feb 2007 - 31st Aug 2007"
+  },
+  "categories": [
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "04/01/2007",
+          "label": "Q1"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "07/01/2007",
+          "label": "Q2"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "09/01/2007",
+          "label": "Q3"
+        }
+      ]
+    },
+    {
+      "category": [
+        {
+          "start": "02/01/2007",
+          "end": "03/01/2007",
+          "label": "Feb"
+        },
+        {
+          "start": "03/01/2007",
+          "end": "04/01/2007",
+          "label": "Mar"
+        },
+        {
+          "start": "04/01/2007",
+          "end": "05/01/2007",
+          "label": "Apr"
+        },
+        {
+          "start": "05/01/2007",
+          "end": "06/01/2007",
+          "label": "May"
+        },
+        {
+          "start": "06/01/2007",
+          "end": "07/01/2007",
+          "label": "Jun"
+        },
+        {
+          "start": "07/01/2007",
+          "end": "08/01/2007",
+          "label": "Jul"
+        },
+        {
+          "start": "08/01/2007",
+          "end": "09/01/2007",
+          "label": "Aug"
+        }
+      ]
+    }
+  ],
+  "processes": {
+    "fontsize": "12",
+    "isbold": "1",
+    "align": "right",
+    "process": [
+      {
+        "label": "Identify Customers"
+      },
+      {
+        "label": "Survey 50 Customers"
+      },
+      {
+        "label": "Interpret Requirements"
+      },
+      {
+        "label": "Study Competition"
+      },
+      {
+        "label": "Documentation of features"
+      },
+      {
+        "label": "Brainstorm concepts"
+      },
+      {
+        "label": "Design & Code"
+      },
+      {
+        "label": "Testing / QA"
+      },
+      {
+        "label": "Documentation of product"
+      },
+      {
+        "label": "Global Release"
+      }
+    ]
+  },
+  "tasks": {
+    "task": [
+      {
+        "start": "02/04/2007",
+        "end": "02/10/2007"
+      },
+      {
+        "start": "02/08/2007",
+        "end": "02/19/2007"
+      },
+      {
+        "start": "02/19/2007",
+        "end": "03/02/2007"
+      },
+      {
+        "start": "02/24/2007",
+        "end": "03/02/2007"
+      },
+      {
+        "start": "03/02/2007",
+        "end": "03/21/2007"
+      },
+      {
+        "start": "03/21/2007",
+        "end": "04/06/2007"
+      },
+      {
+        "start": "04/06/2007",
+        "end": "07/21/2007"
+      },
+      {
+        "start": "07/21/2007",
+        "end": "08/19/2007"
+      },
+      {
+        "start": "07/28/2007",
+        "end": "08/24/2007"
+      },
+      {
+        "start": "08/24/2007",
+        "end": "08/27/2007"
+      }
+    ]
+  },
+  "trendlines": [
+    {
+      "line": [
+        {
+          "start": "05/3/2007",
+          "end": "05/10/2007",
+          "displayvalue": "Vacation",
+          "istrendzone": "1",
+          "alpha": "20",
+          "color": "FF5904"
+        }
+      ]
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">To define a trend zone, we've to set both start and end date for the line and also set <span class="codeInline">isTrendZone='1'</span>.  </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Adding Connectors|Connectors.html","Adding Legend|Legend.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

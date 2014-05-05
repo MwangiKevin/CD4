@@ -1,0 +1,313 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="gantt chart" >
+  <topic name="Overview" url="../../../Gantt/Overview.html" />
+  <key name="attributes" >
+    <key name="caption attribute" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="dateFormat attribute" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="fromTaskConnectEnd attribute" >
+      <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+    </key>
+    <key name="fromTaskConnectStart attribute" >
+      <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+    </key>
+    <key name="isTrendzone" >
+      <topic name="Adding Trendlines" url="../../../Gantt/Trendline.html" />
+    </key>
+    <key name="percentComplete attribute" >
+      <topic name="Task bar Configurations#percent" url="../../../Gantt/TaskConfiguration.html#percent" />
+    </key>
+    <key name="sub-caption attribute" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="toTaskConnectEnd attribute" >
+      <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+    </key>
+    <key name="toTaskConnectStart attributes" >
+      <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+    </key>
+  </key>
+  <key name="chart elements" >
+    <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    <key name="categories" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="input date format" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="legend" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="milestones" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="process names" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="show additional data columns" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="sub-categories" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="task bars" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="task connectors" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+    <key name="trend lines" >
+      <topic name="Anatomy" url="../../../Gantt/Anatomy.html" />
+    </key>
+  </key>
+  <key name="configure" >
+    <topic name="Basic Configurations" url="../../../Gantt/Configuration.html" />
+    <key name="add more columns to data table" >
+      <topic name="Basic Configurations#datatable" url="../../../Gantt/Configuration.html#datatable" />
+    </key>
+    <key name="add process header" >
+      <topic name="Basic Configurations#processheader" url="../../../Gantt/Configuration.html#processheader" />
+    </key>
+    <key name="font properties" >
+      <topic name="Basic Configurations#font" url="../../../Gantt/Configuration.html#font" />
+    </key>
+    <key name="hide task dates" >
+      <topic name="Basic Configurations#date" url="../../../Gantt/Configuration.html#date" />
+    </key>
+    <key name="hide task labels" >
+      <topic name="Basic Configurations#label" url="../../../Gantt/Configuration.html#label" />
+    </key>
+    <key name="palette" >
+      <topic name="Basic Configurations#colorp" url="../../../Gantt/Configuration.html#colorp" />
+    </key>
+    <key name="show task dates" >
+      <topic name="Basic Configurations#date" url="../../../Gantt/Configuration.html#date" />
+    </key>
+    <key name="show task labels" >
+      <topic name="Basic Configurations#label" url="../../../Gantt/Configuration.html#label" />
+    </key>
+  </key>
+  <key name="connectors" >
+    <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+  </key>
+  <key name="create first chart" >
+    <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    <key name="&lt;chart&gt; element and its attributes" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="add more categories" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="caption" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="processes" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="sub-caption" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="tasks" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="visual timeline" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+  </key>
+  <key name="date formats" >
+    <topic name="Configuring date formats" url="../../../Gantt/DateFormat.html" />
+    <key name="input date format" >
+      <topic name="Configuring date formats" url="../../../Gantt/DateFormat.html" />
+    </key>
+    <key name="output date format" >
+      <topic name="Configuring date formats" url="../../../Gantt/DateFormat.html" />
+    </key>
+  </key>
+  <key name="elements" >
+    <key name="&lt;categories&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;category&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;chart&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;connector&gt; element" >
+      <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+    </key>
+    <key name="&lt;connectors&gt; element" >
+      <topic name="Adding Connectors" url="../../../Gantt/Connectors.html" />
+    </key>
+    <key name="&lt;legend&gt; element" >
+      <topic name="Adding Legend" url="../../../Gantt/Legend.html" />
+    </key>
+    <key name="&lt;line&gt; element" >
+      <topic name="Adding Trendlines" url="../../../Gantt/Trendline.html" />
+    </key>
+    <key name="&lt;milestone&gt; element" >
+      <topic name="Adding Milestones" url="../../../Gantt/Milestones.html" />
+    </key>
+    <key name="&lt;milestones&gt; element" >
+      <topic name="Adding Milestones" url="../../../Gantt/Milestones.html" />
+    </key>
+    <key name="&lt;process&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;processes&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;task&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;tasks&gt; element" >
+      <topic name="Creating your First Chart" url="../../../Gantt/FirstChart.html" />
+    </key>
+    <key name="&lt;trendlines&gt; element" >
+      <topic name="Adding Trendlines" url="../../../Gantt/Trendline.html" />
+    </key>
+  </key>
+  <key name="enable scrolling" >
+    <topic name="Enable Scrolling" url="../../../Gantt/Scroll.html" />
+    <key name="data table" >
+      <topic name="Enable Scrolling" url="../../../Gantt/Scroll.html" />
+    </key>
+    <key name="gantt pane" >
+      <topic name="Enable Scrolling" url="../../../Gantt/Scroll.html" />
+    </key>
+    <key name="scroll properties" >
+      <topic name="Enable Scrolling" url="../../../Gantt/Scroll.html" />
+    </key>
+  </key>
+  <key name="features" >
+    <topic name="Overview" url="../../../Gantt/Overview.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Gantt/JSONFormat.html" />
+  </key>
+  <key name="legend" >
+    <topic name="Adding Legend" url="../../../Gantt/Legend.html" />
+  </key>
+  <key name="milestones" >
+    <topic name="Adding Milestones" url="../../../Gantt/Milestones.html" />
+  </key>
+  <key name="multi-tasked processes" >
+    <topic name="Multi-tasked Processes" url="../../../Gantt/MultiTask.html" />
+  </key>
+  <key name="task bar" >
+    <topic name="Task bar Configurations" url="../../../Gantt/TaskConfiguration.html" />
+    <key name="customize tool text" >
+      <topic name="Task bar Configurations#tooltext" url="../../../Gantt/TaskConfiguration.html#tooltext" />
+    </key>
+    <key name="display as group" >
+      <topic name="Task bar Configurations#group" url="../../../Gantt/TaskConfiguration.html#group" />
+    </key>
+    <key name="indicate percent complete figures" >
+      <topic name="Task bar Configurations#percent" url="../../../Gantt/TaskConfiguration.html#percent" />
+    </key>
+    <key name="set custom tool text" >
+      <topic name="Task bar Configurations" url="../../../Gantt/TaskConfiguration.html" />
+    </key>
+    <key name="showing percent complete figures" >
+      <topic name="Task bar Configurations" url="../../../Gantt/TaskConfiguration.html" />
+    </key>
+    <key name="use round corners" >
+      <topic name="Task bar Configurations#round" url="../../../Gantt/TaskConfiguration.html#round" />
+    </key>
+  </key>
+  <key name="time based charts" >
+    <topic name="Time based charts" url="../../../Gantt/Time.html" />
+    <key name="create time and date based  charts" >
+      <topic name="Time based charts" url="../../../Gantt/Time.html" />
+    </key>
+    <key name="required time format" >
+      <topic name="Time based charts" url="../../../Gantt/Time.html" />
+    </key>
+  </key>
+  <key name="trendlines" >
+    <topic name="Adding Trendlines" url="../../../Gantt/Trendline.html" />
+  </key>
+  <key name="trendzones" >
+    <topic name="Adding Trendlines" url="../../../Gantt/Trendline.html" />
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="../../../Gantt/XMLAPI.html" />
+  </key>
+</key>
+<key name="gaugeFillMix attribute" >
+  <key name="configure angular gauge" >
+    <topic name="Configuration gauge#gradient" url="../../../Linear/Configurations.html#gradient" />
+  </key>
+</key>
+<key name="gaugeFillRatio attribute" >
+  <key name="configure angular gauge" >
+    <topic name="Configuration gauge#gradient" url="../../../Linear/Configurations.html#gradient" />
+  </key>
+</key>
+<key name="getChartData() function" >
+  <key name="get data back from chart using JavaScript" >
+    <topic name="Getting data back from chart#getchartdatajson" url="../../../JavaScript/JS_DataBackFromChart.html#getchartdatajson" />
+  </key>
+</key>
+<key name="getChartFromId(DOMId)" >
+  <key name="get chart reference using JavaScript" >
+    <topic name="Getting chart reference#legacy" url="../../../JavaScript/JS_ChartInstance.html#legacy" />
+  </key>
+</key>
+<key name="getData() method" >
+  <key name="retrieve data in data streaming charts using JavaScript" >
+    <topic name="JavaScript - Retrieving Data" url="../../../DataStreaming/JSGet.html" />
+  </key>
+</key>
+<key name="getData(index) method" >
+  <key name="edit mode in angular gauge" >
+    <topic name="Edit Mode" url="../../../Angular/Edit.html" />
+  </key>
+</key>
+<key name="getDataAsCSV() API" >
+  <key name="using JavaScript API" >
+    <topic name="Using JavaScript API" url="../../../ExportingData/ExportDataJS.html" />
+  </key>
+</key>
+<key name="getDataForId(id) method" >
+  <key name="edit mode in angular gauge" >
+    <topic name="Edit Mode" url="../../../Angular/Edit.html" />
+  </key>
+</key>
+<key name="getDataForId(pointerId) method" >
+  <key name="edit mode in linear gauge" >
+    <topic name="Edit Mode" url="../../../Linear/Edit.html" />
+  </key>
+</key>
+<key name="getJSONData() function" >
+  <key name="get data back from chart using JavaScript" >
+    <topic name="Getting data back from chart#getjsondata" url="../../../JavaScript/JS_DataBackFromChart.html#getjsondata" />
+  </key>
+</key>
+<key name="insertFusionCharts method" >
+  <key name="use various chart rendering methods in FusionCharts jQuery plugin" >
+    <topic name="Using various chart rendering methods in FusionCharts jQuery plugin" url="../../../jQuery/AdvancedRendering.html" />
+  </key>
+</key>
+<key name="install FusionWidgets" >
+  <topic name="Installing FusionWidgets" url="../../../Introduction/Installation.html" />
+</key>
+<key name="isHollow attribute" >
+  <key name="section funnel chart" >
+    <topic name="Section funnel chart" url="../../../Funnel/Section.html" />
+  </key>
+</key>
+<key name="isSliced attribute" >
+  <key name="create simple pyramid chart" >
+    <topic name="Creating a simple chart" url="../../../Pyramid/Create.html" />
+  </key>
+  <key name="section funnel chart" >
+    <topic name="Section funnel chart" url="../../../Funnel/Section.html" />
+  </key>
+</key>
+
+</indexdata>

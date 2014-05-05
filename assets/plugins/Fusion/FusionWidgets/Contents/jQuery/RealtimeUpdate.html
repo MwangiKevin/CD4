@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Real-time update using FusionCharts jQuery plugin </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+		document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "FusionWidgets XT and jQuery|Overview.html", "Handling real-time charts & gauges" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Handling real-time charts &amp; gauges </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+              <p class="highlightBlock"> FusionWidgets XT uses  FusionCharts jQuery plugin  that takes care of all the products of FusionCharts XT Suite including FusionWidgets XT.</p>
+              <p>FusionCharts jQuery plugin also allows you to configure real-time data of an existing chart. At run-time, you can do the following:</p>
+			  <ul>
+			  <li><a href="#update">update real-time chart data</a></li>
+			  <li><a href="#retrieve">retrieve chart data</a></li> 
+			  <li><a href="#stop">stop real-time streaming of data</a></li>
+			  <li><a href="#start">start real-time streaming of data</a></li>
+			  <li><a href="#clear">clear the chart data of an existing chart</a></li>
+			  </ul>
+			  <p>You can also dynamically update the data value and data label of an existing chart. The <span class="codeInline">streamFusionChartsData()</span> method needs to be used to achieve these. </p>
+              <p class="highlightBlock">To aid your understanding of this section, we recommend you to go through the <a href="Overview.html"><strong>Overview</strong></a> page of FusionCharts jQuery plugin </p>
+              <p>In the following sections of this page we go through some use-cases to showcase how to use this method.</p>    </td>
+  </tr>
+    
+    <tr>
+      <td valign="top" class="header"><a name="charttype" id="charttype"></a><a name="update" id="update"></a>Updating Real-time data</td>
+    </tr>
+    <tr>
+      <td valign="top" class="text">
+        <p>Using the <span class="codeInline">streamFusionChartsData</span> method you can  update the data value or the data label of an existing chart. This method accepts new values for chart as a query string. There are several ways to change the data value or the data label of an existing chart:</p>
+        <p>A code snippet is shown below: </p>
+        <pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('&value=66');
+</pre>
+        <p>In the above code, the HTML elements with id - <span class="codeInline">chartContainer,</span> which contain charts, are selected using the jQuery selector. The <span class="codeInline">streamFusionChartsData</span> method is applied on these elements to find all the FusionCharts objects rendered in the selected elements. A new value is set through <span class="codeInline">value</span> property of the parameter passed to the method. The above code passes the value for one dataset. </p>
+		<p>You can also opt to update value to multiple datasets. A code snippet is shown below: </p>
+		<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('&value=66|44');
+</pre>
+		
+
+
+<p>In the above code, the <span class="codeInline">value</span> property contains two values '66 and 44' for two datasets. The value 66 corresponds to the first dataset and the value 44 corresponds to the second dataset. The values are separated using a '|' character. </p>
+<p>You can also provide multiple values to a dataset. To do so you will have to separate the values using comma(,). A code snippet is show below:</p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('&value=66,44');
+</pre>
+
+<p>Similarly, you can also update data labels of the existing chart. The code will look as under: </p>
+
+        
+        
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('&label=New Label, &value='66,44');
+</pre>
+<p>You can also set multiple labels to the existing chart. To do so you need to separate the labels using comma(,). An example code is shown below:</p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('&label=Label X, Label Y &value=66,44|22,33', );
+</pre>
+<p>You can also pass the parameters sequentially to the method using a command. A code snippet is shown below: </p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('feed', '40', 'New Label');
+</pre>
+<p>In the above code, <span class="codeInline">feed</span> is the command used to update the value and the  label of the chart. The value provided is '40' and the label provided is 'New Label'. </p>
+<p>Parameters can be passed using an object which contains all the information that is to be passed. A code snippet is shown below: </p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('feed', {value:'40', label:'New Label'});
+</pre>
+<p class="header">Updating data for gauges using setData()</p>
+<p>In all the gauges, you can update data using the <span class="codeInline">setData</span> property.  </p>
+ <p><strong>In angular and linear gauges:</strong></p>
+ <p>To update the data value of a dial/pointer of an angular or linear gauge using <span class="codeInline">setdata</span> command you need to set the index of the dial/pointer first and then mention the value to which you want to update. A code snippet is shown below: </p>
+ <pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('setdata', '1', '40');
+</pre>
+<p>In the above HTML code, <span class="codeInline">setdata</span> is the command used to provide data to the chart. Then the index of the dial/pointer is provided and the value for the corresponding dial/pointer is also provided. Here, the value of the first dial/pointer will be updated. In case you have more than one dial/pointer and you want to update the value of the second dial/pointer you need to provide '2' instead of '1'. </p>
+
+<p><strong>In cylinder, bulb, thermometer and LED gauges:</strong></p>
+<p>To update the data value of a cylinder, bulb, thermometer and LED gauges using <span class="codeInline">setdata</span> command you need to set the value. A code snippet is shown below: </p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('setdata', '40');
+</pre>
+<p>In the above HTML code, <span class="codeInline">setdata</span> is the command used to provide data to the chart. Then the value of the gauge is provided. </p>
+<p>To update the label of a cylinder, bulb, thermometer and LED gauges using <span class="codeInline">setdata</span> command you need to set  the label. A code snippet is shown below: </p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('setdata', 'New Label');
+</pre>
+<p>In the above HTML code, <span class="codeInline">setdata</span> is the command used to provide data to the chart. Then the label of the gauge is provided.</p>
+<p class="header"><a name="retrieve" id="retrieve"></a>Retrieve data from charts and gauges using getData()</p>
+<p>You can retrieve data using the <span class="codeInline">getData</span> property. </p>
+<p><strong>In angular and linear gauges:</strong></p>
+<p>To retrieve data value of a dial/pointer from an angular or linear gauge using <span class="codeInline">getdata</span> command you need to set the index of the dial/pointer whose value you want to retrieve. A code snippet is shown below: </p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('getdata', '1');
+</pre>
+<p>In the above HTML code, <span class="codeInline">getdata</span> is the command used to retrieve data from the chart. Then the index of the dial/pointer is provided. Here, the value of the first dial/pointer will be retrieved. In case you have more than one dial/pointer and you want to retrieve the value of the second dial/pointer you need to provide '2' instead of '1'. </p>
+<p><strong>In cylinder, bulb, thermometer and LED gauges:</strong></p>
+<p>To retrieve the data value of a cylinder, bulb, thermometer and LED gauges you need to use the <span class="codeInline">getData</span> command. A code snippet is shown below: </p>
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('getdata');
+</pre>
+<p>In the above HTML code, <span class="codeInline">getdata</span> is the command used to retrieve data from the chart. No other parameters are required.</p>
+<p class="header"><a name="stop" id="stop"></a>Stop updating data</p>
+<p>To stop updating real-time data streaming you need to use the <span class="codeInline">stop</span> command. A code snippet is given below: 
+<pre class="code_container prettyprint">
+$(&quot;#chartContainer&quot;).<strong>streamFusionChartsData</strong>('stop');
+</pre><br/>
+In the above code, the <span class="codeInline">stop </span>command is used to stop the real-time data streaming.
+
+<p class="header"><a name="start" id="start"></a>Start updating data</p>
+
+<p>To start/restart updating real-time data streaming you need to use the <span class="codeInline">start</span> command. A code snippet is given below: 
+<pre class="code_container prettyprint">$("#chartContainer").streamFusionChartsData('start');</pre>
+<p>
+  In the above code, the <span class="codeInline">start</span> command is used to start/restart the real-time data streaming.</p>
+<p class="header"><a name="clear" id="clear"></a>Clear chart data</p>
+<p>To clear the existing data of the chart you need to use the <span class="codeInline">clear</span> command. A code snippet is given below: </p>
+<pre class="code_container prettyprint">$(&quot;#chartContainer&quot;).streamFusionChartsData('clear');</pre>
+<p>
+  In the above code, the <span class="codeInline">clear</span> command is used to clear the real-time data of the chart.</p>
+<p class="highlightBlock"><strong>Note:</strong> This command is applicable only for <strong>Real-time Area</strong>, <strong>Real-time Column</strong>, <strong>Real-time Line</strong>, <strong>Real-time Stacked Area</strong>, <strong>Real-time Stacked Column and Real-time Line (Dual Y)</strong> charts. </p>
+
+</td>
+    </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Various rendering methods|AdvancedRendering.html","Using Selector|Selector.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

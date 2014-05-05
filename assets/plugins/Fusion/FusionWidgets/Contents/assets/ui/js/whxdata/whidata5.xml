@@ -1,0 +1,259 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="cylinder gauge" >
+  <topic name="Introduction" url="../../../Cylinder/Overview.html" />
+  <key name="attributes" >
+    <key name="dataStamp attribute" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="dataStreamURL attribute" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="lowerLimit attribute" >
+      <topic name="Creating a simple gauge" url="../../../Cylinder/Create.html" />
+    </key>
+    <key name="refreshInterval attribute" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="tickValueStep attribute" >
+      <topic name="Configuration#tick" url="../../../Cylinder/Configuration.html#tick" />
+    </key>
+    <key name="upperLimit attribute" >
+      <topic name="Creating a simple gauge" url="../../../Cylinder/Create.html" />
+    </key>
+  </key>
+  <key name="configure" >
+    <topic name="Configuration" url="../../../Cylinder/Configuration.html" />
+    <key name="cylinder height" >
+      <topic name="Configuration#manual" url="../../../Cylinder/Configuration.html#manual" />
+    </key>
+    <key name="cylinder origin" >
+      <topic name="Configuration#manual" url="../../../Cylinder/Configuration.html#manual" />
+    </key>
+    <key name="cylinder radius" >
+      <topic name="Configuration#manual" url="../../../Cylinder/Configuration.html#manual" />
+    </key>
+    <key name="fill color" >
+      <topic name="Configuration#fill" url="../../../Cylinder/Configuration.html#fill" />
+    </key>
+    <key name="hide chart value" >
+      <topic name="Configuration#value" url="../../../Cylinder/Configuration.html#value" />
+    </key>
+    <key name="palette" >
+      <topic name="Configuration#palette" url="../../../Cylinder/Configuration.html#palette" />
+    </key>
+    <key name="tick marks and values" >
+      <topic name="Configuration#tick" url="../../../Cylinder/Configuration.html#tick" />
+    </key>
+  </key>
+  <key name="create simple gauge" >
+    <topic name="Creating a simple gauge" url="../../../Cylinder/Create.html" />
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Cylinder/Create.html" />
+    </key>
+    <key name="&lt;value&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Cylinder/Create.html" />
+    </key>
+  </key>
+  <key name="gauge elements" >
+    <topic name="Elements of the gauge" url="../../../Cylinder/Elements.html" />
+    <key name="annotations" >
+      <topic name="Elements of the gauge" url="../../../Cylinder/Elements.html" />
+    </key>
+    <key name="chart value" >
+      <topic name="Elements of the gauge" url="../../../Cylinder/Elements.html" />
+    </key>
+    <key name="cylinder fill" >
+      <topic name="Elements of the gauge" url="../../../Cylinder/Elements.html" />
+    </key>
+    <key name="tick marks" >
+      <topic name="Elements of the gauge" url="../../../Cylinder/Elements.html" />
+    </key>
+  </key>
+  <key name="JavaScript API" >
+    <topic name="JavaScript API" url="../../../Cylinder/JSAPI.html" />
+  </key>
+  <key name="JavaScript API troubleshoot" >
+    <topic name="JavaScript API" url="../../../Cylinder/JSAPI.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Cylinder/JSONFormat.html" />
+  </key>
+  <key name="real-time support" >
+    <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    <key name="create real-time gauge" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="data format" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="data value update" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="message logger" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="stop real-time updates from server" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+    <key name="troubleshoot" >
+      <topic name="Real-time support" url="../../../Cylinder/RealTime.html" />
+    </key>
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="Cylinder/XMLAPI.html" />
+  </key>
+</key>
+<key name="data streaming charts" >
+  <topic name="Introduction" url="../../../DataStreaming/Overview.html" />
+  <key name="add data stamp" >
+    <topic name="Adding data stamp" url="../../../DataStreaming/RealTimeStamp.html" />
+  </key>
+  <key name="add historical data" >
+    <topic name="Adding historical data" url="../../../DataStreaming/Historical.html" />
+    <key name="increase number of points displayed" >
+      <topic name="Adding historical data" url="../../../DataStreaming/Historical.html" />
+    </key>
+  </key>
+  <key name="add multiple datasets" >
+    <topic name="Adding multiple datasets" url="../../../DataStreaming/MultipleDatasets.html" />
+    <key name="data provider page" >
+      <topic name="Adding multiple datasets" url="../../../DataStreaming/MultipleDatasets.html" />
+    </key>
+    <key name="interactive legend" >
+      <topic name="Adding multiple datasets" url="../../../DataStreaming/MultipleDatasets.html" />
+    </key>
+  </key>
+  <key name="add trendlines" >
+    <topic name="Adding trendlines" url="../../../DataStreaming/Trend.html" />
+    <key name="create slanted trendlines" >
+      <topic name="Adding trendlines" url="../../../DataStreaming/Trend.html" />
+    </key>
+    <key name="create trendzones" >
+      <topic name="Adding trendlines" url="../../../DataStreaming/Trend.html" />
+    </key>
+  </key>
+  <key name="chart configurations" >
+    <topic name="Chart Configurations" url="../../../DataStreaming/Configurations.html" />
+    <key name="avoid overlapping of x-axis labels" >
+      <topic name="Chart Configurations#verticalspace" url="../../../DataStreaming/Configurations.html#verticalspace" />
+    </key>
+    <key name="canvas margins" >
+      <topic name="Chart Configurations#canvasmargins" url="../../../DataStreaming/Configurations.html#canvasmargins" />
+    </key>
+    <key name="decimals" >
+      <topic name="Chart Configurations#decimals" url="../../../DataStreaming/Configurations.html#decimals" />
+    </key>
+    <key name="palettes" >
+      <topic name="Chart Configurations#palette" url="../../../DataStreaming/Configurations.html#palette" />
+    </key>
+    <key name="Y-axis limits" >
+      <topic name="Chart Configurations#axislimits" url="../../../DataStreaming/Configurations.html#axislimits" />
+    </key>
+  </key>
+  <key name="clear chart view" >
+    <topic name="Clearing chart view" url="../../../DataStreaming/RealTimeClear.html" />
+  </key>
+  <key name="create simple example" >
+    <topic name="Creating a simple example" url="../../../DataStreaming/Example.html" />
+  </key>
+  <key name="feed data using JavaScript" >
+    <topic name="JavaScript - Feeding Data" url="../../../DataStreaming/JSFeed.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="Data Streaming Charts JSON Data Format" url="../../../DataStreaming/JSONFormat.html" />
+  </key>
+  <key name="push multiple updates" >
+    <topic name="Pushing multiple updates" url="../../../DataStreaming/MultipleUpdates.html" />
+  </key>
+  <key name="real-time data format" >
+    <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    <key name="add vLines to chart" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="hide labels" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="pass multiple data in each update" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="provide color for each incremental data" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="provide empty data" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="provide link for each incremental data" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="provide tool text for each incremental data" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="send clear chart command from server" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="send messages pertinent to message logger" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="sending labels" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+    <key name="stop real-time updates from server" >
+      <topic name="Real-time data format" url="../../../DataStreaming/Format.html" />
+    </key>
+  </key>
+  <key name="retrieve data using JavaScript" >
+    <topic name="JavaScript - Retrieving Data" url="../../../DataStreaming/JSGet.html" />
+  </key>
+  <key name="set alert manager" >
+    <topic name="Setting Alert Manager" url="../../../DataStreaming/AlertManager.html" />
+  </key>
+  <key name="set different intervals" >
+    <topic name="Setting different intervals" url="../../../DataStreaming/Intervals.html" />
+  </key>
+  <key name="set message logger" >
+    <topic name="Setting Message Logger" url="../../../DataStreaming/MessageLogger.html" />
+  </key>
+  <key name="troubleshoot" >
+    <topic name="Troubleshooting" url="../../../DataStreaming/Debug.html" />
+  </key>
+  <key name="XML sheets" >
+    <key name="real-time area chart XML sheet" >
+      <topic name="Real-time Area Chart" url="../../../DataStreaming/XMLRealTimeArea.html" />
+    </key>
+    <key name="real-time column chart XML sheet" >
+      <topic name="Real-time Column Chart" url="../../../DataStreaming/XMLRealTimeColumn.html" />
+    </key>
+    <key name="real-time dual-y line chart XML sheet" >
+      <topic name="Real-time Dual-Y Line Chart " url="../../../DataStreaming/XMLRealTimeLineDY.html" />
+    </key>
+    <key name="real-time line chart XML sheet" >
+      <topic name="Real-time Line Chart" url="../../../DataStreaming/XMLReaTimeLine.html" />
+    </key>
+    <key name="real-time stacked area chart XML sheet" >
+      <topic name="Real-time Stacked Area Chart" url="../../../DataStreaming/XMLRealTimeStackedArea.html" />
+    </key>
+    <key name="real-time stacked column chart XML sheet" >
+      <topic name="Real-time Stacked Column Chart" url="../../../DataStreaming/XMLRealTimeStackedColumn.html" />
+    </key>
+  </key>
+</key>
+<key name="Data String method" >
+  <topic name="Data String Method" url="../../../HowFWworks/DataXMLExp.html" />
+</key>
+<key name="DataUrl method" >
+  <topic name="DataUrl Method" url="../../../HowFWworks/DataURL.html" />
+</key>
+<key name="download package contents" >
+  <topic name="Download Package Contents" url="../../../Introduction/DownloadC.html" />
+</key>
+<key name="drawing pad" >
+  <topic name="Overview" url="../../../DrawingPad/Overview.html" />
+  <key name="examples" >
+    <topic name="Examples" url="../../../DrawingPad/Examples.html" />
+  </key>
+</key>
+
+</indexdata>

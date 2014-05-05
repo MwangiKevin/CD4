@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>LED Gauge - Elements of the gauge</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "LED gauges|Overview.html", "Elements of the LED gauge" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Elements of the gauge </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>An LED gauge consists of the following elements:</p>
+      <ul>
+        <li><a href="#color">Gauge (Color Range Scale) with border </a></li>
+        <li><a href="#bars">LED Bars &amp; Gaps </a></li>
+        <li><a href="#tickmarks">Tick Marks &amp; Values </a></li>
+        <li><a href="#value">Chart Value </a></li>
+        <li><a href="#annotations">Annotation</a></li>
+      </ul>
+      <p>Here we&rsquo;ll see each of them in detail. Let&rsquo;s first have a look at a standard   LED Gauge enlisting the various basic components:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/LED_Anatomy.jpg" width="500" height="173" class="imageBorder" /><br/><br/></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p class="header"><a name="color"></a>Color Range</p>
+      The LED gauge is defined by minimum and maximum   values. Within that scale you can create various ranges to classify your data.   There can be any number of ranges as you wish to. For each range, you&rsquo;ll have to   specify the minimum and maximum limits, a name for the range and the hex color   for the range. In the above chart, we have the chart with upper limit as 100 and   lower limit as 0. And the color ranges are 0-30, 30-50 and 50-120.
+      <p class="header"><a name="bars" id="bars"></a>LED Bars &amp; Gaps</p>
+      The LED bars are the actual data indicators in an LED   gauge. The LED bars fill up the LED container in a ratio that suggests the chart   value. A number of configurable properties of LED bars are later discussed.
+      <p class="header"><a name="tickmarks" id="tickmarks"></a>Tick Marks</p>
+        Tick marks are the calibration marks on the horizontal   (or vertical for the vertical LED) scale to help interpret the reading. There   are two types of tick marks which can be drawn on the chart:<br/>
+        <br/>
+      <ul>
+        <li>Major Tick Marks &ndash; These are the bigger lines below the scale. </li>
+        <li>Minor Tick Marks &ndash; These are the smaller lines enclosed within the bigger   lines. </li>
+      </ul>
+      <p>For all the tick marks, you can specify the color and the height. </p>
+	  <p class="header"><a name="value" id="value"></a>Value Display</p>
+      
+      The chart value indicates the value of the gauge in numeric terms.
+      <p class="header"><a name="annotations" id="annotations"></a>Annotations</p>
+        Annotations allow you to draw your own custom   shapes, text, or load images on the chart.
+      <p>Let&rsquo;s now have a look at the XML required to create an LED gauge.<br />
+    </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Introduction|Overview.html","Creating a simple LED gauge|Create.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

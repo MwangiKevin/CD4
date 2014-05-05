@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Angular Gauge - Configuring tick marks &amp; values</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+.style1 {
+	font-family: Arial, Helvetica, FreeSans, sans-serif;
+	font-size: 13px;
+	color: rgb(0, 0, 0);
+}
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Angular gauge|Overview.html", "Configuring tick marks" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Configuring tick marks </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll see how to: </p>
+      <ul>
+        <li><a href="#showhide">Show/hide tick marks and tick values</a></li>
+        <li><a href="#tickvalues">Configuring tick values </a></li>
+        <li><a href="#inside">Placing tick marks &amp; values inside</a></li>
+        <li><a href="#number">Configuring number of major and minor tick marks</a></li>
+        <li><a href="#cosmetics">Configuring cosmetics </a></li>
+        <li><a href="#distance">Setting tick value distance </a></li>
+      </ul>
+    <p>Let's see them one by one. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="showhide" id="showhide"></a>Show/hide tick marks and tick values</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to hide both the tick marks and tick values using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... showTickMarks='0' showTickValues='0' ...&gt;</pre></div>
+	<div id="tab2" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...<br />    &quot;showtickmarks&quot;: &quot;0&quot;,
+    &quot;showtickvalues&quot;: &quot;0&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in:   </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks1.jpg" width="356" height="193" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="tickvalues" id="tickvalues"></a>Configuring tick values </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to show every nth tick value by setting:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... tickValueStep='2' ...&gt;</pre></div>
+	<div id="tab4" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...<br />    &quot;showtickstep&quot;: &quot;2&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in every 2nd major tick mark's value being shown, as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks2.jpg" width="353" height="195" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can also set the decimals for the tick values using:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... tickValueDecimals='2' forceTickValueDecimals='1' ..&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...<br />    &quot;tickvaluedecimals&quot;: &quot;2&quot;,
+    &quot;forcetickvaluedecimals&quot;: &quot;1&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Here, we've set tick value decimals as 2 and forced them to display. It will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks3.jpg" width="356" height="194" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="inside" id="inside"></a>Placing tick marks &amp; values inside </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to show tick marks &amp; tick values inside by setting: </p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... placeTicksInside='1' placeValuesInside='1' ...&gt;</pre></div>
+	<div id="tab8" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...<br />    &quot;placeticksinside&quot;: &quot;1&quot;,
+    &quot;placevaluesinside&quot;: &quot;1&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks4.jpg" width="356" height="196" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="number" id="number"></a>Configuring number of major and minor tick marks</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure the number of tick marks as under: </p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab9">XML</a></li>
+       <li><a href="#tab10">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab9" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... majorTMNumber='12' minorTMNumber='3' ...&gt;</pre></div>
+	<div id="tab10" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...<br />    &quot;majortmnumber&quot;: &quot;12&quot;,
+    &quot;minortmnumber&quot;: &quot;3&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>It will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks5.jpg" width="355" height="193" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, the chart has automatically adjusted the number of major ticks to a best feasible value. However, if you do not want the chart to do the same, you can add:</p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab11">XML</a></li>
+       <li><a href="#tab12">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab11" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... adjustTM='0' majorTMNumber='12' minorTMNumber='3' ...&gt;</pre></div>
+	<div id="tab12" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...
+    &quot;adjusttm&quot;: &quot;0&quot;,<br />    &quot;majortmnumber&quot;: &quot;12&quot;,
+    &quot;minortmnumber&quot;: &quot;3&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>It will then result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks6.jpg" width="354" height="194" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="cosmetics" id="cosmetics"></a>Configuring tick mark cosmetics </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure tick mark cosmetics using: </p></td></tr>
+     <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab13">XML</a></li>
+       <li><a href="#tab14">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab13" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... majorTMColor='333333' majorTMAlpha='100' majorTMHeight='10' majorTMThickness='2' minorTMColor='666666' minorTMAlpha='100' minorTMHeight='7' minorTMThickness='1' ...&gt;</pre></div>
+	<div id="tab14" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...
+    &quot;majortmcolor&quot;: &quot;333333&quot;,<br />    &quot;majortmalpha&quot;: &quot;100&quot;,
+    &quot;majortmheight&quot;: &quot;10&quot;
+    &quot;majortmthickness&quot;: &quot;2&quot;
+    &quot;minortmcolor&quot;: &quot;666666&quot;,<br />    &quot;minortmalpha&quot;: &quot;100&quot;,
+    &quot;minortmheight&quot;: &quot;7&quot;,
+    &quot;minortmthickness&quot;: &quot;1&quot;<br />    ...    <br />},</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+	
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks7.jpg" width="354" height="196" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="distance" id="distance"></a>Setting tick value paddings </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure the tick value padding (in pixels) as under:</p></td></tr>
+       <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab15">XML</a></li>
+       <li><a href="#tab16">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab15" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... tickValueDistance='25' ...&gt;</pre></div>
+	  <div id="tab16" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />   ...
+    &quot;tickvaluedistance&quot;: &quot;25&quot;<br />    ...    <br />},</pre>
+	  </div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Ticks8.jpg" width="353" height="194" />
+	<p class="highlightBlock">Starting FusionWidgets XT, you can ask the chart to automatically manage the overlapping of tick values using <span class="codeInline" >manageValueOverlapping='1'</span> and <span class="codeInline">autoAlignTickValues='1'</span> in the <span class="codeInline">&lt;chart&gt;</span> element.</p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Configuring dials|Dials.html","Configuring angles &amp; origin|Angles.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Thermometer Gauge - JavaScript API</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Thermometer gauge|Overview.html", "JavaScript API" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">JavaScript API </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>The Thermometer gauge  exposes the following JavaScript APIs: </p>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><table width="98%" border="0" cellpadding="2" cellspacing="0" class="table">
+        <tr>
+          <td width="30%" class="header">Function Name </td>
+          <td width="20%" class="header">Parameter</td>
+          <td width="50%" class="header">Description</td>
+        </tr>
+		 <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+        <tr class="greyTr">
+          <td colspan="3" valign="top" class="textBold">FusionWidgets XT general JavaScript API </td>
+        </tr>
+        <tr>
+        <td colspan="3" valign="top" ><div class="highlightBlock">The common JavaScript API for all charts, along with the deprecated functions&nbsp;- <span class="codeInline">setDataURL</span>&nbsp;and <span class="codeInline">setDataXML</span>, are discussed in  <a href="../JavaScript/JS_Overview.html">FusionWidgets XT and JavaScript</a> section.</div></td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">&nbsp;</td>
+        <td valign="top" class="codeInline">&nbsp;</td>
+        <td valign="top" class="text">&nbsp;</td>
+      </tr>
+        <tr class="greyTr">
+          <td colspan="3" class="textBold">Chart related APIs </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">feedData(strData)</td>
+          <td valign="top" class="codeInline">strData</td>
+          <td valign="top" class="text">This method feeds real-time data to chart using JavaScript. The data has to be in the<a href="RealTime.html"> same format as provided by real-time data provider page</a>. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">getData()</td>
+          <td valign="top" class="codeInline">&nbsp;</td>
+          <td valign="top" class="text">This method returns the  data currently being shown by the gauge. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">setData(value)</td>
+          <td valign="top" class="codeInline"> value </td>
+          <td valign="top" class="text">This method sets the  data for the chart. The value should be within the limits of the gauge. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">stopUpdate()</td>
+          <td valign="top" class="codeInline">None</td>
+          <td valign="top" class="text">This method stops the chart from self-updating itself. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">restartUpdate()</td>
+          <td valign="top" class="codeInline">None</td>
+          <td valign="top" class="text">If you've stopped the update of the chart, you can resume the update using this method. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">&nbsp;</td>
+          <td valign="top" class="codeInline">&nbsp;</td>
+          <td valign="top" class="text">&nbsp;</td>
+        </tr>
+        <tr class="greyTr">
+          <td colspan="3" valign="top" class="textBold">Message logger related APIs</td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">showLog()</td>
+          <td valign="top" class="codeInline">None</td>
+          <td valign="top" class="text">This method shows the message logger, if it was previously hidden. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">hideLog()</td>
+          <td valign="top" class="codeInline">None</td>
+          <td valign="top" class="text">This method hides the message logger, if it's visible. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">clearLog()</td>
+          <td valign="top" class="codeInline">None</td>
+          <td valign="top" class="text">This method clears the message log contents. </td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Additionally, you can <a href="../Annotations/JSAPI.html">control the annotations using JavaScript API</a>, which has been discussed in the <a href="../Annotations/Introduction.html">annotations</a> sections.</p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="use"></a>Using these methods </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To use any of these methods, you need to <a href="../JavaScript/JS_ChartInstance.html">refer to the chart</a> and then call any of these methods. To refer to a chart, you can use the DOMID of the chart and pass it using any of the following ways:</p>
+        <pre class="code_container prettyprint">var chartRef = FusionCharts(&quot;myChartId&quot;);</pre>
+        <p>or</p>
+        <pre class="code_container prettyprint">var chartRef = FusionCharts.items[&quot;myChartId&quot;]; </pre>
+        <p>The legacy function <span class="codeInline">getChartFromId()</span> still works as show below:</p>
+        <pre  class="code_container prettyprint">var chartRef =  getChartFromId(&quot;myChartId&quot;); </pre>
+        <p>However, note that <span class="codeInline">getChartFromId()</span> has been deprecated.</p>
+        <p class="highlightBlock">You can call the JavaScript APIs of a chart only after it has rendered. You can use the  <a href="../JavaScript/JS_EventOverview.html#simple" class="codeInline">FC_Rendered</a><a href="../JavaScript/JS_EventOverview.html"> event tracker </a> or the <a href="../JavaScript/JS_EventOverview.html#advanced" class="codeInline">Rendered</a><a href="../JavaScript/JS_EventOverview.html#simple"> event listener</a> to check if a chart has rendered. For more information, please see  <a href="../JavaScript/JS_Overview.html">FusionWidgets XT and JavaScript</a> section.</p>
+        <p>The example below shows how to call <span class="codeInline">getData()</span> when a Thermometer gauge is updated with data in real-time:</p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+       <pre class="code_container prettyprint">&lt;html&gt;
+   &lt;head&gt;
+      &nbsp;&nbsp;&nbsp;&lt;title&gt;FusionWidgets XT - JS API&lt;/title&gt;
+      &nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot; src=&quot;../Charts/FusionCharts.js&quot;&gt;&lt;/script&gt;
+      &nbsp;&nbsp;&nbsp;&lt;script language=&quot;javascript&quot;&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">//FC_ChartUpdated   method is called when chart has changed  value in real-time. </span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function FC_ChartUpdated(DOMId){
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">//Check if DOMId is   that of the chart we want</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (DOMId==&quot;ChId1&quot;){
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">//Get reference to the   chart</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var chartRef =   FusionCharts(DOMId);
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">//Get the changed   value</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var chartValue = chartRef.getData(); 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">//... Do what your application demands... </span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} 
+      &nbsp;&nbsp;&nbsp;&lt;/script&gt;
+   &lt;/head&gt;
+   &lt;body&gt;  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;chart1div&quot;&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This text is replaced by the Flash   movie.
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var chart1 = new FusionCharts(&quot;../Charts/Thermometer.swf&quot;, &quot;ChId1&quot;, &quot;100&quot;, &quot;350&quot;, &quot;0&quot;,&quot;1&quot;);
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chart1.setXMLUrl(&quot;Data.xml&quot;);
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chart1.render(&quot;chart1div&quot;);
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;	  
+   &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+  <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+  <td>
+  <div class="highlightBlock">
+   
+        <div class="header"><strong><a name="realtimeupdate"></a>Making use of the new real-time update event</strong></div>
+        <p>FusionWidgets XT (v3.2) introduces two new events to track real-time updates on charts and gauges. The names of the two events are: <span class="codeInline"><a href="../JavaScript/API/Events.html#realtimeupdatecomplete" >RealtimeUpdateComplete</a></span> and <span class="codeInline"><a href="../JavaScript/API/Events.html#realtimeupdateerror">RealtimeUpdateError</a></span>. </p>
+        <p><span class="codeInline">RealtimeUpdateComplete</span> event is raised when a real-time gauge or chart completes updating data. </p>
+        <p>Example implementation:</p>
+      <pre class="prettyprint code_container" >
+      FusionCharts(&quot;myChartId&quot;).addEventListener (&quot;RealtimeUpdateComplete&quot; , 
+        function(event, parameter) 
+        {
+          alert( &quot;Updated value : &quot; + event.sender.getData() );
+        }  
+      );
+</pre>
+        <p>Existing JavaScript implementations using <span class="codeInline"> FC_ChartUpdated</span> event  will continue to function without any problem. </p>  
+		<p><span class="codeInline">RealtimeUpdateError</span> event is raised when error occurs while updating data in a real-time gauge or chart. This event passes the HTTP Status (as number) of the error occurred.</p>
+		<p>Example implementation:</p>
+		<pre class="prettyprint code_container" >
+      FusionCharts(&quot;myChartId&quot;).addEventListener (&quot;RealtimeUpdateError&quot; , 
+        function(event, parameter) 
+        {
+          alert( &quot;Problem occurred while updating real-time data. The error status code is&quot; + <strong> parameter.httpStatus</strong> );
+        }  
+      );
+</pre>
+</div>
+</td>
+</tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="troubleshoot"></a>Troubleshooting</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>While accessing any of the JavaScript methods listed above, if you get an error like<span class="codeInline"> &quot;... is not a function of ...&quot;</span>, make sure of the following points:</p>
+        <ul>
+           <li>Make sure that you're not calling the JavaScript method before the chart has loaded and rendered. You need to use <span class="codeInline"><a href="../JavaScript/JS_EventOverview.html#simple">FC_Rendered</a></span> function or define event listener for <span class="codeInline"><a href="../JavaScript/JS_EventOverview.html#advanced">Rendered</a></span> event of chart to track the loading of chart as explained in the <a href="../JavaScript/JS_Overview.html">FusionWidgets XT and JavaScript</a> section.</li>
+           <li> Make sure that you're NOT running the chart from local file system (C:\ , D:\). Instead, run the chart from behind a server (localhost - IIS, Apache etc.). This is because the Flash Player security settings do not allow chart to JavaScript interaction on local file system by default,<a href="../../Tools/FlashPlayerSecuritySetup/HowToSetup.html" target="_blank"> unless otherwise specifically set</a>.</li>
+        </ul>
+     </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Real-time support|RealTime.html","JSON Data Format|JSONFormat.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

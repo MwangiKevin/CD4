@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Installing FusionWidgets XT</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Introduction", "Installation" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+   <tr>
+      <td class="pageHeader">Installing FusionWidgets XT</td>
+   </tr>
+   <tr>
+      <td valign="top" class="text">
+         <p>Installation of FusionWidgets XT  merely involves 
+            copying and pasting the SWF and JavaScript files from the package into any of your folders. </p>
+      </td>
+   </tr>
+   <tr>
+      <td valign="top" class="header"><a name="installingforweb"></a>Installing FusionWidgets XT for your web application</td>
+   </tr>
+   <tr>
+      <td valign="top" class="text">
+         <p>Installation of FusionWidgets XT for your web application is just a two-step affair:</p>
+         <ol>
+            <li>Create a folder named <span class="codeInline">FusionWidgets</span> in the root of your application (though, it's not mandatory to name             the folder as <span class="codeInline">FusionWidgets</span> or create             it under the root folder. However, it organizes things a lot             more, as all the pages within your website can now access the common             set of charts).</li>
+            <li>Copy all the SWF  and JavaScript files from <span class="codeInline">Download Package           &gt; Charts</span> folder and paste it in <span class="codeInline">FusionWidgets</span> folder.</li>
+         </ol>
+     <p>Installation Complete, there's no more steps involved. FusionWidgets XT is now ready to use in your web application.</p></td>
+   </tr>
+   
+   <tr>
+      <td valign="top" class="header"><a name="installingonlocal"></a>Installing FusionWidgets XT on your local machine 
+         for general charting</td>
+   </tr>
+   <tr>
+      <td valign="top" class="text">
+         <p>If you want to create charts on your local 
+            machine, follow the steps below:</p>
+         <ol>
+            <li>Create a folder named <span class="codeInline">FusionWidgets</span> inside your working folder. Again note that, it's not mandatory to name the folder             as <span class="codeInline">FusionWidgets</span> or create it as a new             folder. However, doing this way organizes things a lot more.</li>
+            <li>Copy all the SWF and JavaScript files from <span class="codeInline">Download Package             &gt; Charts</span> folder and now paste it in <span class="codeInline">FusionWidgets</span> folder.</li>
+            <li>To enable communication between Flash charts and JavaScript (like updating data, retrieving data, printing, exporting, event handling etc.) in your local machine, you need to setup Flash Player Global Security settings. </li>
+         </ol>
+         <div class="highlightBlock" style="margin:20px;">
+            <div class="msg_handler_slider">Note that setting up of Flash Player Global Security Settings is only required when you show the charts from your local file system. This is not required when the charts are displayed from a server (either localhost or remote).<br />
+               <a>Click here to learn more on how to configure Flash Player security settings </a> &raquo;</div>
+            <div class="msg_body code_container" style="width:620px; overflow:auto;margin-top:5px;">You can manipulate the settings from the Global Security Settings panel.
+               <p>If the version of your Flash Player is 10.3 or above you need to right click on the chart and select Global Settings... option from the right-click menu and do the following:</p>
+               <ol>
+                  <li>Select <strong>Advanced tab</strong></li>
+                  <li>Click <strong>Add to Trusted Zone</strong> button</li>
+                  <li>Add all the folder which contain the chart SWF files to this zone</li>
+               </ol>
+               <p><img src="../../Tools/FlashPlayerSecuritySetup/Images/FlashPlayer1.jpg" width="417" height="341" /></p>
+               <p>To get a detailed step-by-step tutorial on the above, please click <a href="../../Tools/FlashPlayerSecuritySetup/HowToSetup.html#103" target="_blank">here</a>. </p>
+               <p>If the version of your Flash Player is lower than 10.3, it can be done in five simple steps:</p>
+               <ol>
+                  <li>Go online to Adobe Flash Player Settings Manager and choose the <a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" target="_blank">Global Security Settings panel</a></li>
+                  <li>Select the <strong>Always allow</strong> radio button on the top to allow security exceptions. This control is marked as "1" in the image below</li>
+                  <li> From the <strong> <span>Edit Locations...</span></strong> drop down box, select <strong>Add location...</strong> option to bring up a dialog box. The drop down box is marked as "2" in the image below</li>
+                  <li>Now select <strong>Browse for folder...</strong> and browse to the location where you are keeping the chart SWF files</li>
+                  <li>After confirming your selection you should see the path of the exception added in area "3" of the image below</li>
+               </ol>
+               <br />
+               <img src="../../Tools/FlashPlayerSecuritySetup/Images/installation_securitySetting.jpg" alt="Installation Security Settings" width="600" height="402" class="imageBorder" /><br />
+               <p class="highlightBlock">In case you wish to do this settings offline, you can ease this process by running a script file from the folder where you have kept the chart SWF files. Go to <a href="../../Tools/FlashPlayerSecuritySetup/HowToSetup.html#offline" target="_blank">How to setup Flash Player Global Security Settings?</a> page.</p>
+            </div>
+         </div>
+         <p>That completes the installation for FusionWidgets XT. Now, all you need 
+            to do is build your XML or JSON data and HTML page, which we'll see in <a href="../FirstChart/FirstChart.html">Creating your first chart</a> section.</p>
+      </td>
+   </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("System Requirements|SysReq.html","Download Contents|DownloadC.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

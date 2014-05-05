@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FusionWidgets XT - Feeding data using JavaScript</title>
+ <script type="text/javascript" src="../../Charts/FusionCharts.js"></script>
+		<script type="text/javascript" language="Javascript" src="../assets/ui/js/jquery.min.js"></script>
+		<script type="text/javascript" language="Javascript" src="../assets/ui/js/lib.js"></script>
+
+        <link href="../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+
+        <!--[if IE 6]>
+        <script type="text/javascript" src="../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+
+		<script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+		
+		<style type="text/css">
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+        </style>
+		<script language="javascript">
+//This method is called when user clicks on the feed data button
+function feedDataToChart(){
+	//Get reference to the chart using its ID
+	var chartRef = FusionCharts("ChId1");
+
+	//We need to create a querstring format incremental update, containing label in hh:mm:ss format
+	//and a value (random).
+	var currDate = new Date();
+	var label= currDate.getHours() + ":" + currDate.getMinutes() + ":" + currDate.getSeconds();
+	//Get random number between 30 & 35 - rounded to 2 decimal places
+	var randomValue = Math.floor(Math.random()*500)/100 + 30;
+	
+	//Build data string in format &label=...&value=...
+	var strData = "&label=" + label + "&value=" + randomValue;
+
+	//Feed it to chart.
+	chartRef.feedData(strData);
+	
+	return;	
+}
+</script>
+		</head>
+<body>
+<div id="wrapper">
+
+            <div id="header">
+                
+
+               <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com/widgets" target="_blank"><img src="../assets/ui/images/fwxt-logo.png" width="73" height="74" alt="FusionWidgets XT logo" /></a></div>
+				 <h1 class="brand-name">FusionWidgets XT</h1>
+		 <h1 class="logo-text">Real-time charts - Clear data</h1>
+		 </div>
+		 <div class="content-area">
+                <div id="content-area-inner-main">
+				<p class="text" align="center">Click Feed Random Data to input data for the chart</p>
+				<div id="messageBox" style="margin-left:130px; margin-right:130px; display:none;"></div>
+					<p>&nbsp;</p>
+
+                    <div class="gen-chart-render">
+<div id="chart1div">
+  This text is replaced by the chart.
+</div>
+<script type="text/javascript">
+   var chart1 = new FusionCharts("../../Charts/RealTimeLine.swf", "ChId1", "500", "350", "0", "1");
+   chart1.setXMLData("<chart caption='Stock Price Monitor' subCaption='Google' \n\
+numberPrefix='$' setAdaptiveYMin='1' xAxisName='Time' showRealTimeValue='1' labelDisplay='Rotate' slantLabels='1' numDisplaySets='15' canvasBottomMargin='130'	>\n\
+	<categories>\n\
+	</categories>\n\
+	<dataset seriesName='Google' showValues='0'>\n\
+	</dataset>\n\
+	<styles>\n\
+		<definition>\n\
+			<style type='font' name='captionFont' size='14' />\n\
+		</definition>\n\
+		<application>\n\
+			<apply toObject='Caption' styles='captionFont' />\n\
+			<apply toObject='Realtimevalue' styles='captionFont' />\n\
+		</application>\n\
+	</styles>\n\
+</chart>");
+   chart1.render("chart1div");
+</script>
+<p>&nbsp;</p>
+<input type='button' value='Feed Random Data' onClick='javascript:feedDataToChart();' id="btnFeed" />
+ 
+ <p>&nbsp;</p>
+ <div class="underline-dull"></div>
+ <div id="footer">
+                <p class="highlightBlock">The above sample showcases how to input data in Real-time charts using JavaScript. Click <a href="../../Contents/Index.html?DataStreaming/JSFeed.html" target="_blank">here</a> to know more on how the code of this example works.</p>
+            </div>
+            
+<p>&nbsp;</p>
+
+</div></div></div></div>
+<script type="text/javascript"><!--//
+			$(document).ready ( function() {
+			   
+			   
+			   if(isJSRenderer(chart1))
+			   {
+				   	showMessage( "Your browser does not seem to have Flash Player support. JavaScript chart is rendered instead.");
+
+			   }
+			   
+			});	
+		// -->
+		</script>
+</body>
+</html>

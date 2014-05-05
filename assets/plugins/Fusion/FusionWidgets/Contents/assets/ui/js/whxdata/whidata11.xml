@@ -1,0 +1,281 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="linear gauge" >
+  <topic name="Introduction" url="../../../Linear/Overview.html" />
+  <key name="configure" >
+    <topic name="Configuration gauge" url="../../../Linear/Configurations.html" />
+    <key name="add link to pointer" >
+      <topic name="Configuration gauge#tooltext" url="../../../Linear/Configurations.html#tooltext" />
+    </key>
+    <key name="add multiple pointers" >
+      <topic name="Configuration gauge#mpointers" url="../../../Linear/Configurations.html#mpointers" />
+    </key>
+    <key name="add tool text to pointer" >
+      <topic name="Configuration gauge#tooltext" url="../../../Linear/Configurations.html#tooltext" />
+    </key>
+    <key name="gauge border" >
+      <topic name="Configuration gauge#border" url="../../../Linear/Configurations.html#border" />
+    </key>
+    <key name="gauge gradient mix" >
+      <topic name="Configuration gauge#gradient" url="../../../Linear/Configurations.html#gradient" />
+    </key>
+    <key name="gauge labels" >
+      <topic name="Configuration gauge#style" url="../../../Linear/Configurations.html#style" />
+    </key>
+    <key name="hide gauge labels" >
+      <topic name="Configuration gauge#label" url="../../../Linear/Configurations.html#label" />
+    </key>
+    <key name="palette" >
+      <topic name="Configuration gauge#palette" url="../../../Linear/Configurations.html#palette" />
+    </key>
+    <key name="pointer value" >
+      <topic name="Configuration gauge#value" url="../../../Linear/Configurations.html#value" />
+    </key>
+    <key name="position" >
+      <topic name="Configuration gauge#position" url="../../../Linear/Configurations.html#position" />
+    </key>
+    <key name="rounded gauge corners" >
+      <topic name="Configuration gauge#round" url="../../../Linear/Configurations.html#round" />
+    </key>
+  </key>
+  <key name="create simple gauge" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+  <key name="edit mode" >
+    <topic name="Edit Mode" url="../../../Linear/Edit.html" />
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt;" >
+      <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+    </key>
+    <key name="&lt;color&gt;" >
+      <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+    </key>
+    <key name="&lt;colorRange&gt;" >
+      <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+    </key>
+    <key name="&lt;point&gt;" >
+      <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+    </key>
+    <key name="&lt;pointer&gt;" >
+      <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+    </key>
+    <key name="&lt;pointers&gt;" >
+      <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+    </key>
+    <key name="&lt;trendpoints&gt;" >
+      <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+    </key>
+  </key>
+  <key name="FC_ChartUpdated(DOMId) function" >
+    <topic name="Edit Mode" url="../../../Linear/Edit.html" />
+  </key>
+  <key name="gauge elements" >
+    <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    <key name="annotations" >
+      <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    </key>
+    <key name="data pointer" >
+      <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    </key>
+    <key name="horizontal gauge" >
+      <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    </key>
+    <key name="tick marks" >
+      <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    </key>
+    <key name="trendpoints" >
+      <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    </key>
+    <key name="trendzones" >
+      <topic name="Elements of the gauge" url="../../../Linear/Elements.html" />
+    </key>
+  </key>
+  <key name="gaugeFillRatio attribute" >
+    <topic name="Configuration gauge" url="../../../Linear/Configurations.html" />
+  </key>
+  <key name="getData(index) method" >
+    <topic name="Edit Mode" url="../../../Linear/Edit.html" />
+  </key>
+  <key name="getDataForId(id) method" >
+    <topic name="Edit Mode" url="../../../Linear/Edit.html" />
+  </key>
+  <key name="getDataForId(pointerId) method" >
+    <topic name="Edit Mode" url="../../../Linear/Edit.html" />
+  </key>
+  <key name="JavaScript API" >
+    <topic name="JavaScript API" url="../../../Linear/JSAPI.html" />
+  </key>
+  <key name="JavaScript API troubleshoot" >
+    <topic name="JavaScript API" url="../../../Linear/JSAPI.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Linear/JSONFormat.html" />
+  </key>
+  <key name="lowerLimit attribute" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+  <key name="real-time support" >
+    <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    <key name="create real-time gauge" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="data format" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="example" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="message logger" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="stop real-time server update" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="troubleshoot" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="update multiple pointers" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+    <key name="update using named ID of the pointer" >
+      <topic name="Real-time support" url="../../../Linear/RealTime.html" />
+    </key>
+  </key>
+  <key name="tick marks and tick values" >
+    <topic name="Configuring tick marks" url="../../../Linear/Ticks.html" />
+    <key name="hide" >
+      <topic name="Configuring tick marks#showhide" url="../../../Linear/Ticks.html#showhide" />
+    </key>
+    <key name="number of major tick marks" >
+      <topic name="Configuring tick marks#number" url="../../../Linear/Ticks.html#number" />
+    </key>
+    <key name="number of minor tick marks" >
+      <topic name="Configuring tick marks#number" url="../../../Linear/Ticks.html#number" />
+    </key>
+    <key name="padding" >
+      <topic name="Configuring tick marks#padding" url="../../../Linear/Ticks.html#padding" />
+    </key>
+    <key name="position" >
+      <topic name="Configuring tick marks#position" url="../../../Linear/Ticks.html#position" />
+    </key>
+    <key name="show" >
+      <topic name="Configuring tick marks#showhide" url="../../../Linear/Ticks.html#showhide" />
+    </key>
+    <key name="tick mark cosmetics" >
+      <topic name="Configuring tick marks#cosmetics" url="../../../Linear/Ticks.html#cosmetics" />
+    </key>
+    <key name="values" >
+      <topic name="Configuring tick marks#tickvalues" url="../../../Linear/Ticks.html#tickvalues" />
+    </key>
+  </key>
+  <key name="trendmarkers" >
+    <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+  </key>
+  <key name="trendpoints" >
+    <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+  </key>
+  <key name="trendzones" >
+    <topic name="Adding trendpoints" url="../../../Linear/Trendpoints.html" />
+  </key>
+  <key name="upperLimit attribute" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="../../../Linear/XMLAPI.html" />
+  </key>
+</key>
+<key name="LinkedCharts" >
+  <topic name="Creating LinkedCharts" url="../../../DrillDown/LinkedCharts/Overview.html" />
+  <key name="configure" >
+    <topic name="Creating LinkedCharts#config" url="../../../DrillDown/LinkedCharts/Overview.html#config" />
+  </key>
+  <key name="dataString method" >
+    <topic name="Creating LinkedCharts#embedded" url="../../../DrillDown/LinkedCharts/Overview.html#embedded" />
+  </key>
+  <key name="LinkedCharts JSON" >
+    <topic name="LinkedCharts JSON" url="../../../DrillDown/LinkedCharts/JSONFormat.html" />
+  </key>
+  <key name="LinkedCharts XML" >
+    <topic name="LinkedCharts XML" url="../../../DrillDown/LinkedCharts/XMLFormat.html" />
+  </key>
+  <key name="open in separate HTML container" >
+    <topic name="Creating LinkedCharts#othercontainer" url="../../../DrillDown/LinkedCharts/Overview.html#othercontainer" />
+  </key>
+  <key name="pointers on the XML's link attribute" >
+    <topic name="Creating LinkedCharts#link" url="../../../DrillDown/LinkedCharts/Overview.html#link" />
+  </key>
+</key>
+<key name="list of charts and gauges" >
+  <topic name="List of charts and gauges" url="../../../Introduction/ChartList.html" />
+</key>
+<key name="lowerLimit attribute" >
+  <key name="angular gauge example" >
+    <topic name="Creating a simple gauge" url="../../../Angular/Create.html" />
+  </key>
+  <key name="LED gauge example" >
+    <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+  </key>
+  <key name="linear gauge example" >
+    <topic name="Creating a simple gauge" url="../../../Linear/Create.html" />
+  </key>
+</key>
+<key name="macros" >
+  <key name="using in annotations" >
+    <topic name="Using Macros in Annotations" url="../../../Annotations/macros.html" />
+  </key>
+</key>
+<key name="maxValue attribute" >
+  <key name="bullet graphs example" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="message logger" >
+  <topic name="Overview" url="../../../MessageLogger/Overview.html" />
+  <key name="configure" >
+    <topic name="Setting it up" url="../../../MessageLogger/Use.html" />
+  </key>
+  <key name="handle messages in JavaScript" >
+    <topic name="Handling messages in JavaScript" url="../../../MessageLogger/HandleJS.html" />
+    <key name="alert function to display messages" >
+      <topic name="Handling messages in JavaScript" url="../../../MessageLogger/HandleJS.html" />
+    </key>
+    <key name="pass all parameters in message envelope" >
+      <topic name="Handling messages in JavaScript" url="../../../MessageLogger/HandleJS.html" />
+    </key>
+  </key>
+  <key name="JavaScript API" >
+    <topic name="JavaScript API" url="../../../MessageLogger/JSAPI.html" />
+  </key>
+  <key name="set up" >
+    <topic name="Setting it up" url="../../../MessageLogger/Use.html" />
+  </key>
+  <key name="stream messages from server" >
+    <topic name="Streaming messages from server" url="../../../MessageLogger/RealTime.html" />
+    <key name="change message type" >
+      <topic name="Streaming messages from server" url="../../../MessageLogger/RealTime.html" />
+    </key>
+    <key name="clear from server" >
+      <topic name="Streaming messages from server" url="../../../MessageLogger/RealTime.html" />
+    </key>
+    <key name="create messages with link" >
+      <topic name="Streaming messages from server" url="../../../MessageLogger/RealTime.html" />
+    </key>
+    <key name="link custom text" >
+      <topic name="Streaming messages from server" url="../../../MessageLogger/RealTime.html" />
+    </key>
+  </key>
+</key>
+<key name="minValue attribute" >
+  <key name="bullet graphs example" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+
+</indexdata>

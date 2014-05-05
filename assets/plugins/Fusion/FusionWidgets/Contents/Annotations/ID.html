@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Annotations|Introduction.html", "Using IDs" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using IDs </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>For each <span class="codeInline">&lt;annotationGroup&gt;</span>, you can define a unique ID as under:</p>
+      <pre class="code_container prettyprint">&lt;annotationGroup id='GRP1' ...&gt;</pre>
+      <p>This allows the group to be now referred using:</p>
+      <ul>
+        <li><a href="../Styles/Styles.html">Styles</a></li>
+        <li><a href="../AlertManager/Introduction.html">Alert Manager</a></li>
+        <li><a href="JSAPI.html">JavaScript API   </a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="styles"></a>Referring in Styles </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">After specifying annotation groups, the group name can be treated as a chart object and then styles can be applied as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;
+      ...
+      &nbsp;&nbsp; &lt;annotations&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &lt;annotationGroup   id='GRP1' &gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;annotation type='rectangle' color='639ACE'   x='100' y='100' toX='200' toY='200'/&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &lt;/annotationGroup&gt;
+      &nbsp;&nbsp;   &lt;/annotations&gt;
+      &nbsp;&nbsp; &lt;styles&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &lt;definition&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &lt;style name='myShadow' type='shadow' distance='10' /&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp;   &lt;/definition&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &lt;application&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;apply   toObject='GRP1' styles='myShadow'/&gt;
+      &nbsp;&nbsp; &nbsp;&nbsp; &lt;/application&gt;
+      &nbsp;&nbsp;   &lt;/styles&gt;
+      ...
+&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "annotations": {
+    "groups": [
+      {
+        "id": "GRP1",
+        "items": [
+          {
+            "type": "rectangle",
+            "color": "639ACE",
+            "x": "100",
+            "y": "100",
+            "tox": "200",
+            "toy": "200"
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "definition": [
+      {
+        "name": "myShadow",
+        "type": "shadow",
+        "distance": "10"
+      }
+    ],
+    "application": [
+      {
+        "toobject": "GRP1",
+        "styles": "myShadow"
+      }
+    ]
+   ...
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Here, we've created an annotation group with ID as GRP1 and then applied shadow style to it. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="alertmanager" id="alertmanager"></a>Using in Alert Managers </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">If you've defined an alert manager with action as show/hide annotation, you'll need the ID of the annotation group to refer to it, as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;
+&hellip;
+&hellip;
+&nbsp;&nbsp;&nbsp;&lt;alerts&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;alert minValue='300' maxValue='360' action='showAnnotation' param='GRP1' /&gt;
+&nbsp;&nbsp;&nbsp;&lt;/alerts&gt;
+&lt;/chart&gt;</pre></div>
+<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  ...
+  "alerts": {
+    "alert": [
+      {
+        "minvalue": "300",
+        "maxvalue": "360",
+        "action": "showAnnotation",
+        "param": "GRP1"
+      }
+    ]
+  }
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Macros|macros.html","Setting visibility|Visible.html");
+	//
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

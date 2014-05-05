@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- declaring chart element -->
+    <xs:element name="chart">
+        <xs:complexType>
+            <xs:sequence>
+        <!-- define colorRange element -->
+                <xs:element name="value" minOccurs="0" maxOccurs="1">
+                </xs:element>
+        <!-- end of colorRange element -->
+
+            <!-- define annotations element -->
+                <xs:element name="annotations" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+              <!-- define annotationGroup element -->
+                            <xs:element name="annotationGroup" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                              <!-- define annotations element -->
+                                        <xs:element name="annotation" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="type">       <!-- Annotations Type (line, rectangle, circle, polygon, arc, text, image)  -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="line"/>
+                                                            <xs:enumeration value="rectangle"/>
+                                                            <xs:enumeration value="circle"/>
+                                                            <xs:enumeration value="polygon"/>
+                                                            <xs:enumeration value="arc"/>
+                                                            <xs:enumeration value="text"/>
+                                                            <xs:enumeration value="image"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="x" type="xs:integer"/>
+                                                <xs:attribute name="y" type="xs:integer"/>
+                                                <xs:attribute name="toX" type="xs:integer"/>
+                                                <xs:attribute name="toY" type="xs:integer"/>
+                                                <xs:attribute name="color" type="xs:hexBinary"/>
+                                                <xs:attribute name="alpha">             <!-- value (0 - 100) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="thickness" type="xs:integer"/>
+                                                <xs:attribute name="dashed" type="xs:boolean"/>
+                                                <xs:attribute name="dashLen" type="xs:integer"/>
+                                                <xs:attribute name="dashGap" type="xs:integer"/>
+                                                <xs:attribute name="radius" type="xs:integer"/>
+                                                <xs:attribute name="fillColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="fillAlpha">             <!-- value (0 - 100) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="fillRatio">             <!-- value (0 - 100) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="fillAngle">             <!-- value (0 - 360) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="361"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="fillPattern">       <!-- fillPattern (Radial, Linear)  -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="radial"/>
+                                                            <xs:enumeration value="linear"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="showBorder" type="xs:boolean"/>
+                                                <xs:attribute name="borderColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="borderThickness" type="xs:integer"/>
+                                                <xs:attribute name="borderAlpha">             <!-- value (0 - 100) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="yRadius" type="xs:integer"/>
+                                                <xs:attribute name="startAngle">             <!-- value (0 - 360) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="361"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="endAngle">             <!-- value (0 - 360) -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="361"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="sides" type="xs:integer"/>
+                                                <xs:attribute name="label" type="xs:string"/>
+                                                <xs:attribute name="align">       <!-- align (left, center, right)  -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="left"/>
+                                                            <xs:enumeration value="center"/>
+                                                            <xs:enumeration value="right"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="vAlign">       <!-- align (top, middle, bottom)  -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="top"/>
+                                                            <xs:enumeration value="middle"/>
+                                                            <xs:enumeration value="bottom"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="font" type="xs:string"/>
+                                                <xs:attribute name="fontSize" type="xs:integer"/>
+                                                <xs:attribute name="fontColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="bold" type="xs:boolean"/>
+                                                <xs:attribute name="italic" type="xs:boolean"/>
+                                                <xs:attribute name="underline" type="xs:boolean"/>
+                                                <xs:attribute name="letterSpacing" type="xs:integer"/>
+                                                <xs:attribute name="leftMargin" type="xs:integer"/>
+                                                <xs:attribute name="bgColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="wrap" type="xs:boolean"/>
+                                                <xs:attribute name="wrapWidth" type="xs:integer"/>
+                                                <xs:attribute name="wrapHeight" type="xs:integer"/>
+                                                <xs:attribute name="url" type="xs:string"/>
+                                                <xs:attribute name="xScale" type="xs:integer"/>
+                                                <xs:attribute name="yScale" type="xs:integer"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                              <!-- define annotations element -->
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string"/>
+                                    <xs:attribute name="x" type="xs:integer"/>
+                                    <xs:attribute name="y" type="xs:integer"/>
+                                    <xs:attribute name="alpha">             <!-- value (0 - 100) -->
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:nonNegativeInteger">
+                                                <xs:maxExclusive value="101"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="origW" type="xs:integer"/>
+                                    <xs:attribute name="origH" type="xs:integer"/>
+                                    <xs:attribute name="autoScale" type="xs:boolean"/>
+                                    <xs:attribute name="constrainedScale" type="xs:boolean"/>
+                                    <xs:attribute name="scaleImages" type="xs:boolean"/>
+                                    <xs:attribute name="scaleText" type="xs:boolean"/>
+                                    <xs:attribute name="xShift" type="xs:integer"/>
+                                    <xs:attribute name="yShift" type="xs:integer"/>
+                                    <xs:attribute name="showBelow" type="xs:boolean"/>
+                                    <xs:attribute name="visible" type="xs:boolean"/>
+                                    <xs:attribute name="toolText" type="xs:string"/>
+                                    <xs:attribute name="link" type="xs:string"/>
+                                    <xs:attribute name="xScale" type="xs:integer"/>
+                                    <xs:attribute name="yScale" type="xs:integer"/>
+                                </xs:complexType>
+                            </xs:element>
+                  <!-- end of annotationGroup element attributes -->
+                        </xs:sequence>
+                        <xs:attribute name="editMode" type="xs:boolean"/>
+                        <xs:attribute name="animation" type="xs:boolean"/>
+                        <xs:attribute name="defaultAnimation" type="xs:boolean"/>
+                    </xs:complexType>
+                </xs:element>
+        <!-- end of annotations element -->
+        
+    <!-- styles element -->
+                <xs:element name="styles" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+         <!-- style definition element -->
+                            <xs:element name="definition" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+               <!-- styles definition style element -->
+                                        <xs:element name="style" minOccurs="0" maxOccurs="unbounded">
+                 <!-- style element attributes -->
+                                            <xs:complexType>
+                                                <xs:attribute name="name" type="xs:string"/>
+                                                <xs:attribute name="type" type="xs:string"/>
+                                                <xs:attribute name="font" type="xs:string"/>
+                                                <xs:attribute name="size" type="xs:integer"/>
+                                                <xs:attribute name="color" type="xs:hexBinary"/>
+                                                <xs:attribute name="bold" type="xs:boolean"/>
+                                                <xs:attribute name="italic" type="xs:boolean"/>
+                                                <xs:attribute name="underline" type="xs:boolean"/>
+                                                <xs:attribute name="bgColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="borderColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="isHTML" type="xs:string"/>
+                                                <xs:attribute name="leftMargin" type="xs:integer"/>
+                                                <xs:attribute name="letterSpacing" type="xs:integer"/>
+
+                                                <xs:attribute name="param">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="_x"/>
+                                                            <xs:enumeration value="_y"/>
+                                                            <xs:enumeration value="_xScale"/>
+                                                            <xs:enumeration value="_yScale"/>
+                                                            <xs:enumeration value="_alpha"/>
+                                                            <xs:enumeration value="_rotation"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="start" type="xs:integer"/>  <!-- this attribute got some string values too -->
+                                                <xs:attribute name="duration" type="xs:nonNegativeInteger"/>
+                                                <xs:attribute name="easing">      <!--  "elastic", "bounce", "regular", "strong" or "none" -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="elastic"/>
+                                                            <xs:enumeration value="bounce"/>
+                                                            <xs:enumeration value="regular"/>
+                                                            <xs:enumeration value="strong"/>
+                                                            <xs:enumeration value="none"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="distance" type="xs:integer"/>
+                                                <xs:attribute name="angle">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="361"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="alpha">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="blurX">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">       <!-- 0 to 255 -->
+                                                            <xs:maxExclusive value="256"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="blurY">                              <!-- 0 to 255 -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="256"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="strength">                         <!-- 0 to 255 -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="256"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="quality">                     <!-- 0 to 15 -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="16"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="properties" type="xs:string"/>
+                                                <xs:attribute name="shadowColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="shadowAlpha">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="highlightColor" type="xs:hexBinary"/>
+                                                <xs:attribute name="highlightAlpha">                 <!-- 0 to 100 -->
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:maxExclusive value="101"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                   <!-- end of style element attributes -->
+                                        </xs:element>
+                 <!-- end of style element -->
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+            <!-- end of defination element -->
+
+            <!-- style application element  -->
+                            <xs:element name="application" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                <!-- style application apply element  -->
+                                        <xs:element name="apply" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="toObject" type="xs:string"/>
+                                                <xs:attribute name="styles" type="xs:string"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                <!-- end of apply -->
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+            <!-- end of application -->
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+    <!-- end of styles -->
+
+            <!-- define alerts element -->
+                <xs:element name="alerts" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+              <!-- define alert element -->
+                            <xs:element name="alert" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="minValue" type="xs:integer"/>
+                                    <xs:attribute name="maxValue" type="xs:integer"/>
+                                    <xs:attribute name="action" type="xs:string"/>
+                                    <xs:attribute name="param" type="xs:string"/>
+                  <!-- end of alert element attributes -->
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+        <!-- end of alerts element -->
+            </xs:sequence>
+      
+	<!-- Chart element Attributes -->
+	<!-- Functional Attributes -->
+            <xs:attribute name="animation" type="xs:boolean"/>
+            <xs:attribute name="defaultAnimation" type="xs:boolean"/>
+            <xs:attribute name="clickURL" type="xs:string"/>
+            <xs:attribute name="palette">               <!-- Number 1 to 5  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="6"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="paletteThemeColor" type="xs:hexBinary"/>
+            <xs:attribute name="annRenderDelay" type="xs:integer"/>
+            <xs:attribute name="autoScale" type="xs:boolean"/>
+            <xs:attribute name="origW" type="xs:integer"/>
+            <xs:attribute name="origH" type="xs:integer"/>
+            <xs:attribute name="showValue" type="xs:boolean"/>
+            <xs:attribute name="showShadow" type="xs:boolean"/>
+            <xs:attribute name="use3DLighting" type="xs:boolean"/>
+            <xs:attribute name="showPrintMenuItem" type="xs:boolean"/>
+            <xs:attribute name="showAboutMenuItem" type="xs:boolean"/>
+            <xs:attribute name="aboutMenuItemLabel" type="xs:string"/>
+            <xs:attribute name="aboutMenuItemLink" type="xs:string"/>
+            <xs:attribute name="refreshInstantly" type="xs:boolean"/>
+            <xs:attribute name="manageResize" type="xs:boolean"/>
+            <xs:attribute name="useEllipsesWhenOverflow" type="xs:boolean"/>
+
+        <!-- Axis properties Attributes -->
+            <xs:attribute name="setAdaptiveMin" type="xs:boolean"/>
+            <xs:attribute name="upperLimit" type="xs:integer"/>
+            <xs:attribute name="lowerLimit" type="xs:integer"/>
+            <xs:attribute name="upperLimitDisplay" type="xs:string"/>
+            <xs:attribute name="lowerLimitDisplay" type="xs:string"/>
+
+        <!-- Real-time properties Attribures -->
+            <xs:attribute name="dataStreamURL" type="xs:string"/>
+            <xs:attribute name="refreshInterval" type="xs:integer"/>
+            <xs:attribute name="dataStamp" type="xs:string"/>
+            <xs:attribute name="showRTMenuItem" type="xs:boolean"/>
+
+       <!--   Thermometer Properties Attributes -->
+            <xs:attribute name="thmBulbRadius" type="xs:integer"/>
+            <xs:attribute name="thmHeight" type="xs:integer"/>
+            <xs:attribute name="gaugeFillColor" type="xs:hexBinary"/>
+            <xs:attribute name="gaugeFillAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="51"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="showGaugeBorder" type="xs:boolean"/>
+            <xs:attribute name="gaugeBorderColor" type="xs:hexBinary"/>
+            <xs:attribute name="gaugeBorderThickness" type="xs:integer"/>
+            <xs:attribute name="gaugeBorderAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+        <!-- Tick Marks & Values Attributes -->
+            <xs:attribute name="showTickMarks" type="xs:boolean"/>
+            <xs:attribute name="showTickValues" type="xs:boolean"/>
+            <xs:attribute name="showLimits" type="xs:boolean"/>
+            <xs:attribute name="adjustTM" type="xs:boolean"/>
+            <xs:attribute name="ticksOnRight" type="xs:boolean"/>
+            <xs:attribute name="majorTMNumber" type="xs:integer"/>
+            <xs:attribute name="majorTMColor" type="xs:hexBinary"/>
+            <xs:attribute name="majorTMAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="majorTMHeight" type="xs:integer"/>
+            <xs:attribute name="majorTMThickness" type="xs:integer"/>
+            <xs:attribute name="minorTMNumber" type="xs:integer"/>
+            <xs:attribute name="minorTMColor" type="xs:hexBinary"/>
+            <xs:attribute name="minorTMAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="minorTMHeight" type="xs:integer"/>
+            <xs:attribute name="minorTMThickness" type="xs:integer"/>
+            <xs:attribute name="tickMarkDistance" type="xs:integer"/>
+            <xs:attribute name="tickValueDistance" type="xs:integer"/>
+            <xs:attribute name="tickValueStep" type="xs:integer"/>
+            <xs:attribute name="tickValueDecimals" type="xs:integer"/>
+            <xs:attribute name="forceTickValueDecimals" type="xs:boolean"/>
+
+         <!-- Message Logger Arrtibutes -->
+            <xs:attribute name="useMessageLog" type="xs:boolean"/>
+            <xs:attribute name="messageLogWPercent" type="xs:integer"/>
+            <xs:attribute name="messageLogHPercent" type="xs:integer"/>
+            <xs:attribute name="messageLogShowTitle" type="xs:boolean"/>
+            <xs:attribute name="messageLogTitle" type="xs:string"/>
+            <xs:attribute name="messageLogColor" type="xs:hexBinary"/>
+            <xs:attribute name="messageGoesToLog" type="xs:boolean"/>
+            <xs:attribute name="messageGoesToJS" type="xs:boolean"/>
+            <xs:attribute name="messageJSHandler" type="xs:string"/>
+            <xs:attribute name="messagePassAllToJS" type="xs:boolean"/>
+
+        <!-- Number Formatting Properties Attributes -->
+            <xs:attribute name="formatNumber" type="xs:boolean"/>
+            <xs:attribute name="numberPrefix" type="xs:string"/>
+            <xs:attribute name="numberSuffix" type="xs:string"/>
+            <xs:attribute name="decimals" type="xs:integer"/>
+            <xs:attribute name="forceDecimals" type="xs:boolean"/>
+            <xs:attribute name="formatNumberScale" type="xs:boolean"/>
+            <xs:attribute name="defaultNumberScale" type="xs:string"/>
+            <xs:attribute name="numberScaleUnit" type="xs:string"/>
+            <xs:attribute name="numberScaleValue" type="xs:string"/>
+            <xs:attribute name="scaleRecursively" type="xs:boolean"/>
+            <xs:attribute name="maxScaleRecursion" type="xs:integer"/>
+            <xs:attribute name="scaleSeparator" type="xs:string"/>
+            <xs:attribute name="decimalSeparator" type="xs:string"/>
+            <xs:attribute name="thousandSeparator" type="xs:string"/>
+            <xs:attribute name="inDecimalSeparator" type="xs:string"/>
+            <xs:attribute name="inThousandSeparator" type="xs:string"/>
+
+        <!-- Background Cosmetics Attributes -->
+            <xs:attribute name="bgColor" type="xs:hexBinary"/>
+            <xs:attribute name="bgAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgRatio" type="xs:string"/>
+            <xs:attribute name="bgAngle">             <!-- value (0 - 360) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="361"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="showBorder" type="xs:boolean"/>
+            <xs:attribute name="borderColor" type="xs:hexBinary"/>
+            <xs:attribute name="borderThickness" type="xs:integer"/>
+            <xs:attribute name="borderAlpha">             <!-- value (0 - 360) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="361"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgImage" type="xs:string"/>
+            <xs:attribute name="bgSWF" type="xs:string"/>
+            <xs:attribute name="bgImageAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgSWFAlpha">             <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgImageDisplayMode">       <!-- Image Display Mode (stretch, tile, fit, fill, center, none)  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="stretch"/>
+                        <xs:enumeration value="tile"/>
+                        <xs:enumeration value="fit"/>
+                        <xs:enumeration value="fill"/>
+                        <xs:enumeration value="center"/>
+                        <xs:enumeration value="none"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgImageVAlign">       <!-- BGImage VAlign (top, middle, bottom)  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="top"/>
+                        <xs:enumeration value="middle"/>
+                        <xs:enumeration value="bottom"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgImageHAlign">       <!-- BGImage HAlign (left, middle, right)   -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="left"/>
+                        <xs:enumeration value="middle"/>
+                        <xs:enumeration value="right"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="bgImageScale">       <!-- value (0 - 300) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="301"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="logoURL" type="xs:string"/>
+            <xs:attribute name="logoPosition">       <!-- logo position (TL, TR, BL, BR, CC)  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="TL"/>
+                        <xs:enumeration value="TR"/>
+                        <xs:enumeration value="BL"/>
+                        <xs:enumeration value="BR"/>
+                        <xs:enumeration value="CC"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="logoAlpha">               <!-- value (0 - 100) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="101"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="logoScale">               <!-- value (0 - 300) -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="301"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="logoLink" type="xs:string"/>
+            
+      <!-- Font Properties Attributes -->
+            <xs:attribute name="baseFont" type="xs:string"/>
+            <xs:attribute name="baseFontSize">                    <!-- 0 to 72 -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxExclusive value="73"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="baseFontColor" type="xs:hexBinary"/>
+
+      <!-- Tool-tip Attributes -->
+            <xs:attribute name="showToolTip" type="xs:boolean"/>
+            <xs:attribute name="showPercentInToolTip" type="xs:boolean"/>
+            <xs:attribute name="toolTipBgColor" type="xs:hexBinary"/>
+            <xs:attribute name="toolTipBorderColor" type="xs:hexBinary"/>
+            <xs:attribute name="toolTipSepChar" type="xs:hexBinary"/>
+            <xs:attribute name="showToolTipShadow" type="xs:boolean"/>
+	  
+      <!-- Chart Padding & Margins Attributes -->
+            <xs:attribute name="captionPadding" type="xs:nonNegativeInteger"/>
+            <xs:attribute name="chartLeftMargin" type="xs:nonNegativeInteger"/>
+            <xs:attribute name="chartRightMargin" type="xs:nonNegativeInteger"/>
+            <xs:attribute name="chartTopMargin" type="xs:nonNegativeInteger"/>
+            <xs:attribute name="chartBottomMargin" type="xs:nonNegativeInteger"/>
+            <xs:attribute name="valuePadding" type="xs:nonNegativeInteger"/>
+      <!-- Exporting charts as PDF/Images > XML Attributes -->
+            <xs:attribute name="exportEnabled" type="xs:boolean"/>
+            <xs:attribute name="exportShowMenuItem" type="xs:boolean"/>
+            <xs:attribute name="exportFormats" type="xs:string"/>
+            <xs:attribute name="exportAtClient" type="xs:boolean"/>
+            <xs:attribute name="exportHandler" type="xs:string"/>
+            <xs:attribute name="exportAction">       <!-- logo position ('save' or 'download')  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="save"/>
+                        <xs:enumeration value="download"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="exportTargetWindow">       <!-- logo position (_self or _blank)  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="_self"/>
+                        <xs:enumeration value="_blank"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="exportCallback" type="xs:string"/>
+            <xs:attribute name="exportFileName" type="xs:string"/>
+            <xs:attribute name="showExportDialog" type="xs:boolean"/>
+            <xs:attribute name="exportDialogMessage" type="xs:string"/>
+            <xs:attribute name="exportDialogColor" type="xs:hexBinary"/>
+            <xs:attribute name="exportDialogBorderColor" type="xs:hexBinary"/>
+            <xs:attribute name="exportDialogFontColor" type="xs:hexBinary"/>
+            <xs:attribute name="exportDialogPBColor" type="xs:hexBinary"/>
+
+        <!-- Setting up the chart to export data from context menu  -->
+            <xs:attribute name="showExportDataMenuItem" type="xs:boolean"/>
+
+        <!-- Customizing the output CSV format  -->
+            <xs:attribute name="exportDataSeparator">       <!-- logo position ( {tab} or {quot} {apos} )  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="{tab}"/>
+                        <xs:enumeration value="{quot}"/>
+                        <xs:enumeration value="{apos}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="exportDataQualifier">       <!-- logo position ( {tab} or {quot} {apos} )  -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="{tab}"/>
+                        <xs:enumeration value="{quot}"/>
+                        <xs:enumeration value="{apos}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="exportDataFormattedVal" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

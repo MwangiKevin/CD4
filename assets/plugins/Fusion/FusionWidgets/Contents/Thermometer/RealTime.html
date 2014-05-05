@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Thermometer Gauge - Real-time support</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Thermometer gauge|Overview.html", "Real-time support" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader"> Real-time support </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+        <p>The gauges in FusionWidgets XT are real time gauges that can continuously request new   data from the server and display the same, without involving any page refreshes.   You can specify the URL of the data provider and the time interval (in seconds),   after which the gauge will look for new data. </p>
+        <p>The data provider page needs to be a page at your server-side, which when   invoked by thermometer gauge, will output the new data   in the format explained below. </p></td>
+  </tr>
+  
+  <tr class="lightYellowTr">
+    <td valign="top" class="header"><a name="dataformat"></a>Real-time data format </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The real-time data format for  gauges depends on:</p>
+        <ul>
+          <li>Value to be passed </li>
+          <li>Whether you're using Message Logger for the chart?</li>
+          <li>Commands for the chart - like stop update etc. </li>
+        </ul>
+      <p>Let's quickly see examples of each one of them.</p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="datavalue"></a>Data value update </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the simplest form, if you're looking to update the value of a gauge, you need to output the data in following   format:</p>
+        <pre class="code_container prettyprint">&amp;value=34</pre>
+      <p>Here,  the output is a single value, 34. So, when FusionWidgets XT will read this value, it will update the chart by setting its value to 34 (if the data is within range). </p>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="stopupdate"></a>Stopping real-time updates from server </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>If you wish to stop the chart from polling the server for any more real-time updates, you can send the following command from server to do so:</p>
+        <pre class="code_container prettyprint">&amp;stopUpdate=1</pre>
+      <p class="text">After stopping the update, it can be restarted either using user interaction (right click context menu) or using client-side JavaScript. </p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="sendmessages"></a>Sending messages pertinent to Message logger </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The gauge can show message logger like data streaming charts. There are various parameters which you can specify for message logger. All of them have been explained in the <a href="../MessageLogger/Overview.html">Message Logger</a> section. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr class="lightYellowTr">
+    <td valign="top" class="header"><a name="create"></a>Creating the real-time gauge </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To create any real-time gauge, you'll need to assimilate the following   things:</p>
+        <ol>
+          <li>Chart SWF file and FusionCharts JavaScript Class </li>
+          <li>XML file that initializes the chart and tells it where to pull the real time   data from </li>
+          <li>Real time data provider page that provides updated data to chart in   real-time data format. </li>
+        </ol>
+      <p>We're already familiar with XML for the chart. The new attributes that need to be added for real-time update are: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="99%" border="0" cellpadding="2" cellspacing="0" class="table">
+        <tr>
+          <td width="25%" class="header">Attribute Name </td>
+          <td width="20%" class="header">Type / Range </td>
+          <td class="header">Description</td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">dataStreamURL</td>
+          <td valign="top" class="text">URL</td>
+          <td valign="top" class="text">This parameter sets the path of the page which is supposed to relay real-time   data to the chart. If you've special characters as a part of your data stream   URL, like <span class="codeInline">?</span> or <span class="codeInline">&amp;</span>, you'll need to URL Encode the entire <span class="codeInline">dataStreamURL</span><br />
+              <br />
+            This page needs to be on the same   sub-domain on which the chart is hosted and invoked from. Otherwise, the Flash   sandbox security will restrict it from accessing the data and hence the   real-time feature won't work.<br />
+            Example: <span class="codeInline">dataStreamURL='liveQuote.aspx?name=xyz' </span></td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">refreshInterval</td>
+          <td valign="top" class="text">Number</td>
+          <td valign="top" class="text">For this parameter, you can specify the number of seconds after which the chart   will look for new data. This process will happen continuously - i.e., if you   specify 5 seconds here, the chart will look for new data every 5 seconds. </td>
+        </tr>
+        <tr>
+          <td valign="top" class="codeInline">dataStamp</td>
+          <td valign="top" class="text">String</td>
+          <td valign="top" class="text">Constantly changing data stamp that can be added to real time Data URL, so as to maintain a state. Please see the section <strong>Real time capabilities </strong>&gt; <a href="../RealTime/RealTimeStamp.html">Adding data stamp</a></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Shown below is an example chart XML:</p></td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart  dataStreamURL=&quot;RealTimeData.asp&quot; refreshInterval=&quot;3&quot;  palette=&quot;4&quot; lowerLimit=&quot;-50&quot; upperLimit=&quot;10&quot; numberSuffix=&quot;&deg; C&quot;&gt;<br />  &lt;value&gt;-40&lt;/value&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+ 
+    "datastreamurl" : "RealTimeData.asp",
+    "refreshinterval" : "3",
+
+    "palette": "4",
+    "lowerlimit": "-50",
+    "upperlimit": "10",
+    "numbersuffix": "° C"
+  },
+  "value": "-40"
+}
+  </pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, we've set <span class="codeInline">dataStreamURL='RealTimeData.asp' refreshInterval='3'</span>, which tells the chart to poll new data from <span class="codeInline">RealTimeData.asp</span> every 3 seconds. </p>
+        <p>For the sake of demo, <span class="codeInline">RealTimeData.asp</span> returns  random value within 100% in the format:</p>
+      <pre class="code_container prettyprint">&amp;value=84</pre>
+      <p>When this value is read by the gauge, it will update its display to reflect the updated value. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="ts"></a>Troubleshooting</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top" class="text">If the chart renders initially, but doesn't update   in real time, do the following: </td>
+        </tr>
+		<tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+        <tr>
+           <td valign="top" class="text">
+              <ul>
+                 <li>Check if you've specified a correct and valid path for <span class="codeInline">dataStreamURL</span> in XML/JSON data</li>
+                 <li>Check if you've specified a valid value for <span class="codeInline">refreshInterval</span> in your XML/JSON data</li>
+                 <li>Check if <span class="codeInline">dataStreamURL</span> is returning proper data. To test this, just open your browser and run this page. It should return the data in text format.</li>
+                 <li>Make sure the output data doesn't contain any carriage returns (new-line characters) or HTML elements. In many scripting languages, these are automatically added. You'll need to remove them.</li>
+                 <li>You also need to make sure that the page which provides the incremental update data   to the charts must be hosted on the same sub-domain in which the charts are   hosted - otherwise,  owing to security restrictions, the charts won't   be able to receive updated data. Due to security restrictions, charts are allowed to retrieve data only from the same sub-domain in which the charts are residing. Data can only be loaded from a domain that is an exact match   to the location of the charts, including sub-domains. For this reason, a chart residing   at <span class="codeInline">server1.mydomain.com </span>will not be able to access data from <span class="codeInline">mydomain.com</span>.
+                    <p class="highlightBlock">If you wish to load data from a different domain, you can set up a proxy page   at the same sub-domain that will actually request data from the distant domain   and then relay it to the charts. You must be able to upload and run a   server-side script on a server in the same domain as the charts. In this method, a chart accesses the script, which loads the information, retrieves it and returns the information back to the chart. This method   is best if the server hosting the data is not under your control (for example, a   public source or a web service).</p>
+                 </li>
+                 <li><strong>If you are using Flash charts, switch on the debug mode of chart. It will provide you with a lot of valuable information when debugging.</strong></li>
+              </ul>
+           </td>
+        </tr>
+    </table></td>
+  </tr>
+ 
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Gauge configurations|Configuration.html","JavaScript API|JSAPI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Funnel Chart - Configuration</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Funnel chart|Introduction.html", "Chart configurations" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Configurations</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>The funnel chart from FusionWidgets XT pack allows you to configure various properties using XML/JSON data. Here, we'll see a few of them:</p>
+      <ul>
+        <li><a href="#F2D">Drawing 2D funnel with customized border properties </a></li>
+        <li><a href="#Shadow">Adding shadow to 2D funnel </a></li>
+        <li><a href="#LCenter">Showing labels at center</a></li>
+        <li><a href="#legend">Showing labels in legend</a> </li>
+        <li><a href="#Hollow">Drawing filled funnel slices</a></li>
+        <li><a href="#slant">Drawing all slices with same slant angle (when plotting streamlined data)</a></li>
+        <li><a href="#POP">Showing values as percentage of previous value</a></li>
+        <li><a href="#Slice">Slicing out individual funnel slices </a></li>
+      </ul>
+      <p>Let's see each of them one by one. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="F2D" id="F2D"></a>Drawing 2D funnel chart </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>When you draw a normal funnel chart, it renders as 3D, with a context menu allowing you to switch between 2D &amp; 3D mode. However, if you intend to render the funnel as 2D itself, you can set: </p></td></tr>
+	
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart ... is2D='1' ...&gt;</pre></div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ "chart" : { "is2d" : "1" ... } }</pre></div></div></div></td></tr>
+<tr>
+<td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel2D_2.jpg" width="388" height="390" class="imageBorder" /><br/>
+    <br/></td>
+  </tr>
+  <tr>
+  <td class="text">See it<a href="../../Code/Funnel/2DFunnel.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p><a name="funnelborder"></a>When in 2D mode, you can customize the border properties of the funnel using:</p></td></tr>
+   <tr>
+		<td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart ... is2D='1' showPlotBorder='1' plotBorderThickness='2' plotBorderAlpha='100' plotBorderColor='CCCCCC' &gt;</pre></div>
+		<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot;:{...&quot;is2d&quot;:&quot;1&quot;, &quot;showplotborder&quot;:&quot;1&quot;, &quot;plotborderthickness&quot;:&quot;2&quot;, &quot;plotborderalpha&quot;:&quot;100&quot;, &quot;plotbordercolor&quot;:&quot;CCCCCC&quot; } }</pre>
+		</div></div></div></td></tr>
+<tr>
+<td class="text">
+   <p>This will result in:   </p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel2D_2.jpg" width="388" height="390" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="Shadow" id="Shadow"></a>Adding shadow to 2D Plot </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Using <a href="../Styles/Styles.html"><strong>Styles</strong></a>, you can add shadow to 2D funnel chart as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart caption=&quot;Conversion Ratio&quot; subcaption=&quot;May 2007&quot; showPercentValues=&quot;1&quot; decimals=&quot;1&quot; baseFontSize=&quot;11&quot; useSameSlantAngle=&quot;1&quot; is2D=&quot;1&quot; showPlotBorder=&quot;1&quot; plotBorderThickness=&quot;2&quot;&gt;<br />  &lt;set label=&quot;Website Visits&quot; value=&quot;385634&quot;/&gt;<br />  &lt;set label=&quot;Downloads&quot; value=&quot;175631&quot;/&gt;<br />  &lt;set label=&quot;Interested to buy&quot; value=&quot;84564&quot;/&gt;<br />  &lt;set label=&quot;Contract finalized&quot; value=&quot;35654&quot;/&gt;<br />  &lt;set label=&quot;Purchased&quot; value=&quot;12342&quot;/&gt;<br />  &lt;styles&gt;<br />    &lt;definition&gt;<br />      &lt;style type=&quot;shadow&quot; name=&quot;myShadow&quot;/&gt;<br />    &lt;/definition&gt;<br />    &lt;application&gt;<br />      &lt;apply toObject=&quot;DATAPLOT&quot; styles=&quot;myShadow&quot;/&gt;<br />    &lt;/application&gt;<br />  &lt;/styles&gt;<br />&lt;/chart&gt;</pre></div>    
+<div id="tab6" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "caption": "Conversion Ratio",
+    "subcaption": "May 2007",
+    "showpercentvalues": "1",
+    "decimals": "1",
+    "basefontsize": "11",
+    "usesameslantangle": "1",
+    "is2d": "1",
+    "showplotborder": "1",
+    "plotborderthickness": "2"
+  },
+  "data": [
+    {
+      "label": "Website Visits",
+      "value": "385634"
+    },
+    {
+      "label": "Downloads",
+      "value": "175631"
+    },
+    {
+      "label": "Interested to buy",
+      "value": "84564"
+    },
+    {
+      "label": "Contract finalized",
+      "value": "35654"
+    },
+    {
+      "label": "Purchased",
+      "value": "12342"
+    }
+  ],
+  "styles": {
+    "definition": [
+      {
+        "type": "shadow",
+        "name": "myShadow"
+      }
+    ],
+    "application": [
+      {
+        "toobject": "DATAPLOT",
+        "styles": "myShadow"
+      }
+    ]
+  }
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">This will result in: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_Shadow.jpg" width="392" height="395" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="LCenter" id="LCenter"></a>Showing labels at center </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to show the funnel labels at center of the chart using:</p></td></tr>
+    <tr>
+		<td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tabA7">XML</a></li>
+       <li><a href="#tabA8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tabA7" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart ... showLabelsAtCenter='1' ...&gt;</pre></div>
+		<div id="tabA8" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... &quot;showlabelsatcenter&quot; : &quot;1&quot; ... } }</pre>
+		</div></div></div></td></tr>
+  <tr>
+  <td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_LabelCenter.jpg" width="394" height="396" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="legend" id="legend"></a>Showing labels in legend</td>
+  </tr>
+  <tr>
+     <td valign="top">
+        <p>Starting FusionWidgets XT, you can choose to place the labels in a separate legend box. You can click on the legend items to slice in and slice-out the respective funnel item as shown below:</p>
+        <p><img src="Images/Legend1.jpg" width="405" height="405" /></p>
+        <p>To show the legend (and hide the labels beside the funnel) set:</p>
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tabA1">XML</a></li>
+       <li><a href="#tabA2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tabA1" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart .. <strong>showLegend='1'</strong> showLabels='0'...&gt;</pre>
+       </div>
+	<div id="tabA2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... <strong>&quot;showlegend&quot; : &quot;1&quot;</strong>, &quot;showlabels&quot;: &quot;0&quot; ... } }</pre>
+	</div></div></div>
+        <p>You can also place the legend at the right by setting the value of the <span class="codeInline">legendPosition</span> attribute to <span class="codeInline">RIGHT</span>:</p>
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tabB1">XML</a></li>
+       <li><a href="#tabB2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tabB1" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart .. showLegend='1' <strong>legendPosition='RIGHT'</strong> showLabels='0'...&gt;</pre>
+       </div>
+	<div id="tabB2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... &quot;showlegend&quot; : &quot;1&quot;, <strong>&quot;legendposition&quot;: &quot;RIGHT&quot;</strong>, &quot;showlabels&quot;: &quot;0&quot; ... } }</pre>
+	</div></div></div><div style="clear:both;"></div>
+        <p>The legend will be placed on the right as shown below:</p>
+        <img src="Images/Legend2.jpg" width="605" height="404" />
+        <br />
+     </td>
+  </tr>
+  <tr>
+  <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="Hollow" id="Hollow"></a>Drawing filled funnel slices (in 3D mode) </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>By default, in a 3D funnel chart, the slices show up as hollow ones. You can make them filled by setting:</p></td></tr>
+    <tr>
+		<td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab9">XML</a></li>
+       <li><a href="#tab10">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab9" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart .. isHollow='0' ...&gt;</pre></div>
+	<div id="tab10" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... &quot;ishollow&quot; : &quot;0&quot; ... } }</pre>
+	</div></div></div></td></tr>
+
+	<tr>
+	<td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_2.jpg" width="401" height="402" /><br/>
+    <br/></td>
+  </tr>
+  <tr>
+  <td class="text">See it<a href="../../Code/Funnel/SectionFunnel.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="slant" id="slant"></a>Drawing all slices with same slant angle (when plotting streamlined data)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">By default, when plotting streamlined data, the chart uses variable funnel slice width to visually depict filtering process, as shown below: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_1.jpg" width="389" height="391" class="imageBorder" /><br/>
+    <br/></td>
+  </tr>
+  <tr>
+  <td class="text">See it<a href="../../Code/Funnel/simple.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>However, if you need the same slant angle for all of them, you can set:</p></td></tr>
+	
+    <tr>
+		<td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab11">XML</a></li>
+       <li><a href="#tab12">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab11" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart useSameSlantAngle='1' ...&gt;</pre></div>
+		<div id="tab12" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... &quot;usesameslantangle&quot; : &quot;1&quot; ... } }</pre>
+		</div></div></div></td></tr>
+  <tr>
+  <td class="text">
+    <p>This will result in: </p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_SlantAngle.jpg" width="387" height="344" class="imageBorder" /><br/>
+    <br/></td>
+  </tr>
+   <tr>
+  <td class="text">See it<a href="../../Code/Funnel/SameSlantAngle.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="POP" id="POP"></a>Showing values as percentage of previous value </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>When showing values in percentage for each slice, you can ask the chart to calculate the percentage value of this slice w.r.t previous slice (instead of the first slice) by setting:</p></td></tr>
+	
+    <tr>
+		<td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab13">XML</a></li>
+       <li><a href="#tab14">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab13" class="tab_content">
+        <pre class="prettyprint code_container">&lt;chart ... percentOfPrevious='1' ..&gt;</pre></div>
+	  <div id="tab14" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... &quot;percentofprevious&quot; : &quot;1&quot; ... } }</pre>
+	  </div></div></div></td></tr>
+  <tr>
+  <td class="text">
+    <p>This will result in:   </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_1.jpg" width="389" height="391" class="imageBorder"/></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">As you can see above, each funnel slice's percent value is now calculated with respect to the previous slice's value (and not the first one). </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="Slice" id="Slice"></a>Slicing out individual funnel slices </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can slice out individual funnel slices by setting:</p></td></tr>
+	
+    <tr>
+		<td align="left" class="text">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab15">XML</a></li>
+       <li><a href="#tab16">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab15" class="tab_content">
+        <pre class="prettyprint code_container">&lt;set ... isSliced='1' ..&gt;</pre></div>
+		<div id="tab16" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot; : {... &quot;issliced&quot; : &quot;1&quot; ... } }</pre>
+		</div></div></div></td></tr>
+  <tr>
+  <td class="text">
+    <p>This will result in (here, we've sliced the yellow slice):   </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Funnel_isSliced.jpg" width="390" height="393" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">However, when you slice out individual slices from XML/JSON data, the slicing interaction won't work. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Section Funnel chart|Section.html","JSON Data Format|JSONFormat.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

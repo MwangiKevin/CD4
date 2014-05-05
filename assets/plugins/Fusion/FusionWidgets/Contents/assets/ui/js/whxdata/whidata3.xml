@@ -1,0 +1,222 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="bulb gauge" >
+  <topic name="Introduction" url="../../../Bulb/Overview.html" />
+  <key name="attributes" >
+    <key name="dataStamp" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="dataStreamURL" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="lowerLimit attribute" >
+      <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+    </key>
+    <key name="refreshInterval" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="upperLimit attribute" >
+      <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+    </key>
+  </key>
+  <key name="configure" >
+    <topic name="Configuration" url="../../../Bulb/Configurations.html" />
+    <key name="bulb cosmetics" >
+      <topic name="Configuration#bulb" url="../../../Bulb/Configurations.html#bulb" />
+    </key>
+    <key name="gauge value" >
+      <topic name="Configuration#value" url="../../../Bulb/Configurations.html#value" />
+    </key>
+  </key>
+  <key name="create simple gauge" >
+    <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+    </key>
+    <key name="&lt;color&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+    </key>
+    <key name="&lt;colorRange&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+    </key>
+    <key name="&lt;value&gt; element" >
+      <topic name="Creating a simple gauge" url="../../../Bulb/Create.html" />
+    </key>
+  </key>
+  <key name="gauge elements" >
+    <topic name="Elements of the gauge" url="../../../Bulb/Elements.html" />
+    <key name="color range" >
+      <topic name="Elements of the gauge" url="../../../Bulb/Elements.html" />
+    </key>
+    <key name="value text box" >
+      <topic name="Elements of the gauge" url="../../../Bulb/Elements.html" />
+    </key>
+  </key>
+  <key name="JavaScript API" >
+    <topic name="JavaScript API" url="../../../Bulb/JSAPI.html" />
+  </key>
+  <key name="JavaScript API troubleshoot" >
+    <topic name="JavaScript API" url="../../../Bulb/JSAPI.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Bulb/JSONFormat.html" />
+  </key>
+  <key name="real-time support" >
+    <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    <key name="create real-time gauge" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="data format" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="data value update" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="message logger" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="stop real-time updates from server" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+    <key name="troubleshoot" >
+      <topic name="Real-time support" url="../../../Bulb/RealTime.html" />
+    </key>
+  </key>
+  <key name="XML sheet" >
+    <topic name="XML Sheet" url="../../../Bulb/XMLAPI.html" />
+  </key>
+</key>
+<key name="bullet graphs" >
+  <topic name="Introduction" url="../../../Bullet/Overview.html" />
+  <key name="configure" >
+    <topic name="Various configurations" url="../../../Bullet/Configuration.html" />
+    <key name="color range properties" >
+      <topic name="Various configurations#colorrange" url="../../../Bullet/Configuration.html#colorrange" />
+    </key>
+    <key name="hide chart values" >
+      <topic name="Various configurations#value" url="../../../Bullet/Configuration.html#value" />
+    </key>
+    <key name="palettes" >
+      <topic name="Various configurations#palette" url="../../../Bullet/Configuration.html#palette" />
+    </key>
+    <key name="plot as point" >
+      <topic name="Various configurations#point" url="../../../Bullet/Configuration.html#point" />
+    </key>
+    <key name="plot properties" >
+      <topic name="Various configurations#plot" url="../../../Bullet/Configuration.html#plot" />
+    </key>
+    <key name="target properties" >
+      <topic name="Various configurations#plot" url="../../../Bullet/Configuration.html#plot" />
+    </key>
+    <key name="tick mark properties" >
+      <topic name="Various configurations#tick" url="../../../Bullet/Configuration.html#tick" />
+    </key>
+  </key>
+  <key name="create simple graph" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt;" >
+      <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+    </key>
+    <key name="&lt;colorRange&gt;" >
+      <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+    </key>
+    <key name="&lt;target&gt;" >
+      <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+    </key>
+    <key name="&lt;value&gt;" >
+      <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+    </key>
+  </key>
+  <key name="features" >
+    <topic name="Introduction" url="../../../Bullet/Overview.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../Bullet/JSONFormat.html" />
+  </key>
+  <key name="maxValue attribute" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="minValue attribute" >
+    <topic name="Creating a simple graph" url="../../../Bullet/Create.html" />
+  </key>
+  <key name="XML sheet - horizontal bullet" >
+    <topic name="XML Sheet - Horizontal Bullet" url="../../../Bullet/HBulletXMLAPI.html" />
+  </key>
+  <key name="XML sheet - vertical bullet" >
+    <topic name="XML Sheet - Vertical Bullet" url="../../../Bullet/VBulletXMLAPI.html" />
+  </key>
+</key>
+<key name="CALL JS attribute" >
+  <key name="set up alert manager" >
+    <topic name="Setting it up" url="../../../AlertManager/Setting.html" />
+  </key>
+</key>
+<key name="changeAttribute() function" >
+  <key name="change chart properties using JavaScript" >
+    <topic name="Changing chart properties" url="../../../JavaScript/JS_ChangeChartProperties.html" />
+  </key>
+</key>
+<key name="client-side export" >
+  <topic name="Overview" url="../../../ExportingImage/Client/ECClientOverview.html" />
+  <key name="component UI" >
+    <topic name="Component UI" url="../../../ExportingImage/Client/ECComponentUI.html" />
+    <key name="configuration attributes" >
+      <topic name="Component UI" url="../../../ExportingImage/Client/ECComponentUI.html" />
+    </key>
+  </key>
+  <key name="configuring export dialog cosmetics" >
+    <topic name="Configuring export dialog cosmetics" url="../../../ExportingImage/Client/ECExportDialog.html" />
+  </key>
+  <key name="configuring output formats and context menu" >
+    <topic name="Configuring output formats and context menu" url="../../../ExportingImage/Client/ECServerFormats.html" />
+    <key name="hide context menu items" >
+      <topic name="Configuring output formats and context menu" url="../../../ExportingImage/Client/ECServerFormats.html" />
+    </key>
+  </key>
+  <key name="export multiple charts" >
+    <topic name="../../../Exporting multiple charts" url="ExportingImage/Client/ECClientMultiple.html" />
+    <key name="many to one mode" >
+      <topic name="../../../Exporting multiple charts" url="ExportingImage/Client/ECClientMultiple.html" />
+    </key>
+    <key name="one to one mode" >
+      <topic name="Exporting multiple charts" url="../../../ExportingImage/Client/ECClientMultiple.html" />
+    </key>
+  </key>
+  <key name="set JavaScript callback" >
+    <topic name="Setting JavaScript callback" url="../../../ExportingImage/Client/ECClientCallback.html" />
+    <key name="FC_ExportReady event" >
+      <topic name="Setting JavaScript callback" url="../../../ExportingImage/Client/ECClientCallback.html" />
+    </key>
+  </key>
+  <key name="simple example" >
+    <topic name="Simple Example" url="../../../ExportingImage/Client/ECClientSimple.html" />
+    <key name="configuring XML for client-side export" >
+      <topic name="Simple Example" url="../../../ExportingImage/Client/ECClientSimple.html" />
+    </key>
+    <key name="customizing the export component UI" >
+      <topic name="Simple Example" url="../../../ExportingImage/Client/ECClientSimple.html" />
+    </key>
+    <key name="FusionCharts export component" >
+      <topic name="Simple Example" url="../../../ExportingImage/Client/ECClientSimple.html" />
+    </key>
+  </key>
+</key>
+<key name="ColdFusion" >
+  <key name="create charts" >
+    <topic name="Creating charts using various server side scripts#cf" url="../../../FirstChart/ServerSideScripts.html#cf" />
+  </key>
+</key>
+<key name="configure() function" >
+  <key name="change chart message" >
+    <topic name="Changing Chart Messages#addvaraible" url="../../../Advanced/ChartMessages.html#addvaraible" />
+  </key>
+  <key name="create LinkedCharts using JavaScript" >
+    <topic name="Creating LinkedCharts using JavaScript" url="../../../JavaScript/JS_LinkedCharts.html" />
+  </key>
+</key>
+
+</indexdata>

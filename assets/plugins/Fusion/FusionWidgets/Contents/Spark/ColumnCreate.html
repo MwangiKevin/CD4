@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Spark Chart - Spark Column Chart - Simple Example</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Spark charts|Overview.html", "Spark Column", "Creating a Spark Column chart" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating a Spark Column chart  </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll create a simple spark column chart to show the monthly revenue of a fictional company for one year.</p>
+      <p>The chart will look as under:</p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/SparkColumn1.jpg" width="200" height="39" class="imageBorder" /></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="data"></a>Data for the chart </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML/JSON data for the chart will look as under: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart palette=&quot;2&quot; caption=&quot;Revenue&quot; subcaption=&quot;12 months&quot; numberPrefix=&quot;$&quot; highColor=&quot;00CC33&quot; lowColor=&quot;CC0000&quot;&gt;<br />  &lt;dataset&gt;<br />    &lt;set value=&quot;783000&quot;/&gt;<br />    &lt;set value=&quot;201000&quot;/&gt;<br />    &lt;set value=&quot;515000&quot;/&gt;<br />    &lt;set value=&quot;115900&quot;/&gt;<br />    &lt;set value=&quot;388000&quot;/&gt;<br />    &lt;set value=&quot;433000&quot;/&gt;<br />    &lt;set value=&quot;910000&quot;/&gt;<br />    &lt;set value=&quot;198000&quot;/&gt;<br />    &lt;set value=&quot;183300&quot;/&gt;<br />    &lt;set value=&quot;162000&quot;/&gt;<br />    &lt;set value=&quot;159400&quot;/&gt;<br />    &lt;set value=&quot;185000&quot;/&gt;<br />  &lt;/dataset&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "palette": "2",
+    "caption": "Revenue",
+    "subcaption": "12 months",
+    "numberprefix": "$",
+    "highcolor": "00CC33",
+    "lowcolor": "CC0000"
+  },
+  "dataset": [
+    {
+      "data": [
+        {
+          "value": "783000"
+        },
+        {
+          "value": "201000"
+        },
+        {
+          "value": "515000"
+        },
+        {
+          "value": "115900"
+        },
+        {
+          "value": "388000"
+        },
+        {
+          "value": "433000"
+        },
+        {
+          "value": "910000"
+        },
+        {
+          "value": "198000"
+        },
+        {
+          "value": "183300"
+        },
+        {
+          "value": "162000"
+        },
+        {
+          "value": "159400"
+        },
+        {
+          "value": "185000"
+        }
+      ]
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the above XML, we've:</p>
+      <ul>
+        <li>Created the <span class="codeInline">&lt;chart&gt;</span> element, which is   the root element of each chart. </li>
+        <li>Specified the caption &amp; sub-caption, palette number, number prefix. We've also asked the chart to color the highest and lowest month columns using different colors. You can specify a lot more properties for the <span class="codeInline">&lt;chart&gt;</span> element, which have been discussed in <a href="ColumnConfiguration.html">next   section</a>. </li>
+        <li>Thereafter, we've added the <span class="codeInline">&lt;dataset&gt;</span>   element to contain data. Each spark column chart XML can have only one <span class="codeInline">&lt;dataset&gt;</span> element, under which individual data   points can be specified using <span class="codeInline">&lt;set value='23400'   /&gt;</span>. </li>
+      </ul>
+	  <p class="highlightBlock">For detailed explanation on JSON data format click <a href="JSONFormat.html">here</a>.
+    <p>When you now view the chart, you'll get something as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/SparkColumn1.jpg" width="200" height="39" class="imageBorder" /><br/><br/></td>
+  </tr>
+   <tr>
+  <td class="text">See it<a href="../../Code/SparkCharts/SparkColumn/FirstSparkColumn.html" target="_blank"> live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Next, we'll see how to configure the various aspects of this chart. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Spark Line chart XML Sheet|LineXMLAPI.html","Chart configurations|ColumnConfiguration.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

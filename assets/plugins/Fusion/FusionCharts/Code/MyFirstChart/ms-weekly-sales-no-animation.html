@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FusionCharts XT - My First Chart </title>
+        <script type="text/javascript" src="../../Charts/FusionCharts.js"></script>
+
+        <style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+			}
+        </style>
+    </head>
+    <body>
+		<div id="chartContainer">FusionCharts will load here</div>
+		<script type="text/javascript" src="MSData-no-animation.xml.js"></script>
+		<script type="text/javascript"><!--
+
+			var myChart = new FusionCharts( "MSColumn3D", "myChartId", "400", "300");
+			myChart.setXMLData( dataString );
+			myChart.render( "chartContainer" );
+
+			// -->
+		</script>
+                        
+    </body>
+</html>

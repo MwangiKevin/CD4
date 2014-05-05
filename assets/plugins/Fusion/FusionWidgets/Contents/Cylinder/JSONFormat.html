@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>JSON Data Format</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Cylinder gauge|Overview.html", "JSON Data Format" ]) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Cylinder Gauge JSON Data Format</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>Starting FusionWidgets XT, charts/gauges can  be rendered using JSON (JavaScript Object Notation) data. JSON is a light-weight and simple data format that is easy to read and understand. Though derived from JavaScript, the data structure is language-independent, with encoders and parsers available for virtually every programming language.       </p>
+       <div class="highlightBlock" >
+        <div class="msg_handler_slider"><a>Click here to know a few basic things about JSON data</a> &raquo; </div><div class="msg_body code_container" style="overflow:auto;margin-top:5px;">
+       <ul>
+        <li> JSON data is text based data consisting of key and value pairs in format <span class="codeInline">key : value</span> . The values have data associated with them</li>
+        <li>You can make up your own key-value pairs like <span class="codeInline">name : &quot;John Doe&quot; </span><span class="text"> 
+          to store data</span></li>
+        <li>Every JSON data is enveloped by curly brace and key:value pairs are comma separated, like <span class="codeInline">{ firstName : &quot;John&quot; , lastName: &quot;Doe&quot; }</span><span class="codetext">. In JavaScript, this format is called an Object</span></li>
+        <li>A key can be a value within single or double-quotes  e.g. <span class="codeInline">{ &quot;name&quot; : &quot;John Doe&quot; }</span></li>
+        <li>You can use Objects as values too. For example, <span class="codeInline">{ &quot;employee&quot; : { &quot;name&quot; :  &quot;John Doe&quot; , &quot;department&quot; : &quot;Project Manager&quot; , &quot;age&quot; : 35 }  </span> }</li>
+        <li>In JSON, the basic data types are:<ul><li><span class="codeInline">Number</span> (<span class="codeInline">integer </span><span class="text">or</span><span class="codeInline"> real</span>)</li>
+              <li class="codeInline"> String<span class="text"> (double-quoted Unicode with backslash escaping) </span></li>
+              <li class="codeInline">Boolean <span class="text">(</span>1<span class="text"> or</span> 0 in FusionCharts JSON<span class="text">)</span> </li>
+              <li class="codeInline">null</li>
+              <li class="codeInline">Array <span class="text">(an ordered sequence of values of Number, String, Boolean, null, Object or Array type, comma-separated and enclosed in square brackets) e.g.</span> [ &quot;employees&quot; : [ &quot;Employees&quot; , { &quot;name&quot; : &quot;John Doe&quot; } , 35 ] </li>
+              <li class="codeInline">Object <span class="text">(a collection of key:value pairs, comma-separated and enclosed in curly braces. Value can be of Number, String, Boolean, null, Object or Array type) e.g. </span>{ &quot;employee&quot; : { &quot;name&quot; : &quot;John Doe&quot; , &quot;department&quot; : &quot;Project Manager&quot; , &quot;age&quot; : 35 } } </li>
+              </ul>
+        </li>
+      </ul>
+      <p>A   FusionWidgets XT gauge is controlled by a single JSON data source i.e., the same source contains data to plot, functional settings and cosmetic properties. There are many properties that you can define for each chart 
+        type. However, it is not necessary to define all the properties for a given 
+        chart. For example, if you do not want to change the default setting of 
+        the canvas (color, alpha etc.), you don't have to define any property 
+        for the canvas - the default values will be assumed. Thus, each chart 
+        can be generated using minimal properties. </p>
+      </div></div>
+    </td></tr>
+	<tr>
+	<td><p class="text">In this page, we will discuss about how to use JSON data to create a Cylinder gauge.</p></td></tr><tr>
+      <td>
+       <img src="Images/Cylinder_Create.jpg" width="203" height="255" /> </td> </tr>
+       <tr> <td> <p>A sample JSON data for a Cylinder gauge looks as under:</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><pre class="prettyprint code_container">{<br />  &quot;chart&quot;: {<br />    &quot;palette&quot;: &quot;3&quot;,<br />    &quot;lowerlimit&quot;: &quot;0&quot;,<br />    &quot;upperlimit&quot;: &quot;4000&quot;,<br />    &quot;numbersuffix&quot;: &quot; ltrs.&quot;,<br />    &quot;bgcolor&quot;: &quot;FFFFFF&quot;<br />  },<br />  &quot;value&quot;: &quot;2452&quot;<br />}</pre> 
+    <br /> </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="header"><a name="explanation"></a>Brief Explanation</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"> <p>The <span class="codeInline">chart</span> Object defines all the settings that help to manipulate the gauge. 
+      You can find the list of all the attributes for this Object in  the <a href="XMLAPI.html">XML Sheet</a> of Cylinder Gauge.</p>
+      <p>In the most general form, chart attributes represent the following JSON format:<br />
+          <br />
+        <span class="codeInline">&quot;attributeName&quot; : &quot;Value&quot;<br />
+        e.g., &quot;numbersuffix&quot; : &quot;ltrs&quot;</span><br />
+        <br />
+       The attributes can be arranged in any order, with values either in single or in double quotes, 
+        like <span class="codeInline">numbersuffix:'ltrs'. </span>However, 
+        you need to ensure that a particular attribute occurs only once for 
+        a given element.    </p>
+     <p class="highlightBlock">Please note that the XML attributes declared in the <a href="XMLAPI.html">XML Sheet</a> for Cylinder Gauge same as the JSON keys in FusionWidgets XT JSON data format.</p>
+       <p>The value of the gauge is set using <span class="codeInline">value</span> key.</p>
+<p class="highlightBlock"><strong>Important</strong>: To use JSON data format with FusionWidgets XT, you'll need to embed the charts using FusionCharts JavaScript Class (<span class="codeInline">FusionCharts.js</span>), as the charts internally still use XML. The JavaScript class provides the bridge between JSON and XML.</p>
+</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("JavaScript API|JSAPI.html","Cylinder gauge XML Sheet|XMLAPI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

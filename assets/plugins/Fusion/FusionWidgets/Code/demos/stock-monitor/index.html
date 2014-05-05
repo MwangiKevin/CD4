@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Real-time stock monitor</title>
+        <link href="../../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/jquery.ui/jquery-ui.css"/>
+		<script type="text/javascript" src="../../assets/jquery.ui/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../Charts/FusionCharts.js"></script>
+		<script type="text/javascript" src="../../assets/jquery.ui/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+        <script type="text/javascript" src="../../assets/ui/js/date.js"></script>
+        <!--[if IE 6]>
+		<script type="text/javascript" src="../../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+
+        <style type="text/css">
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+			.headerbg, .headerbg td , .headerbg th{ background-color:#eee; color:#000 !important;}
+			table, table tr td { padding:0 !important; margin:0 !important; line-height:21px !important; font-size:12px !important;}
+						
+        </style>
+
+<script language="javascript" type="text/javascript">
+	
+
+</script>
+
+</head>
+    <body>
+
+        <div id="wrapper">
+
+            <div id="header">
+                
+
+               <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com/widgets" target="_blank"><img src="../../assets/ui/images/fwxt-logo.png" width="73" height="74" alt="FusionWidgets XT logo" /></a></div>
+				 <h1 class="brand-name">FusionWidgets XT</h1>
+                 <h1 class="logo-text">Real-time stock monitor</h1>
+           </div>
+			
+			 <div class="content-area">
+                <div id="content-area-inner-main">
+                    <p class="text" align="center">In this demo, a real-time line and real-time area chart display real-time update of stock price and volume</p>
+					<div id="messageBox" style="margin-left:130px; margin-right:130px; display:none;"></div>
+					<p>&nbsp;</p>
+
+                    <div class="gen-chart-render">
+						
+						<div style="padding:10px; border:1px dotted #FBFCFF; background-color:#FBFCFF; width:650px; text-align:center; margin-left:100px;">
+	                        <div id="chartContainer1" align="center">The chart will appear within this DIV. This text will be replaced by the chart.    </div>
+							<div id="chartContainer2" align="center">The chart will appear within this DIV. This text will be replaced by the chart.    </div>
+						</div>
+						
+						
+						<script type="text/javascript">
+						
+							window.dataUpdateTimer = null;
+							 
+							var inactiveCharts = [ "pricechart", "volumechart" ];
+							
+							var stockPriceConfigData = "<chart showBorder='0' yAxisMinValue='29' yAxisMaxValue='36' caption='Stock Monitor : Price and Volume' subcaption='(Refreshes every 2	 seconds)' \n\
+							canvasborderColor='DAE1E8' canvasBgColor='FFFFFF' bgColor='EEF2FB' numDivLines='6' divLineColor='DAE1E8' divLineAlpha='75' alternateHGridAlpha='30'  \n\
+							decimals='2' yAxisValueDecimals='0' baseFontColor='899FB6' outCnvBaseFontColor='444C60' toolTipBorderColor='DAE1E8' toolTipBgColor='FFFFFF' toolTipSepChar='-'  \n\
+							showAlternateHGridColor='1' alternateHGridColor='DAE1E8' numDisplaySets='30' showLegend='0' showLabels='0' numberPrefix='$'  \n\
+							canvasLeftMargin='70' canvasRightMargin='20' chartBottomMargin='10' showRealTimeValue='0' numVDivLines='28' vDivLineColor='DAE1E8' vdivLineAlpha='35'  > \n\
+							<categories> \n\
+							</categories> \n\
+							<dataSet color='899FB6' lineThickness='2' showValues='0'> \n\
+							</dataSet> \n\
+							<styles> \n\
+								  <definition> \n\
+									 <style type='font' name='captionFont' size='14' color='899FB6'/> \n\
+									 <style type='font' name='subcaptionFont' color='899FB6'/> \n\
+								  </definition> \n\
+								  <application> \n\
+									 <apply toObject='Caption' styles='captionFont' /> \n\
+									 <apply toObject='SubCaption' styles='subcaptionFont' /> \n\
+								  </application> \n\
+							   </styles> \n\
+							</chart>";
+
+
+						
+						
+							var stockVolumeConfigData = "<chart showBorder='0' canvasborderColor='DAE1E8' canvasBgColor='FFFFFF' bgColor='EEF2FB' numDivLines='2' \n\
+								divLineColor='DAE1E8' divLineAlpha='75' alternateHGridAlpha='30' decimals='2' yAxisValueDecimals='0'  baseFontColor='899FB6' outCnvBaseFontColor='444C60'  \n\
+								toolTipBorderColor='DAE1E8' toolTipBgColor='FFFFFF' toolTipSepChar='-' showAlternateHGridColor='1' alternateHGridColor='DAE1E8'  \n\
+								numDisplaySets='30' showLegend='0' showLabels='1' canvasLeftMargin='70' chartTopMargin='10' canvasRightMargin='20' showRealTimeValue='0'  \n\
+								labelDisplay='Rotate' slantLabels='1' plotGradientColor='' numVDivLines='28' vDivLineColor='DAE1E8' vdivLineAlpha='35'  \n\
+								xAxisName='Time' setAdaptiveYMin='1' formatNumberScale='0'> \n\
+									<categories> \n\
+									</categories> \n\
+									<dataSet color='899FB6' lineThickness='2' showValues='0'> \n\
+									</dataSet> \n\
+									<styles> \n\
+										  <definition> \n\
+											 <style type='font' name='captionFont' size='14' color='899FB6'/> \n\
+											 <style type='font' name='subcaptionFont' color='899FB6'/> \n\
+										  </definition> \n\
+										  <application> \n\
+											 <apply toObject='Caption' styles='captionFont' /> \n\
+											 <apply toObject='SubCaption' styles='subcaptionFont' /> \n\
+										  </application> \n\
+									   </styles> \n\
+									</chart>";
+
+						
+						   var myChart = new FusionCharts("../../../Charts/RealTimeLine.swf", "priceChart", "650", "300", "0", "1");
+						   myChart.setXMLData(stockPriceConfigData);
+						   myChart.render("chartContainer1");
+						   
+						   var myChart2 = new FusionCharts("../../../Charts/RealTimeArea.swf", "volumeChart", "650", "205", "0", "1");
+						   myChart2.setXMLData(stockVolumeConfigData);
+						   myChart2.render("chartContainer2");
+						   
+						   
+						   
+						   
+						   
+							FusionCharts.addEventListener("Rendered", function(e,a) {	
+
+								if(e.sender.id=="tmpChartId") return;
+								
+								var idx = $.inArray(e.sender.id.toLowerCase(), inactiveCharts);
+								
+								if(idx>=0)
+								{
+									inactiveCharts.splice(idx,1);
+								}
+							
+							
+								if(inactiveCharts.length==0)
+								{
+									window.dataUpdateTimer = window.setInterval ( function (){ updateStockValues(); },2000 );	
+								}
+								
+								
+							});	
+							
+							
+							
+							// Update chart with data. This function provides dummy data. You can always use a different function which 
+							// can take real-time feed from internet and update actual data 
+							function updateStockValues()
+							{
+								for(var id in  FusionCharts.items)
+								{
+								
+									//Get label for the data - time in format hh:mn:ss
+									var dateTimeLabel = new Date().toString("HH:mm:ss");
+	
+									if(id == "volumeChart")
+									{
+										// format : &label={label}&value={val for series 1}|{val for series 2}
+										rtData = "&label="+ dateTimeLabel + "&value=" + (Math.floor(Math.random() * 100) + 5000);
+									}
+									else
+									{
+										// format : &label={label}&value={val for series 1}|{val for series 2}
+										rtData = "&label="+ dateTimeLabel + "&value=" + ((Math.random() * 6) + 30);
+									}
+									
+									
+									//Now update the chart with data using query string format
+									FusionCharts(id).feedData(rtData)	;
+								
+								
+								} 
+								
+								
+							}
+							
+						   
+						</script>
+
+						
+					
+                    <p>&nbsp;</p>
+                    
+                    
+                    <div class="underline-dull"></div>
+                </div>
+            </div>
+			<div id="footer">
+                <ul>
+                    <li><a href="../../../Contents/assets/ui/demos.html"><span>&laquo; Back to list of Demos</span></a></li>
+                </ul>
+            </div>
+        </div>
+		 <script type="text/javascript"><!--//
+			$(document).ready ( function() {
+			   showConditionalMessage( "Your browser does not seem to have Flash Player support. JavaScript charts are rendered instead.", isJSRenderer(myChart) );
+			});	
+		// -->
+		</script>
+    </div></body>
+</html>
+

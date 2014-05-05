@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Angular Gauge - Configuring Dials</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Angular gauge|Overview.html", "Configuring dials" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Configuring Dials </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll see how to configure various aspects of the dials. Specifically, we'll see how to:</p>
+      <ul>
+        <li><a href="#fill">Configure background and border color of the dial</a></li>
+        <li><a href="#radius">Configure radius of the dial</a></li>
+        <li><a href="#widths">Configure base width, top width &amp; rear extension to render realistic dials</a></li>
+        <li><a href="#tooltext">Adding custom tool text for dial</a></li>
+        <li><a href="#multiple">Adding multiple dials on the chart </a></li>
+      </ul>
+      <p>Let's see each of them one by one. </p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="fill" id="fill"></a>Configuring background and border of dial </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt to have the dial fill in single color or as a gradient. To fill the dial using a single color, you can use:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial bgColor='666666' value='92' rearExtension='10' borderAlpha='0'/&gt;</pre></div>
+	<div id="tab2" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dials&quot;: {
+    &quot;dial&quot;: [
+      {
+        &quot;bgcolor&quot;: &quot;666666&quot;,
+        &quot;value&quot;: &quot;92&quot;,
+        &quot;rearextension&quot;: &quot;10&quot;,
+        &quot;borderalpha&quot;: &quot;0&quot;
+      }
+    ]
+  }</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Here we've specified the dial background color as <span class="codeInline">666666</span> and hidden the border using <span class="codeInline">borderAlpha='0'</span>. This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial1.jpg" width="342" height="183" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can also fill the dial with a gradient by specifying the list of colors separated by comma. Each color will then form an equal part of gradient. Example:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial bgColor='666666,FFFFFF,666666' value='92' rearExtension='10' borderAlpha='0'/&gt;</pre></div>
+	  <div id="tab4" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+        &quot;bgcolor&quot;: &quot;666666,FFFFFF,666666&quot;,
+        &quot;value&quot;: &quot;92&quot;,
+        &quot;rearextension&quot;: &quot;10&quot;,
+        &quot;borderalpha&quot;: &quot;0&quot;
+      }
+    ]</pre>
+	  </div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will  result in:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial2.jpg" width="343" height="180" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure to show/hide the dial border using:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial .... borderAlpha='0'/&gt;</pre></div>
+	<div id="tab6" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+     ...
+        &quot;borderalpha&quot;: &quot;0&quot;
+      }
+    ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>Here, we've set border alpha to 0 to hide it. </p>
+    <p>Additionally, you can configure border properties as under:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint"> &lt;dial bgColor='F1F1F1' value='92' rearExtension='10' borderColor='666666' borderThickness='1' borderAlpha='100'/&gt;</pre></div>
+	<div id="tab8" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+        &quot;bgcolor&quot;: &quot;F1F1F1&quot;,
+        &quot;value&quot;: &quot;92&quot;,
+        &quot;rearextension&quot;: &quot;10&quot;,
+        &quot;bordercolor&quot;: &quot;666666&quot;,
+        &quot;borderthickness&quot;: &quot;1&quot;,
+        &quot;borderalpha&quot;: &quot;100&quot;
+      }
+    ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: <br />
+    </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial3.jpg" width="343" height="179" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="radius" id="radius"></a>Configuring radius of dial </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can make the length of dial longer/shorter by specifying its exact radius in pixels as under:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab9">XML</a></li>
+       <li><a href="#tab10">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab9" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial value='92' rearExtension='10' radius='100'/&gt;</pre></div>
+	<div id="tab10" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+        &quot;value&quot;: &quot;92&quot;,
+        &quot;rearextension&quot;: &quot;10&quot;,
+        &quot;radius&quot;: &quot;100&quot;
+      }
+    ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial4.jpg" width="342" height="177" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="widths" id="widths"></a>Configuring base width, top width and rear extension </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can configure the base and top width of dials using:</p></td></tr>
+      <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab11">XML</a></li>
+       <li><a href="#tab12">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab11" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial value='92' baseWidth='20' topWidth='4'/&gt;</pre></div>
+	  <div id="tab12" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+        &quot;value&quot;: &quot;92&quot;,
+        &quot;basewidth&quot;: &quot;20&quot;,
+        &quot;topwidth&quot;: &quot;4&quot;
+      }
+    ]</pre>
+	  </div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in the image below (we've also increased pivot radius here). As you can see, the thickness of both the base and top part of dial has increased. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial5.jpg" width="347" height="178" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can opt for the dial to have a rear extension (i.e., extension on the opposite side) using:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab13">XML</a></li>
+       <li><a href="#tab14">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab13" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial value='92' rearExtension='10' baseWidth='6'/&gt;</pre></div>
+	<div id="tab14" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+        &quot;value&quot;: &quot;92&quot;,
+        &quot;rearextension&quot;: &quot;10&quot;,
+        &quot;basewidth&quot;: &quot;6&quot;
+      }
+    ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: <br />
+    </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial6.jpg" width="345" height="180" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="tooltext" id="tooltext"></a>Adding custom tool text for dial</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can add custom tool text for each dial using:</p></td></tr>
+    <tr>
+    <td valign="top">
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab15">XML</a></li>
+       <li><a href="#tab16">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab15" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dial value='92' ... toolText='Customer Satisfaction Index'/&gt;</pre></div>
+	<div id="tab16" class="tab_content">
+	
+	<pre id="pre-datajson" class="prettyprint code_container">&quot;dial&quot;: [
+      {
+        &quot;value&quot;: &quot;92&quot;,
+        ...
+        &quot;tooltext&quot;: &quot;Customer Satisfaction Index&quot;
+      }
+    ]</pre>
+	</div></div></div></td></tr>
+	<tr>
+	<td class="text">
+    <p>This will result in: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial7.jpg" width="342" height="180" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="multiple" id="multiple"></a>Adding multiple dials </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can add any number of dials to each chart, with each dial having its own value and individual properties as under: </p>    </td>
+  </tr>
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab17">XML</a></li>
+       <li><a href="#tab18">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab17" class="tab_content">
+	<pre class="code_container prettyprint">&lt;dials&gt;<br />  &lt;dial value=&quot;92&quot; rearExtension=&quot;10&quot; baseWidth=&quot;8&quot; toolText=&quot;Current year&quot;/&gt;<br />  &lt;dial value=&quot;79&quot; bgcolor=&quot;FFFFFF&quot; borderColor=&quot;999999&quot; baseWidth=&quot;4&quot; toolText=&quot;Previous year&quot; rearExtension=&quot;10&quot; showValue=&quot;0&quot; radius=&quot;95&quot;/&gt;<br />&lt;/dials&gt;</pre></div>
+  <div id="tab18" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">"dials": {
+    "dial": [
+      {
+        "value": "92",
+        "rearextension": "10",
+        "basewidth": "8",
+        "tooltext": "Current year"
+      },
+      {
+        "value": "79",
+        "bgcolor": "FFFFFF",
+        "bordercolor": "999999",
+        "basewidth": "4",
+        "tooltext": "Previous year",
+        "rearextension": "10",
+        "showvalue": "0",
+        "radius": "95"
+      }
+    ]
+  }</pre></div></div></div>
+  <div style="clear:both"></div>
+  </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">This will result in: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Angular_Dial8.jpg" width="345" height="182" /></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The visual stacking order of each dial will depend on its order in the XML document. That is, the dial defined first in the XML/JSON will appear at the bottom of the dial stack. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Configuring gauge|Configurations.html","Configuring tick marks|Ticks.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

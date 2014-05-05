@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FusionWidgets XT - Showcasing Dynamic Resizing</title>
+		
+	    <link href="../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" language="Javascript" src="../assets/ui/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../assets/jquery.ui/jquery-ui.css"/>
+		<script type="text/javascript" src="../assets/jquery.ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../Charts/FusionCharts.js"></script>
+		<script type="text/javascript" language="Javascript" src="../assets/ui/js/lib.js"></script>
+
+
+        <!--[if IE 6]>
+        <script type="text/javascript" src="../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+
+		<script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+		
+
+        <style type="text/css">
+			h1.logo-text {
+				padding-top: 45px !important;
+			}
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+			
+			#resizable, .resizable { width: 450px; height: 300px; padding: 10px; border:1px solid #DAD9DC; background:#FAFAFB; margin-top:15px; }
+			#chartContainer { width: 100%; height: 100%; padding: 0; border:none; }
+			.ui-resizable-helper { border: 1px dotted #C4BED5; }
+			
+			#footerBtns {	margin:2px 0;}
+			#resetBtn {	cursor:pointer;	font-size:80%; text-align:right;  width:50%; float:right; line-height:18px;}
+			#toggleFlashJSChart { cursor:pointer; font-size:80%; text-align:left; width:50%; float:left; font-size:95%; line-height:18px; }
+			#toggleFlashJSChart a{ color: #5C6B79; }
+			#toggleFlashJSChart a:hover{ color: #659FD1;}
+			
+			
+			#configPanel { width: 380px; padding: 10px 10px 5px; border:1px solid #DAD9DC; background:#FCFCFD; margin-bottom:3px; color:#797682; font-size:80%; }
+			#configPanel #content {background:#FAFAFB; text-align:left; }
+			
+			#alignmentContainer { position:relative; }
+			#alignmentContainer #disabled { position:relative; height:100%; width:80px; background-color:#fff; position:absolute; top:0; left:0; }
+			#alignmentTable TD {  background-color:#ddd;}
+			#alignmentTable a img { border:none; }
+			#alignmentTable a, .alignNormal{ border:1px solid #ccc; display:block; }
+			#alignmentTable a:hover{ border:1px solid #635C76;}
+			.alignSelected { border:1px solid #635C76 !important;}
+			
+			
+			.panelShadow {
+				-moz-box-shadow: 1px 1px 4px #ccc;
+				-webkit-box-shadow: 1px 1px 4px #ccc;
+				box-shadow: 1px 1px 4px #ccc;
+				/* For IE 8 */
+				-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#cccccc')";
+				/* For IE 5.5 - 7 */
+				filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#cccccc');
+			}
+						
+			.curveCornerTop 
+			{
+				-moz-border-top-left-radius:5px;
+				-webkit-border-top-left-radius:5px;
+				border-top-left-radius: 5px;
+				-moz-border-top-right-radius:5px;
+				-webkit-border-top-right-radius:5px;
+				border-top-right-radius: 5px;
+			}
+			
+			.ui-button-text-only .ui-button-text {
+				padding-bottom: 0.15em;
+				padding-top: 0.15em;
+			}
+			
+        </style>
+        <script type="text/javascript" ><!--//
+
+		
+			$(document).ready ( function()  {
+				
+				$( "#resizable" ).resizable({
+					helper: "ui-resizable-helper",
+					maxHeight: 1200,
+					maxWidth: 2900,
+					minHeight: 10,
+					minWidth: 10
+				});
+				
+				var randomWidth = Math.round( Math.random()*300+200);
+				var randomHeight = Math.round( Math.random()*300+200);				
+			
+				$( "#resizable" ).width(randomWidth);
+				$( "#resizable" ).height(randomWidth);
+				
+
+
+				var XMLData = '<chart manageResize="1" origW="270" origH="270" animation="0" baseFont="Times New Roman" baseFontSize="18" baseFontcolor="FFFFFF" bgColor="333333" bgAlpha="100" gaugeStartAngle="90" gaugeEndAngle="-270" lowerLimit="0" upperLimit="12" lowerLimitDisplay=" " upperLimitDisplay="" majorTMNumber="12" majorTMThickness="3" majorTMColor="FFFFFF" majorTMHeight="7" minorTMNumber="4" minorTMColor="FFFFFF" minorTMHeight="4" placeValuesInside="1" tickValueStep="3" tickValueDistance="17" gaugeOuterRadius="95" gaugeInnerRadius="95" showShadow="0" pivotRadius="6" pivotFillColor="FFFFFF" annRenderDelay="0" showToolTip="0" >\n\
+							  <dials>\n\
+							   <dial id="hrs" value="7.5" color="FFFFFF" baseWidth="3" topWidth="1" radius="50" rearExtension="12"/>\n\
+								<dial id="min" value="4.3" color="FFFFFF" baseWidth="3" topWidth="1" radius="70" rearExtension="12"/>\n\
+								<dial id="sec" value="3" color="FF0000" baseWidth="1" topWidth="1" alpha="100" radius="86" rearExtension="20" borderAlpha="0" />\n\
+							  </dials>\n\
+							  <annotations origW="270" origH="270">\n\
+								<annotationGroup id="Grp1" showBelow="1"  x="$chartCenterX" y="$chartCenterY" >\n\
+								  <annotation type="circle"color="EBF0F4,85898C,484C4F,C5C6C8" fillRatio="30,30,30,10" fillAngle="270" radius="120" fillPattern="linear"/>\n\
+								  <annotation type="circle"  color="8E8E8E,83878A,E7E7E7" fillAngle="270" radius="105" fillPattern="linear"/>\n\
+								</annotationGroup>\n\
+								<annotationGroup id="blueTheme" showBelow="1"  x="$chartCenterX" y="$chartCenterY" >\n\
+								  <annotation type="circle" color="07476D,19669E,186AA6,D2EAF6" fillRatio="5,45,40,10" fillAngle="270" radius="103" fillPattern="linear"/>\n\
+								  <annotation type="circle" color="07476D,19669E,07476D" fillRatio="5,90,5" fillAngle="270" radius="100" fillPattern="linear"/>\n\
+								  <annotation type="circle" radius="12" color="012A46"/>\n\
+								</annotationGroup>\n\
+							  </annotations>\n\
+							</chart>';	
+
+
+			
+				var chart = new FusionCharts("../../Charts/AngularGauge.swf", "myChartId", "100%", "100%", "0", "1");
+				
+				chart.setXMLData(XMLData);
+		   
+			   chart.render("chartContainer");
+				
+
+			   
+				FusionCharts.addEventListener("Rendered", function(e,a) {	
+					updateClock(e);
+					window.dataUpdateTimer = window.setInterval (function (){ updateClock(e); },1000 );
+				});	
+	
+				function updateClock(e)
+				{
+					var hrs = (( (new Date().getHours()*3600)+(new Date().getMinutes()*60)+ new Date().getSeconds() ) /3600) % 12;
+					var mins = ( (new Date().getMinutes()*60)+ new Date().getSeconds() ) /60/5;
+					var secs = new Date().getSeconds()/5;
+	
+					var updater = e.sender.setData? e.sender : null;
+					
+					if(updater) 
+					{	
+						updater.setData(1,hrs);
+						updater.setData(2,mins);
+						updater.setData(3,secs);
+					}				
+				}
+									   
+				
+				
+				
+			});
+			
+			
+		// -->
+        </script>
+
+		
+		</head>
+<body>
+
+    <div id="wrapper">
+
+            <div id="header">
+
+               <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com/widgets" target="_blank"><img src="../assets/ui/images/fwxt-logo.png" width="73" height="74" alt="FusionWidgets XT logo" /></a></div>
+                <h1 class="brand-name">FusionWidgets XT</h1>
+                <h1 class="logo-text">Dynamic Resizing of annotations</h1>
+            </div>
+
+            <div class="content-area">
+               <div id="content-area-inner-main">
+                  <p class="text" style="text-align:center;margin-bottom:10px;">Drag and resize the container of the gauge to resize annotations</p>
+                  <div id="messageBox" style="margin-left:120px; margin-right:120px; display:none; "></div>
+                  <center>
+                    
+                     
+                     <div id="resizable" class="panelShadow"><div id="chartContainer">FusionCharts</div></div>
+                  </center>
+                  <script type="text/javascript"><!--
+						// -->
+                        </script>
+                  <div class="clear"></div>
+                  <p>&nbsp;</p>
+				  <div class="underline-dull"></div>
+               </div>
+            </div>
+			<div id="footer">
+                <p class="highlightBlock">The above sample showcases how Dynamic Resizing of annotations works. Click <a href="../../Contents/Index.html?Annotations/AutoScale.html#dynamiccontainers" target="_blank">here</a> to know more on how the code of this example works.</p>
+            </div>
+        </div>
+
+        
+		 <script type="text/javascript"><!--//
+			$(document).ready ( function() {
+			   showConditionalMessage( "Your browser does not seem to have Flash Player support. JavaScript chart is rendered instead.", isJSRenderer(chart) );
+			});	
+		// -->
+		</script>
+
+    </body>
+</html>

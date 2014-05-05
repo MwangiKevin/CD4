@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Angular Gauge - Dynamic resizing</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Angular gauge|Overview.html", "Dynamic Resizing" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Dynamic Resizing</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>Starting FusionWidgets XT, all charts and gauges  can <a href="../FirstChart/ChangeSize.html#dynamic">resize dynamically</a> when parent containers resize. To enable the dynamic resizing feature, do the following:       </p>
+       <ul>
+           <li>Set the chart's/gauge's width and height in percentage</li>
+           <li>Set the   container's dimensions such that it can  resize dynamically   (using code or  due to user interaction) </li>
+           <li>Set the <span class="codeInline">manageResize</span> attribute to 1 in the XML/JSON data
+           <br /> 
+           <br />
+ 			<div class="container">
+           		<ul class="tabs">
+			       <li><a href="#tabZ1">XML</a></li>
+			       <li><a href="#tabZ2">JSON</a></li>
+			    </ul>
+			    <div class="tab_container">
+                    <div id="tabZ1" class="tab_content">
+                        <pre class="code_container prettyprint">&lt;chart manageResize='1' ...&gt;</pre>
+                    </div>
+                    <div id="tabZ2" class="tab_content">
+                        <pre id="pre-datajson" class="prettyprint code_container">{ "chart": { "manageResize": "1", ... }, ...}</pre>
+                    </div>
+            	</div>
+            </div>
+		   <div style="clear:both"></div>
+         </li>  
+		 </ul>
+       <div style="clear:both"></div>
+       
+      
+       
+       
+       <p>These make the gauge capable of  re-calculating the space available and adjusting to its new surroundings  whenever the dimensions of the parent container changes.       </p>
+       <table border="0" cellspacing="0" cellpadding="5">
+           <tr>
+               <td>
+                  Shown below is a gauge when rendered initially:
+               </td>
+           </tr>
+           <tr>
+               <td><img src="Images/Angular_DR00.jpg" width="250" height="134" /></td>
+               </tr>
+           <tr>
+               <td> <br />
+                   The image below shows the same gauge after resized dynamically:               </td>
+           </tr>
+           <tr>
+               <td><img src="Images/Angular_DR01.jpg" width="407" height="177" /></td>
+               </tr>
+   </table>
+       <p>See it <a href="../../Code/DynamicResizing/SimpleGauge.html" target="_blank">live</a>!</p>
+       <p class="highlightBlock">Please note that while  dynamic resizing, the gauge and all its elements are scaled proportionally and works perfectly only for constrained resizing i.e., both width and height of the gauge are resized in proportions. If the chart is not scaled in proportions, the gauge will scale in the least possible proportion and then leave empty space all around it.</p>
+
+</td>
+  </tr>
+  <tr>
+      <td class="header"><a name="orig" id="orig"></a>Dynamic resizing of gauges with manual values specified for various gauge elements</td>
+  </tr>
+  <tr>
+      <td>
+          <p><a name="original" id="original"></a>We  discussed in  previous pages that you can configure the size and positions of various gauge elements with manual values. For example, you can configure <a href="Dials.html">gauge radius</a>, <a href="Dials.html">dial radius</a>, <a href="Ticks.html">tick value distance</a>, <a href="Angles.html">gauge origin</a> etc. Ideally, you set these values based on a specific width and height of the gauge. We name these dimensions as the original width and the original height of the gauge. </p>
+          <p>By default, a gauge set with manually specified positions and size, when rendered initially, draws itself with all the elements based on the values provided in the XML/JSON. It does not scale its coordinates and other gauge elements.  When this gauge is  resized, it scales the manually specified values or coordinates based on the dimensions of the initially rendered gauge,that is,  the width and height of the gauge when rendered for the first time. Thus, scaling of the various manually configured elements of a gauge will vary in these two scenarios:</p>
+          <ul>
+              <li><a href="#intialoriginal">When the initial dimensions of the gauge are same as the original width and height of the gauge</a></li>
+              <li><a href="#intialnotoriginal">When the initial dimensions of the gauge are different from the original width and height of the gauge</a></li>
+          </ul>
+          <p>Let's  see how scaling behaves under the two scenarios and how we can make best of both the scenarios:</p>
+          <p><strong><a name="intialoriginal" id="intialoriginal2"></a>When a gauge is rendered initially using the original width and original height</strong>,&nbsp;and then resized dynamically&nbsp;to different dimensions, the gauge can automatically re-calculate and scale these manual values to fit all the gauge elements to the new size. </p>
+          <p>For example, consider a chart whose original width and height is 260x200 pixels and it uses the following data: </p>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <div class="container">
+              <ul class="tabs">
+                  <li><a href="#tab1">XML</a></li>
+                  <li><a href="#tab2">JSON</a></li>
+                </ul>
+              <div class="tab_container">
+                  <div id="tab1" class="tab_content">
+                      <pre class="code_container prettyprint">&lt;chart lowerLimit=&quot;0&quot; upperLimit=&quot;100&quot; lowerLimitDisplay=&quot;Bad&quot; upperLimitDisplay=&quot;Good&quot; <br />   gaugeStartAngle=&quot;135&quot; gaugeEndAngle=&quot;45&quot; gaugeOriginX=&quot;130&quot; gaugeOriginY=&quot;180&quot; gaugeOuterRadius=&quot;140&quot; <br />   palette=&quot;1&quot; numberSuffix=&quot;%&quot; tickValueDistance=&quot;20&quot; showValue=&quot;1&quot; majorTMHeight=&quot;10&quot; minorTMHeight=&quot;5&quot;&gt;<br />  &lt;colorRange&gt;<br />    &lt;color minValue=&quot;0&quot; maxValue=&quot;75&quot; code=&quot;FF654F&quot;/&gt;<br />    &lt;color minValue=&quot;75&quot; maxValue=&quot;90&quot; code=&quot;F6BD0F&quot;/&gt;<br />    &lt;color minValue=&quot;90&quot; maxValue=&quot;100&quot; code=&quot;8BBA00&quot;/&gt;<br />  &lt;/colorRange&gt;<br />  &lt;dials&gt;<br />    &lt;dial value=&quot;92&quot; rearExtension=&quot;10&quot; valueX=&quot;130&quot; valueY=&quot;100&quot;/&gt;<br />  &lt;/dials&gt;<br />  &lt;styles&gt;<br />    &lt;definition&gt;<br />      &lt;style type=&quot;font&quot; name=&quot;myValueFont&quot; bgColor=&quot;F1f1f1&quot; borderColor=&quot;999999&quot;/&gt;<br />    &lt;/definition&gt;<br />    &lt;application&gt;<br />      &lt;apply toObject=&quot;Value&quot; styles=&quot;myValueFont&quot;/&gt;<br />    &lt;/application&gt;<br />  &lt;/styles&gt;<br />&lt;/chart&gt;</pre>
+                    </div>
+    <div id="tab2" class="tab_content">
+        
+        <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "lowerlimit": "0",
+    "upperlimit": "100",
+    "lowerlimitdisplay": "Bad",
+    "upperlimitdisplay": "Good",
+    "gaugestartangle": "135",
+    "gaugeendangle": "45",
+    "gaugeoriginx": "130",
+    "gaugeoriginy": "180",
+    "gaugeouterradius": "140",
+    "palette": "1",
+    "numbersuffix": "%",
+    "tickvaluedistance": "20",
+    "showvalue": "1",
+    "majortmheight": "10",
+    "minortmheight": "5"
+  },
+  "colorrange": {
+    "color": [
+      {
+        "minvalue": "0",
+        "maxvalue": "75",
+        "code": "FF654F"
+      },
+      {
+        "minvalue": "75",
+        "maxvalue": "90",
+        "code": "F6BD0F"
+      },
+      {
+        "minvalue": "90",
+        "maxvalue": "100",
+        "code": "8BBA00"
+      }
+    ]
+  },
+  "dials": {
+    "dial": [
+      {
+        "value": "92",
+        "rearextension": "10",
+        "valuex": "130",
+        "valuey": "100"
+      }
+    ]
+  },
+  "styles": {
+    "definition": [
+      {
+        "type": "font",
+        "name": "myValueFont",
+        "bgcolor": "F1f1f1",
+        "bordercolor": "999999"
+      }
+    ],
+    "application": [
+      {
+        "toobject": "Value",
+        "styles": "myValueFont"
+      }
+    ]
+  }
+}</pre></div></div></div>
+          <div style="clear:both"></div>
+    </td>
+  </tr>
+   <tr>
+       <td valign="top" class="text">
+           <p>Here, in the gauge's data, we've manually specified the following:</p>
+           <ul>
+               <li>Gauge Origin X and Origin Y</li>
+               <li>Gauge Outer Radius </li>
+               <li>Value textbox X and Y position </li>
+               <li>Major and minor tick mark height </li>
+            </ul>
+           <p>We render this gauge with 100% width and 100% height inside a dynamically resizable container whose initial width is 260 px and initial height is 200 px. The gauge is rendered as shown below: </p>
+           <p><img src="Images/Angular_Scale1.jpg" width="300" height="240" /></p>
+           <p>When the container is resized, the gauge proportionately resizes as shown below:</p>
+           <p><img src="Images/Angular_DR2.jpg" width="443" height="279" /></p>
+           <p>As you can see above, the chart has resized and scaled the manually specified values&nbsp;of the gauge outer radius (keeping the inner radius percentage  same), tick mark height, gauge origin  x and origin y, value textbox position and tick value distance.</p>
+           <p>Let us now consider the second scenario:</p>
+           <p><strong><a name="intialnotoriginal" id="intialnotoriginal"></a>When the dimensions of the initially rendered gauge are NOT same as the  <a href="#original">original width and original height</a></strong>, two things are noticed:</p>
+           <ol>
+               <li>The initially rendered gauge and all its elements do not scale and fit to the current dimensions of the gauge and</li>
+               <li>On further resizing the gauge and all its elements scale based on the dimensions of the initially rendered gauge</li>
+            </ol>
+           <p class="highlightBlock">This scenario is apparent in  applications having containers with dynamic dimensions like web parts, panels etc. These containers are not set with fixed dimensions. Rather, they derive their dimensions based on various conditions like available space, number of columns and rows etc. Try this scenario using a live sample from <a href="../../Code/DynamicResizing/GaugeWithManualValuesRenderedWithUnknownSize.html" target="_blank">here</a>. The sample shows a gauge whose coordinates and sizes were configured based on the original width as 260 px and original height as 200 px. However, the gauge is rendered in a dynamic container whose dimensions are generated randomly on each page refresh.</p>
+           <p>This may lead to either a cropped gauge or a gauge with lots of  extra  space&nbsp;as shown in the images below:</p>
+           <p><img src="Images/Angular_DR31.jpg" width="250" height="165" /></p>
+           <p><img src="Images/Angular_DR30.jpg" width="398" height="404" /></p>
+           <p>Even when you further resize the container, the gauge will not fit into the given space&nbsp;and will always remain this cropped or spaced. </p>
+           <p>To take care of this scenario, you need to pass the original width and height (based on which we had defined the various coordinates/radius) to the gauge. On receiving the original width and height, the gauge  always checks the current dimensions against the original width and height  then scales everything (that was manually specified) accordingly. </p>
+           <p>We will modify our previous example and provide the original width (260 px) and original height (200 px)  through the <span class="codeInline">origW</span> and <span class="codeInline">origH</span> attributes as shown below:</p>
+           <div class="container">
+               <ul class="tabs">
+                   <li><a href="#tab3">XML</a></li>
+                   <li><a href="#tab4">JSON</a></li>
+                </ul>
+               <div class="tab_container">
+                   <div id="tab3" class="tab_content">
+                    <pre class="code_container prettyprint">&lt;chart ... origW='260' origH='200' ...&gt;</pre></div>
+                   <div id="tab4" class="tab_content">
+                       
+                       <pre id="pre-datajson" class="prettyprint code_container">{ &quot;chart&quot;: {  ... &quot;origw&quot;: &quot;260&quot;, &quot;origh&quot;: &quot;200&quot;, ...},&nbsp;...}</pre>
+            </div></div></div>
+           <div style="clear:both;"></div>
+           <p>When you <a href="../../Code/DynamicResizing/GaugeWithManualValuesRenderedWithUnknownSizeAutoFit.html" target="_blank">run</a> the modified sample, you will notice&nbsp;that the gauge now fits proportionately  to any given initial dimensions.</p>
+           <p><img src="Images/Angular_DR32.jpg" width="244" height="162" /></p>
+           <p><img src="Images/Angular_DR33.jpg" width="385" height="410" /></p>
+           <p>See it <a href="../../Code/DynamicResizing/GaugeWithManualValuesRenderedWithUnknownSizeAutoFit.html" target="_blank">live</a>!</p>
+       </td>
+   </tr>
+
+  <tr>
+      <td valign="top" class="text">
+
+          <p>In a similar way, the annotations present in a gauge can also be scaled and resized dynamically. For more, please see the section <strong>Annotations</strong> &gt;<a href="../Annotations/AutoScale.html"> Dynamic Resizing</a>.</p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="highlightBlock">
+          <a name="311"></a><strong>Note for users of FusionWidgets v3.1.1 or earlier:</strong>
+          <p>If you are already using the Auto Scaling feature of FusionWidgets v3.1.1 or earlier  (setting <span class="codeInline">autoScale='1' </span>in the <span class="codeInline">&lt;chart&gt;</span> element)&nbsp;to auto-scale charts and gauge, you can continue to use it in FusionWidgets XT without facing any problem. However, we recommend to use <span class="codeInline">manageResize='1' </span> instead of <span class="codeInline">autoScale='1' </span>as <span class="codeInline">manageResize</span> takes care of both auto-scaling and dynamically resizing of the charts and gauges. </p>
+          Please also note that the dynamic resizing feature will not work if you have set <span class="codeInline">autoScale='0'</span>.
+      </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Configuring angles &amp; origin|Angles.html","Adding trend-points|Trendpoints.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

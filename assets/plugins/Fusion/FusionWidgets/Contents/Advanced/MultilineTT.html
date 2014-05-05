@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Tooltip in multiple lines</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Advanced Charting", "Tooltip in multiple lines" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td width="100%" class="pageHeader">Putting tooltip in multiple lines </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">FusionWidgets  XT allows you to put your tooltips in multiple lines with a little   manual tweaking. Consider the XML below:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;chart&gt;<br />  &lt;set label=&quot;John&quot; value=&quot;420&quot; <strong>tooltext=&quot;John Miller{br}Score:420{br}Rank:2&quot;</strong>/&gt;<br />  &lt;set label=&quot;Mary&quot; value=&quot;295&quot; <strong>tooltext=&quot;Mary Evans{br}Score:295{br}Rank:3&quot;</strong>/&gt;<br />  &lt;set label=&quot;Tom&quot; value=&quot;523&quot; <strong>tooltext=&quot;Tom Bowler{br}Score:523{br}Rank:1&quot;</strong>/&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {},
+  "data": [
+    {
+      "label": "John",
+      "value": "420",
+      "tooltext": "John Miller{br}Score:420{br}Rank:2"
+    },
+    {
+      "label": "Mary",
+      "value": "295",
+      "tooltext": "Mary Evans{br}Score:295{br}Rank:3"
+    },
+    {
+      "label": "Tom",
+      "value": "523",
+      "tooltext": "Tom Bowler{br}Score: 523{br}Rank:1"
+    }
+  ]
+}</pre></div></div></div>
+  <div style="clear:both"></div>
+	
+	</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+       <p>In the above XML/JSON, we're first setting 3 lines tooltip content for each <span class="codeInline">&lt;set&gt;</span>. To separate each line we use the <strong class="codeInline">{br}</strong> pseudo code, which is equivalent to <span class="codeInline">&lt;BR&gt;</span> HTML tag in FusionWidgets XT for tooltips.</p>
+       <p>When you now see the chart, you'll get the following output:</p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><img src="Images/AC_MultilineTT.jpg" width="400" height="350" /></td>
+  </tr>
+ 
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Gradients|UsingGradients.html","Set backgrounds for chart|ChartBG.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

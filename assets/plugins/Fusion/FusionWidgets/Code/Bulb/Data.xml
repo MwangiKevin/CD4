@@ -1,0 +1,15 @@
+<chart upperLimit='100' lowerLimit='0' numberSuffix='%'>
+
+   <colorRange>
+
+      <color minValue='0' maxValue='15' label='Low' code='00FF00' />
+
+      <color minValue='15' maxValue='35' label='Medium' code='FFFF00' />
+
+      <color minValue='35' maxValue='100' label='High' code='FF0000' />
+
+   </colorRange>
+
+   <value>12</value>
+
+</chart>

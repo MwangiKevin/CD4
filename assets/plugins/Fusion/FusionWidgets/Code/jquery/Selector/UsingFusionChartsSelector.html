@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <title>FusionWidgets XT - Creating chart with jQuery</title>
+        
+        <link href="../../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+       <script type="text/javascript" src="../../../Charts/FusionCharts.js"></script>
+        <script type="text/javascript" src="../../../Charts/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../Charts/FusionCharts.jqueryplugin.js"></script>
+		<script type="text/javascript" language="Javascript" src="../../assets/ui/js/lib.js"></script>
+
+        <!--[if IE 6]>
+        <script src="../../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+        
+        <style type="text/css">
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+        </style>
+        
+    </head>
+    <body>
+	
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- header -->
+            <div id="header"> 
+                <div class="logo"><a class="imagelink"  href="http://www.fusioncharts.com" target="_blank"><img src="../../assets/ui/images/fwxt-logo.png"  alt="FusionWidgets XT logo" width="73" height="74" /></a>
+                </div><h1 class="brand-name">FusionWidgets XT</h1>
+                <h1 class="logo-text">FusionCharts jQuery plugin samples</h1>
+                
+            </div>
+            <!-- content area -->
+            <div class="content-area">
+                <div id="content-area-inner-main">
+
+                    <div class="clear"></div>
+                    <div class="gen-chart-render">
+	                    <p class="text">The example below shows how to use :FusionCharts selector to<br />
+						select charts inside the whole page or inside selective HTML Containers and<br />
+						configure the the selected charts in various ways
+						</p>
+						<p>Click buttons below to find how  :FusionCharts selector works</p>
+						<div id="messageBox" style="margin-left:100px; margin-right:100px; display:none;"></div>
+						<p>&nbsp;</p>
+										
+					<div align="center" style="clear:both;padding:5px;">
+						<a class="qua qua-button" id="allCharts" style="margin-left: 210px; width:450px;" href="javascript:void(0)"><span>Find all charts in the page and set a new caption to the charts</span></a><br /><br />
+
+
+						<a class="qua qua-button"  id="topCharts" style="margin-left: 210px;width:450px;" href="javascript:void(0)"><span>Find all charts in the top row and set red background </span></a><br /><br />
+
+
+						<a class="qua qua-button" id="bottomCharts" style="margin-left: 210px;width:450px;" href="javascript:void(0)"><span>Find all charts in the bottom row and set green background</span></a>
+						
+	                   </div>
+						<p>&nbsp;</p>
+
+						<p>&nbsp;</p>
+						<div id="topRowCharts">
+                        <span id="chartContainerCustSatisfaction">The chart will appear within this DIV. This text will be replaced by the chart.</span>
+						<span id="chartContainerDownload">The chart will appear within this DIV. This text will be replaced by the chart.</span>
+						</div>
+						<div id="bottomRowCharts">
+						<span id="chartContainerProfit">The chart will appear within this DIV. This text will be replaced by the chart.</span>
+						</div>
+
+                        <script type="text/javascript">
+							var AngXML = '<chart caption="Top 5 Sales Person" numberPrefix="$" isSliced="1" >\n\
+						<set label="Alex" value="25000"  /> \n\
+						<set label="Mark" value="35000" /> \n\
+						<set label="David" value="42300" /> \n\
+						<set label="Graham" value="65300" /> \n\
+						<set label="John" value="91300" /> \n\
+					</chart>';
+						
+						
+							var HLinXML ='<chart caption="Conversion Ratio" isSliced="0" showPercentValues="1" decimals="1" >\n\
+<set label="Website Visits" value="385634" />\n\
+<set label="Downloads" value="175631"  />\n\
+<set label="Interested to buy" value="84564" />\n\
+<set label="Contract finalized" value="35654" />\n\
+<set label="Purchased" value="12342" />\n\
+<styles>\n\
+<definition>\n\
+<style type="font" name="captionFont" size="15" />\n\
+</definition>\n\
+<application>\n\
+<apply toObject="CAPTION" styles="captionFont" />\n\
+</application>\n\
+</styles>\n\
+</chart>';
+
+							var HBulXML ='<chart palette="1" lowerLimit="0" upperLimit="100" caption="Profit" subCaption="per sale" numberPrefix="$" showValue="1">\n\
+									<colorRange>\n\
+									<color minValue="0" maxValue="30" />\n\
+									<color minValue="30" maxValue="50" />\n\
+									<color minValue="50" maxValue="70" />\n\
+									<color minValue="70" maxValue="85" />\n\
+									<color1 minValue="85" maxValue="100" />\n\
+									</colorRange>\n\
+									<value>78.9</value>\n\
+									<target>84</target>\n\
+									</chart>';
+													
+						
+						
+							$('#chartContainerCustSatisfaction').insertFusionCharts({swfUrl: "../../../Charts/Pyramid.swf", dataSource : AngXML, dataFormat: "xml", width: "400", height: "300", id:"myChartId1"});
+							$('#chartContainerDownload').insertFusionCharts({swfUrl: "../../../Charts/Funnel.swf", dataSource : HLinXML, dataFormat: "xml", width: "350", height: "300", id:"myChartId2"});
+							$('#chartContainerProfit').insertFusionCharts({swfUrl: "../../../Charts/HBullet.swf", dataSource : HBulXML, dataFormat: "xml", width: "400", height: "80", id:"myChartId3"});
+                        </script>
+
+                    </div>
+					
+                    <br/>
+                    <div class="clear"></div>
+				   
+				     <script type="text/javascript">
+
+
+													
+						$(document).ready(function(){
+						
+							$("#allCharts").click(function() {
+								$(":FusionCharts").attrFusionCharts( { caption: "New chart title"} );
+								return false;
+							});
+							
+							$("#topCharts").click(function() {
+								$("div#topRowCharts :FusionCharts").attrFusionCharts( { bgColor : "ecdecd", showBorder:1, borderColor:"880000" } );
+								return false;								
+							});
+							
+							$("#bottomCharts").click(function() {
+								$("div#bottomRowCharts").find(":FusionCharts").attrFusionCharts( { bgColor : "deeccd", showBorder:1, borderColor:"008800" } );
+								return false;								
+							});
+						
+						});
+
+                    </script>
+
+                    <p class="small">&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <div class="underline-dull"></div>    </div>
+
+                
+            </div>
+
+          <div id="footer">
+                <p class="highlightBlock">The above sample showcases how to select multiple charts using :FusionCharts jQuery selector. Click <a href="../../../Contents/Index.html?jQuery/Selector.html" target="_blank">here</a> to know more on how the code of this example works.</p>
+            </div>
+        </div>
+       <script type="text/javascript"><!--//
+			$(document).ready ( function() {
+			   showConditionalMessage( "Your browser does not seem to have Flash Player support. JavaScript charts are rendered instead", isJSRenderer(FusionCharts("JanChartId")) );
+			});	
+		// -->
+		</script>   
+    </body>
+    
+</html>

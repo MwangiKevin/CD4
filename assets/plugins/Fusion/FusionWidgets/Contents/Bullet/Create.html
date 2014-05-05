@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Bullet Graph - Creating a simple chart</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Bullet graphs|Overview.html", "Creating a simple Bullet graph" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating a simple Bullet graph </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll create a simple bullet graph to show the revenue figures for a fictional company.</p>
+      <p>The graph will look as under:</p>
+      <p><img src="Images/HBullet1.jpg" width="454" height="75" /></p>
+	  <p>The various tasks involved in building this graph are:</p>
+      <ol>
+        <li>Set chart lower and upper limit.</li>
+        <li>Divide the specified limits into qualitative ranges of performance, such as poor, satisfactory and good.  </li>
+        <li>Decide the value to represent.</li>
+        <li>Decide the target figure to represent</li>
+        <li>Choose chart cosmetics.</li>
+      </ol>
+      <p>Let's see how to do each of these. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="data"></a>Data for the graph </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>First, we decide the qualitative ranges of revenue performance for that company. Let's assume it to something as under: </p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="50%" border="0" cellpadding="2" cellspacing="0" class="table">
+      <tr>
+        <td width="15%" class="header">Range</td>
+        <td width="20%" class="header">What it means? </td>
+        <td width="15%" class="header">Color</td>
+      </tr>
+      <tr>
+        <td class="text">$0-$50,000</td>
+        <td class="text">Poor</td>
+        <td class="text">Dark gray </td>
+      </tr>
+      <tr>
+        <td class="text">$50,000-$75,000</td>
+        <td class="text">Moderate</td>
+        <td class="text">Normal gray </td>
+      </tr>
+      <tr>
+        <td class="text">$75,000-$100,000</td>
+        <td class="text">Good</td>
+        <td class="text">Light gray </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Also, we intend to plot the following values:</p>
+    <p><strong>Intended revenue</strong>: $80,000<br />
+      <strong>Revenue achieved</strong>: $78,900</p> 
+	  <p>The XML/JSON for the above data will look as under:</p> </td>
+  </tr>
+  
+  <tr>
+    <td>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	
+	<pre class="code_container prettyprint">&lt;chart lowerLimit=&quot;0&quot; upperLimit=&quot;100&quot; caption=&quot;Revenue&quot; subcaption=&quot;US $ (1,000s)&quot; numberPrefix=&quot;$&quot; numberSuffix=&quot;K&quot; showValue=&quot;1&quot;&gt;<br />  &lt;colorRange&gt;<br />    &lt;color minValue=&quot;0&quot; maxValue=&quot;50&quot; code=&quot;A6A6A6&quot;/&gt;<br />    &lt;color minValue=&quot;50&quot; maxValue=&quot;75&quot; code=&quot;CCCCCC&quot;/&gt;<br />    &lt;color minValue=&quot;75&quot; maxValue=&quot;100&quot; code=&quot;E1E1E1&quot;/&gt;<br />  &lt;/colorRange&gt;<br />  &lt;value&gt;78.9&lt;/value&gt;<br />  &lt;target&gt;80&lt;/target&gt;<br />&lt;/chart&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "chart": {
+    "lowerlimit": "0",
+    "upperlimit": "100",
+    "caption": "Revenue",
+    "subcaption": "US $ (1,000s)",
+    "numberprefix": "$",
+    "numbersuffix": "K",
+    "showvalue": "1"
+  },
+  "colorrange": {
+    "color": [
+      {
+        "minvalue": "0",
+        "maxvalue": "50",
+        "code": "A6A6A6"
+      },
+      {
+        "minvalue": "50",
+        "maxvalue": "75",
+        "code": "CCCCCC"
+      },
+      {
+        "minvalue": "75",
+        "maxvalue": "100",
+        "code": "E1E1E1"
+      }
+    ]
+  },
+  "value": "78.9",
+  "target": "80"
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p><a name="plot"></a> Here, we've:</p>
+      <ul>
+        <li>Created the <span class="codeInline">&lt;chart&gt;</span> element, which is   the root element of each chart. </li>
+        <li>Specified chart limits, caption, sub-caption, number prefix &amp; number suffix. You can specify a lot more properties for the <span class="codeInline">&lt;chart&gt;</span> element, which have been discussed in next   sections. </li>
+        <li>Defined the color range (numerical value for qualitative ranges) for the chart under the <span class="codeInline">&lt;colorRange&gt;</span> element. Each range value has its own exclusive <span class="codeInline">minValue</span> and <span class="codeInline">maxValue</span> attributes and also a color <span class="codeInline">code</span>. </li>
+        <li>Defined the value for chart inside the <span class="codeInline">&lt;value&gt;</span> element. </li>
+        <li>Defined the intended target for chart inside the <span class="codeInline">&lt;target&gt;</span> element. </li>
+      </ul>
+	  <p class="highlightBlock">For detailed explanation on JSON data format click <a href="JSONFormat.html">here</a>.</p>
+    <p>When you now run this data against the horizontal bullet graph, you'll get something as under: </p>
+	<p><img src="Images/HBullet1.jpg" width="454" height="75" /></p>
+  <p>See it<a href="../../Code/Bullet/FirstBullet.html" target="_blank"> live</a>!</p>
+  </td>
+  </tr>
+ 
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Introduction|Overview.html","Various configurations|Configuration.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

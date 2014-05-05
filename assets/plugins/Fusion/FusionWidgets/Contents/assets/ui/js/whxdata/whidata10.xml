@@ -1,0 +1,188 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="JavaScript alert () function" >
+  <key name="handling messages in message logger" >
+    <topic name="Handling messages in JavaScript" url="../../../MessageLogger/HandleJS.html" />
+  </key>
+</key>
+<key name="JavaScript API" >
+  <key name="angular gauge" >
+    <topic name="JavaScript API" url="../../../Angular/JSAPI.html" />
+  </key>
+  <key name="annotations" >
+    <topic name="JavaScript API" url="../../../Annotations/JSAPI.html" />
+  </key>
+  <key name="bulb gauge" >
+    <topic name="JavaScript API" url="../../../Bulb/JSAPI.html" />
+  </key>
+  <key name="cylinder gauge" >
+    <topic name="JavaScript API" url="../../../Cylinder/JSAPI.html" />
+  </key>
+</key>
+<key name="JavaScript charting capabilities" >
+  <topic name="JavaScript Charting capabilities" url="../../../Introduction/JSChartingCapabilities.html" />
+  <key name="limitations" >
+    <topic name="JavaScript Charting capabilities#limitations" url="../../../Introduction/JSChartingCapabilities.html#limitations" />
+  </key>
+  <key name="process" >
+    <topic name="JavaScript Charting capabilities#how" url="../../../Introduction/JSChartingCapabilities.html#how" />
+  </key>
+  <key name="supported charts" >
+    <topic name="JavaScript Charting capabilities#JSsupported_charts" url="../../../Introduction/JSChartingCapabilities.html#JSsupported_charts" />
+  </key>
+</key>
+<key name="JSON data format" >
+  <key name="angular gauge" >
+    <topic name="JSON Data Format" url="../../../Angular/JSONFormat.html" />
+  </key>
+  <key name="bulb gauge" >
+    <topic name="JSON Data Format" url="../../../Bulb/JSONFormat.html" />
+  </key>
+  <key name="bullet graphs" >
+    <topic name="JSON Data Format" url="../../../Bullet/JSONFormat.html" />
+  </key>
+  <key name="cylinder gauge" >
+    <topic name="JSON Data Format" url="../../../Cylinder/JSONFormat.html" />
+  </key>
+  <key name="data streaming charts" >
+    <topic name="JSON Data Format" url="../../../DataStreaming/JSONFormat.html" />
+  </key>
+  <key name="funnel chart" >
+    <topic name="JSON Data Format" url="../../../Funnel/JSONFormat.html" />
+  </key>
+  <key name="gantt chart" >
+    <topic name="JSON Data Format" url="../../../Gantt/JSONFormat.html" />
+  </key>
+  <key name="LED gauges" >
+    <topic name="JSON Data Format" url="../../../LED/JSONFormat.html" />
+  </key>
+  <key name="linear gauge" >
+    <topic name="JSON Data Format" url="../../../Linear/JSONFormat.html" />
+  </key>
+  <key name="pyramid chart" >
+    <topic name="JSON Data Format" url="../../../Pyramid/JSONFormat.html" />
+  </key>
+  <key name="thermometer gauge" >
+    <topic name="JSON Data Format" url="../../../Thermometer/JSONFormat.html" />
+  </key>
+</key>
+<key name="LED gauges" >
+  <topic name="Introduction" url="../../../LED/Overview.html" />
+  <key name="configure" >
+    <topic name="Gauge Configurations" url="../../../LED/Configurations.html" />
+    <key name="gauge properties" >
+      <topic name="Gauge Configurations#gauge" url="../../../LED/Configurations.html#gauge" />
+    </key>
+    <key name="hide chart value" >
+      <topic name="Gauge Configurations#value" url="../../../LED/Configurations.html#value" />
+    </key>
+    <key name="LED gap" >
+      <topic name="Gauge Configurations#led" url="../../../LED/Configurations.html#led" />
+    </key>
+    <key name="LED size" >
+      <topic name="Gauge Configurations#led" url="../../../LED/Configurations.html#led" />
+    </key>
+    <key name="palette" >
+      <topic name="Gauge Configurations#palette" url="../../../LED/Configurations.html#palette" />
+    </key>
+    <key name="single color for gauge background" >
+      <topic name="Gauge Configurations#singlecolor" url="../../../LED/Configurations.html#singlecolor" />
+    </key>
+    <key name="single color for gauge fill" >
+      <topic name="Gauge Configurations#singlecolor" url="../../../LED/Configurations.html#singlecolor" />
+    </key>
+    <key name="tick marks and values" >
+      <topic name="Gauge Configurations#tick" url="../../../LED/Configurations.html#tick" />
+    </key>
+  </key>
+  <key name="create simple gauge" >
+    <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+  </key>
+  <key name="dataStreamURL attribute" >
+    <topic name="Real-time support" url="../../../LED/RealTime.html" />
+  </key>
+  <key name="elements" >
+    <key name="&lt;chart&gt;" >
+      <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+    </key>
+    <key name="&lt;color&gt;" >
+      <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+    </key>
+    <key name="&lt;colorRange&gt;" >
+      <topic name="Creating a simple gauge" url="../../../LED/Create.html" />
+    </key>
+  </key>
+  <key name="gauge elements" >
+    <topic name="Elements of the gauge" url="../../../LED/Elements.html" />
+    <key name="annotations" >
+      <topic name="Elements of the gauge" url="../../../LED/Elements.html" />
+    </key>
+    <key name="color range" >
+      <topic name="Elements of the gauge" url="../../../LED/Elements.html" />
+    </key>
+    <key name="LED bars and gaps" >
+      <topic name="Elements of the gauge" url="../../../LED/Elements.html" />
+    </key>
+    <key name="tick marks" >
+      <topic name="Elements of the gauge" url="../../../LED/Elements.html" />
+    </key>
+  </key>
+  <key name="JavaScript API" >
+    <topic name="JavaScript API" url="../../../LED/JSAPI.html" />
+  </key>
+  <key name="JavaScript API troubleshoot" >
+    <topic name="JavaScript API" url="../../../LED/JSAPI.html" />
+  </key>
+  <key name="JSON data format" >
+    <topic name="JSON Data Format" url="../../../LED/JSONFormat.html" />
+  </key>
+  <key name="lowerLimit attribute" >
+    <topic name="Real-time support" url="../../../LED/RealTime.html" />
+  </key>
+  <key name="real-time support1" >
+    <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    <key name="create real-time gauge" >
+      <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    </key>
+    <key name="data format" >
+      <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    </key>
+    <key name="data value update" >
+      <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    </key>
+    <key name="message logger" >
+      <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    </key>
+    <key name="stop real-time updates" >
+      <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    </key>
+    <key name="troubleshoot" >
+      <topic name="Real-time support" url="../../../LED/RealTime.html" />
+    </key>
+  </key>
+  <key name="ticksBelowGauge attribute" >
+    <topic name="Gauge Configurations" url="../../../LED/Configurations.html" />
+  </key>
+  <key name="ticksOnRight attribute" >
+    <topic name="Gauge Configurations" url="../../../LED/Configurations.html" />
+  </key>
+  <key name="upperLimit attribute" >
+    <topic name="Real-time support" url="../../../LED/RealTime.html" />
+  </key>
+  <key name="XML sheet - horizontal LED" >
+    <topic name="XML Sheet - Horizontal LED" url="../../../LED/HorizontalXMLAPI.html" />
+  </key>
+  <key name="XML sheet - vertical LED" >
+    <topic name="XML Sheet - Vertical LED" url="../../../LED/VerticalXMLAPI.html" />
+  </key>
+</key>
+<key name="legend" >
+  <key name="gantt chart" >
+    <topic name="Adding Legend" url="../../../Gantt/Legend.html" />
+  </key>
+  <key name="interactive legend in data streaming charts" >
+    <topic name="Adding multiple datasets" url="../../../DataStreaming/MultipleDatasets.html" />
+  </key>
+</key>
+
+</indexdata>
