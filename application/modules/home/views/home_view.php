@@ -35,7 +35,7 @@
 	</div>
 	<div class="panel panel-default" style="width:100%;float:right;box-shadow: 4px 4px 4px #888888;">
 		<div style="width:28%; float:left;">
-			<div id="equipmenttestscolumn"></div>		
+			<div id="equipmenttestscolumn"></div>	
 		</div>
 		<div style="width:40%; float:right;margin:4px;">
 			<div>

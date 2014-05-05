@@ -1,18 +1,8 @@
 <script>
 	$().ready(function() {
-
       expected_reporting_devices();
-      //reporting_view();
-
-      equipment_pie();
-      tests_pie();
-      equipment_tests_pie();
-      equipment_tests_column();
-      tests_line_trend();
-
-      //calls the leanier gauge reporting_rates.php
-
-	});
+      //tests_pie();
+});
 
 	function draw_charts(user_group_id,user_filter_used){
 

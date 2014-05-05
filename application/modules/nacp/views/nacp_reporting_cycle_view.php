@@ -1,12 +1,10 @@
 <div>
-
 	<div style="width:40%; float: left;">
-
 		<div id='mapDiv' style=""></div>
 		<script type="text/javascript">									
 			var map = new FusionMaps("<?php echo base_url();?>assets/plugins/Fusion/FusionMaps/FCMap_Tanzania.swf", "Tanzania","570","460","0","0");
 			var xml = "";
-			map.setXMLData("<map  markerBorderColor = '000000' markerBgColor = 'FF5904' markerRadius = '6' legendPosition='right' legendAllowDrag='1' useHoverColor='1' showMarkerToolTip='1'  showExportDataMenuItem='1' canvasBorderColor='FFFFFF' borderColor='000000' fillColor='FFFFFF' numberSuffix='%' includeValueInLabels='0' labelSepChar=':-:' baseFontSize='9'><colorRange gradient='1' minValue='0' code='CC0001' startlabel='Bad (%)' endLabel='Very Good (%)'><color maxValue='20' displayValue='Poor' code='FF0000' /><color maxValue='50' displayValue='Average' code='FFCC33' /><color maxValue='100' code='069F06' /></colorRange><data><?php echo $xmldata;?></data><styles><definition><style name='TTipFont' type='font' isHTML='1'  color='FFFFFF' bgColor='666666' size='11'/><style name='HTMLFont' type='font' color='333333' borderColor='CCCCCC' bgColor='FFFFFF'/><style name='myShadow' type='Shadow' distance='1'/></definition><application><apply toObject='MARKERS' styles='myShadow' /><apply toObject='MARKERLABELS' styles='HTMLFont,myShadow' /><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></map>");
+			map.setXMLData("<map  markerBorderColor='000000' markerBgColor='FF5904' markerRadius='6' legendPosition='right' legendAllowDrag='1' useHoverColor='1' showMarkerToolTip='1'  showExportDataMenuItem='1' canvasBorderColor='FFFFFF' borderColor='000000' fillColor='FFFFFF' numberSuffix='%' includeValueInLabels='0' labelSepChar=':-:' baseFontSize='9'><colorRange gradient='1' minValue='0' code='CC0001' startlabel='Bad (%)' endLabel='Very Good (%)'><color maxValue='20' displayValue='Poor' code='FF0000' /><color maxValue='50' displayValue='Average' code='FFCC33' /><color maxValue='100' code='069F06' /></colorRange><data><?php echo $xmldata;?></data><styles><definition><style name='TTipFont' type='font' isHTML='1'  color='FFFFFF' bgColor='666666' size='11'/><style name='HTMLFont' type='font' color='333333' borderColor='CCCCCC' bgColor='FFFFFF'/><style name='myShadow' type='Shadow' distance='1'/></definition><application><apply toObject='MARKERS' styles='myShadow' /><apply toObject='MARKERLABELS' styles='HTMLFont,myShadow' /><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></map>");
 			map.render("mapDiv");
 		</script>
 	</div>
@@ -30,7 +28,7 @@
 		<div style="width:90%; float:left; box-shadow: 1px 0px 1px 1px #888888; margin-left:28px; height: 210px">
 			<div>
 				<div class="section-title" ><center>Reported</center></div>
-				<center><table style="width:80%">
+				<center><table style="width:60%">
 					<tr>
 						<td><strong>Region Name</strong></td>
 						<td><strong>Facility Name</strong></td>
@@ -48,7 +46,7 @@
 		<div style="width:90%; box-shadow: 1px 0px 1px 1px #888888; margin:auto;  clear: both; margin-top:5px; height: 210px">	
 			<div>		
 				<div class="section-title" ><center>Not yet reported </center></div>
-				<center><table style="width: 80%;">
+				<center><table style="width: 60%;">
 					<tr>
 						<td><strong> Name </strong></td>
 						<td><strong> Facility Name </strong></td>
@@ -85,5 +83,4 @@
 	</div>
 </div>
 
-<?php $this->load->view("home_footer_view");?>
-
+<?php $this->load->view("nacp_reporting_cycle_footer_view");?>
