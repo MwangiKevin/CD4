@@ -1,4 +1,4 @@
-$().ready(function() {
+ $().ready(function() {
 	
   	$("#customize").hide();
 

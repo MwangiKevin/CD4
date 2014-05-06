@@ -1,18 +1,25 @@
 <script>
 	$().ready(function() {
-
       expected_reporting_devices();
-      //reporting_view();
+      //tests_pie();
 
-      equipment_pie();
-      tests_pie();
-      equipment_tests_pie();
-      equipment_tests_column();
-      tests_line_trend();
+  $('#datatable-reported').dataTable({
+    "bProcessing": true,
+    "iDisplayLength": 5,
+    "bJQueryUI":true,
+    "bLengthChange": false,
+    "bFilter": false
+  });   
+  $('#datatable-unreported').dataTable({
+    "bProcessing": true,
+    "iDisplayLength": 5,
+    "bJQueryUI":true, 
+    "bLengthChange": false,   
+    "bFilter": false
+  }); 
 
-      //calls the leanier gauge reporting_rates.php
 
-	});
+});
 
 	function draw_charts(user_group_id,user_filter_used){
 

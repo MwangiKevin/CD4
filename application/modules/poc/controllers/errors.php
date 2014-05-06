@@ -3,6 +3,15 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class errors extends MY_Controller {
 
+
+	public function __construct(){
+		parent::__construct();
+		
+		$this->load->module("charts/pima");
+		$this->load->module("charts/tests");
+		$this->load->module("charts/pima_errors");
+	}
+
 	public function index(){
 
 		$this->home_page();

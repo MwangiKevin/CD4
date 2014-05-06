@@ -2,50 +2,41 @@
 if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class reports extends MY_Controller {
-
+	
 	public $data 	= 	array();
 	public $db_view	=	"v_pima_tests_details";
-
+	
+//creates the page
 	public function __construct(){
 		parent::__construct();
-
-		$this->data['content_view'] = "poc/reports_view";
+	
+		$this->data['content_view'] = "nacp/nacp_reports_view";
 		$this->data['title'] = "Reports";
-		$this->data['sidebar']	= "poc/sidebar_view";
+		$this->data['sidebar']	= "nacp/nacp_sidebar_view";
+		//$this->data['sidebar'] = false;
 		$this->data['filter']	=	false;
-		$this->data		=	array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
-
-		$this->load->model('poc_model');
-
-//content for side bar
-		$this->data['devices_not_reported'] = $this->poc_model->devices_not_reported();//devices not yet report		
-		$this->data['errors_agg'] = $this->poc_model->errors_reported();//errors reported
-		 
+		$this->data	=array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
+	
+		$this->load->model('nacp_model');
 //content for the select by criteria		
-		$this->data['devices'] = $this->poc_model->db_filtered_view("v_facility_pima_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
-		$this->data['facilities'] = $this->poc_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
+		$this->data['devices'] = $this->nacp_model->db_filtered_view("v_facility_pima_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
+		$this->data['facilities'] = $this->nacp_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
+		
+//content for side bar
+		$this->data['devices_not_reported'] = $this->nacp_model->devices_not_reported();//devices not yet report		
+		$this->data['errors_agg'] = $this->nacp_model->errors_reported();//errors reported		
 		
 		//controls the menu for select criteria for selection 
 		$this->data['starting_year'] = $this->config->item("starting_year");
-				
 		//sets the menu to the reports page
-
-		$this->data['menus']	= 	$this->poc_model->menus(6);
-
-		$this->load->module("charts/pima");
-		$this->load->module("charts/tests");
-		$this->load->module("charts/pima_errors");
-	}
-
+		$this->data['menus'] = $this->nacp_model->menus(5);
+	}	
+	
 	public function index(){
-
-		$this->login_reroute(array(3,8,9,6));
-
-		$this -> template($this->data);
+		$this->login_reroute(array(4));
+		$this->template($this->data);
 	}
-	public function submit(){
-
-		ini_set("memory_limit","128M");
+public function submit(){
 
 		$report_type	=	(int) $this->input->post("report_type");
 		$criteria		=	(int) $this->input->post("criteria");
@@ -70,7 +61,7 @@ class reports extends MY_Controller {
 		}
 
 		if( $criteria == 3 ){
-			$where_clause 	.=	" ".$this->poc_model->sql_user_delimiter($user_group_id,$user_filter_used )." ";
+			$where_clause 	.=	" ".$this->nacp_model->sql_user_delimiter($user_group_id,$user_filter_used )." ";
 		}else if( $criteria == 1 ){
 			$where_clause 	.= 	" AND `facility_equipment_id`='$device' ";
 		}else if( $criteria == 2 ){
@@ -113,7 +104,7 @@ class reports extends MY_Controller {
 				$row_data[$key+1][6] 	=	Date("Y, F, d",strtotime($value["result_date"]));
 			}
 		}else{
-			$row_data[0] = array("Facility","Pima Device","Sample Code", "CD4 Count (cells/mm)", "SUCCESSFUL TESTS", "Device Operator","Date of Result");
+			$row_data[0] = array("Facility","Pima Device","Sample Code", "CD4 Count (cells/mm)", "Successful tests", "Device Operator","Date of Result");
 			foreach ($res as $key => $value) {
 				$row_data[$key+1][0] 	=	$value["facility_name"]; 
 				$row_data[$key+1][1] 	=	$value["equipment_serial_number"]; 
@@ -130,7 +121,7 @@ class reports extends MY_Controller {
 
 		$this->worksheet($worksheet);
 
-	}
+	 }
 
 	private function print_report(){
 		
@@ -152,4 +143,5 @@ class reports extends MY_Controller {
 	private function email(){
 		
 	}
-}
+}	
+?>

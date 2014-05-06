@@ -56,7 +56,7 @@ class Login extends MY_Controller {
 		
 		$this -> template_headerless($data);
 	}
-
+//authenticates users login
 	public function process_credentials() {
 		$this->form_validation->set_rules("username","");
 
@@ -64,7 +64,7 @@ class Login extends MY_Controller {
 		if ($validated) {
 			$username = $this -> input -> post("username", TRUE);
 			$password = $this -> input -> post("password", TRUE);
-			$this -> authenticate_user($username, $password);
+			$this -> authenticate_user($username, $password);//function on this page
 		} else {
 			$this -> index();
 		}
@@ -108,13 +108,13 @@ class Login extends MY_Controller {
 		//echo $sql;
 		//echo $password;
 
-		$users = R::getAll($sql, array(':u' => $username, ':p' => $password));
+		$users = R::getAll($sql, array(':u' => $username, ':p' => $password));//get all from above sql table and store in $users
 		//print_r($users);
 		if ($users[0]['authentication_level'] == 2 ) {
-			$this -> session -> set_userdata($username . '_attempt', 0);
-			$this -> apply_security($users[0]);		
+			$this -> session -> set_userdata($username . '_attempt', 0);//starts the session and initializes the session
+			$this -> apply_security($users[0]);//function on this page		
 		} else {
-			$this -> perform_attempts($users[0]);
+			$this -> perform_attempts($users[0]);//function on this page
 		}
 
 	}

@@ -197,4 +197,48 @@ $sql["login"]=	"SELECT
 				               		AND `password`='sss') as `auth` 
 					ON `auth`.`id`=`identity`.`id`	 
 					WHERE `identity`.`id`=`user`.`id`";
+
+$sql["controls_migration"] 	=	"INSERT INTO `pima_control` 
+										(
+											`device_test_id`,
+											`pima_upload_id`,
+											`assay_id`,
+											`sample_code`,
+											`error_id`,
+											`operator`,
+											`barcode`,
+											`expiry_date`,
+											`device`,
+											`software_version`,
+											`cd4_count`,
+											`facility_equipment_id`,
+											`result_date`
+										)
+										(
+											SELECT 
+													`device_test_id`,
+													`pima_upload_id`,
+													`assay_id`,
+													`sample_code`,
+													`error_id`,
+													`operator`,
+													`barcode`,
+													`expiry_date`,
+													`device`,
+													`software_version`,
+													`cd4_count`,
+													`facility_equipment_id`,
+													`result_date`
+												FROM `v_pima_tests_details`
+												WHERE `assay_id`='3'
+										)
+						"
+						;
+						
+$sql["controls_migration_del"] = "DELETE `cd4_test`,`pima_test`
+									FROM `cd4_test`
+									INNER JOIN `pima_test`  
+									ON `pima_test`.`cd4_test_id` = `cd4_test`.`id`
+									and `pima_test`.`assay_id`='3'
+";
 	

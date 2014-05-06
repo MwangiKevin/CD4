@@ -14,7 +14,7 @@ class equipment extends MY_Controller {
 		$data['title'] = "Equipment";
 		$data['sidebar']	= "admin/sidebar_view";
 		$data['filter']	=	false;
-		$data	=array_merge($data,$this->load_libraries(array('dataTables','admin_equipment')));		
+		$data	=array_merge($data,$this->load_libraries(array('admin_equipment')));		
 		$this->load->model('admin_model');
 		$data['menus']	= 	$this->admin_model->menus(3);
 		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();		

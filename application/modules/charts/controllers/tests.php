@@ -18,13 +18,16 @@ class tests extends MY_Controller {
     	$this->load->view('tests_table_view',$data);
 	}
 
-	public function tests_line_trend($user_filter_type,$filter){
 
-		$this->load->model('tests_model');
-		$data['chart'] 	= 	$this->tests_model->tests_line_trend($user_filter_type,$filter);
+	
+	public function tests_line_trend($user_filter_type,$filter){
+	
+			$this->load->model('tests_model');
+			$data['chart'] 	= 	$this->tests_model->tests_line_trend($user_filter_type,$filter);
+						  $this->load->view('tests_line_trend_view',$data);
+		}
 		
-    	$this->load->view('tests_line_trend_view',$data);
-	}
+
 }
 /* End of file tests.php */
 /* Location: ./application/modules/charts/controller/tests.php */
