@@ -35,6 +35,9 @@ class upload extends MY_Controller {
 	
 	public function index(){	
 
+		
+		$this->login_reroute(array(3,8,9)); 
+
 		$this -> template($this->data);
 	}
 

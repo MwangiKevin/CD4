@@ -9,14 +9,14 @@ class reports extends MY_Controller {
 //creates the page
 	public function __construct(){
 		parent::__construct();
-	
+
 		$this->data['content_view'] = "nacp/nacp_reports_view";
 		$this->data['title'] = "Reports";
 		$this->data['sidebar']	= "nacp/nacp_sidebar_view";
 		//$this->data['sidebar'] = false;
 		$this->data['filter']	=	false;
 		$this->data	=array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
-	
+
 		$this->load->model('nacp_model');
 //content for the select by criteria		
 		$this->data['devices'] = $this->nacp_model->db_filtered_view("v_facility_pima_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
@@ -29,14 +29,14 @@ class reports extends MY_Controller {
 		//controls the menu for select criteria for selection 
 		$this->data['starting_year'] = $this->config->item("starting_year");
 		//sets the menu to the reports page
-		$this->data['menus'] = $this->nacp_model->menus(5);
+		$this->data['menus'] = $this->nacp_model->menus(7);
 	}	
 	
 	public function index(){
 		$this->login_reroute(array(4));
 		$this->template($this->data);
 	}
-public function submit(){
+	public function submit(){
 
 		$report_type	=	(int) $this->input->post("report_type");
 		$criteria		=	(int) $this->input->post("criteria");
@@ -121,7 +121,7 @@ public function submit(){
 
 		$this->worksheet($worksheet);
 
-	 }
+	}
 
 	private function print_report(){
 		

@@ -13,33 +13,25 @@
 		<div style="font-size: 14px;width:35%; height:22px; margin:auto; padding-left: 13%; background-color:#33c6e7; color:#fff; opacity:20border-style: double;border-color: black;border-radius: 3px;" >
 			<div>Facilities</div>
 		</div>
-		
-		<!-- <div style="width:48%; float:left; box-shadow: 1px 0px 1px 1px #888888; margin:4px; height: 420px">
-			<div>
-				<div class="section-title" ><center>Reported</center></div>
-			</div>		
-		</div>
-		
-		<div style="width:48%; float:right;box-shadow: 1px 0px 1px 1px #888888; margin:4px; height: 420px">	
-			<div>		
-				<div class="section-title" ><center>Not yet reported </center></div>									
-			</div>
-		</div> -->
 		<div style="width:90%; float:left; box-shadow: 1px 0px 1px 1px #888888; margin-left:28px; height: 210px">
 			<div>
 				<div class="section-title" ><center>Reported</center></div>
-				<center><table style="width:60%" id = "datatable-reported" >
-					<thead>
-						<th><strong>Region Name</strong></th>
-						<th><strong>Facility Name</strong></th>
-					</thead>
-					<?php
-					//prints the reported facilities
-					foreach($reported as $row){							
-						echo ("<tr> <td>".$row["region_name"]." </td> <td>". $row['facility_name']."  </td> </tr>");
-					}				
-					?>
-				</table></center>
+				
+				<center>
+					<table style="width:60%" id = "datatable-reported" >
+						<thead>
+							<th><strong>Region </strong></th>
+							<th><strong>Facility </strong></th>
+						</thead>
+						<?php
+						//prints the reported facilities
+						foreach($reported as $row){							
+							echo ("<tr> <td>".$row["region_name"]." </td> <td>". $row['facility_name']."  </td> </tr>");
+						}				
+						?>
+					</table>
+				</center>
+				
 			</div>		
 		</div>
 		
@@ -49,8 +41,8 @@
 				<center>
 					<table style="width: 60%;" id= "datatable-unreported">
 						<thead>
-							<th><strong> Name </strong></th>
-							<th><strong> Facility Name </strong></th>
+							<th><strong> Region </strong></th>
+							<th><strong> Facility </strong></th>
 						</thead>
 						<?php
 					//prints the unreported facilities
@@ -67,18 +59,14 @@
 	
 	<div style="width:100%;float:left;">
 		<div class="panel panel-default" style="width:100%;float:left;padding:30px;box-shadow: 4px 4px 4px #888888;" id="cd4testtrends">
-			<div class="section-title"  style="text-align: center;" ><strong> Commodity Timeline </strong></div>
+			<div class="section-title"  style="text-align: center;" ><strong> Reporting Timeline </strong></div>
 			<center><div id="HLineargauge"></div></center>
 			
-			<?php //echo Modules::run('charts/reporting/reporting_view'); ?>
-			
 			<script type="text/javascript">
-
-			// var myChart = new FusionCharts("<?php echo base_url();?>assets/plugins/Fusion/FusionWidgets/Charts/HLinearGauge.swf", "myChartId", "950", "110", "0", "0");
-			// //myChart.setDataURL();//location of php file
-			// myChart.setDataURL("<?php echo base_url();?>assets/xml/test.xml");
-			// myChart.render("HLineargauge");
-
+				var myChart = new FusionCharts("<?php echo base_url();?>assets/plugins/Fusion/FusionWidgets/Charts/HLinearGauge.swf", "myChartId", "950", "110", "0", "0");
+				myChart.setDataURL();//location of php file
+				myChart.setDataURL("<?php echo base_url();?>nacp/reporting_cycle/timeline_data");
+				myChart.render("HLineargauge");
 			</script> 
 			
 		</div>

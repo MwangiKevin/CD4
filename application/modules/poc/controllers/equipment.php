@@ -9,7 +9,7 @@ class equipment extends MY_Controller {
 	}
 
 	public function home_page() {
-		$this->login_reroute(array(3,8,9));
+		$this->login_reroute(array(3,8,9,4));
 		$data['content_view'] = "poc/equipment_view";
 		$data['title'] = "Equipment";
 		$data['sidebar']	= "poc/sidebar_view";

@@ -14,10 +14,12 @@
         pointerRadius="9" 
         numberPrefix="Day ">
             <colorRange>
-        <color minValue="1" maxValue="7" label="Facility Reporting: 12 of 112"  code="FF654F"/>
-        <color minValue="7" maxValue="15" label="Commodities Allocation: 0 of 112"  code="FF654F" />
-        <color minValue="15" maxValue="21" label="Commodities Distribution: " code="A666EDD" />
-        <color minValue="21" maxValue="31" label="Facility Entry: 12 of 112"  code="FF654F" />
+        <color minValue="1" maxValue="11" label="Allocation"  code="A666EDD"/>
+        <color minValue="11" maxValue="21" label="Distribution"  code="A666EDD" />
+        
+        //if the percentage is less than 33% red btwn 33 and 66 yellow otherwise red
+        <color minValue="21" maxValue="End Month" label="Reporting" code="FFFF00" />
+        
     </colorRange>
         <pointers>
                 <pointer value="02"/>

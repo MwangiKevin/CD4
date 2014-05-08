@@ -5,7 +5,7 @@
       equipment_tests_column();
       tests_line_trend();
       expected_reporting_devices();
-      //tests_pie();
+      tests_pie();
 });
 
 	function draw_charts(user_group_id,user_filter_used){

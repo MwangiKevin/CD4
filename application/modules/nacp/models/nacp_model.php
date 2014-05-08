@@ -1,6 +1,7 @@
 <?php
 
 class nacp_model extends MY_Model{
+	
 	public function menus($selected){
 		$menus = array(
 						array(	'num'			=>	1,
@@ -12,14 +13,15 @@ class nacp_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-						// array(	'num'			=>	2,
-						// 		'name'			=>	'Regional Drilldown',
+						array(	'num'			=>	2,
+								'name'			=>	'Regional Drilldown',
 
-						// 		'url'			=>	base_url()."nacp/drilldown",
+								'other'			=>	"",
+								'url'			=>	base_url()."nacp/drilldown",
 
-					 // 			'selected'		=>	false,
-					 // 			'selectedString'=>	"",							
-						// 		),
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 						array(	'num'			=>	3,
 								'name'			=>	'Reporting Cycle',
 
@@ -45,10 +47,37 @@ class nacp_model extends MY_Model{
 					 // 			'selected'		=>	false,
 					 // 			'selectedString'=>	"",							
 						// 		),
-						array(	'num'			=>	5,
+						array(	'num'			=>	7,
 								'name'			=>	'Reports',
 
 								'url'			=>	base_url()."nacp/reports",
+
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",						
+								),
+						array(	'num'			=>	8,
+								'name'			=>	'CD4 Tests',
+
+								'url'			=>	base_url()."nacp/tests_",
+
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",						
+								),
+						array(	'num'			=>	9,
+								'name'			=>	'Equipment',
+
+								'url'			=>	base_url()."nacp/equipment_",
+
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",						
+								),
+						array(	'num'			=>	10,
+								'name'			=>	'POC Device Errors',
+
+								'url'			=>	base_url()."nacp/errors_",
 
 								'other'			=>	"",
 					 			'selected'		=>	false,
@@ -61,13 +90,13 @@ class nacp_model extends MY_Model{
 //					 			'selected'		=>	false,
 //					 			'selectedString'=>	"",							
 //								),
-//						array(	'num'			=>	7,
-//								'name'			=>	'Change Password',
-//								'url'			=>	"#changePassword",
-//								'other'			=>	" data-toggle='modal' class='menuitem submenuheader' ",
-//					 			'selected'		=>	false,
-//					 			'selectedString'=>	"",							
-//								),
+						array(	'num'			=>	11,
+								'name'			=>	'Change Password',
+								'url'			=>	"#changePassword",
+								'other'			=>	" data-toggle='modal' class='menuitem submenuheader' ",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 //						array(	'num'			=>	8,
 //								'name'			=>	'User Guide',
 //								'url'			=>	base_url()."assets/files/commodityuserguide.pdf",								
@@ -91,82 +120,141 @@ class nacp_model extends MY_Model{
 		return $menus;
 	}
 
-public function  reporting_map_data(){
+public function  reporting_map_data($type){	
+		$last_day = date('Y-m-d', strtotime('first day of previous month'));
+		$first_day = date('Y-m-d', strtotime('last day of previous month'));
 		//region info
-		$sql = "SELECT id,name,fusion_id FROM region ";
-		$res = R::getAll($sql);					
-
-		//gets total of expected reporting devices in each facility				
-		$sql1 = "SELECT `region_id`, count(`facility_id`) AS Expected FROM v_facility_details GROUP BY `region_id`";	
-		$res1 = R::getAll($sql1);
-		
-		//gets the total number of the Reported facilities
-		$sql2 = "SELECT region_id, count(Distinct `facility_id`) AS Reported FROM v_pima_uploads_details GROUP BY `region_id`";
-		$res2 = R::getAll($sql2);
-		$megaArray = array();
-		
-		//concatenate all the arrays into one
-		foreach ($res as $row) {
+		if($type == 1){
+			$sql = "SELECT id,name,fusion_id FROM region ";
+			$res = R::getAll($sql);					
 			
-			 $id = $row["id"];
-			 $name = $row["name"];
-			 $fusion_id = $row["fusion_id"];
-			 
-			foreach($res1 as $row1){
+			//gets total of expected reporting devices in each facility				
+			$sql1 = "SELECT `region_id`, count(`facility_id`) AS Expected FROM v_facility_details GROUP BY `region_id`";	
+			$res1 = R::getAll($sql1);
+			
+			//gets the total number of the Reported facilities
+			$sql2 = "SELECT region_id, count(Distinct `facility_id`) AS Reported FROM v_pima_uploads_details WHERE result_date BETWEEN ".$first_day." AND ".$last_day."  GROUP BY `region_id`";
+			$res2 = R::getAll($sql2);
+			$megaArray = array();
+			
+			//concatenate all the arrays into one
+			foreach ($res as $row) {
 				
-				$id1 = $row1["region_id"];
-				$expected = $row1["Expected"];
-				
-				foreach($res2 as $row2){
+				 $id = $row["id"];
+				 $name = $row["name"];
+				 $fusion_id = $row["fusion_id"];
+				 
+				foreach($res1 as $row1){
 					
-					$id2 = $row2["region_id"];
-					$reported = $row2["Reported"];
+					$id1 = $row1["region_id"];
+					$expected = $row1["Expected"];
 					
-					if($id == $id1 && $id1 == $id2){
-						//echo("ID's are equal <br/>");
-						$megaArray[] = array('id' => $id,'region' =>$name,'fusion_id' =>$fusion_id,'expected'=>$expected,'reported' =>$reported);
+					foreach($res2 as $row2){
 						
+						$id2 = $row2["region_id"];
+						$reported = $row2["Reported"];
+						
+						if($id == $id1 && $id1 == $id2){
+							//echo("ID's are equal <br/>");
+							$megaArray[] = array('id' => $id,'region' =>$name,'fusion_id' =>$fusion_id,'expected'=>$expected,'reported' =>$reported);
+							
+						}
 					}
 				}
 			}
-		}
-		// echo '<pre>';//improves the display format
-		// print_r($megaArray);
-		//die();
+			// echo '<pre>';//improves the display format
+			// print_r($megaArray);
+			//die();
+					
+			$str='';						
+			
+			foreach($megaArray as $row){
+			//values to display on hover
+				 $expectd = $row["expected"];
+				 $reported = $row["reported"];
+				 $region = $row["region"];
+	
+				 $fusion_id = $row["fusion_id"];
+	
+			//gets the reporting percentage
+				 $reporting_ratio = $reported/$expectd;
+				 $reporting_percentage = $reporting_ratio*100;
+				 //$reporting_percentage = 100;
+				 $str .= "<entity id='TZ.".$fusion_id."' value='".$reporting_percentage."' link='home/regional/region/1' toolText= 'Region: ".$region." {br}Expected Facilities: ".$expectd." {br}Reported Facilities: ".$reported." ' />";		
+			}
+			return $str;	
+		}else{
+			$reporting_percentage = 0;
+			$sql = "SELECT id,name,fusion_id FROM region ";
+			$res = R::getAll($sql);					
+			
+			//gets total of expected reporting devices in each facility				
+			$sql1 = "SELECT `region_id`, count(`facility_id`) AS Expected FROM v_facility_details GROUP BY `region_id`";	
+			$res1 = R::getAll($sql1);
+			
+			//gets the total number of the Reported facilities
+			$sql2 = "SELECT region_id, count(Distinct `facility_id`) AS Reported FROM v_pima_uploads_details WHERE result_date BETWEEN ".$first_day." AND ".$last_day."  GROUP BY `region_id`";
+			$res2 = R::getAll($sql2);
+			$megaArray = array();
+			
+			//concatenate all the arrays into one
+			foreach ($res as $row) {
 				
-		$str='';						
-		
-		foreach($megaArray as $row){
-		//values to display on hover
-			 $expectd = $row["expected"];
-			 $reported = $row["reported"];
-			 $region = $row["region"];
-
-			 $fusion_id = $row["fusion_id"];
-
-		//gets the reporting percentage
-			 $reporting_ratio = $reported/$expectd;
-			 $reporting_percentage = $reporting_ratio*100;
-
-			 $str .= "<entity id='TZ.".$fusion_id."' value='".$reporting_percentage."' link='home/regional/region/1' toolText= 'Region: ".$region." {br}Expected Facilities: ".$expectd." {br}Reported Facilities: ".$reported." ' />";		
+				 $id = $row["id"];
+				 $name = $row["name"];
+				 $fusion_id = $row["fusion_id"];
+				 
+				foreach($res1 as $row1){
+					
+					$id1 = $row1["region_id"];
+					$expected = $row1["Expected"];
+					
+					foreach($res2 as $row2){
+						
+						$id2 = $row2["region_id"];
+						$reported = $row2["Reported"];
+						
+						if($id == $id1 && $id1 == $id2){
+							//echo("ID's are equal <br/>");
+							$megaArray[] = array('id' => $id,'region' =>$name,'fusion_id' =>$fusion_id,'expected'=>$expected,'reported' =>$reported);
+							
+						}
+					}
+				}
+			}
+			foreach($megaArray as $row){
+			//values to display on hover
+				 $expectd = $row["expected"];
+				 $reported = $row["reported"];
+				 
+			//gets the reporting percentage
+				 $reporting_ratio = $reported/$expectd;
+				 $reporting_percentage = $reporting_ratio*100;
+			}
+			return $reporting_percentage;
 		}
-		return $str;
 	}
 
 	public function reported(){
-		$sql1 = "SELECT region_name,facility_name, count(Distinct `facility_id`) AS Reported FROM v_pima_uploads_details GROUP BY `region_id`";	
+		$last_day = date('Y-m-d', strtotime('first day of previous month'));
+		$first_day = date('Y-m-d', strtotime('last day of previous month'));
+		
+		$sql1 = "SELECT region_name,facility_name, count(Distinct `facility_id`) AS Reported FROM v_pima_uploads_details WHERE result_date BETWEEN ".$first_day." AND ".$last_day." GROUP BY `facility_name`"; 	
 		$res1 = R::getAll($sql1);
 		
 		return $res1;
 	}
 	
 	public function unreported(){
+		$last_day = date('Y-m-d', strtotime('first day of previous month'));
+		$first_day = date('Y-m-d', strtotime('last day of previous month'));
+		
 		//gets the facility ID for all existing facilities
 		$sql1 = "SELECT `region_id`,region_name, facility_id,facility_name FROM v_facility_details GROUP BY facility_id";	
 		$res1 = R::getAll($sql1);
 		
 		//gets the total number of the Reported facilities
-		$sql2 = "SELECT region_id, facility_name, facility_id FROM v_pima_uploads_details GROUP BY facility_id";
+		$sql2 = "SELECT region_id, facility_name, facility_id FROM v_pima_uploads_details WHERE result_date BETWEEN ".$first_day." AND ".$last_day." GROUP BY facility_id";
 		$res2 = R::getAll($sql2);
 		$i=0;
 		//subtracts REPORTED FACILITIES from TOTAL FACILITIES
@@ -199,10 +287,32 @@ public function  reporting_map_data(){
 		return $res1;
 	}
 
-
-
+//gets all the regions available 
+	public function regions(){
+		$sql = "SELECT region_name FROM v_regions";
+		$res = R::getAll($sql);
+		return $res;
+	}
 	
-
+//gets all the tests and the necessary details
+	public function tests($type){
+		if($type == 1 ){
+//allows you to get values for the columns valid, above 350,below350 and unsuccessful
+			$sql = "SELECT cd4_count,valid FROM v_pima_tests_details";
+			$res = R::getAll($sql);
+//returns the cd4_count and valid
+			return $res;
+			
+		}else if($type == 2){
+//gets the total number of tests		
+			$sql1 = "SELECT COUNT(pima_test_id)AS total FROM v_pima_tests_details";
+			$res1 = R::getAll($sql1);
+			foreach($res1 as $row){
+				$total_test = $row["total"];
+			}
+			return $total_test;
+		}
+	}	
 }
 /* End of file poc_model.php */
 /* Location: ./application/modules/poc/models/poc_model.php */
