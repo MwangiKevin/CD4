@@ -17,7 +17,7 @@ class errors extends MY_Controller {
 		$this->home_page();
 	}
 	public function home_page() {
-		$this->login_reroute(array(3,8,9));
+		$this->login_reroute(array(3,8,9,4));
 		$data['content_view'] = "poc/errors_view";
 		$data['title'] = "POC Errors";
 		//$data['sidebar']	= "poc/sidebar_view";
