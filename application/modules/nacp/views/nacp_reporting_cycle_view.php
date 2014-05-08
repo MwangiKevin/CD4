@@ -16,18 +16,22 @@
 		<div style="width:90%; float:left; box-shadow: 1px 0px 1px 1px #888888; margin-left:28px; height: 210px">
 			<div>
 				<div class="section-title" ><center>Reported</center></div>
-				<center><table style="width:60%" id = "datatable-reported" >
-					<thead>
-						<th><strong>Region </strong></th>
-						<th><strong>Facility </strong></th>
-					</thead>
-					<?php
-					//prints the reported facilities
-					foreach($reported as $row){							
-						echo ("<tr> <td>".$row["region_name"]." </td> <td>". $row['facility_name']."  </td> </tr>");
-					}				
-					?>
-				</table></center>
+				
+				<center>
+					<table style="width:60%" id = "datatable-reported" >
+						<thead>
+							<th><strong>Region </strong></th>
+							<th><strong>Facility </strong></th>
+						</thead>
+						<?php
+						//prints the reported facilities
+						foreach($reported as $row){							
+							echo ("<tr> <td>".$row["region_name"]." </td> <td>". $row['facility_name']."  </td> </tr>");
+						}				
+						?>
+					</table>
+				</center>
+				
 			</div>		
 		</div>
 		

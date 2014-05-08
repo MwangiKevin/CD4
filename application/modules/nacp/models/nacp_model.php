@@ -13,14 +13,15 @@ class nacp_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-						// array(	'num'			=>	2,
-						// 		'name'			=>	'Regional Drilldown',
+						array(	'num'			=>	2,
+								'name'			=>	'Regional Drilldown',
 
-						// 		'url'			=>	base_url()."nacp/drilldown",
+								'other'			=>	"",
+								'url'			=>	base_url()."nacp/drilldown",
 
-					 // 			'selected'		=>	false,
-					 // 			'selectedString'=>	"",							
-						// 		),
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 						array(	'num'			=>	3,
 								'name'			=>	'Reporting Cycle',
 
@@ -37,15 +38,15 @@ class nacp_model extends MY_Model{
 					 // 			'selected'		=>	false,
 					 // 			'selectedString'=>	"",							
 						// 		),
-						// array(	'num'			=>	4,
-						// 		'name'			=>	'Facilities',
+						array(	'num'			=>	4,
+								'name'			=>	'Facilities',
 
-						// 		'url'			=>	base_url()."nacp/facilities",
+								'url'			=>	base_url()."nacp/facilities",
 
-						// 		'other'			=>	"",
-					 // 			'selected'		=>	false,
-					 // 			'selectedString'=>	"",							
-						// 		),
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 						array(	'num'			=>	5,
 								'name'			=>	'Reports',
 
@@ -258,6 +259,33 @@ public function  reporting_map_data($type){
 		// die();
 		return $res1;
 	}
+
+//gets all the regions available 
+	public function regions(){
+		$sql = "SELECT region_name FROM v_regions";
+		$res = R::getAll($sql);
+		return $res;
+	}
+	
+//gets all the tests and the necessary details
+	public function tests($type){
+		if($type == 1 ){
+//allows you to get values for the columns valid, above 350,below350 and unsuccessful
+			$sql = "SELECT cd4_count,valid FROM v_pima_tests_details";
+			$res = R::getAll($sql);
+//returns the cd4_count and valid
+			return $res;
+			
+		}else if($type == 2){
+//gets the total number of tests		
+			$sql1 = "SELECT COUNT(pima_test_id)AS total FROM v_pima_tests_details";
+			$res1 = R::getAll($sql1);
+			foreach($res1 as $row){
+				$total_test = $row["total"];
+			}
+			return $total_test;
+		}
+	}	
 }
 /* End of file poc_model.php */
 /* Location: ./application/modules/poc/models/poc_model.php */

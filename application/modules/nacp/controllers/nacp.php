@@ -3,7 +3,7 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class nacp extends MY_Controller {
 	
-	public $data = array();
+	public $data = array();//array that will pass values to the views
 	
 	public function __construct(){
 		parent::__construct();

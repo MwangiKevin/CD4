@@ -1,22 +1,21 @@
 <script>
-	$().ready(function() {
-      expected_reporting_devices();
-      //tests_pie();
+	$().ready(function() {      
 
-  $('#datatable-reported').dataTable({
+  $('#datatable-region').dataTable({
     "bProcessing": true,
-    "iDisplayLength": 5,
+    "iDisplayLength": 17,
     "bJQueryUI":true,
     "bLengthChange": false,
     "bFilter": false
   }); 
-  $('#datatable-unreported').dataTable({
-    "bProcessing": true,
-    "iDisplayLength": 5,
-    "bJQueryUI":true,
-    "bLengthChange": false,
-    "bFilter": false  	
-  });  
+    $('#data-table').dataTable({
+	    "bProcessing": true,
+	    "iDisplayLength": 5,
+	    "bJQueryUI":true,
+	    "bLengthChange": false,
+	    "bFilter": false
+  	}); 
+      
 });
 
 	function draw_charts(user_group_id,user_filter_used){
