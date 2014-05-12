@@ -1,27 +1,59 @@
 <script>
-	$().ready(function() {      
+	$().ready(function() { 		    
 
-  $('#datatable-region').dataTable({
-    "bProcessing": true,
-    "iDisplayLength": 17,
-    "bJQueryUI":true,
-    "bLengthChange": false,
-    "bFilter": false
-  }); 
-    $('#data-table').dataTable({
+	  $('#datatable-region').dataTable({
 	    "bProcessing": true,
-	    "iDisplayLength": 5,
+	    "iDisplayLength": 17,
 	    "bJQueryUI":true,
 	    "bLengthChange": false,
 	    "bFilter": false
-  	}); 
-      
+	  }); 
+	    $('#data-table').dataTable({
+		    "bProcessing": true,
+		    "iDisplayLength": 5,
+		    "bJQueryUI":true,
+		    "bLengthChange": false,
+		    "bFilter": false
+	  	});
+	  	
+	  	
+	  	
+	  	//filtered_tests_table
+	  	$('.region').click(function(){
+	  		region_id = $(this).attr('id');
+	  		//console.log('
+	  		$.ajax({
+	  			type:'POST',
+	  			url:"/nacp/drilldown/filtered_tests_table/"+region_id,
+	  			//data:rgeion_name,//passing the value region_name
+	  			success: function(data){
+	  				$("#tests_table").html(data);
+					//console.log(data);	
+				}
+	  		});
+	  	});
+	  	
+	  	//filtered_equipment_tests_table
+	  	$('.region').click(function(){
+	  		region_id = $(this).attr('id');
+	  		//console.log('
+	  		$.ajax({
+	  			type:'POST',
+	  			url:"/nacp/drilldown/filtered_equipment_tests_table/"+region_id,
+	  			//data:rgeion_name,//passing the value region_name
+	  			success: function(data){
+	  				$("#equipment_tests_table").html(data);
+					//console.log("Works");	
+				}
+	  		});
+	  	});	
+	  	  
 });
+	
+	
 
 	function draw_charts(user_group_id,user_filter_used){
-
-
-		$.ajax({
+	$.ajax({
           type:"POST",
           async:false,          
 
