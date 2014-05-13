@@ -289,7 +289,7 @@ public function  reporting_map_data($type){
 
 //gets all the regions available 
 	public function regions(){
-		$sql = "SELECT region_name FROM v_regions";
+		$sql = "SELECT region_name,region_id FROM v_regions";
 		$res = R::getAll($sql);
 		return $res;
 	}

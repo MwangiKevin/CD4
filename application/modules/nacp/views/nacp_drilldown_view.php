@@ -8,7 +8,7 @@
 						<td style="height:130px;width:30%; top;">
 						<div class="section-title" ><center>Regions </center></div>
 						
-							<table id="datatable-region" style="margin-left:%">
+							<table  id="datatable-region" style="margin-left:%">
 							<thead>
 								<th style="background-color: #f2f6fa; text-align: center;"><strong> Name </strong></th>
 							</thead>
@@ -16,7 +16,8 @@
 								<?php
 									foreach($regions as $row){
 										$region_name = $row["region_name"];
-										echo("<tr id='".$region_name."' style='cursor: pointer' ><td><center> ".$region_name." </center></td></tr>");
+										$region_id = $row["region_id"];
+										echo("<tr id = '".$region_id."' class = 'region'  style='cursor: pointer' ><td><center>".$region_name."</a></center></td></tr>");
 									}
 								?>
 							</tbody>
@@ -29,7 +30,9 @@
 							<div id="top_tests">
 								<center>
 									<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
-									<?php $this->tests->tests_table(0,0); ?>
+									<div id="tests_table">
+										<?php $this->tests->tests_table(0,0); ?>
+									</div>
 								</center>
 							</div>
 						</td>
@@ -38,15 +41,17 @@
 						<td>
 							<div id="bottom_equipment">
 								<center>
-									<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>													
-									<?php $this->equipment->equipment_tests_table(0,0); ?>
+									<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>
+									<div id="equipment_tests_table">													
+										<?php $this->equipment->equipment_tests_table(0,0); ?>
+									</div>
 								</center>
 							</div>
 						</td>
 					</tr>
 				</table>	
 			</tr>
-				<table>
+				<table style="clear: both;">
 					<tr>
 						<td id="bottom-sec" style="height:130px;width:40%;vertical-align: top;">
 							<center>
@@ -103,6 +108,5 @@
 		</div><!-- /.tab-content -->
 	</div><!-- /.tabbable -->
 </div><!-- /.row -->
-
 <?php $this->load->view("nacp_drilldown_footer_view");?>
 

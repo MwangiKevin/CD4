@@ -34,9 +34,30 @@ class drilldown extends MY_Controller {
 		$this->load->module("charts/pima");		
 	}
 	
+	public function filtered_tests_table($region_id){
+		$region_id = $this -> uri -> segment(4);//gets the ID
+		//pass the region name to the model
+		$data['filtered_regions']= $this->drilldown_model->filtered_tests_table($region_id);
+		//load the view
+		
+		//print_r($data);
+		$this->load->view('filtered_tests_table_view',$data); 
+	}
+	
+	public function filtered_equipment_tests_table($region_id){
+		$region_id = $this -> uri -> segment(4);//gets the ID
+		//pass the region id to the model
+		$data['filtered_equipment']= $this->drilldown_model->filtered_equipment_tests_table($region_id);
+		//load the view
+		
+		//print_r($data);
+		$this->load->view('filtered_equipment_tests_view',$data); 
+	}
+	
+	
 	public function index(){
 		$this->login_reroute(array(4));
-		$this->data['tests'] = 	$this->drilldown_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$this->data['tests'] = 	$this->drilldown_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
 		
 		$this -> template($this->data);
 		//$this->load->view("nacp/nacp_drilldown_view");
