@@ -6,7 +6,7 @@
 				<table style="float: left; width: 30%">
 					<tr>
 						<td style="height:130px;width:30%; top;">
-						<div class="section-title" ><center>Regions </center></div>
+						<div class="section-title" ><center><?php echo "".$category."" ; ?> </center></div>
 						
 							<table  id="datatable-region" style="margin-left:%">
 							<thead>
@@ -15,9 +15,9 @@
 							<tbody>
 								<?php
 									foreach($regions as $row){
-										$region_name = $row["region_name"];
-										$region_id = $row["region_id"];
-										echo("<tr id = '".$region_id."' class = 'region'  style='cursor: pointer' ><td><center>".$region_name."</a></center></td></tr>");
+										$name = $row["name"];
+										$id = $row["id"];
+										echo("<tr id = '".$id."' class = 'region' style='cursor: pointer' ><td><center><a href='".base_url()."nacp/drilldown/".$next_page."/".$id." '>".$name."</a></center></td></tr>");
 									}
 								?>
 							</tbody>
@@ -29,9 +29,9 @@
 						<td style="height:130px;width:35%;vertical-align: top;">
 							<div id="top_tests">
 								<center>
-									<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
+									<div class="section-title" ><center>CD4 Tests for <?php //echo $date_filter_desc;?> </center></div>
 									<div id="tests_table">
-										<?php $this->tests->tests_table(0,0); ?>
+										<?php $this->tests->tests_table($usergroup,$id); ?>
 									</div>
 								</center>
 							</div>
@@ -41,9 +41,9 @@
 						<td>
 							<div id="bottom_equipment">
 								<center>
-									<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>
+									<div class="section-title" ><center>Equipment Tests for <?php //echo $date_filter_desc;?></center></div>
 									<div id="equipment_tests_table">													
-										<?php $this->equipment->equipment_tests_table(0,0); ?>
+										<?php $this->equipment->equipment_tests_table($usergroup,$id); ?>
 									</div>
 								</center>
 							</div>
