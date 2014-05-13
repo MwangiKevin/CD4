@@ -3,19 +3,18 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class drilldown extends MY_Controller {
 	
-	public $data = array();
+	public $data = array();//array that will pass values to the views
 	
 	public function __construct(){
 		parent::__construct();
 		
 		$this->data['content_view'] = "nacp/nacp_drilldown_view";//location of the page
-		$this->data['title'] = "NACP | Drilldown";	
+		$this->data['title'] = "NACP Drilldown";	
 		
 		
 		$this->data['filter']	=	true;//enables filters
-		
 		//loads highchart libraries
-		$this->data	=array_merge($this->data,$this->load_libraries(array('dataTables','FusionCharts','highcharts','highcharts_drilldown')));
+		$this->data	=array_merge($this->data,$this->load_libraries(array('FusionCharts','highcharts','highcharts_drilldown')));
 		
 		//session details
 		$this->data['user_group_id']	= (int) $this->session->userdata("user_group_id");
@@ -23,43 +22,83 @@ class drilldown extends MY_Controller {
 		
 				
 		//menu
-		$this->load->model('drilldown_model');
 		$this->load->model('nacp_model');
 		$this->data['menus'] = $this->nacp_model->menus(2);
 		$this->data['regions'] = $this->nacp_model->regions();
-	
+		
+		
 
 		$this->load->module('charts/equipment');
 		$this->load->module('charts/tests');
 		$this->load->module("charts/pima");		
 	}
 	
-	public function filtered_tests_table($region_id){
-		$region_id = $this -> uri -> segment(4);//gets the ID
-		//pass the region name to the model
-		$data['filtered_regions']= $this->drilldown_model->filtered_tests_table($region_id);
-		//load the view
-		
-		//print_r($data);
-		$this->load->view('filtered_tests_table_view',$data); 
-	}
-	
-	public function filtered_equipment_tests_table($region_id){
-		$region_id = $this -> uri -> segment(4);//gets the ID
-		//pass the region id to the model
-		$data['filtered_equipment']= $this->drilldown_model->filtered_equipment_tests_table($region_id);
-		//load the view
-		
-		//print_r($data);
-		$this->load->view('filtered_equipment_tests_view',$data); 
-	}
-	
-	
 	public function index(){
-		$this->login_reroute(array(4));
-		$this->data['tests'] = 	$this->drilldown_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+		
+		$this->national();
+	}
+	
+	
+	public function national(){//pass the ID of a partner
+		
+		$this->login_reroute(array(4));//selects page depending on the person logged in
+		
+		$this->data['usergroup'] = 0;
+		$this->data['id'] =	0;
+		$this->data['next_page']	="partner";
+		$this->data['category'] = "Partners";
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
 		
 		$this -> template($this->data);
-		//$this->load->view("nacp/nacp_drilldown_view");
+		
+		
+	}	
+	
+	public function partner($id){//pass the ID of a region then select districts associated with that region
+		$this->login_reroute(array(4));
+		
+		$sql = "SELECT (region_name)AS name,(region_id) AS id FROM v_regions WHERE partner_id = ".$id." ";
+		$this->data['regions'] = R::getAll($sql);//how to pass the districts to sql to make the querry?		
+		$this->data['next_page']	="region";
+		$this->data['category'] = "Regions";
+		
+		$this->data['usergroup'] = 9;
+		$this->data['id'] =	$id;
+
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$this -> template($this->data);
 	}
+	
+	public function region($id){
+		$this->login_reroute(array(4));
+		
+		$sql = "SELECT (district_id) AS id,(district_name) AS name FROM v_district_details WHERE region_id = ".$id." ";
+		$this->data["regions"] = R::getAll($sql);
+		$this->data['next_page']	="district";
+		
+		$this->data['category'] = "Districts";
+		$this->data['usergroup'] = 8;
+		$this->data['id'] =	$id;
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$this -> template($this->data);
+	}
+	public function district($id){
+		$this->login_reroute(array(4));
+		
+		$sql = "SELECT (facility_id) AS id,(facility_name) AS name FROM v_facility_details WHERE region_id = ".$id." GROUP BY district_name ";
+		$this->data["regions"] = R::getAll($sql);
+		$this->data['next_page']	="facility";
+		$this->data['category'] = "Facilities";
+		$this->data['usergroup'] = 6;
+		$this->data['id'] =	$id;
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+		$this -> template($this->data);
+	}
+
+	// public function facility($id){
+		// $this->login_reroute(array(4));
+// 		
+		// $sql = "SELECT facility_id,facility_name FROM v_facility_details WHERE region_id = ".$id." GROUP BY district_name ";
+		// $this->data["regions"] = R::getAll($sql);
+	// }
 }
