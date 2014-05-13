@@ -47,7 +47,7 @@ class drilldown extends MY_Controller {
 		$this->data['id'] =	0;
 		$this->data['next_page']	="partner";
 		$this->data['category'] = "Partners";
-		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->data['usergroup'],$this->data['id']);
 		
 		$this -> template($this->data);
 		
@@ -62,10 +62,10 @@ class drilldown extends MY_Controller {
 		$this->data['next_page']	="region";
 		$this->data['category'] = "Regions";
 		
-		$this->data['usergroup'] = 9;
+		$this->data['usergroup'] = 3;
 		$this->data['id'] =	$id;
 
-		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->data['usergroup'],$this->data['id']);
 		$this -> template($this->data);
 	}
 	
@@ -77,9 +77,9 @@ class drilldown extends MY_Controller {
 		$this->data['next_page']	="district";
 		
 		$this->data['category'] = "Districts";
-		$this->data['usergroup'] = 8;
+		$this->data['usergroup'] = 9;
 		$this->data['id'] =	$id;
-		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->data['usergroup'],$this->data['id']);
 		$this -> template($this->data);
 	}
 	public function district($id){
@@ -89,9 +89,9 @@ class drilldown extends MY_Controller {
 		$this->data["regions"] = R::getAll($sql);
 		$this->data['next_page']	="facility";
 		$this->data['category'] = "Facilities";
-		$this->data['usergroup'] = 6;
+		$this->data['usergroup'] = 8;
 		$this->data['id'] =	$id;
-		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+		$this->data['tests'] = 	$this->nacp_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->data['usergroup'],$this->data['id']);
 		$this -> template($this->data);
 	}
 
