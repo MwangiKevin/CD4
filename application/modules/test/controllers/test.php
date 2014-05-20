@@ -39,6 +39,10 @@ echo "Mtesigwa";
 	public function git_c(){
 	echo "george";
 	}
+	public function git_b(){
+		echo "kevin";
+	}
+	
 }
 
 /* End of file test.php */
