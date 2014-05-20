@@ -29,7 +29,11 @@ class Test extends MY_Controller {
 		
 
 
-		
+}
+	public  function git_a ()
+{
+echo "Mtesigwa";
+}	
 
 	}
 	public function git_c(){
