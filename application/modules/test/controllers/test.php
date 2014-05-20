@@ -32,7 +32,9 @@ class Test extends MY_Controller {
 		
 
 	}
-	
+	public function git_c(){
+	echo "george";
+	}
 }
 
 /* End of file test.php */
