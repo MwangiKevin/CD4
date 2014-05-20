@@ -29,11 +29,15 @@ class Test extends MY_Controller {
 		
 
 
-		
+}
+	public  function git_a ()
+{
+echo "Mtesigwa";
+}	
 
 	}
 	
-}
+
 
 /* End of file test.php */
 /* Location: ./application/controllers/test.php */
