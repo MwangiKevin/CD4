@@ -36,8 +36,10 @@ echo "Mtesigwa";
 }	
 
 	}
-	
-
+	public function git_c(){
+	echo "george";
+	}
+}
 
 /* End of file test.php */
 /* Location: ./application/controllers/test.php */
