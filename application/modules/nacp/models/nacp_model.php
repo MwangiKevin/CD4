@@ -97,13 +97,13 @@ class nacp_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-//						array(	'num'			=>	8,
-//								'name'			=>	'User Guide',
-//								'url'			=>	base_url()."assets/files/commodityuserguide.pdf",								
-//								'other'			=>	"  target='_blank' ",
-//					 			'selected'		=>	false,
-//					 			'selectedString'=>	"",							
-//								),
+						array(	'num'			=>	12,
+								'name'			=>	'User Guide',
+							 	'url'			=>	base_url()."assets/files/nacpuserguide.pdf",								
+								'other'			=>	"  target='_blank' ",
+				 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 
 				);
 		$j=0;
