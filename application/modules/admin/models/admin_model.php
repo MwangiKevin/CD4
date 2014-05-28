@@ -110,6 +110,7 @@ class admin_model extends MY_Model{
 						ORDER BY `dev`.`date`
 						";		
 		return 		$res 	=	R::getAll($sql);
+		//return $thi->db->query($sql);
 	}
 	public function user_groups(){
 		return R::getAll("SELECT * FROM `user_group` ORDER BY `name`");

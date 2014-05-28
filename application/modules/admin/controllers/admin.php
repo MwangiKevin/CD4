@@ -10,6 +10,7 @@ class admin extends MY_Controller {
 
 	public function home_page() {
 		$this->login_reroute(array(1,2));
+		
 		$data['content_view'] = "admin/home_page_view";
 		$data['title'] = "Admin Home";
 		$data['filter']	=	true;
