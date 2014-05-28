@@ -12,10 +12,13 @@ class reports extends MY_Controller {
 		$this->data['content_view'] = "poc/reports_view";
 		$this->data['title'] = "Reports";
 		$this->data['sidebar']	= "poc/sidebar_view";
-		$this->data['filter']	=	false;
-		$this->data		=	array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
 
 		$this->load->model('poc_model');
+		$this->data['device_types'] = $this->poc_model->get_Device_types();
+
+		$this->data['filter']	=	false;
+		$this->data		=	array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
+		
 
 //content for side bar
 		$this->data['devices_not_reported'] = $this->poc_model->devices_not_reported();//devices not yet report		

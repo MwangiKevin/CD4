@@ -59,6 +59,13 @@ class admin_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
+						array(	'num'			=>	9,
+								'name'			=>	'User Guide',
+							 	'url'			=>	base_url()."assets/files/adminuserguide.pdf",								
+								'other'			=>	"  target='_blank' ",
+				 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 
 				);
 		$j=0;

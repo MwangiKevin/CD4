@@ -42,7 +42,7 @@ $route['default_controller'] = "home";
 $route['404_override'] = 'errors/error_404';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['searching/:number'] = 'home /:number';
+$route['searching/:any'] = 'home /:any';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

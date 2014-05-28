@@ -110,6 +110,13 @@ class poc_model extends MY_Model{
 	}
 
 
+	public function get_Device_types()
+	{
+		$sql = "SELECT * FROM equipment WHERE category = 1";
+		return $result  =  R::getAll($sql);
+	}
+
+
 	
 
 }
