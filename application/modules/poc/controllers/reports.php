@@ -14,7 +14,7 @@ class reports extends MY_Controller {
 		$this->data['sidebar']	= "poc/sidebar_view";
 
 		$this->load->model('poc_model');
-		$this->data['device_types'] = $this->poc_model->get_Device_types();
+		
 
 		$this->data['filter']	=	false;
 		$this->data		=	array_merge($this->data,$this->load_libraries(array('FusionCharts','poc_reports','jqueryui','dataTables')));
@@ -22,8 +22,10 @@ class reports extends MY_Controller {
 
 //content for side bar
 		$this->data['devices_not_reported'] = $this->poc_model->devices_not_reported();//devices not yet report		
-		$this->data['errors_agg'] = $this->poc_model->errors_reported();//errors reported
-		 
+		$this->data['errors_agg']           = $this->poc_model->errors_reported();//errors reported
+		$this->data['device_types']         = $this->poc_model->get_Device_types();//device types for facility registration
+		$this->data['facility_requests']    = $this->poc_model->get_requested($this->session->userdata("id"));//facilities requested for registration
+
 //content for the select by criteria		
 		$this->data['devices'] = $this->poc_model->db_filtered_view("v_facility_pima_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
 		$this->data['facilities'] = $this->poc_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));

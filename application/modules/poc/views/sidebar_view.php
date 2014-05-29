@@ -34,6 +34,30 @@
 					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo round((($errors_agg["error"]/$errors_agg["total"])*100),2);}else{ echo "0";}?>%)</b> reported last month out of <?php echo $errors_agg["total"];?> tests
 				</a>
 			</div>
+			<?php 
+				if($facility_requests != NULL){
+					foreach($facility_requests as $requests){
+			?>
+			<div class="notice">
+				<a  href="" data-toggle="modal">
+					<i class="glyphicon glyphicon-exclamation-sign"></i> 
+					 
+					 <?php echo $requests['facility'].' facilty has been requested for registration.';?>
+					  
+				</a>
+			</div>			
+			<?php 
+				}}else{
+			?>
+			<div class="success">
+				<a  href="" data-toggle="modal">
+					<i class="glyphicon glyphicon-ok"></i> 
+					 No facilty requested for registration
+				</a>
+			</div>
+			<?php 
+				}
+			?>
 		</div>
 	</div>
 	<div>
@@ -123,10 +147,12 @@
 	   		</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+
+
 	<div class="modal fade" id="deviceRegistrationRequest" >
 	  	<div class="modal-dialog" style="width:37%;margin-bottom:2px;">
 	    	<div class="modal-content" >
-	    		<?php echo form_open(base_url().'upload/register_device',"id='password_header'");?>
+	    		<?php echo form_open(base_url().'poc/upload/request_facility_registration',"id='devise_registration'");?>
 	      		<div class="modal-header">
 	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        		<h4 class="modal-title">Device Registration Request</h4>
@@ -146,17 +172,17 @@
 	            
 	            <div class="input-group" style="width: 100%;padding:4px;">
 	              <span class="input-group-addon" style="width: 40%;">Serial Number :</span>
-	              <?php echo form_input(array('id' => 'serial-number', 'name' => 'serial-number', 'class'=>'textfield form-control', 'placeholder' => '***********'));?>
+	              <?php echo form_input(array('id' => 'serial_number', 'name' => 'serial_number', 'class'=>'textfield form-control'));?>
 	            </div>
 	            
 	            <div class="input-group" style="width: 100%;padding:4px;">
 	              <span class="input-group-addon" style="width: 40%;">Facility :</span>
-	              <?php echo form_input(array('name' => 'confPassword', 'id' => 'confPassword', 'class'=>'textfield form-control', 'placeholder' => '***********'));?>
+	              <?php echo form_input(array('name' => 'facility', 'id' => 'facility', 'class'=>'textfield form-control'));?>
 	            </div>       	 		
 	      		</div>	
 
 	      		<div class="modal-footer" style="height:30px;padding-top:4px;">
-	      			<button type="button" onclick="submit_password_header()" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>Submit</button>
+	      			<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>Submit</button>
 	        		<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Close</button>         		   		
 	      		</div>
 	      		<div class="modal-footer" style="height:11px;padding-top:11px;">

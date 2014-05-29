@@ -25,6 +25,8 @@ class tests extends MY_Controller {
 
 		$data['menus']	= 	$this->poc_model->menus(3);
 		$data['tests'] = 	$this->tests_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_filter_used"));
+		$data['device_types']         = $this->poc_model->get_Device_types();//device types for facility registration
+		$data['facility_requests']    = $this->poc_model->get_requested($this->session->userdata("id"));//facilities requested for registration
 
 		$this -> template($data);
 	}

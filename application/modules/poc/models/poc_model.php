@@ -116,7 +116,31 @@ class poc_model extends MY_Model{
 		return $result  =  R::getAll($sql);
 	}
 
+	public function register_facility($user_id)
+	{
+		$facility_request = array(
+			'id' 			 =>   NULL,
+			'facility'       =>   $this->input->post('facility'),
+			'requested_by'   =>   $user_id,
+			'equipment_id'   =>   $this->input->post('device_type'),
+			'request_status' =>   0,
+			'date_requested' =>   NUll,
+			'serial_number'  =>   $this->input->post('serial_number')
+			
+			);
 
+		$insert = $this->db->insert('facility_equipment_request', $facility_request);
+		return $insert;
+	}
+
+	public function get_requested($user_id)
+	{
+		$sql = "SELECT `facility` 
+				FROM  `facility_equipment_request`
+				WHERE requested_by = $user_id AND request_status = 0";
+
+		return $facility_requests  =  R::getAll($sql);
+	}
 	
 
 }
