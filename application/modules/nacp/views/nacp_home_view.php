@@ -1,7 +1,6 @@
 <div class="row">
 	<div class="tabbable span12">
 		<ul class="nav nav-tabs">
-			<li id ="tabSummary" ><a id = "linkSummary"  href="#tabs1-summary" data-toggle="tab">Summary</a></li>
 			<li id ="tabPima" class="active"><a id = "linkPima" href="#tabs1-pima" data-toggle="tab">PIMA</a></li>
 		</ul>
 		<div class="tab-content">
@@ -47,7 +46,7 @@
 						</td>
 						<td style="height:130px;width:30%;vertical-align: top;">
 							<center>
-								<div class="section-title" ><center>PIMA Tests for </center></div>
+								<div class="section-title" ><center>PIMA Tests for <?php echo $date_filter_desc; ?> </center></div>
                                 <?php $this->tests->tests_table(0,0); ?>
 								<div id="yearlyTestReportingRates" style="align:center;"></div>
 						
