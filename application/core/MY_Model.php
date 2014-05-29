@@ -1,4 +1,4 @@
-<?php
+db_filte<?php
 class MY_Model extends CI_Model{
 
 	public function __construct(){
@@ -219,7 +219,6 @@ class MY_Model extends CI_Model{
 		}else{
 			return "";
 		}
-
 	}
 	public function get_user_sql_where_delimiter(){
 		$user_filter_used 	=	$this->session -> userdata("user_filter_used");

@@ -46,7 +46,7 @@ class reports extends MY_Controller {
 
 		$this -> template($this->data);
 	}
-	public function submit(){
+	public function submit(){//generates the reports
 
 		ini_set("memory_limit","128M");
 
