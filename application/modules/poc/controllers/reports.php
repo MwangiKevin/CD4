@@ -25,6 +25,7 @@ class reports extends MY_Controller {
 		$this->data['errors_agg']           = $this->poc_model->errors_reported();//errors reported
 		$this->data['device_types']         = $this->poc_model->get_Device_types();//device types for facility registration
 		$this->data['facility_requests']    = $this->poc_model->get_requested($this->session->userdata("id"));//facilities requested for registration
+		$this->data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
 
 //content for the select by criteria		
 		$this->data['devices'] = $this->poc_model->db_filtered_view("v_facility_pima_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));

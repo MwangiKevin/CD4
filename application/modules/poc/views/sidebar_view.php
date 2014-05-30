@@ -39,10 +39,10 @@
 					foreach($facility_requests as $requests){
 			?>
 			<div class="notice">
-				<a  href="" data-toggle="modal">
+				<a  href="#requestsmade" data-toggle="modal">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
 					 
-					 <?php echo $requests['facility'].' facilty has been requested for registration.';?>
+					 You have requested <?php echo $requests['Totals'].' facilities for registration.';?>
 					  
 				</a>
 			</div>			
@@ -74,7 +74,7 @@
 					<li><span class="quiet">2.</span> <a href="settings">Settings</a></li>
 					<!-- <li><span class="quiet">3.</span> <a href="#flag" data-toggle="modal">flag Device as inactive</a></li>						 -->
 					<li><span class="quiet">4.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
-					<li><span class="quiet">5.</span> <a href="#deviceRegistrationRequest" data-toggle="modal">Device Registartion</a></li>
+					<li><span class="quiet">5.</span> <a href="#facilityRegistrationRequest" data-toggle="modal">Facility Registartion Request</a></li>
 					<?php 
 						if($this->session->userdata("user_group_id")==3){
 					?>
@@ -149,13 +149,13 @@
 	</div><!-- /.modal -->
 
 
-	<div class="modal fade" id="deviceRegistrationRequest" >
+	<div class="modal fade" id="facilityRegistrationRequest" >
 	  	<div class="modal-dialog" style="width:37%;margin-bottom:2px;">
 	    	<div class="modal-content" >
 	    		<?php echo form_open(base_url().'poc/upload/request_facility_registration',"id='devise_registration'");?>
 	      		<div class="modal-header">
 	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        		<h4 class="modal-title">Device Registration Request</h4>
+	        		<h4 class="modal-title">Facility Registration Request</h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
 	            <div class="input-group" style="width: 100%;padding:4px;">
@@ -189,6 +189,53 @@
 	      			<?php echo $this->config->item("copyrights");?>
 	      		</div>
 	      		<?php   echo form_close();    	?>  
+	   		</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" id="requestsmade" >
+	  	<div class="modal-dialog" style="width:37%;margin-bottom:2px;">
+	    	<div class="modal-content" >
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        		<h4 class="modal-title">
+	        			Facilities requested for registration
+	        		</h4>
+	      		</div>
+	      		<div class="modal-body" style="padding-bottom:0px;">
+	            	<table id="data-table-side">
+	            		<thead>				
+							<th>#</th>
+							<th>Facility</th>							
+							<th>Equipment Type</th>
+							<th>Do upload</th>							
+						</thead>
+						<tbody>
+							<?php
+								$i=1;
+								foreach ($facilities_requested as $facilities) {
+									
+							?>
+							<tr>
+								<td><?php echo $i;?></td>
+								<td><?php echo $facilities['facility'];?></td>
+								<td>
+									<?php echo $facilities['Equipment'];?>
+									<?php 
+										$i++;
+									?>
+								</td>
+								<td><?php echo $facilities['Serial'];?></td>
+							</tr>
+							<?php
+								}
+							?>
+						</tbody>
+	            	</table>
+	      		</div>		      		
+	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
+	      			<?php echo $this->config->item("copyrights");?>
+	      		</div> 
 	   		</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->

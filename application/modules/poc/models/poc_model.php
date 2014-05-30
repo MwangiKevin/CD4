@@ -135,13 +135,24 @@ class poc_model extends MY_Model{
 
 	public function get_requested($user_id)
 	{
-		$sql = "SELECT `facility` 
+		$sql = "SELECT `facility`,
+				COUNT(`id`) AS `Totals`
 				FROM  `facility_equipment_request`
 				WHERE requested_by = $user_id AND request_status = 0";
 
 		return $facility_requests  =  R::getAll($sql);
 	}
 	
+	public function get_requested_facilities($user)
+	{
+		$sql = "SELECT `facility`,
+						`equipment_id` AS `Equipment`,
+						`serial_number` AS `Serial`
+				FROM facility_equipment_request
+				WHERE requested_by = $user AND request_status = 0";
+
+		return $facilities_requested = R::getAll($sql);
+	}
 
 }
 /* End of file poc_model.php */

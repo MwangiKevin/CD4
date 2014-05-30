@@ -166,6 +166,7 @@ class admin_model extends MY_Model{
 							ORDER BY `district_name`
 							");
 	}
+	
 
 }
 /* End of file admin_model.php */

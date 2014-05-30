@@ -27,6 +27,7 @@ class upload extends MY_Controller {
 		$this->data['devices_not_reported'] = $this->poc_model->devices_not_reported();
 		$this->data['device_types']         = $this->poc_model->get_Device_types();
 		$this->data['facility_requests']     = $this->poc_model->get_requested($this->session->userdata("id"));
+		$this->data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
 
 		
 		$this->data['sheet_data']		=	"";
@@ -110,8 +111,7 @@ class upload extends MY_Controller {
 			$insert = $this->poc_model->register_facility($this->session->userdata("id"));
 			if($insert)
 			{
-				
-				$this->index();
+				redirect('poc/upload');
 			}
 		}
 		
