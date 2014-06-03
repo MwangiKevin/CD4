@@ -13,19 +13,23 @@ class upload extends MY_Controller {
 
 		$this->data['content_view'] 	= 	"poc/upload_view";
 		$this->data['title'] 			= 	"Uploads";
+
+		$this->load->model('poc_model');
+		$this->data['device_types'] = $this->poc_model->get_Device_types();
+
 		$this->data['sidebar']			= 	"poc/sidebar_view";
 		$this->data['posted']			=	0;
 		$this->data['filter']			=	false;
 
 		$this->data		=	array_merge($this->data,$this->load_libraries(array("dataTables", "poc_uploads")));
 
-		$this->load->model('poc_model');
-
+		
 		$this->data['uploads'] = 	$this->poc_model->get_Upload_details($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
 		$this->data['errors_agg'] = $this->poc_model->errors_reported();
 		$this->data['menus']	= 	$this->poc_model->menus(2);
 		$this->data['devices_not_reported'] = $this->poc_model->devices_not_reported();
 
+		
 		$this->data['sheet_data']		=	"";
 		$this->data['upload_data']		=	array();
 
