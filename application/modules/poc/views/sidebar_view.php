@@ -47,13 +47,11 @@
 			<div class="section-content">	
 				<ul class="nice-list">
 					<li><span class="quiet">1.</span> <a href="<?php echo base_url()?>user/profile">My Profile</a></li>
-					<li><span class="quiet">2.</span> <a href="settings">Settings</a></li>
-					<!-- <li><span class="quiet">3.</span> <a href="#flag" data-toggle="modal">flag Device as inactive</a></li>						 -->
-					<li><span class="quiet">4.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
+					<li><span class="quiet">2.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
 					<?php 
 						if($this->session->userdata("user_group_id")==3){
 					?>
-					<li><span class="quiet">5.</span> <a href="#assign" data-toggle="modal">Assign Device to Facility</a></li>
+					<li><span class="quiet">3.</span> <a href="#deviceRegistrationRequest" data-toggle="modal">Device Registartion</a></li>
 					<?php
 						}
 					?>
@@ -61,6 +59,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 	<div class="modal fade" id="devicesnotreported" >
 	  	<div class="modal-dialog" style="width:37%;margin-bottom:2px;">
 	    	<div class="modal-content" >
@@ -116,6 +117,49 @@
 	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
 	      			<?php echo $this->config->item("copyrights");?>
 	      		</div> 
+	   		</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<div class="modal fade" id="deviceRegistrationRequest" >
+	  	<div class="modal-dialog" style="width:37%;margin-bottom:2px;">
+	    	<div class="modal-content" >
+	    		<?php echo form_open(base_url().'upload/register_device',"id='password_header'");?>
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        		<h4 class="modal-title">Device Registration Request</h4>
+	      		</div>
+	      		<div class="modal-body" style="padding-bottom:0px;">
+	            <div class="input-group" style="width: 100%;padding:4px;">
+	              <span class="input-group-addon" style="width: 40%;">Device Type :</span>
+	              
+	              <select required class="textfield form-control" name="device_type" id="device_type">
+	              	<option value="" selected='selected' disabled>--Select Device type--</option>
+	              	<?php foreach($device_types as $device){ ?>
+					 	<option value='<?php echo $device["id"]; ?>'><?php echo "<b>".$device["description"]."</b>"; ?></option>
+					<?php } ?>
+	              </select>
+
+	            </div>
+	            
+	            <div class="input-group" style="width: 100%;padding:4px;">
+	              <span class="input-group-addon" style="width: 40%;">Serial Number :</span>
+	              <?php echo form_input(array('id' => 'serial-number', 'name' => 'serial-number', 'class'=>'textfield form-control', 'placeholder' => '***********'));?>
+	            </div>
+	            
+	            <div class="input-group" style="width: 100%;padding:4px;">
+	              <span class="input-group-addon" style="width: 40%;">Facility :</span>
+	              <?php echo form_input(array('name' => 'confPassword', 'id' => 'confPassword', 'class'=>'textfield form-control', 'placeholder' => '***********'));?>
+	            </div>       	 		
+	      		</div>	
+
+	      		<div class="modal-footer" style="height:30px;padding-top:4px;">
+	      			<button type="button" onclick="submit_password_header()" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>Submit</button>
+	        		<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Close</button>         		   		
+	      		</div>
+	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
+	      			<?php echo $this->config->item("copyrights");?>
+	      		</div>
+	      		<?php   echo form_close();    	?>  
 	   		</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->

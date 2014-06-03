@@ -417,6 +417,22 @@
 				"buffer_size": 0,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "/E/Games/COD-Modern Warfare 3/admin/mitto.dspl",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/Games/COD-Modern Warfare 3/admin/JUG_default.dsr",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -766,7 +782,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -799,6 +815,58 @@
 				{
 					"buffer": 1,
 					"file": "/C/Games/COD-Modern Warfare 3/admin/mitto.dspl",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/E/Games/COD-Modern Warfare 3/admin/mitto.dspl",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/E/Games/COD-Modern Warfare 3/admin/JUG_default.dsr",
 					"settings":
 					{
 						"buffer_size": 0,
