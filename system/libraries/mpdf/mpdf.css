@@ -18,3 +18,20 @@ img { margin: 0.83em 0; vertical-align: bottom; }
 table { margin: 0.5em; }
 textarea { vertical-align: top; }
 */
+<style>
+	table{
+		margin:auto;
+	}
+	{
+		padding: 3mm;
+		border: 2mm solid blue;
+		vertical-align: middle;
+	}
+	h5{
+	/*reason why css doesn't work*/
+		/*float: right;*/
+	}
+	thead{
+		background-color: blue;
+	}
+</style>

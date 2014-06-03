@@ -8,7 +8,7 @@
 				<table>
 					<tr>
 						<td style="width:50%">
-							<div class="mycontainer" id="full">
+							<div class="mycontainer" id="full" >
 								<div class="input-group" style="width: 100%;padding:4px;">
 									<span class="input-group-addon" style="width: 40%;">Report Type :</span>
 									<select required class="textfield form-control" name="report_type" id="report_type" >
@@ -34,7 +34,7 @@
 									<select name='device' id='device' style='border-radius:0px 5px 5px 0px;'; class="textfield form-control">
 										<option value='' selected='selected'>*Select Device*</option>
 										<?php foreach($devices as $device){ ?>
-										<option value='<?php echo $device["facility_equipment_id"]; ?>'><?php echo "<b>".$device["facility_name"]."</b>&nbsp&nbsp&nbsp&nbsp(".$device["serial_number"].")"; ?></option>
+										<option value='<?php echo $device["facility_equipment_id"].'.'.$device["facility_name"]; ?>'><?php echo "<b>".$device["facility_name"]."</b>&nbsp&nbsp&nbsp&nbsp(".$device["serial_number"].")"; ?></option>
 										<?php } ?>
 									</select>
 									<span id='locationInfo'></span>
@@ -46,7 +46,7 @@
 									<select name='facility' id='facility' style="border-radius:0px 5px 5px 0px;"  class="textfield form-control">
 										<option value='' selected='selected'>*Select Facility*</option>
 										<?php foreach($facilities as $facility){ ?>
-										<option value='<?php echo $facility["facility_id"]; ?>'><?php echo $facility["facility_name"]; ?></option>
+										<option value='<?php echo $facility["facility_id"].'.'.$device["facility_name"]; ?>'><?php echo $facility["facility_name"]; ?></option>
 										<?php } ?>
 									</select>
 									<span id='locationInfo'></span>
@@ -59,7 +59,7 @@
 									<select name='district' id='district' style="border-radius:0px 5px 5px 0px;"  class="textfield form-control">
 										<option value='' selected='selected'>*Select District*</option>
 										<?php foreach($districts as $districts){ ?>
-										<option value='<?php echo $districts["district_id"]; ?>'><?php echo $districts["district_name"]; ?></option>
+										<option value='<?php echo $districts["district_id"].'.'.$districts["district_name"]; ?>'><?php echo $districts["district_name"]; ?></option>
 										<?php } ?>
 									</select>
 									<span id='locationInfo'></span>
@@ -71,7 +71,7 @@
 									<select name='region' id='region' style="border-radius:0px 5px 5px 0px;"  class="textfield form-control">
 										<option value='' selected='selected'>*Select Region*</option>
 										<?php foreach($regions as $regions){ ?>
-										<option value='<?php echo $regions["region_id"]; ?>'><?php echo $regions["region_name"]; ?></option>
+										<option value='<?php echo $regions["region_id"].'.'.$regions["region_name"]; ?>'><?php echo $regions["region_name"]; ?></option>
 										<?php } ?>
 									</select>
 									<span id='locationInfo'></span>

@@ -63,7 +63,7 @@ class reports extends MY_Controller {
 	}
 
 	//generates the reports
-	public function submit(){
+	public function submit(){		
 		$format = $this->input->post("format");//gets the value of format, pdf/excel
 		$this->load->library("mpdf/mpdf");
 		
@@ -78,6 +78,7 @@ class reports extends MY_Controller {
 			$district    	= 	(int) $this->input->post("district");
 			$region			=	(int) $this->input->post("region");
 			
+						
 			$date_from		=	$this->input->post("date_from");
 			$date_to		=	$this->input->post("date_to");
 	
@@ -91,12 +92,32 @@ class reports extends MY_Controller {
 				$where_clause 	.=	" ".$this->admin_model->sql_user_delimiter($user_group_id,$user_filter_used )." ";
 			}else if( $criteria == 1 ){
 				$where_clause 	.= 	" AND `facility_equipment_id`='$device' ";
+				$criteria_by 	=	"Devices";
+				
+				$device_val		=	(String) $this->input->post("device");
+				$parts 			=	explode('.', $device_val);
+				$location_name	=	$parts[1];
 			}else if( $criteria == 2 ){
 				$where_clause 	.= 	" AND `facility_id`='$facility' ";
+				$criteria_by 	=	"Facilities";
+				
+				$device_val		=	(String) $this->input->post("facility");
+				$parts 			=	explode('.', $device_val);
+				$location_name	=	$parts[1];				
 			}else if($criteria == 4){
 				$where_clause 	.= 	" AND `district_id`='$district' ";
+				$criteria_by 	=	"Districts";
+
+				$device_val		=	(String) $this->input->post("district");
+				$parts 			=	explode('.', $device_val);
+				$location_name	=	$parts[1];			
 			}else{
 				$where_clause 	.= 	" AND `region_id`='$region' ";
+				$criteria_by 	=	"Regions";
+				
+				$device_val		=	(String) $this->input->post("region");
+				$parts 			=	explode('.', $device_val);
+				$location_name	=	$parts[1];			
 			}
 	
 			$sql	=	"SELECT 
@@ -116,13 +137,21 @@ class reports extends MY_Controller {
 			// die();
 			$res = R::getAll($sql);
 			$this->mpdf = new mPDF();
-			
+			$download_date = date("l jS \ F Y");
 			$content = '
-				<h1> Summary for Facilities </h1>
-				<h2>Locatoin: Location Name</h2>
-				<table border="1">
-					<tr>
-						<td> Facility Name </td>
+				<div style="text-align:center; background-color:#f2f6fa" padding:0px; margin:0px;>
+					<h1 style="color:#6e6e6e"> The United Republic of Tanzania </h1>
+					<h2> Minsitry of Health and Social Welfare</h2>
+					<h3> National Aids Control Program </h3>
+				</div>
+				<hr/>
+				<h5 style="margin-left:60%;"> Downloaded on: '.$download_date.' </h5>
+				<h4> Ordered by '.$criteria_by.'</h4>
+				<h4> Area Name: '.$location_name.'</h4>				
+				<hr/>
+				<table border="1"; style="margin:auto; text-align:center; font-family:font-family:Arial,Helvetica,sans-serif; background-gradient: linear #c7cdde #f0f2ff 0 1 0 0.5";>
+					<tr style=" font-size: 100px; ">
+						<td > Facility Name </td>
 						<td> Valid Tests </td>
 						<td> Invalid Tests/Errors </td>
 						<td> Total Tests</td>
@@ -149,7 +178,9 @@ class reports extends MY_Controller {
 						</tr>";
 		}
 	$content .= '</tbody>
-</table>';
+</table>
+<hr/> <h6 style="margin:0px; text-align:center;padding:0px;">end of document</h6><hr/>
+';
 
 	// echo $content;
 	// die();
@@ -260,5 +291,3 @@ class reports extends MY_Controller {
 		
 	}
 }
-/* End of file reports.php */
-/* Location: ./application/modules/admin/controller/reports.php */
