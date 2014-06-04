@@ -1,4 +1,4 @@
-db_filte<?php
+<?php
 class MY_Model extends CI_Model{
 
 	public function __construct(){
