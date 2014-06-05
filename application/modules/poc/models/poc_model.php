@@ -120,7 +120,9 @@ class poc_model extends MY_Model{
 	{
 		$facility_request = array(
 			'id' 			 =>   NULL,
+
 			'facility_id'       =>   $this->input->post('facility'),
+
 			'requested_by'   =>   $user_id,
 			'equipment_id'   =>   $this->input->post('device_type'),
 			'request_status' =>   0,

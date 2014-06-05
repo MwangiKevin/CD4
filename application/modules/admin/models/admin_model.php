@@ -31,13 +31,13 @@ class admin_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-						// array(	'num'			=>	5,
-						// 		'name'			=>	'Reports',
-						// 		'url'			=>	base_url()."admin/reports",
-						// 		'other'			=>	"",
-					 // 			'selected'		=>	false,
-					 // 			'selectedString'=>	"",							
-						// 		),
+						array(	'num'			=>	5,
+								'name'			=>	'Reports',
+								'url'			=>	base_url()."admin/reports/reporting_view",
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 						// array(	'num'			=>	6,
 						// 		'name'			=>	'Settings',
 						// 		'url'			=>	base_url()."admin/settings",
@@ -166,6 +166,34 @@ class admin_model extends MY_Model{
 											ON `par_reg`.`partner_id`=`par`.`id`
 							ORDER BY `district_name`
 							");
+	}
+	
+	
+	public function get_Upload_details($user_group_id,$user_filter_used){
+
+	$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
+
+	$sql 	=	"SELECT 
+						`pima_upload_id`,
+						`upload_date`,
+						`equipment_serial_number`,
+						`facility_name`,
+						`uploader_name`,
+						COUNT(`pima_test_id`) AS `total_tests`,
+						SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid_tests`,
+						SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,
+						SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` < 350 THEN 1 ELSE 0 END) AS `failed`,
+						SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` >= 350 THEN 1 ELSE 0 END) AS `passed`
+					FROM `v_pima_uploads_details`
+					WHERE 1 
+					$user_delimiter 
+					GROUP BY `pima_upload_id`
+					ORDER BY `upload_date` DESC
+					LIMIT 500
+				";
+	return $res 	=	R::getAll($sql);
+
+
 	}
 
 	public function get_requests()

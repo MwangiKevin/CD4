@@ -280,7 +280,7 @@ class pima_model extends MY_Model{
 	}
 	private function reported_devices($user_delimiter, $year){
 
-		$sql = 	"SELECT 
+		echo $sql = 	"SELECT 
 						`t1`.`month`,
 						COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
 
@@ -297,8 +297,6 @@ class pima_model extends MY_Model{
 						)AS `t1`					
 					GROUP BY `t1`.`month`
 				";
-
-		//echo $sql;
 		$res = R::getAll($sql);
 
 		$reported_array = array(); 
