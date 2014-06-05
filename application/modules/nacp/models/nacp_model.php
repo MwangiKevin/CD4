@@ -59,7 +59,7 @@ class nacp_model extends MY_Model{
 						array(	'num'			=>	8,
 								'name'			=>	'CD4 Tests',
 
-								'url'			=>	base_url()."nacp/tests_",
+								'url'			=>	base_url()."nacp/tests_cd4",
 
 								'other'			=>	"",
 					 			'selected'		=>	false,
@@ -68,7 +68,7 @@ class nacp_model extends MY_Model{
 						array(	'num'			=>	9,
 								'name'			=>	'Equipment',
 
-								'url'			=>	base_url()."nacp/equipment_",
+								'url'			=>	base_url()."nacp/equipment",//equipment
 
 								'other'			=>	"",
 					 			'selected'		=>	false,
@@ -77,7 +77,7 @@ class nacp_model extends MY_Model{
 						array(	'num'			=>	10,
 								'name'			=>	'POC Device Errors',
 
-								'url'			=>	base_url()."nacp/errors_",
+								'url'			=>	base_url()."nacp/errors",
 
 								'other'			=>	"",
 					 			'selected'		=>	false,
