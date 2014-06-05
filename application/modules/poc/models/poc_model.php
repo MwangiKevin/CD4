@@ -120,7 +120,7 @@ class poc_model extends MY_Model{
 	{
 		$facility_request = array(
 			'id' 			 =>   NULL,
-			'facility'       =>   $this->input->post('facility'),
+			'facility_id'       =>   $this->input->post('facility'),
 			'requested_by'   =>   $user_id,
 			'equipment_id'   =>   $this->input->post('device_type'),
 			'request_status' =>   0,
@@ -135,7 +135,7 @@ class poc_model extends MY_Model{
 
 	public function get_requested($user_id)
 	{
-		$sql = "SELECT `facility`,
+		$sql = "SELECT `facility_id`,
 				COUNT(`id`) AS `Totals`
 				FROM  `facility_equipment_request`
 				WHERE requested_by = $user_id AND request_status = 0";
@@ -145,7 +145,7 @@ class poc_model extends MY_Model{
 	
 	public function get_requested_facilities($user)
 	{
-		$sql = "SELECT `facility`,
+		$sql = "SELECT `facility_id`,
 						`equipment_id` AS `Equipment`,
 						`serial_number` AS `Serial`
 				FROM facility_equipment_request

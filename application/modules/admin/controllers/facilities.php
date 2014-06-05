@@ -33,6 +33,8 @@ class facilities extends MY_Controller {
 		$data['partners'] = 	$this->admin_model->partners();
 		$data['regions'] = 	$this->admin_model->regions();
 		$data['districts'] = 	$this->admin_model->districts();
+		$data['requests'] = $this->admin_model->get_requests();
+		$data['totals'] = $this->admin_model->num_of_requests();
 		
 		$this -> template($data);
 	}

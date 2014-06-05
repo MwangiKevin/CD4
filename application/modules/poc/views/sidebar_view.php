@@ -35,14 +35,21 @@
 				</a>
 			</div>
 			<?php 
-				if($facility_requests != NULL){
+				if(sizeof($facility_requests)>0){
 					foreach($facility_requests as $requests){
 			?>
 			<div class="notice">
 				<a  href="#requestsmade" data-toggle="modal">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
 					 
-					 You have requested <?php echo $requests['Totals'].' facilities for registration.';?>
+					 <?php 
+						 if (sizeof($facility_requests)>2) {
+						  	echo $requests['Totals'].' facility has been requested for registration.';
+						  } else {
+						  	echo $requests['Totals'].' facilities have been requested for registration.';
+						  }
+					   
+					 ?>
 					  
 				</a>
 			</div>			
@@ -71,14 +78,14 @@
 			<div class="section-content">	
 				<ul class="nice-list">
 					<li><span class="quiet">1.</span> <a href="<?php echo base_url()?>user/profile">My Profile</a></li>
+
 					<li><span class="quiet">2.</span> <a href="settings">Settings</a></li>
 					<!-- <li><span class="quiet">3.</span> <a href="#flag" data-toggle="modal">flag Device as inactive</a></li>						 -->
-					<li><span class="quiet">4.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
-					<li><span class="quiet">5.</span> <a href="#facilityRegistrationRequest" data-toggle="modal">Facility Registartion Request</a></li>
+					<li><span class="quiet">3.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
 					<?php 
 						if($this->session->userdata("user_group_id")==3){
 					?>
-					<li><span class="quiet">6.</span> <a href="#assign" data-toggle="modal">Assign Device to Facility</a></li>
+					<li><span class="quiet">4.</span> <a href="#facilityRegistrationRequest" data-toggle="modal">Facility Registartion Request</a></li>
 					<?php
 						}
 					?>
@@ -217,15 +224,16 @@
 									
 							?>
 							<tr>
-								<td><?php echo $i;?></td>
-								<td><?php echo $facilities['facility'];?></td>
-								<td>
+								<td><center><?php echo $i;?></center></td>
+								<td><center><?php echo $facilities['facility_id'];?></center></td>
+								<td><center>
 									<?php echo $facilities['Equipment'];?>
 									<?php 
 										$i++;
 									?>
+									</center>
 								</td>
-								<td><?php echo $facilities['Serial'];?></td>
+								<td><center><?php echo $facilities['Serial'];?></center></td>
 							</tr>
 							<?php
 								}

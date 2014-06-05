@@ -117,6 +117,7 @@ class admin_model extends MY_Model{
 						ORDER BY `dev`.`date`
 						";		
 		return 		$res 	=	R::getAll($sql);
+		//return $thi->db->query($sql);
 	}
 	public function user_groups(){
 		return R::getAll("SELECT * FROM `user_group` ORDER BY `name`");
@@ -166,7 +167,30 @@ class admin_model extends MY_Model{
 							ORDER BY `district_name`
 							");
 	}
+
+	public function get_requests()
+	{
+		$sql = "SELECT 	facility_equipment_request.id,
+						`facility_id`,
+						`serial_number`,
+						`username`
+				FROM `facility_equipment_request`, `user`
+				WHERE facility_equipment_request.requested_by = user.id
+				AND request_status = 0";
+
+		return $requests = R::getAll($sql);
+	}
 	
+	public function num_of_requests()
+	{
+		$sql = "SELECT 
+					COUNT('facility_id') AS `Request`
+				FROM `facility_equipment_request`, `user`
+				WHERE facility_equipment_request.requested_by = user.id
+				AND request_status = 0";
+
+		return $requests = R::getAll($sql);
+	}
 
 }
 /* End of file admin_model.php */
