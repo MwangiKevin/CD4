@@ -79,13 +79,13 @@
 				<ul class="nice-list">
 					<li><span class="quiet">1.</span> <a href="<?php echo base_url()?>user/profile">My Profile</a></li>
 
-					<li><span class="quiet">2.</span> <a href="settings">Settings</a></li>
+					<!--<li><span class="quiet">2.</span> <a href="settings">Settings</a></li>-->
 					<!-- <li><span class="quiet">3.</span> <a href="#flag" data-toggle="modal">flag Device as inactive</a></li>						 -->
-					<li><span class="quiet">3.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
+					<li><span class="quiet">2.</span> <a href="#changePassword" data-toggle="modal">Change Password</a></li>
 					<?php 
 						if($this->session->userdata("user_group_id")==3){
 					?>
-					<li><span class="quiet">4.</span> <a href="#facilityRegistrationRequest" data-toggle="modal">Facility Registartion Request</a></li>
+					<li><span class="quiet">3.</span> <a href="#facilityRegistrationRequest" data-toggle="modal">Facility Registartion Request</a></li>
 					<?php
 						}
 					?>
