@@ -149,6 +149,47 @@ $sql["v_facility_equipment_details"] = 				"SELECT
 															ON `fac_eq`.`status`=`eq_st`.`id`												
 													
 													";
+
+$sql["v_facility_reporting_view"] = 				"SELECT
+															
+															`fac_eq`.`id` 			AS `facility_equipment_id`,														
+															`eq_cat`.`id`			AS `equipment_category_id`,
+															`eq_cat`.`description` 	AS `equipment_category`,	
+															`eq`.`id` 				AS `equipment_id`,
+															`eq`.`description` 		AS `equipment`,
+															`fac_eq`.`status` 		AS `facility_equipment_status_id`,
+															`eq_st`.`description`	AS `facility_equipment_status`,
+															`fac_eq`.`deactivation_reason` ,															
+															`fac_eq`.`date_added` ,													
+															`fac_eq`.`date_removed`,																											
+															`fac_eq`.`serial_number`,
+															`fac`.`id` 				AS `facility_id`,
+															`fac`.`name` 			AS `facility_name`,
+															`fac`.`email` 			AS `facility_email`,
+															`fac`.`phone` 			AS `facility_phone`,
+															`fac`.`rollout_status` 	AS `facility_rollout_id`,
+															`fac`.`district_id`, 
+															`dis`.`name` 			AS `district_name`,
+															`dis`.`status` 			AS `district_status`,
+															`dis`.`region_id`,
+															`reg`.`name`			AS `region_name`,
+															`reg`.`fusion_id`		AS `region_fusion_id`
+
+														FROM `facility_equipment` `fac_eq`
+															LEFT JOIN `equipment` `eq`
+															ON `fac_eq`.`equipment_id`= `eq`.`id`
+																LEFT JOIN `equipment_category` `eq_cat`
+																ON `eq`.`category`= `eq_cat`.`id`
+															LEFT JOIN `facility` `fac`
+															ON	`fac_eq`.`facility_id` = `fac`.`id`
+																LEFT JOIN `district` `dis`
+																ON `fac`.`district_id` = `dis`.`id`
+																	LEFT JOIN `region` `reg`
+																	ON `dis`.`region_id` = `reg`.`id`
+															LEFT JOIN `equipment_status` `eq_st`
+															ON `fac_eq`.`status`=`eq_st`.`id`												
+													
+													";
 $sql["v_facility_pima_details"] = 				"SELECT
 															`fac_pim`.`id` 			AS `facility_pima_id`,
 															`fac_pim`.`serial_num` 	AS `facility_pima_serial_num`,

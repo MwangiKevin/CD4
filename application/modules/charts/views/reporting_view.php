@@ -6,18 +6,3 @@
 			myChart.render("HLineargauge");
 		</script> 
 </script>
-    
-
-    <!-- <html>
-	<body>
-		<div id="chartContainer">This should be a chart. Please work</div>
-		 <script type="text/javascript">
-		            var myChart = new FusionCharts( "FusionWidgetsAngularGauge.swf", "myChartId", "400", "200", "0" );
-		            myChart.setXMLUrl("xml/data.xml");
-		//				mychart.setDataXML("Data.php");
-		            myChart.render("chartContainer");
-
-		    </script>
-    </body>
-    
-</html> -->

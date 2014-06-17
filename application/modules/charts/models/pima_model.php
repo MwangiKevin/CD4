@@ -157,7 +157,7 @@ class pima_model extends MY_Model{
                                  			`date_added`, 
 											MONTH(`date_added`) AS `month`,
 											COUNT(*) AS `rolledout` 			
-										FROM `v_facility_equipment_details` 		 
+										FROM `v_facility_reporting_view` 		 
 										WHERE `date_added` <> '0000-00-00'
 										AND `equipment_id` = '4' 
 
@@ -169,7 +169,7 @@ class pima_model extends MY_Model{
                                  			`date_added`, 
 											MONTH(`date_added`) AS `month`,
 											COUNT(*) AS `rolledout` 			
-										FROM `v_facility_equipment_details` 		 
+										FROM `v_facility_reporting_view` 		 
 										WHERE `date_added` <> '0000-00-00'
 										AND `equipment_id` = '4' 
 
@@ -178,6 +178,7 @@ class pima_model extends MY_Model{
 										GROUP BY `yearmonth`) AS `t2` 
 							ON `t1`.`date_added` >= `t2`.`date_added` 
 							group by `t1`.`date_added`";
+
 		$sql_removed	="SELECT 
 									`t1`.`date_removed` as `rank_date`,
 									`t1`.`yearmonth`,
@@ -189,7 +190,7 @@ class pima_model extends MY_Model{
 												`date_removed`, 
 												MONTH(`date_removed`) AS `month`,
 												COUNT(*) AS `removed` 			
-											FROM `v_facility_equipment_details` 		 
+											FROM `v_facility_reporting_view` 		 
 											WHERE `date_removed` <> '0000-00-00'
 											AND `equipment_id` = '4' 
 
@@ -201,7 +202,7 @@ class pima_model extends MY_Model{
 												`date_removed`, 
 												MONTH(`date_removed`) AS `month`,
 												COUNT(*) AS `removed` 			
-											FROM `v_facility_equipment_details` 		 
+											FROM `v_facility_reporting_view` 		 
 											WHERE `date_removed` <> '0000-00-00'
 											AND `equipment_id` = '4' 
 
@@ -297,8 +298,6 @@ class pima_model extends MY_Model{
 						)AS `t1`					
 					GROUP BY `t1`.`month`
 				";
-
-		//echo $sql;
 		$res = R::getAll($sql);
 
 		$reported_array = array(); 
