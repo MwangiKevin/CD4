@@ -201,10 +201,13 @@ class admin_model extends MY_Model{
 		$sql = "SELECT 	facility_equipment_request.id,
 						`facility_id`,
 						`serial_number`,
-						`username`
-				FROM `facility_equipment_request`, `user`
+						`username`,
+						`description`,
+						`ctc_id_no`
+				FROM `facility_equipment_request`, `user`, `equipment`
 				WHERE facility_equipment_request.requested_by = user.id
-				AND request_status = 0";
+				AND request_status = 0
+				AND facility_equipment_request.equipment_id = equipment.id";
 
 		return $requests = R::getAll($sql);
 	}
@@ -220,6 +223,18 @@ class admin_model extends MY_Model{
 		return $requests = R::getAll($sql);
 	}
 
+	public function update_facilities($id)
+	{
+		$sql = "SELECT 
+					  `equipment_id`,
+					  `serial_number`,
+					  `ctc_id_no`
+				FROM `facility_equipment_request`
+				WHERE id = $id";
+		return $facilty = R::getAll($sql);
+	}
+
+	
 }
 /* End of file admin_model.php */
 /* Location: ./application/modules/admin/models/admin_model.php */

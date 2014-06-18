@@ -108,6 +108,22 @@ class facilities extends MY_Controller {
 
 	}
 
+	public function request_responce($id, $status)
+	{
+		$sql = "UPDATE `facility_equipment_request`
+				   SET 
+				   		`request_status` = $status
+				   WHERE 
+				   		`id` = $id";
+
+		
+		$this->db->query($sql);
+
+		$this->load->model('admin_model');
+		//$this->data['details'] = $this->admin_model->update_facilities($id);
+
+		$this->home_page();
+	}
 }
 /* End of file facilities.php */
 /* Location: ./application/modules/admin/controller/facilities.php */

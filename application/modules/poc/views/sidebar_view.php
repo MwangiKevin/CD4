@@ -169,7 +169,7 @@
 	              <span class="input-group-addon" style="width: 40%;">Device Type :</span>
 	              
 	              <select required class="textfield form-control" name="device_type" id="device_type">
-	              	<option value="" selected='selected' disabled>--Select Device type--</option>
+	              	<option value="" selected='selected' disabled="true">--Select Device type--</option>
 	              	<?php foreach($device_types as $device){ ?>
 					 	<option value='<?php echo $device["id"]; ?>'><?php echo "<b>".$device["description"]."</b>"; ?></option>
 					<?php } ?>
@@ -183,11 +183,16 @@
 	            </div>
 	            
 	            <div class="input-group" style="width: 100%;padding:4px;">
-	              <span class="input-group-addon" style="width: 40%;">Facility :</span>
+	              <span class="input-group-addon" style="width: 40%;">Facility ID:</span>
 	              <?php echo form_input(array('name' => 'facility', 'id' => 'facility', 'class'=>'textfield form-control'));?>
-	            </div>       	 		
+	            </div>
+	            
+	      		<div class="input-group" style="width: 100%;padding:4px;" id="ctc_id">
+	              <span class="input-group-addon" style="width: 40%;">CTC ID No:</span>
+	              <?php echo form_input(array('name' => 'ctc_id_no', 'id' => 'ctc_id_no', 'class'=>'textfield form-control'));?>
+	            </div>
+	      		  	 		
 	      		</div>	
-
 	      		<div class="modal-footer" style="height:30px;padding-top:4px;">
 	      			<button type="submit"  class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>Submit</button>
 	        		<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Close</button>         		   		
@@ -215,7 +220,8 @@
 							<th>#</th>
 							<th>Facility</th>							
 							<th>Equipment Type</th>
-							<th>Do upload</th>							
+							<th>Serial Number</th>
+							<th>CTC ID Number</th>
 						</thead>
 						<tbody>
 							<?php
@@ -234,6 +240,7 @@
 									</center>
 								</td>
 								<td><center><?php echo $facilities['Serial'];?></center></td>
+								<td><center><?php echo $facilities['CTC'];?></center></td>
 							</tr>
 							<?php
 								}
@@ -260,4 +267,22 @@ function error_notification(){
         }
   	});
 }
+        $('#device_type').change(function(){
+
+          var criteria	 = $('#device_type').val();
+
+          if (criteria==4){
+            $("#ctc_id").show();			
+            $("#ctc_id_no").prop('required',true);
+
+           
+
+        }else{			
+          $("#ctc_id").hide();
+          $("#ctc_id_no").removeAttr('required');
+
+         
+      }
+
+  });
 </script>

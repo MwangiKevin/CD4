@@ -127,7 +127,8 @@ class poc_model extends MY_Model{
 			'equipment_id'   =>   $this->input->post('device_type'),
 			'request_status' =>   0,
 			'date_requested' =>   NUll,
-			'serial_number'  =>   $this->input->post('serial_number')
+			'serial_number'  =>   $this->input->post('serial_number'),
+			'ctc_id_no'  =>   $this->input->post('ctc_id_no')
 			
 			);
 
@@ -149,7 +150,8 @@ class poc_model extends MY_Model{
 	{
 		$sql = "SELECT `facility_id`,
 						`equipment_id` AS `Equipment`,
-						`serial_number` AS `Serial`
+						`serial_number` AS `Serial`,
+						`ctc_id_no` AS `CTC`
 				FROM facility_equipment_request
 				WHERE requested_by = $user AND request_status = 0";
 

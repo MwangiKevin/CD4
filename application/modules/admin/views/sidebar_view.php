@@ -253,10 +253,12 @@
 							<th rowspan="2">Facility</th>							
 							<th rowspan="2">Serial Number</th>				
 							<th rowspan="2">Requested By</th>				
+							<th rowspan="2">CTC ID No</th>	
+							<th rowspan="2">Description</th>	
 							<th colspan="2"><center>Action</center></th>
 							<tr>
-								<th><center>Reject</center></th>
 								<th><center>Approve</center></th>
+								<th><center>Reject</center></th>
 							</tr>
 						</center>	
 						</thead>
@@ -267,21 +269,22 @@
 							?>
 							<tr>
 								<td><?php echo $i;?></td>
-								<td><?php echo $req['facility'];?></td>
+								<td><?php echo $req['facility_id'];?></td>
 								<td><?php echo $req['serial_number'];?></td>
 								<td><?php echo $req['username'];?></td>
+								<td><?php echo $req['description'];?></td>
+								<td><?php echo $req['ctc_id_no'];?></td>
 								<td>
 									<center>
-
-									<a href="<?php echo base_url().'poc/upload/request_facility_registration?id=$req[id]';?>">
-										<span style="font-size: 1.3em;color:#c12e2a;" class="glyphicon glyphicon-remove-sign"></span>
-									</a>
+										<a href="<?php echo base_url().'admin/facilities/request_responce/'.$req['id'].'/1';?>">
+											<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-ok-sign"></span>
+										</a>
 									</center>
 								</td>
 								<td>
 									<center>
-									<a href="#">
-										<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-ok-sign"></span>
+										<a href="<?php echo base_url().'admin/facilities/request_responce/'.$req['id'].'/3'; ?>">
+										<span style="font-size: 1.3em;color:#c12e2a;" class="glyphicon glyphicon-remove-sign"></span>
 									</a>
 									</center>
 								</td>

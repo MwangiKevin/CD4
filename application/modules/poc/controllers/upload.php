@@ -100,6 +100,7 @@ class upload extends MY_Controller {
 		$this->form_validation->set_rules('device_type', 'Device Type', 'trim|required');
 		$this->form_validation->set_rules('serial_number', 'Serial Number', 'trim|required');
 		$this->form_validation->set_rules('facility', 'Facility', 'trim|required');
+		$this->form_validation->set_rules('ctc_id_no', 'CTC ID No', 'trim(str)');
 
 		if ($this->form_validation->run() == FALSE) 
 		{
