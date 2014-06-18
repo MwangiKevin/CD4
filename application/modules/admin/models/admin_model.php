@@ -1,6 +1,6 @@
 <?php
 
-class admin_model extends MY_Model{
+  class admin_model extends MY_Model{
 	public function menus($selected){
 		$menus = array(
 						// array(	'num'			=>	1,
@@ -225,16 +225,81 @@ class admin_model extends MY_Model{
 
 	public function update_facilities($id)
 	{
+		
+
 		$sql = "SELECT 
+					  `facility_id`,
 					  `equipment_id`,
-					  `serial_number`,
-					  `ctc_id_no`
+                      `serial_number`,
+                      `ctc_id_no`
 				FROM `facility_equipment_request`
 				WHERE id = $id";
-		return $facilty = R::getAll($sql);
-	}
+		$facilty = R::getAll($sql);
 
+		//print_r($facilty); die();
+		/*foreach ($facilty as $key => $val) {
+			$db = $val;
+				$tumepata = implode(',', $db);
+				echo $tumepata;
+		}
+        die;*/
+    	if ($facilty[0]['equipment_id'] == 4) {
+    		$facility_equipment_registration = array(
+														'id' 			      =>  NULL,
+														'facility_id'         =>  $facilty[0]['facility_id'],
+														'equipment_id'        =>  $facilty[0]['equipment_id'], 
+														'status'              =>  '1',
+														'deactivation_reason' =>  ' ',
+														'date_added'          =>  NULL,
+														'date_removed'        =>  NULL,
+														'serial_number'       =>  $facilty[0]['serial_number']
+														 );
+
+		$insert = $this->db->insert('facility_equipment', $facility_equipment_registration);
+
+		$asus = $this->db->insert_id();
+
+    		$facility_registration = array(
+											'id' 			           =>   NULL,
+											'facility_equipment_id'    =>   $asus,
+											'serial_num'               =>   $facilty[0]['serial_number'],
+											'ctc_id_no'                =>   $facilty[0]['ctc_id_no'] 
+											
+											);
+			//print_r($facility_registration);die;
+
+		$insert = $this->db->insert('facility_pima', $facility_registration);
+
+		// $asus = $this->db->insert_id();
+		// $faciility_pima_id = array(
+		// 							'facility_equipment_id'    =>   $asus
+		// 							);
+		// $this->db->where('id', $asus);
+		// $this->db->update('facility_pima', $faciility_pima_id);
+			//print_r($asus); die();
+
+
+		return $insert;
+
+    	} else {
+    		$facility_registration = array(
+											'id' 			      =>  NULL,
+											'facility_id'         =>  $facilty[0]['facility_id'],
+											'equipment_id'        =>  $facilty[0]['equipment_id'], 
+											'status'              =>  '1',
+											'deactivation_reason' =>  '',
+											'date_added'          =>  NULL,
+											'date_removed'        =>  NULL,
+											'serial_number'       =>  $facilty[0]['serial_number']
+											 );
+
+		$insert = $this->db->insert('facility_equipment', $facility_registration);
+		return $insert;	
+    	}
+    	
+	}
+				
 	
-}
+  }
 /* End of file admin_model.php */
 /* Location: ./application/modules/admin/models/admin_model.php */

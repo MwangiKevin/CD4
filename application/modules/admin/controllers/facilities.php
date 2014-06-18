@@ -120,9 +120,20 @@ class facilities extends MY_Controller {
 		$this->db->query($sql);
 
 		$this->load->model('admin_model');
-		//$this->data['details'] = $this->admin_model->update_facilities($id);
+		$insert = $this->admin_model->update_facilities($id);
 
-		$this->home_page();
+		if ($insert) {
+			
+			$this->home_page();
+
+		} else {
+			
+			echo "An error occured in the Registration process of the facility";
+
+		}
+		
+
+		
 	}
 }
 /* End of file facilities.php */
