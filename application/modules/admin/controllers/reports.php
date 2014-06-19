@@ -55,9 +55,9 @@ class reports extends MY_Controller {
 		
 		//how to get the districts from db_filtered_view
 		//districts
-		$data['districts'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
+		$data['districts'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,array("region_name"),array("district_name"));
 		//regions
-		$data['regions'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
+		$data['regions'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,array("region_name"),array("region_name"));
 		$this -> template($data);
 		
 	}
