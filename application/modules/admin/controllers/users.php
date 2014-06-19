@@ -30,6 +30,8 @@ class users extends MY_Controller {
 		$data['regions'] = 	$this->admin_model->regions();
 		$data['districts'] = 	$this->admin_model->districts();
 		$data['facilities'] = 	$this->admin_model->db_filtered_view("v_facility_details",0);
+		$data['requests'] = $this->admin_model->get_requests();
+		$data['totals'] = $this->admin_model->num_of_requests();
 
 		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 
