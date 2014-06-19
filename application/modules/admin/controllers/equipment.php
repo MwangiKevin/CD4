@@ -25,7 +25,10 @@ class equipment extends MY_Controller {
 		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 		$data['equipment_1']	=	R::getAll("SELECT `equipment`.*,`equipment_category`.`description` AS `category_desc`, `equipment_category`.`id` AS `equipment_category_id` FROM `equipment` LEFT JOIN `equipment_category` ON `equipment_category`.`id`=`equipment`.`category` ");
 		$data['equipment_category']	=	R::getAll("SELECT * FROM `equipment_category` ");	
-		$data['facilities'] = 	$this->admin_model->db_filtered_view("v_facility_details",0);	
+		$data['facilities'] = 	$this->admin_model->db_filtered_view("v_facility_details",0);
+		$data['requests'] = $this->admin_model->get_requests();
+		$data['totals'] = $this->admin_model->num_of_requests();
+		
 		$this -> template($data);
 	}
 	
