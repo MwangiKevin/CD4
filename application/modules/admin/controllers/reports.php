@@ -23,12 +23,11 @@ class reports extends MY_Controller {
 		$this->load->model('admin_model');
 
 		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();
-		
 		$data['errors_agg'] = $this->admin_model->errors_reported();		
-
 		$data['failed_uploads']	=	$this->admin_model->failed_upload();		
-
 		$data['menus']	= 	$this->admin_model->menus(5);
+	
+
 		$this -> template($data);
 	}
 	
@@ -57,7 +56,12 @@ class reports extends MY_Controller {
 		//districts
 		$data['districts'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,array("region_name"),array("district_name"));
 		//regions
-		$data['regions'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,array("region_name"),array("region_name"));
+
+		$data['regions'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
+
+		$data['requests'] = $this->admin_model->get_requests();
+		$data['totals'] = $this->admin_model->num_of_requests();
+		
 		$this -> template($data);
 		
 	}
