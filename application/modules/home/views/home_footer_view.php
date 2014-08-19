@@ -1,12 +1,25 @@
 <script>
 $().ready(function() {
         $("#equipmentpie").load("<?php echo base_url('charts/equipment/equipment_pie/0/0'); ?>"); 
+        $("#equipment-table").load("<?php echo base_url('charts/equipment/equipment_table/0/0'); ?>" ); 
   });
 
 function draw_charts(user_group_id,user_filter_used){
 
 
         $("#equipmentpie").load("<?php echo base_url('charts/equipment/equipment_pie'); ?>/"+user_group_id+"/"+user_filter_used ); 
+        $("#equipment-table").load("<?php echo base_url()."charts/equipment/equipment_table/"; ?>"+user_group_id+"/"+user_filter_used ); 
+
+
+
+      $.ajax({
+          type:"POST",
+          async:false,
+            url:"<?php echo base_url()."ajax/user_desc/"; ?>"+user_group_id+"/"+user_filter_used,  
+            success:function(data) {
+                  $("#filter-identifier").html(data);     
+              }
+      });
 }
         
 </script>

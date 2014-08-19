@@ -1,4 +1,4 @@
-<div id="equipment-table">
+<div id="equipment-tbl">
     <table style = "border: 1px solid #DDD;">
         <thead class="even" style="background:#f0f0f0" >
             <tr>

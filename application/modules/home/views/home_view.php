@@ -18,7 +18,8 @@
 			</div>
 			<div style="width:50%; float:right;margin:4px;">	
 				<div>		
-					<div class="section-title" ><center>CD4 Equipment </center></div>									
+					<div class="section-title" ><center>CD4 Equipment </center></div>
+					<div id="equipment-table"></div>									
 					<?php //$this->equipment->equipment_table(0,0); ?>
 				</div>
 			</div>
