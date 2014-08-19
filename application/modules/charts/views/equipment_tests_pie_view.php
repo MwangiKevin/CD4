@@ -1,8 +1,13 @@
+
+<div id = "gr_equipmenttestspie">
+
+</div>
+
 <script id="equipmenttestspiescript" type="text/javascript" >	  
-	function equipment_tests_pie(){
+
 
     	// Build the chart
-        $('#equipmenttestspie').highcharts({
+        $('#gr_equipmenttestspie').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -37,6 +42,6 @@
             }]
         });
     
-    }
+    
 	
 </script>
