@@ -22,14 +22,12 @@
 					<div id="equipment-table"></div>									
 				</div>
 			</div>
-			<div style="width:46%; float:left;">			
-				<div id="equipmenttestspie"></div>	
-
+			<div style="width:46%; float:left;">	
+					<div id="equipmenttestpie"></div>
 			</div>
 			<div style="width:50%; float:right;margin:4px;">
 				<div>		
-					<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>	
-					
+					<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>		
 				</div>
 			</div>
 		</div>
