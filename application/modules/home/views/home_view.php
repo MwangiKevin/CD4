@@ -18,17 +18,16 @@
 			</div>
 			<div style="width:50%; float:right;margin:4px;">	
 				<div>		
-					<div class="section-title" ><center>CD4 Equipment </center></div>									
-					<?php $this->equipment->equipment_table(0,0); ?>
+					<div class="section-title" ><center>CD4 Equipment </center></div>
+					<div id="equipment-table"></div>									
 				</div>
 			</div>
-			<div style="width:46%; float:left;">			
-				<div id="equipmenttestspie"></div>	
+			<div style="width:46%; float:left;">	
+					<div id="equipmenttestpie"></div>
 			</div>
 			<div style="width:50%; float:right;margin:4px;">
 				<div>		
-					<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>													
-					<?php $this->equipment->equipment_tests_table(0,0); ?>
+					<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>		
 				</div>
 			</div>
 		</div>
@@ -40,7 +39,7 @@
 		<div style="width:40%; float:right;margin:4px;">
 			<div>
 				<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
-				<?php $this->tests->tests_table(0,0); ?>
+				<div id="tests-table"></div>	
 			</div>
 		</div>
 		<div style="width:28%; float:right;">

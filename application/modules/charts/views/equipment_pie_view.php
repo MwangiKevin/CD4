@@ -1,8 +1,12 @@
+<div id = "gr_equipmentpie">
+
+</div>
+
 <script id="equipmentpiescript" type="text/javascript" >	  
-	function equipment_pie(){
+	
 
     	// Build the chart
-        $('#equipmentpie').highcharts({
+        $('#gr_equipmentpie').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -37,6 +41,6 @@
             }]
         });
     
-    }
+
 	
 </script>
