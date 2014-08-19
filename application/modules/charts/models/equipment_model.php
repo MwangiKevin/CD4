@@ -7,6 +7,8 @@ class equipment_model extends MY_Model{
 	*/
 
 	public function equipment_pie($user_group_id,$user_filter_used){
+	
+	
 
 
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
