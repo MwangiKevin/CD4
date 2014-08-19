@@ -1,6 +1,8 @@
 <script>
 	$().ready(function() { 		    
-
+		/*
+		 * describes various characteristics/styling of the datatables called #datatable-region and #data-table
+		 */
 	  $('#datatable-region').dataTable({
 	    "bProcessing": true,
 	    "iDisplayLength": 17,
@@ -14,53 +16,11 @@
 		    "bJQueryUI":true,
 		    "bLengthChange": false,
 		    "bFilter": false
-	  	});
-	  	
-	  	
-	  	
-	  	//filtered_tests_table
-	  	// $('.region').click(function(){
-	  		// region_id = $(this).attr('id');
-	  		// $.ajax({
-	  			// type:'POST',
-	  			// url:"/nacp/drilldown/filtered_tests_table/"+region_id,
-	  			// success: function(data){
-	  				// $("#tests_table").html(data);
-					// //console.log(data);	
-				// }
-	  		// });
-	  	// });
-	  	
-	  	//filtered_equipment_tests_table
-	  	// $('.region').click(function(){
-	  		// region_id = $(this).attr('id');
-	  		// $.ajax({
-	  			// type:'POST',
-	  			// url:"/nacp/drilldown/filtered_equipment_tests_table/"+region_id,//passes the region_id to 
-	  			// success: function(data){
-	  				// $("#equipment_tests_table").html(data);
-					// //console.log("Works");	
-				// }
-	  		// });
-	  	// });	
-	  	
-//CD4 tests 
-	  	// $('.region').click(function(){
-	  		// region_id = $(this).attr('id');
-	  		// $.ajax({
-	  			// type:'POST',
-	  			// url:"/nacp/drilldown/filtered_equipment_tests_table/"+region_id,//passes the region_id to 
-	  			// success: function(data){
-	  				// $("#equipment_tests_table").html(data);
-					// //console.log("Works");	
-				// }
-	  		// });
-	  	// });	
-	  	  
+	  	});	  	  
 });
 	
 	
-
+//controls the Tanzanian Map in nacp_drilldown_view.php
 	function draw_charts(user_group_id,user_filter_used){
 	$.ajax({
           type:"POST",
@@ -151,7 +111,7 @@
       });
 	}
 </script>
-
+<!--loads the following charts -->
 <?php $this->equipment->equipment_pie(0,0); ?>
 
 <?php $this->equipment->equipment_tests_pie(0,0); ?>

@@ -24,7 +24,14 @@ class tests extends MY_Controller {
 		$data['errors_agg'] = $this->poc_model->errors_reported();
 
 		$data['menus']	= 	$this->poc_model->menus(3);
+
+		$data['device_types']         = $this->poc_model->get_Device_types();//device types for facility registration
+		$data['facility_requests']    = $this->poc_model->get_requested($this->session->userdata("id"));//facilities requested for registration
+		$data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
 		$data['tests'] = 	$this->tests_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+		$data['tests'] = 	$this->tests_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+
+
 
 		$this -> template($data);
 	}

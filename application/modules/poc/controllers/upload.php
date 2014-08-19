@@ -21,11 +21,15 @@ class upload extends MY_Controller {
 
 		$this->load->model('poc_model');
 
-		$this->data['uploads'] = 	$this->poc_model->get_Upload_details($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
-		$this->data['errors_agg'] = $this->poc_model->errors_reported();
-		$this->data['menus']	= 	$this->poc_model->menus(2);
+		$this->data['uploads']              = $this->poc_model->get_Upload_details($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+		$this->data['errors_agg']           = $this->poc_model->errors_reported();
+		$this->data['menus']	            = $this->poc_model->menus(2);
 		$this->data['devices_not_reported'] = $this->poc_model->devices_not_reported();
+		$this->data['device_types']         = $this->poc_model->get_Device_types();
+		$this->data['facility_requests']     = $this->poc_model->get_requested($this->session->userdata("id"));
+		$this->data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
 
+		
 		$this->data['sheet_data']		=	"";
 		$this->data['upload_data']		=	array();
 
@@ -89,6 +93,29 @@ class upload extends MY_Controller {
 		$this->data['message'] = $this->uploads->upload_commit($data);
 
 		$this->index();
+	}
+
+	 function request_facility_registration()
+	{
+		$this->form_validation->set_rules('device_type', 'Device Type', 'trim|required');
+		$this->form_validation->set_rules('serial_number', 'Serial Number', 'trim|required');
+		$this->form_validation->set_rules('facility', 'Facility', 'trim|required');
+		$this->form_validation->set_rules('ctc_id_no', 'CTC ID No', 'trim(str)');
+
+		if ($this->form_validation->run() == FALSE) 
+		{
+			$this->index();
+		} else 
+		{
+			$this->load->model('poc_model');
+
+			$insert = $this->poc_model->register_facility($this->session->userdata("id"));
+			if($insert)
+			{
+				redirect('poc/upload');
+			}
+		}
+		
 	}
 
 

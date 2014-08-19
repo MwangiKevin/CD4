@@ -55,6 +55,28 @@
 			<?php 
 				}
 			?>
+			<?php 
+				if($requests != NULL){
+					foreach ($totals as $total) {
+			?>		
+			<div class="notice">
+				<a href="#requestedfacilitiees" data-toggle="modal">
+					<i class="glyphicon glyphicon-exclamation-sign"></i> 
+					There are <?php echo $total['Request']; ?> facilities requested for registration.
+				</a>
+			</div>
+			<?php 
+				}}else{
+			?>
+			<div class="success">
+				<a  href="#" data-toggle="modal">
+					<i class="glyphicon glyphicon-ok"></i> 
+					No facility has been requested for registration.
+				</a>
+			</div>
+			<?php 
+				}
+			?>
 		</div>
 	</div>
 	<div>
@@ -216,6 +238,70 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	
+	<div class="modal fade" id="requestedfacilitiees" >
+	  	<div class="modal-dialog" style="width:50%;margin-bottom:2px;">
+	    	<div class="modal-content" >
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        		<h4 class="modal-title">Facilities Requested for registration <?php echo Date("Y,F");?></h4>
+	      		</div>
+	      		<div class="modal-body" style="padding-bottom:0px;">
+	            	<table id="data-table-side2">
+	            		<thead>	
+	            		<center>
+							<th rowspan="2">#</th>
+							<th rowspan="2">Facility</th>							
+							<th rowspan="2">Serial Number</th>				
+							<th rowspan="2">Requested By</th>				
+							<th rowspan="2">CTC ID No</th>	
+							<th rowspan="2">Description</th>	
+							<th colspan="2"><center>Action</center></th>
+							<tr>
+								<th><center>Approve</center></th>
+								<th><center>Reject</center></th>
+							</tr>
+						</center>	
+						</thead>
+						<tbody>
+							<?php
+								$i=1;
+								foreach ($requests as $req) {
+							?>
+							<tr>
+								<td><?php echo $i;?></td>
+								<td><?php echo $req['facility_id'];?></td>
+								<td><?php echo $req['serial_number'];?></td>
+								<td><?php echo $req['username'];?></td>
+								<td><?php echo $req['description'];?></td>
+								<td><?php echo $req['ctc_id_no'];?></td>
+								<td>
+									<center>
+										<a href="<?php echo base_url().'admin/facilities/request_responce/'.$req['id'].'/1';?>">
+											<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-ok-sign"></span>
+										</a>
+									</center>
+								</td>
+								<td>
+									<center>
+										<a href="<?php echo base_url().'admin/facilities/request_responce/'.$req['id'].'/3'; ?>">
+										<span style="font-size: 1.3em;color:#c12e2a;" class="glyphicon glyphicon-remove-sign"></span>
+									</a>
+									</center>
+								</td>
+							</tr>
+							<?php
+								$i++;}
+							?>
+						</tbody>
+	            	</table>
+	      		</div>		      		
+	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
+	      			<?php echo $this->config->item("copyrights");?>
+	      		</div> 
+	   		</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
 </div>
 <script>
  	function systemUpload(){

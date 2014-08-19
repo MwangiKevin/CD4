@@ -6,7 +6,7 @@
 				<table style="float: left; width: 30%">
 					<tr>
 						<td style="height:130px;width:30%; top;">
-						<div class="section-title" ><center><?php echo "".$category."" ; ?> </center></div>
+						<div class="section-title" ><center><?php echo "".$category, $table_heading.""; ?> </center></div>
 						
 							<table  id="datatable-region" style="margin-left:%">
 							<thead>
@@ -14,10 +14,14 @@
 							</thead>
 							<tbody>
 								<?php
+								/*
+								 * from the array data we can access $regions which contains the results from the database
+								 * from this array regions we can then display the content using the foreach loop 
+								 */
 									foreach($regions as $row){
 										$name = $row["name"];
 										$id = $row["id"];
-										echo("<tr id = '".$id."' class = 'region' style='cursor: pointer' ><td><center><a href='".base_url()."nacp/drilldown/".$next_page."/".$id." '>".$name."</a></center></td></tr>");
+										echo("<tr id = '".$id."' class = '".$name."' style='cursor: pointer' ><td><center><a href='".base_url()."nacp/drilldown/".$next_page."/".$id."/".$name."   '>".$name."</a></center></td></tr>");
 									}
 								?>
 							</tbody>
@@ -29,8 +33,10 @@
 						<td style="height:130px;width:35%;vertical-align: top;">
 							<div id="top_tests">
 								<center>
-									<div class="section-title" ><center>CD4 Tests for <?php //echo $date_filter_desc;?> </center></div>
+									<div class="section-title" ><center><?php echo $info_category ?> summary  </center></div>
+									<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
 									<div id="tests_table">
+										<!-- loads the test_table depending on the usergroup (i.e partner,district e.t.c) and $id (of a particular region,district or partner)-->
 										<?php $this->tests->tests_table($usergroup,$id); ?>
 									</div>
 								</center>
@@ -41,7 +47,7 @@
 						<td>
 							<div id="bottom_equipment">
 								<center>
-									<div class="section-title" ><center>Equipment Tests for <?php //echo $date_filter_desc;?></center></div>
+									<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>
 									<div id="equipment_tests_table">													
 										<?php $this->equipment->equipment_tests_table($usergroup,$id); ?>
 									</div>
@@ -56,7 +62,7 @@
 						<td id="bottom-sec" style="height:130px;width:40%;vertical-align: top;">
 							<center>
 								<div>
-									<div class="section-title" ><center>CD4 Tests</center></div>
+									<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?></center></div>
 									<div>
 										<table id="data-table">
 											<thead>

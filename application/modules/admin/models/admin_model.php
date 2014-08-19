@@ -1,6 +1,6 @@
 <?php
 
-class admin_model extends MY_Model{
+  class admin_model extends MY_Model{
 	public function menus($selected){
 		$menus = array(
 						// array(	'num'			=>	1,
@@ -31,13 +31,13 @@ class admin_model extends MY_Model{
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-						// array(	'num'			=>	5,
-						// 		'name'			=>	'Reports',
-						// 		'url'			=>	base_url()."admin/reports",
-						// 		'other'			=>	"",
-					 // 			'selected'		=>	false,
-					 // 			'selectedString'=>	"",							
-						// 		),
+						array(	'num'			=>	5,
+								'name'			=>	'Reports',
+								'url'			=>	base_url()."admin/reports/reporting_view",
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
 						// array(	'num'			=>	6,
 						// 		'name'			=>	'Settings',
 						// 		'url'			=>	base_url()."admin/settings",
@@ -57,6 +57,13 @@ class admin_model extends MY_Model{
 								'url'			=>	base_url()."assets/files/commodityuserguide.pdf",								
 								'other'			=>	"  target='_blank' ",
 					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
+						array(	'num'			=>	9,
+								'name'			=>	'User Guide',
+							 	'url'			=>	base_url()."assets/files/adminuserguide.pdf",								
+								'other'			=>	"  target='_blank' ",
+				 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
 
@@ -110,6 +117,7 @@ class admin_model extends MY_Model{
 						ORDER BY `dev`.`date`
 						";		
 		return 		$res 	=	R::getAll($sql);
+		//return $thi->db->query($sql);
 	}
 	public function user_groups(){
 		return R::getAll("SELECT * FROM `user_group` ORDER BY `name`");
@@ -159,7 +167,139 @@ class admin_model extends MY_Model{
 							ORDER BY `district_name`
 							");
 	}
+	
+	
+	public function get_Upload_details($user_group_id,$user_filter_used){
 
-}
+	$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
+
+	$sql 	=	"SELECT 
+						`pima_upload_id`,
+						`upload_date`,
+						`equipment_serial_number`,
+						`facility_name`,
+						`uploader_name`,
+						COUNT(`pima_test_id`) AS `total_tests`,
+						SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid_tests`,
+						SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,
+						SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` < 350 THEN 1 ELSE 0 END) AS `failed`,
+						SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` >= 350 THEN 1 ELSE 0 END) AS `passed`
+					FROM `v_pima_uploads_details`
+					WHERE 1 
+					$user_delimiter 
+					GROUP BY `pima_upload_id`
+					ORDER BY `upload_date` DESC
+					LIMIT 500
+				";
+	return $res 	=	R::getAll($sql);
+
+
+	}
+
+	public function get_requests()
+	{
+		$sql = "SELECT 	facility_equipment_request.id,
+						`facility_id`,
+						`serial_number`,
+						`username`,
+						`description`,
+						`ctc_id_no`
+				FROM `facility_equipment_request`, `user`, `equipment`
+				WHERE facility_equipment_request.requested_by = user.id
+				AND request_status = 0
+				AND facility_equipment_request.equipment_id = equipment.id";
+
+		return $requests = R::getAll($sql);
+	}
+	
+	public function num_of_requests()
+	{
+		$sql = "SELECT 
+					COUNT('facility_id') AS `Request`
+				FROM `facility_equipment_request`, `user`
+				WHERE facility_equipment_request.requested_by = user.id
+				AND request_status = 0";
+
+		return $requests = R::getAll($sql);
+	}
+
+	public function update_facilities($id)
+	{
+		
+
+		$sql = "SELECT 
+					  `facility_id`,
+					  `equipment_id`,
+                      `serial_number`,
+                      `ctc_id_no`
+				FROM `facility_equipment_request`
+				WHERE id = $id";
+		$facilty = R::getAll($sql);
+
+		//print_r($facilty); die();
+		/*foreach ($facilty as $key => $val) {
+			$db = $val;
+				$tumepata = implode(',', $db);
+				echo $tumepata;
+		}
+        die;*/
+    	if ($facilty[0]['equipment_id'] == 4) {
+    		$facility_equipment_registration = array(
+														'id' 			      =>  NULL,
+														'facility_id'         =>  $facilty[0]['facility_id'],
+														'equipment_id'        =>  $facilty[0]['equipment_id'], 
+														'status'              =>  '1',
+														'deactivation_reason' =>  ' ',
+														'date_added'          =>  NULL,
+														'date_removed'        =>  NULL,
+														'serial_number'       =>  $facilty[0]['serial_number']
+														 );
+
+		$insert = $this->db->insert('facility_equipment', $facility_equipment_registration);
+
+		$asus = $this->db->insert_id();
+
+    		$facility_registration = array(
+											'id' 			           =>   NULL,
+											'facility_equipment_id'    =>   $asus,
+											'serial_num'               =>   $facilty[0]['serial_number'],
+											'ctc_id_no'                =>   $facilty[0]['ctc_id_no'] 
+											
+											);
+			//print_r($facility_registration);die;
+
+		$insert = $this->db->insert('facility_pima', $facility_registration);
+
+		// $asus = $this->db->insert_id();
+		// $faciility_pima_id = array(
+		// 							'facility_equipment_id'    =>   $asus
+		// 							);
+		// $this->db->where('id', $asus);
+		// $this->db->update('facility_pima', $faciility_pima_id);
+			//print_r($asus); die();
+
+
+		return $insert;
+
+    	} else {
+    		$facility_registration = array(
+											'id' 			      =>  NULL,
+											'facility_id'         =>  $facilty[0]['facility_id'],
+											'equipment_id'        =>  $facilty[0]['equipment_id'], 
+											'status'              =>  '1',
+											'deactivation_reason' =>  '',
+											'date_added'          =>  NULL,
+											'date_removed'        =>  NULL,
+											'serial_number'       =>  $facilty[0]['serial_number']
+											 );
+
+		$insert = $this->db->insert('facility_equipment', $facility_registration);
+		return $insert;	
+    	}
+    	
+	}
+				
+	
+  }
 /* End of file admin_model.php */
 /* Location: ./application/modules/admin/models/admin_model.php */

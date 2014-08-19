@@ -1,0 +1,140 @@
+﻿----------------------- Page 1-----------------------
+
+                                                          1 
+
+CD4 COMMODITY 
+USER GUIDE AND DOCUMENTATION 
+FOR AN ADMINISTRATOR 
+
+©Nacp 2014 
+
+----------------------- Page 2-----------------------
+
+                                                            1 
+
+ADMINISTRATOR 
+
+The following screen shots are to guide the administrator on how to navigate through their entire 
+module after the administrator logs into the system with the proper credentials. 
+
+Once the administrator has logged in, he/she is directed to the facilities page, which will be bolded 
+among the menu options. The other menu options are: equipment, users, change password and user 
+guide. 
+
+           Menu bar 
+
+                                                              Notifications 
+
+                                                                                                          Side Menu 
+
+On the right side there are the notification section and the side menu section. On the notification panel 
+you will see details of devices that did not perform uploads in the past mo nth, error statistics, and 
+unrecognized devices that attempted to upload data. On the side menu panel there are a number of 
+options that include: 
+
+My profile 
+In this section the administrator is able to edit their profile such as the: Full names, phone number and 
+their email address. The part of the username has been made in such way that the administrator cannot 
+edit it. 
+
+----------------------- Page 3-----------------------
+
+                                                              2 
+
+Change Password 
+
+When   the   administrator   selects   the   change   password   menu,   he/she   is   brought   to   pop-up   page   that 
+requires   the   old   password,   the   new   password   that   the   administrator   intends   to   be   using   and   then 
+retyping of the new password to ensure that the submitted password is as intended. Once the password 
+is   changed   the   old   password   becomes   obsolete   and   would   not   work   again   unless   the   password   is 
+changed back to the old one. 
+
+Facilities 
+
+The facilities page shows a table of the facility details which contains the facility’s name, the district it  
+belongs to, the region the facility belongs to, the partner, the equipment number, the users and actions 
+which include; rollout and an edit option for the various facilities. 
+
+----------------------- Page 4-----------------------
+
+                                                        3 
+
+When an administrator decides to edit a specific facility the page below pops up to allow that action to 
+be done. 
+
+Below the facility details table are additional tabs. When the page first loads the add facility tab is 
+selected. These additional tabs allow the administrator to: 
+
+    1)   Add facilities 
+
+----------------------- Page 5-----------------------
+
+                                                                             4 
+
+2)    View districts 
+
+3)    View regions 
+
+----------------------- Page 6-----------------------
+
+                                                     5 
+
+    4)  View partners 
+
+Equipment 
+
+This section shows facilities with equipment. It shows the facility to which each equipment belong to, 
+whether it was removed, and reason for deactivation. The status of the equipment is also shown 
+whether it is functional dysfunctional or obsolete. The administrator can change the status of the 
+equipment depending on its actual status. The last column in the table is a link that allows the 
+administrator to edit details about the equipment. The section on the top left allows the administrator 
+to view the equipments in groups of 10, 25, or 100. The user can also search for a facility using the 
+search section on the top right most corner of the table. 
+
+Below the equipment details table are addition tabs that enable the administrator to: 
+
+----------------------- Page 7-----------------------
+
+                                                 6 
+
+  Add equipment to a facility 
+    Here the administrator assigns an equipment category to a facility then adds a serial number to 
+    the equipment. 
+
+  Add description to equipment 
+    In this section for every equipment category, a description is added to it. 
+
+  Add Descriptions 
+
+    In this section the administrator is able to add the various categories of equipment. 
+
+----------------------- Page 8-----------------------
+
+                                                      7 
+
+Users 
+
+This section shows the details of the users in the system. It shows the users usernames, their names, 
+their phone number, their email, the type of user they are, their status, whether active, pending 
+activation, locked or removed. The status has a link that allows the administrator to activate, lock, 
+remove or put a user on pending activation when he/ she clicks on their status. The last column of the 
+table has a link that allows the administrator to be able to edit some of the details of the users such as 
+the phone number, the name and their email. 
+
+Below the user details table are tabs that enable the administrator to: 
+
+      Add users 
+
+----------------------- Page 9-----------------------
+
+                                                      8 
+
+      Add user types 
+
+The change password section is as described in page 2. 
+
+User Guide 
+
+In this section when the user clicks on this link, he/she will be redirected to a page that shows them a 
+user manual of the system. It shows how the users are able to navigate in the web application. It also 
+shows them the functionality of the various modules in the system. 

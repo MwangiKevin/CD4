@@ -33,6 +33,8 @@ class facilities extends MY_Controller {
 		$data['partners'] = 	$this->admin_model->partners();
 		$data['regions'] = 	$this->admin_model->regions();
 		$data['districts'] = 	$this->admin_model->districts();
+		$data['requests'] = $this->admin_model->get_requests();
+		$data['totals'] = $this->admin_model->num_of_requests();
 		
 		$this -> template($data);
 	}
@@ -106,6 +108,33 @@ class facilities extends MY_Controller {
 
 	}
 
+	public function request_responce($id, $status)
+	{
+		$sql = "UPDATE `facility_equipment_request`
+				   SET 
+				   		`request_status` = $status
+				   WHERE 
+				   		`id` = $id";
+
+		
+		$this->db->query($sql);
+
+		$this->load->model('admin_model');
+		$insert = $this->admin_model->update_facilities($id);
+
+		if ($insert) {
+			
+			$this->home_page();
+
+		} else {
+			
+			echo "An error occured in the Registration process of the facility";
+
+		}
+		
+
+		
+	}
 }
 /* End of file facilities.php */
 /* Location: ./application/modules/admin/controller/facilities.php */

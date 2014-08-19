@@ -110,7 +110,53 @@ class poc_model extends MY_Model{
 	}
 
 
+	public function get_Device_types()
+	{
+		$sql = "SELECT * FROM equipment WHERE category = 1";
+		return $result  =  R::getAll($sql);
+	}
+
+	public function register_facility($user_id)
+	{
+		$facility_request = array(
+			'id' 			 =>   NULL,
+
+			'facility_id'       =>   $this->input->post('facility'),
+
+			'requested_by'   =>   $user_id,
+			'equipment_id'   =>   $this->input->post('device_type'),
+			'request_status' =>   0,
+			'date_requested' =>   NUll,
+			'serial_number'  =>   $this->input->post('serial_number'),
+			'ctc_id_no'  =>   $this->input->post('ctc_id_no')
+			
+			);
+
+		$insert = $this->db->insert('facility_equipment_request', $facility_request);
+		return $insert;
+	}
+
+	public function get_requested($user_id)
+	{
+		$sql = "SELECT `facility_id`,
+				COUNT(`id`) AS `Totals`
+				FROM  `facility_equipment_request`
+				WHERE requested_by = $user_id AND request_status = 0";
+
+		return $facility_requests  =  R::getAll($sql);
+	}
 	
+	public function get_requested_facilities($user)
+	{
+		$sql = "SELECT `facility_id`,
+						`equipment_id` AS `Equipment`,
+						`serial_number` AS `Serial`,
+						`ctc_id_no` AS `CTC`
+				FROM facility_equipment_request
+				WHERE requested_by = $user AND request_status = 0";
+
+		return $facilities_requested = R::getAll($sql);
+	}
 
 }
 /* End of file poc_model.php */
