@@ -34,7 +34,9 @@
 			<div style="width:50%; float:right;margin:4px;">
 				<div>		
 					<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>						
+					<div id="equipment-test-table">
 						<div class="loader" style"">Loading...</div>	
+					</div>
 				</div>
 			</div>
 		</div>
