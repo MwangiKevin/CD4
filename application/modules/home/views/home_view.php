@@ -49,7 +49,9 @@
 			<div style="width:50%; float:right;margin:4px;">
 				<div>		
 					<div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>						
+					<div id="equipment-test-table">
 						<div class="loader" style"">Loading...</div>	
+					</div>
 				</div>
 			</div>
 		</div>
@@ -57,20 +59,20 @@
 	<div class="panel panel-default" style="width:100%;float:right;box-shadow: 4px 4px 4px #888888;">
 		<div style="width:28%; float:left;">
 			<div id="equipmenttestscolumn">				
-						<div class="loader" style"">Loading...</div>	
+				<div class="loader" style"">Loading...</div>	
 			</div>	
 		</div>
 		<div style="width:40%; float:right;margin:4px;">
 			<div>
 				<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
-				<div id="tests-table">					
+				<div id="tests-table">				
 					<div class="loader" style"">Loading...</div>	
 				</div>	
 			</div>
 		</div>
 		<div style="width:28%; float:right;">
 			<div id="testspie">
-					<div class="loader" style"">Loading...</div>
+				<div class="loader" style"">Loading...</div>
 			</div>		
 		</div>
 

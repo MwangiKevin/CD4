@@ -1,5 +1,9 @@
+
+<div id = "testspie-gr">
+
+</div>
+
 <script id = 'testspiescript'>
-function tests_pie(){
     var colors = Highcharts.getOptions().colors,
             categories = <?php echo json_encode($tests_err['categories']);?>,
             name = 'Tests VS Errors',
@@ -30,7 +34,7 @@ function tests_pie(){
         }
     
         // Create the chart
-        $('#testspie').highcharts({
+        $('#testspie-gr').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -90,5 +94,5 @@ function tests_pie(){
                 }
             }]
         });
-}
+
 </script>

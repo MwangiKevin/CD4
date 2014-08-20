@@ -1,6 +1,12 @@
+
+
+<div id = "cd4testtrends-gr">
+
+</div>
+
+
 <script id = 'testslinetrendscript'>
-    function tests_line_trend(){
-            $('#cd4testtrends').highcharts({
+            $('#cd4testtrends-gr').highcharts({
                  chart: {   
                     plotBackgroundColor: null,
                     plotBorderWidth: 2,
@@ -57,5 +63,5 @@
                 },
                 series: <?php echo json_encode($chart["series_data"]);?>
             });
-    }
+    
 </script>
