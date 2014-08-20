@@ -8,13 +8,18 @@ $().ready(function() {
   });
 
 function draw_charts(user_group_id,user_filter_used){
-
+  
+        $("#equipmentpie").html('<div class="loader" style"">Loading...</div>'); 
+        $("#equipment-table").html('<div class="loader" style"">Loading...</div>'); 
+        $("#equipmenttestpie").html('<div class="loader" style"">Loading...</div>'); 
+        $("#equipmenttestscolumn").html('<div class="loader" style"">Loading...</div>');
+        $("#tests-table").html('<div class="loader" style"">Loading...</div>');  
 
         $("#equipmentpie").load("<?php echo base_url('charts/equipment/equipment_pie'); ?>/"+user_group_id+"/"+user_filter_used ); 
         $("#equipment-table").load("<?php echo base_url()."charts/equipment/equipment_table/"; ?>"+user_group_id+"/"+user_filter_used ); 
         $("#equipmenttestpie").load("<?php echo base_url('charts/equipment/equipment_tests_pie'); ?>/"+user_group_id+"/"+user_filter_used ); 
         $("#equipmenttestscolumn").load("<?php echo base_url('charts/equipment/equipment_tests_column'); ?>/"+user_group_id+"/"+user_filter_used ); 
-		$("#tests-table").load("<?php echo base_url()."charts/tests/tests_table/"; ?>"+user_group_id+"/"+user_filter_used ); 
+		    $("#tests-table").load("<?php echo base_url()."charts/tests/tests_table/"; ?>"+user_group_id+"/"+user_filter_used ); 
 
 
 
