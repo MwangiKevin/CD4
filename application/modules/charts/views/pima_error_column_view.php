@@ -10,7 +10,7 @@ function errors_column() {
                 text: 'PIMA Errors'
             },
             subtitle: {
-                text: ''
+                text: '' 
             },
             xAxis: {
                 categories: [
