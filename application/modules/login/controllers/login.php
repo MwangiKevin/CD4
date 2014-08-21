@@ -170,7 +170,8 @@ class Login extends MY_Controller {
 		}elseif ($expired) {
 			$error_message = "<center><div class='notice' style='margin-left:7%;margin-right:7%; font-size:12px;'>The Password for this Account has expired.<br/> Please click  <a style ='foregroung:#ccc' href='" . base_url() . "home/change_password/" . $user_id . "'>Here</a> to change your password</div></center>";
 		} else {
-			$this -> set_session_data($users,true);
+			$this -> set_session_data($users,true);			
+			$this -> set_default_user_filter();
 			$this -> module_after_login();
 		}
 		if ($link == "login") {
