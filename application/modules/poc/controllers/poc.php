@@ -16,8 +16,6 @@ class poc extends MY_Controller {
 		$this->data	=array_merge($this->data,$this->load_libraries(array('FusionCharts','highcharts','highcharts_drilldown')));
 		
 		$this->load->model('home_page_model');//loads the home_page_model			
-		$this->data['devices_tests_totals']= $this->home_page_model->devices_tests_totals($this->get_filter_start_date(),$this->get_filter_stop_date());
-		$this->data['pima_statistics']= $this->home_page_model->pima_statistics($this->get_filter_start_date(),$this->get_filter_stop_date());
 		$this->data['user_group_id']	= (int) $this->session->userdata("user_group_id");
 		$this->data['user_filter_used']	= (int) $this->session->userdata("user_filter_used");
 		
@@ -43,6 +41,10 @@ class poc extends MY_Controller {
 
 
 		//redirect("poc/uploads");
+	}
+
+	public function pima_stat_table(){
+
 	}
 
 	
