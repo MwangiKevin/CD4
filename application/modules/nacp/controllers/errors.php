@@ -18,17 +18,13 @@ class errors extends MY_Controller {
 	}
 	public function home_page() {
 		$this->login_reroute(array(4));
-		$data['content_view'] = "nacp/nacp_errors_view";
+		$data['content_view'] = "poc/errors_view";
 		$data['title'] = "Errors";
 		//$data['sidebar']	= "poc/sidebar_view";
 		$data['filter']	=	true;
 		$data	=array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
 		
 		$this->load->model('nacp_model');
-
-		$data['devices_not_reported'] = $this->nacp_model->devices_not_reported();
-		
-		$data['errors_agg'] = $this->nacp_model->errors_reported();
 
 		$data['menus']	= 	$this->nacp_model->menus(5);
 		$this -> template($data);
