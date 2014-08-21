@@ -1,6 +1,7 @@
 <script>
 	$().ready(function() {
 
+    $("#tests_table").load("<?php echo base_url("charts/pima/tests_table/0/0"); ?>" ); 
 
   });
 </script>
