@@ -375,7 +375,7 @@ class pima_errors extends MY_Controller {
     $this->load->model('pima_errors_model');
 
     $data           =   $this->pima_errors_model->error_yearly_trends($user_group_id,$user_filter_used,$this->get_date_filter_year());
-
+    $data["date_filter_year"] = $this->get_date_filter_year();
 
     $this->load->view("pima_error_trend_view",$data);
 
