@@ -44,6 +44,7 @@ class poc extends MY_Controller {
 
 		//redirect("poc/uploads");
 	}
+
 	
 }
 /* End of file poc.php */
