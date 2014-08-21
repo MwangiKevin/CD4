@@ -12,7 +12,7 @@
 						<td style="height:130px;width:40%; top;">
 							<center>
 								<div class="section-title" ><center>Above 350 below 350 curve </center></div>
-								<div id="cd4testtrends">
+								<div id="cd4_test_trends">
 									<div class="loader" style"">Loading...</div>
 								</div>
 						    </center>     
@@ -21,7 +21,7 @@
 						<td style="height:130px;width:25%;vertical-align: top;">
 							<center>
 								<div class="section-title" ><center>Device Tests Graphs</center></div>
-                                    <div id="equipmenttestscolumn">
+                                    <div id="equipment_tests_column">
 										<div class="loader" style"">Loading...</div>
 									</div>	
 							</center>
@@ -36,14 +36,12 @@
 				                    <tbody>
 						                <tr>						                	
 						                    <td style="background-color:#fff; width:50%" >
-                                            	<center>CD4 Equipment</center>
-												<div id="equipmentpie">
+												<div id="equipment_pie">
 													<div class="loader" style"">Loading...</div>
 												</div>
                                             </td>
 						                    <td style="background-color:#fff; width:50%" >
-                                            	<center>Equipment and tests</center>
-                                            	<div id="equipmenttestspie">
+                                            	<div id="equipment_tests_pie">
 													<div class="loader" style"">Loading...</div>
 												</div>
                                             </td>					                   					                   
