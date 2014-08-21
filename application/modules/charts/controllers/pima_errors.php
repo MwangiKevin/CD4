@@ -157,11 +157,10 @@ class pima_errors extends MY_Controller {
             }", $json) ;
 
             $script = "
+                  <div id='monthly_error_trend'></div>
                   <script id = 'monthlyerrortrendscript'>
-                        function monthly_error_trend(){
                               var colors = Highcharts.getOptions().colors;
-                                $('#monthlyerrortrend').highcharts(".$json.");
-                        }
+                                $('#monthly_error_trend').highcharts(".$json.");
                   </script>";
             echo $script;
 
