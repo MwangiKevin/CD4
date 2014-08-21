@@ -560,6 +560,18 @@ class MY_Controller extends MX_Controller{
 
       }
 
+    //this function sets the default user filter as the first locale of intrest by the user logged in
+    public function set_default_user_filter(){
+
+		$sess_user_type 	=	(int) $this -> session -> userdata("user_group_id");
+
+		if($sess_user_type==3||$sess_user_type==8||$sess_user_type==8){
+			$user_filter = $this->session -> userdata("user_filter");
+			$default_user_filter = (int) $user_filter[0]["user_filter_id"];
+			$this->set_user_filter($default_user_filter);
+		}
+   	}
+
 }
 /* End of file MY_Controller.php */
 /* Location: ./application/core/MY_Controller.php */
