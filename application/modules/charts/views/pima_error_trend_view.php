@@ -1,6 +1,6 @@
+<div id="pima_error_trend_gr"></div>
 <script id = 'pima_error_trend_script'>
-    function pima_error_trend(){
-            $('#pima_error_trend').highcharts({
+            $('#pima_error_trend_gr').highcharts({
                  chart: { 
                     plotBackgroundColor: null,
                     plotBorderWidth: 2,
@@ -62,5 +62,4 @@
                 // },
                 series: <?php echo json_encode($chart);?>
             });
-    }
 </script>
