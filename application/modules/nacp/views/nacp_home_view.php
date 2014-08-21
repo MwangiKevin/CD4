@@ -12,14 +12,18 @@
 						<td style="height:130px;width:40%; top;">
 							<center>
 								<div class="section-title" ><center>Above 350 below 350 curve </center></div>
-								<div id="cd4testtrends"></div>
+								<div id="cd4testtrends">
+									<div class="loader" style"">Loading...</div>
+								</div>
 						    </center>     
 						</td>
 					
 						<td style="height:130px;width:25%;vertical-align: top;">
 							<center>
 								<div class="section-title" ><center>Device Tests Graphs</center></div>
-                                    <div id="equipmenttestscolumn"></div>	
+                                    <div id="equipmenttestscolumn">
+										<div class="loader" style"">Loading...</div>
+									</div>	
 							</center>
 						</td>
 						
@@ -31,13 +35,17 @@
 								<table class="data-table" style=" margin-left:0px;">
 				                    <tbody>
 						                <tr>						                	
-						                    <td style="background-color:fff; width:50%" >
+						                    <td style="background-color:#fff; width:50%" >
                                             	<center>CD4 Equipment</center>
-												<div id="equipmentpie"></div>
+												<div id="equipmentpie">
+													<div class="loader" style"">Loading...</div>
+												</div>
                                             </td>
-						                    <td style="background-color:fff; width:50%" >
+						                    <td style="background-color:#fff; width:50%" >
                                             	<center>Equipment and tests</center>
-                                            	<div id="equipmenttestspie"></div>
+                                            	<div id="equipmenttestspie">
+													<div class="loader" style"">Loading...</div>
+												</div>
                                             </td>					                   					                   
 						                </tr>
 				           	 		</tbody>
@@ -46,8 +54,10 @@
 						</td>
 						<td style="height:130px;width:30%;vertical-align: top;">
 							<center>
-								<div class="section-title" ><center>PIMA Tests for <?php echo $date_filter_desc; ?> </center></div>
-                                <?php $this->tests->tests_table(0,0); ?>
+								<div class="section-title" ><center>PIMA Tests for <?php echo $date_filter_desc; ?> </center></div>                          
+                            	<div id="tests_table">
+									<div class="loader" style"">Loading...</div>
+								</div>
 								<div id="yearlyTestReportingRates" style="align:center;"></div>
 						
 						    </center>     
