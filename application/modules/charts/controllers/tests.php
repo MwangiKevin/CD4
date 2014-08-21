@@ -24,7 +24,7 @@ class tests extends MY_Controller {
 	
 			$this->load->model('tests_model');
 			$data['chart'] 	= 	$this->tests_model->tests_line_trend($user_filter_type,$filter);
-						  $this->load->view('tests_line_trend_view',$data);
+			$this->load->view('tests_line_trend_view',$data);
 		}
 		
 

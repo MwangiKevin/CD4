@@ -1,7 +1,7 @@
+<div id="pima_error_types_col_gr"></div>
 <script id = 'pima_error_types_col_script'>
-    function pima_error_types_col(){
         var colors = Highcharts.getOptions().colors;
-        $('#pima_error_types_col').highcharts({
+        $('#pima_error_types_col_gr').highcharts({
              chart:{ 
                 plotBackgroundColor: null,
                 plotBorderWidth: 2,
@@ -54,5 +54,4 @@
                     }
                 }
             });
-    }
 </script>

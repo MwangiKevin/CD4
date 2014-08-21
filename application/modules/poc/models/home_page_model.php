@@ -1,6 +1,7 @@
 <?php
 
 class home_page_model extends MY_Model{
+	//commit msg: may now be useless
 	public function devices_tests_totals($from,$to){
 
 		$date_delimiter	 	=	"";
@@ -65,6 +66,7 @@ class home_page_model extends MY_Model{
 		return $stat_assoc;
 	}
 	
+	//commit msg: may now be useless
 	public function pima_statistics($from,$to){
 
 		$date_delimiter	 	=	"";
