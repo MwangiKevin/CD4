@@ -235,9 +235,10 @@ class pima_errors extends MY_Controller {
     $json_data         = json_encode($data);
     $json_categories   = json_encode($categories);
 
-        $script = "<script id = 'errortypepiescript'>
+        $script = "
+                    <div id='error_type_pie_gr'></div>
+                    <script id = 'errortypepiescript'>
 
-                        function error_type_pie(){
                             var colors = Highcharts.getOptions().colors,
                                     categories = ".$json_categories.",
                                     name = 'Errors Encountered',
@@ -268,7 +269,7 @@ class pima_errors extends MY_Controller {
                                 }
                             
                                 // Create the chart
-                                $('#errortypepie').highcharts({
+                                $('#error_type_pie_gr').highcharts({
                                     chart: {
                                         type: 'pie',
                                         height: 265
@@ -318,7 +319,7 @@ class pima_errors extends MY_Controller {
                                         }
                                     }]
                                 });
-                        }
+                        
                       </script>";
 
         echo $script;

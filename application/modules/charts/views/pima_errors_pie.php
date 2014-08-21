@@ -1,7 +1,7 @@
+<div id="errors_reported_pie_gr"></div>
 <script id="errors_pie_script" type="text/javascript" >	  
-	function errors_pie(){
     	// Build the chart
-        $('#pima_errors_pie').highcharts({
+        $('#errors_reported_pie_gr').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -39,6 +39,5 @@
             }]
         });
     
-    }
 	
 </script>

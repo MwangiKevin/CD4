@@ -22,7 +22,7 @@
 					<div id = "testspie" style = "float:left;width:30%" >
 						<div class="loader" style"">Loading...</div>
 					</div>			
-					<div id = "pima_errors_pie" style = "float:left;width:30%" >
+					<div id = "errors_reported_pie" style = "float:left;width:30%" >
 						<div class="loader" style"">Loading...</div>
 					</div>
 					<div  style = "float:left;width:39%">
