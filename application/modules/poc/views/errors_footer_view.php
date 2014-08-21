@@ -1,9 +1,9 @@
 <script id = "static">
 $().ready(function() {
     //draw_charts();
-    monthly_error_trend();      
-    error_type_pie(); 
-    errors_column(); 
+    //monthly_error_trend();      
+    //error_type_pie(); 
+    //errors_column(); 
 
 });
 function secondCriteria(sel){
@@ -72,14 +72,7 @@ function draw_charts(){
 }
 </script>
 
-<!--<script id = 'monthlyerrortrendscript'>
-</script>
-<script id = 'errortypepiescript'>
-</script>
-<script id = 'errorscolumnscript'>
-</script>-->
 
-
-<?php $this->pima_errors->monthly_error_trend(); ?>
-<?php $this->pima_errors->error_type_pie(); ?>
-<?php $this->pima_errors->errors_column(0,0); ?>
+<?php //$this->pima_errors->monthly_error_trend(); ?>
+<?php //$this->pima_errors->error_type_pie(); ?>
+<?php //$this->pima_errors->errors_column(0,0); ?>

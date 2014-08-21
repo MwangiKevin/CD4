@@ -39,7 +39,7 @@
 			    	</div>
 			    	<div style="width: 40%;float:left;border:solid;border-color:#EEE;">
 			    		<!--<div id="errortable" style="">-->
-			    		<?php $this->pima_errors->error_table(0,0); ?>
+			    		<?php //$this->pima_errors->error_table(0,0); ?>
 			    		</div>
 			    	</div>
 			    	<div style="width: 100%;float:left; border:solid;border-color:#EEE;">
