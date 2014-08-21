@@ -14,7 +14,7 @@
 					<div  id = "expected_reporting_devices" style = "float:left;width:60%;padding-right:20px;" >
 						<div class="loader" style"">Loading...</div>
 					</div>			
-					<div  id = "expectedreportingdevicespie" style = "float:left;width:39%" >
+					<div  id = "expected_reporting_devices_pie" style = "float:left;width:39%" >
 						<div class="loader" style"">Loading...</div>
 					</div>							
 				</div>

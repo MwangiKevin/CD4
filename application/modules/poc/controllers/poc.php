@@ -39,12 +39,6 @@ class poc extends MY_Controller {
 
 		$this -> template($this->data);
 
-
-		//redirect("poc/uploads");
-	}
-
-	public function pima_stat_table(){
-
 	}
 
 	
