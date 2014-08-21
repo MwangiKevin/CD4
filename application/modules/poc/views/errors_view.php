@@ -30,20 +30,23 @@
 				</div>
 			 	<div class="panel-body">			    	
 			    	<div style="width: 100%;float:left; border:solid;border-color:#EEE;">
-			    		<div id="monthlyerrortrend">
+			    		<div id="monthly_error_trend">
+			    			<div class="loader" style"">Loading...</div>
 			    		</div>
 			    	</div>
 			    	<div style="width: 60%;float:left; border:solid;border-color:#EEE;">
-			    		<div id="errortypepie">
+			    		<div id="error_type_pie">
+			    			<div class="loader" style"">Loading...</div>
 			    		</div>
 			    	</div>
 			    	<div style="width: 40%;float:left;border:solid;border-color:#EEE;">
-			    		<div id="errortable" style="">
-			    		<?php //$this->pima_errors->error_table(0,0); ?>
+			    		<div id="error_table" style="">
+			    			<div class="loader" style"">Loading...</div>
 			    		</div>
 			    	</div>
 			    	<div style="width: 100%;float:left; border:solid;border-color:#EEE;">
-			    		<div id="errorscolumn">
+			    		<div id="errors_column">
+			    			<div class="loader" style"">Loading...</div>
 			    		</div>
 			    	</div>
 			  	</div>

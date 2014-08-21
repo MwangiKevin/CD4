@@ -20,15 +20,10 @@ class errors extends MY_Controller {
 		$this->login_reroute(array(3,8,9,4));
 		$data['content_view'] = "poc/errors_view";
 		$data['title'] = "POC Errors";
-		//$data['sidebar']	= "poc/sidebar_view";
 		$data['filter']	=	true;
-		$data	=array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
+		$data	=  array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
 		
 		$this->load->model('poc_model');
-
-		$data['devices_not_reported'] = $this->poc_model->devices_not_reported();
-		
-		$data['errors_agg'] = $this->poc_model->errors_reported();
 
 		$data['menus']	= 	$this->poc_model->menus(5);
 		$this -> template($data);
