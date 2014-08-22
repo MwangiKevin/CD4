@@ -1,74 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# CodeIgniter 2.1 + HMVC + RedBean 3
 
-Setup ready to use CodeIgniter framework with:
+# CD4 POINT OF CARE (POC) SYSTEM
 
-- [CodeIgniter 2.1.3](http://codeigniter.com)
+Built on [CodeIgniter 2.1 + HMVC + RedBean 3](https://github.com/MwangiKevin/codeigniter-hmvc-redbean)
+
+##Uses:
+	
+- Framework [CodeIgniter 2.1.3](http://codeigniter.com)
 - [Modular Extensions - HMVC](http://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/overview)
-- [RedBean 3.3.7](http//redbeanphp.com)
-
-## How to use?
-
-### Configuration
-
-Set up *application/config/config.php* and *application/config/database.php* for your needs.
-
-Load RedBean library adding it on autoload.php, example:
-
-	$autoload['libraries'] = array('rb');
-	
-Or load RedBean library in any controller, example:
-
-	$this->load->library('rb');
-	
-### Using RedBean
-
-You can use RedBean API in your controller:
-
-	R::debug(TRUE);
-	
-	
-Examples:
-
-	// New bean
-	$post = R::dispense('post');
-	
-	// Load bean by id
-	$post = R::load('post', 1);
-	
-	// Find all beans
-	$posts = R::find('post');
-	
-	// Find beans
-	$posts = R::find('post', 'published = 1');
-	
-	// Save bean
-	R::store($post);
-	
-### Using HMVC
-
-With HMVC you can build your application modulair. 
-
-You can find the standard welcome page in:
-
-	/application/modules/welcome/controllers/welcome.php
-
-## More information
-
-- [CodeIgniter user guide](http://codeigniter.com/user_guide)
-- [HMVC detail page](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/overview)
-- [RedBean manual](http://www.redbeanphp.com/)
-- [RedBean forum](http://groups.google.com/group/redbeanorm)
-=======
-cd4
-===
-
-cd4 LIMS system for Tanzania
->>>>>>> 5c55f16927783375227cee369ffc6b75907e6742
-=======
-CD4
-===
-
-CD4 LIMS TANZANIA
->>>>>>> 8b4195f225cf9d15c6f9d8b7630827a6ea84fb04
+- ORM [RedBean 3.3.7](http://redbeanphp.com)
+- ORM [Doctrine 2.4.2](http://www.doctrine-project.org/)
+- [Highcharts 4.0.3](http://www.highcharts.com)
