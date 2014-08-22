@@ -157,11 +157,10 @@ class pima_errors extends MY_Controller {
             }", $json) ;
 
             $script = "
+                  <div id='monthly_error_trend'></div>
                   <script id = 'monthlyerrortrendscript'>
-                        function monthly_error_trend(){
                               var colors = Highcharts.getOptions().colors;
-                                $('#monthlyerrortrend').highcharts(".$json.");
-                        }
+                                $('#monthly_error_trend').highcharts(".$json.");
                   </script>";
             echo $script;
 
@@ -235,9 +234,10 @@ class pima_errors extends MY_Controller {
     $json_data         = json_encode($data);
     $json_categories   = json_encode($categories);
 
-        $script = "<script id = 'errortypepiescript'>
+        $script = "
+                    <div id='error_type_pie_gr'></div>
+                    <script id = 'errortypepiescript'>
 
-                        function error_type_pie(){
                             var colors = Highcharts.getOptions().colors,
                                     categories = ".$json_categories.",
                                     name = 'Errors Encountered',
@@ -268,7 +268,7 @@ class pima_errors extends MY_Controller {
                                 }
                             
                                 // Create the chart
-                                $('#errortypepie').highcharts({
+                                $('#error_type_pie_gr').highcharts({
                                     chart: {
                                         type: 'pie',
                                         height: 265
@@ -318,7 +318,7 @@ class pima_errors extends MY_Controller {
                                         }
                                     }]
                                 });
-                        }
+                        
                       </script>";
 
         echo $script;
@@ -374,7 +374,7 @@ class pima_errors extends MY_Controller {
     $this->load->model('pima_errors_model');
 
     $data           =   $this->pima_errors_model->error_yearly_trends($user_group_id,$user_filter_used,$this->get_date_filter_year());
-
+    $data["date_filter_year"] = $this->get_date_filter_year();
 
     $this->load->view("pima_error_trend_view",$data);
 

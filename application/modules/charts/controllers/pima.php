@@ -18,6 +18,7 @@ class pima extends MY_Controller {
 	public function expected_reporting_devices_pie($user_group_id,$user_filter_used){
 
 		$data 	= 	$this->pima_model->expected_reporting_devices_pie($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());
+		$data["date_filter_desc"]	= $this->get_filter_desc();
 		$this->load->view("pima_expected_reporting_devices_pie",$data);
 
 	}
