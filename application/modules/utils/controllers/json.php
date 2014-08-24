@@ -14,7 +14,7 @@ class json extends MY_Controller {
 	function __construct() {
 		parent::__construct();
 
-		$this->load->model('json_model');
+		$this->load->model('Procedures_Model');
 
 		$this->path 	=	"assets/json/";
 	}
@@ -35,6 +35,21 @@ class json extends MY_Controller {
 	* @job = writes facilities info
 	*/
 	public function write_facilities(){
+
+		$fac_assoc	=	$this->Procedures_Model->get_facilities_details(0,0);
+		//print_r($fac_assoc);
+		//die();
+		foreach ($fac_assoc as $key => $value) {
+			$fac_assoc[$key]["value"] = $value["facility_id"];
+			$fac_assoc[$key]["text"] = $value["facility_name"];
+		}
+		$facilities = 	json_encode($fac_assoc);
+
+		$p 	=	$this->path."facilities.json";
+
+		file_put_contents($p, $facilities);
+
+		echo "Facilities Written <br/> ";
 
 	}
 
