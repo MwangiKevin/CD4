@@ -24,34 +24,12 @@ class tests extends MY_Controller {
 		$data	= 	array_merge($data,$this->load_libraries(array('dataTables')));
 		
 
-		//$data['devices_not_reported'] = $this->poc_model->devices_not_reported();
-		
-		//$data['errors_agg'] = $this->poc_model->errors_reported();
-
 		$data['menus']	= 	$this->poc_model->menus(3);
-
-		//$data['device_types']         = $this->poc_model->get_Device_types();//device types for facility registration
-		//$data['facility_requests']    = $this->poc_model->get_requested($this->session->userdata("id"));//facilities requested for registration
-		//$data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
-		//$data['tests'] = 	$this->tests_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
-		//$data['tests'] = 	$this->tests_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
-
-
 
 		$this -> template($data);
 	}
 
 	public function ss_dt_tests(){
-
-		//haven't yet figured out how to use these
-
-		// $iDisplayStart = $this -> input -> get_post('iDisplayStart', true);
-		// $iDisplayLength = $this -> input -> get_post('iDisplayLength', true);
-		// $iSortCol_0 = $this -> input -> get_post('iSortCol_0', false);
-		// $iSortingCols = $this -> input -> get_post('iSortingCols', true);
-		// $sSearch = $this -> input -> get_post('sSearch', true);
-		// $sEcho = $this -> input -> get_post('sEcho', true);
-
 		$tests = 	$this->tests_model->get_tests_details($this->get_filter_start_date(),$this->get_filter_stop_date(),$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
 
 		$data 	=	array();
@@ -80,6 +58,11 @@ class tests extends MY_Controller {
 
 		echo json_encode($json_req);
 
+	}
+
+	public function notf_errors(){
+		$errors_agg = $this->poc_model->errors_reported();
+		echo json_encode($errors_agg);
 	}
 }
 /* End of file tests.php */

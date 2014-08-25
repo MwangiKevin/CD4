@@ -7,13 +7,33 @@
 			</div>
 		</div>
 		<div>
-			<div id ="dev_not_reported"></div>
-			<div class="notice">
-				<a href="errors" onclick="error_notification()">
+			<div id ="dev_not_reported"><div class="" style"">Loading...</div></div>
+
+			<div class="notice" id="error_notf" style="display:none;">
+				<a href="errors" onclick="error_notification()" >
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo round((($errors_agg["error"]/$errors_agg["total"])*100),2);}else{ echo "0";}?>%)</b> reported last month out of <?php echo $errors_agg["total"];?> tests
+					<span id= "notf_error"></span> Errors 
+					<b>(<span id= "notf_error_perc"></span> %)</b> reported last month out of 
+					<span id= "notf_total_err"></span> Tests, with 
+					<span id= "notf_succ_test"></span> successfull results
 				</a>
+
+				<script>
+				    $.getJSON("<?php echo base_url('poc/tests/notf_errors');?>/", function(data) {
+						var perc = 0;
+						if(data.total>0){
+				        	perc= round(((data.error/data.total)*100),2);
+				        }
+				        $('#notf_succ_test').html(data.succ_test);
+				        $('#notf_error').html(data.error);
+				        $('#notf_error_perc').html(perc);
+				        $('#notf_total_err').html(data.total);
+
+				        $('#error_notf').css("display","");
+					}); 
+				</script>
 			</div>
+
 			<?php 
 				if(sizeof($facility_requests)>0){
 					foreach($facility_requests as $requests){
@@ -102,7 +122,7 @@
 	      		</div>
 	      		<script>
 	      			$( document ).ready(function() {
-
+	      				var fn_count = 0; //will help to skip the first fnDrawCallback call.
 						var	table_nr =	$('#dt_not_reported').dataTable({
 												"bJQueryUI":true, 
 												"sAjaxSource": "<?php echo base_url("poc/Equipment/ss_dt_devices_not_reported");?>" ,
@@ -111,14 +131,19 @@
 												],
 												"aaSorting": [[1, 'asc']],
 												"fnDrawCallback": function() {
+																if(fn_count>0){
 																var oSettings = this.fnSettings();
 																var iTotalRecords = oSettings.fnRecordsTotal();
 																	if(iTotalRecords==0){
 																		$("#dev_not_reported").html('<div class="success"><a  href="#devicesnotreported" data-toggle="modal"><i class="glyphicon glyphicon-ok"></i> All devices uploaded last month</a>	</div>');
+																	
 																	}else{
 																		$("#dev_not_reported").html('<div class="notice"><a  href="#devicesnotreported" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> '+iTotalRecords+' Devices Did not upload Last Month.</a></div>');
+																	
 																	}
 																}
+																fn_count++;
+															}
 
 											});	
 						//var no = table_nr.fnGetData().length;
