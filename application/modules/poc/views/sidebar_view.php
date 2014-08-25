@@ -7,27 +7,7 @@
 			</div>
 		</div>
 		<div>
-			<?php 
-				if(sizeof($devices_not_reported)>0){
-			?>
-			<div class="notice">
-				<a  href="#devicesnotreported" data-toggle="modal">
-					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					 <?php echo sizeof($devices_not_reported); ?> Devices Did not upload Last Month.
-				</a>
-			</div>			
-			<?php 
-				}else{
-			?>
-			<div class="success">
-				<a  href="#devicesnotreported" data-toggle="modal">
-					<i class="glyphicon glyphicon-ok"></i> 
-					 All devices uploaded last month
-				</a>
-			</div>
-			<?php 
-				}
-			?>
+			<div id ="dev_not_reported"></div>
 			<div class="notice">
 				<a href="errors" onclick="error_notification()">
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
@@ -111,43 +91,40 @@
 	        		not reported for <?php echo Date("Y,F", strtotime("last month"));?></h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
-	            	<table id="data-table-side">
+	            	<table id="dt_not_reported">
 	            		<thead>				
 							<th>#</th>
 							<th>Facility</th>							
 							<th>Equipment Type</th>
 							<th>Do upload</th>							
 						</thead>
-						<tbody>
-							<?php
-								$i=1;
-								foreach ($devices_not_reported as $equipment) {
-							?>
-							<tr>
-								<td><?php echo $i;?></td>
-								<td><?php echo $equipment['facility_name'];?></td>
-								<td>
-									<?php
-										if($equipment['equipment_id']=="4"){
-									?>
-									<a title =" view Equipment (<?php echo $equipment['facility_name'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
-										<span style="" class="glyphicon glyphicon-list-alt">
-										</span>
-										<?php echo $equipment['equipment'];?>
-									</a>
-									<?php 
-										$i++;
-										}
-									?>
-								</td>
-								<td><a href="uploads">Do upload</a></td>
-							</tr>
-							<?php
-								}
-							?>
-						</tbody>
 	            	</table>
-	      		</div>		      		
+	      		</div>
+	      		<script>
+	      			$( document ).ready(function() {
+
+						var	table_nr =	$('#dt_not_reported').dataTable({
+												"bJQueryUI":true, 
+												"sAjaxSource": "<?php echo base_url("poc/Equipment/ss_dt_devices_not_reported");?>" ,
+												"aoColumnDefs": [
+												{ "bSortable": false, "aTargets": [ 0 ] }
+												],
+												"aaSorting": [[1, 'asc']],
+												"fnDrawCallback": function() {
+																var oSettings = this.fnSettings();
+																var iTotalRecords = oSettings.fnRecordsTotal();
+																	if(iTotalRecords==0){
+																		$("#dev_not_reported").html('<div class="success"><a  href="#devicesnotreported" data-toggle="modal"><i class="glyphicon glyphicon-ok"></i> All devices uploaded last month</a>	</div>');
+																	}else{
+																		$("#dev_not_reported").html('<div class="notice"><a  href="#devicesnotreported" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> '+iTotalRecords+' Devices Did not upload Last Month.</a></div>');
+																	}
+																}
+
+											});	
+						//var no = table_nr.fnGetData().length;
+						//alert(no);
+					});
+	      		</script>		      		
 	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
 	      			<?php echo $this->config->item("copyrights");?>
 	      		</div> 

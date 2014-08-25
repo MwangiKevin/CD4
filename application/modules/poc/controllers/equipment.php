@@ -3,6 +3,12 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class equipment extends MY_Controller {
 
+	function __construct() {
+		parent::__construct();
+		
+		$this->load->model('poc_model');
+		//$this->load->model('tests_model');
+	}
 	public function index(){
 
 		$this->home_page();
@@ -33,5 +39,31 @@ class equipment extends MY_Controller {
 		$data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
 
 		$this -> template($data);
+	}
+
+	public function ss_dt_devices_not_reported(){
+
+		$devices_not_reported = $this->poc_model->devices_not_reported();
+
+		$data 	=	array();
+		$recordsTotal =0;
+
+		foreach ($devices_not_reported as $key => $value) {
+			$data[] = 	array(
+							($key+1),
+							$value["facility_name"],
+							$value["equipment_category"],
+							'<a href="uploads">Do upload</a>'
+						);
+			$recordsTotal++;
+		}
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
 	}
 }
