@@ -27,9 +27,6 @@ class equipment extends MY_Controller {
 		$data['equipments'] = 	$this->poc_model->get_details("equipment_details",$this->session->userdata("user_filter_used"));
 		
 		$data['device_types']         = $this->poc_model->get_Device_types();//device types for facility registration
-		$data['facility_requests']    = $this->poc_model->get_requested($this->session->userdata("id"));//facilities requested for registration
-		$data['facilities_requested']    = $this->poc_model->get_requested_facilities($this->session->userdata("id"));//full details of the facilities requested for registration
-
 		$this -> template($data);
 	}
 
@@ -46,6 +43,33 @@ class equipment extends MY_Controller {
 							$value["facility_name"],
 							$value["equipment_category"],
 							'<a href="uploads">Do upload</a>'
+						);
+			$recordsTotal++;
+		}
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
+	}
+
+	public function ss_dt_device_reg_req(){
+
+		$facilities_requested    = $this->poc_model->get_dev_reg_requests($this->session->userdata("id"));//full details of the facilities requested for registration
+
+		$data 	=	array();
+		$recordsTotal =0;
+
+		foreach ($facilities_requested as $key => $value) {
+			$data[] = 	array(
+							($key+1),
+							$value["facility_id"],
+							$value["Equipment"],
+							$value["Serial"],
+							$value["CTC"]
 						);
 			$recordsTotal++;
 		}

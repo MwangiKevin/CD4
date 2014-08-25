@@ -33,38 +33,8 @@
 					}); 
 				</script>
 			</div>
+			<div id ="dev_reg_requests"><div class="" style"">Loading...</div></div>
 
-			<?php 
-				if(sizeof($facility_requests)>0){
-					foreach($facility_requests as $requests){
-			?>
-			<div class="notice">
-				<a  href="#requestsmade" data-toggle="modal">
-					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					 
-					 <?php 
-						 if (sizeof($facility_requests)>2) {
-						  	echo $requests['Totals'].' facility has been requested for registration.';
-						  } else {
-						  	echo $requests['Totals'].' facilities have been requested for registration.';
-						  }
-					   
-					 ?>
-					  
-				</a>
-			</div>			
-			<?php 
-				}}else{
-			?>
-			<div class="success">
-				<a  href="" data-toggle="modal">
-					<i class="glyphicon glyphicon-ok"></i> 
-					 No facilty requested for registration
-				</a>
-			</div>
-			<?php 
-				}
-			?>
 		</div>
 	</div>
 	<div>
@@ -122,7 +92,8 @@
 	      		</div>
 	      		<script>
 	      			$( document ).ready(function() {
-	      				var fn_count = 0; //will help to skip the first fnDrawCallback call.
+	      				var fn_count_nr = 0; //will help to skip the first fnDrawCallback call.
+	      				var fn_count_rq = 0; 
 						var	table_nr =	$('#dt_not_reported').dataTable({
 												"bJQueryUI":true, 
 												"sAjaxSource": "<?php echo base_url("poc/Equipment/ss_dt_devices_not_reported");?>" ,
@@ -131,7 +102,7 @@
 												],
 												"aaSorting": [[1, 'asc']],
 												"fnDrawCallback": function() {
-																if(fn_count>0){
+																if(fn_count_nr>0){
 																var oSettings = this.fnSettings();
 																var iTotalRecords = oSettings.fnRecordsTotal();
 																	if(iTotalRecords==0){
@@ -142,12 +113,31 @@
 																	
 																	}
 																}
-																fn_count++;
+																fn_count_nr++;
 															}
-
 											});	
-						//var no = table_nr.fnGetData().length;
-						//alert(no);
+						var	table_rq =	$('#dt_req').dataTable({
+												"bJQueryUI":true, 
+												"sAjaxSource": "<?php echo base_url("poc/Equipment/ss_dt_device_reg_req");?>" ,
+												"aoColumnDefs": [
+												{ "bSortable": false, "aTargets": [ 0 ] }
+												],
+												"aaSorting": [[1, 'asc']],
+												"fnDrawCallback": function() {
+																if(fn_count_nr>0){
+																var oSettings = this.fnSettings();
+																var iTotalRecords = oSettings.fnRecordsTotal();
+																	if(iTotalRecords==0){
+																		$("#dev_reg_requests").html('<div class="success"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-ok"></i> You have no pending device registration requests</a>	</div>');
+																	
+																	}else{
+																		$("#dev_reg_requests").html('<div class="notice"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> You have made '+iTotalRecords+' requests for device registration .</a></div>');
+																	
+																	}
+																}
+																fn_count_nr++;
+															}
+											});	
 					});
 	      		</script>		      		
 	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
@@ -217,7 +207,7 @@
 	        		</h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
-	            	<table id="data-table-side">
+	            	<table id="dt_req">
 	            		<thead>				
 							<th>#</th>
 							<th>Facility</th>							
@@ -226,27 +216,6 @@
 							<th>CTC ID Number</th>
 						</thead>
 						<tbody>
-							<?php
-								$i=1;
-								foreach ($facilities_requested as $facilities) {
-									
-							?>
-							<tr>
-								<td><center><?php echo $i;?></center></td>
-								<td><center><?php echo $facilities['facility_id'];?></center></td>
-								<td><center>
-									<?php echo $facilities['Equipment'];?>
-									<?php 
-										$i++;
-									?>
-									</center>
-								</td>
-								<td><center><?php echo $facilities['Serial'];?></center></td>
-								<td><center><?php echo $facilities['CTC'];?></center></td>
-							</tr>
-							<?php
-								}
-							?>
 						</tbody>
 	            	</table>
 	      		</div>		      		
