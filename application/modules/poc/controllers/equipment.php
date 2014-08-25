@@ -82,4 +82,36 @@ class equipment extends MY_Controller {
 
 		echo json_encode($json_req);
 	}
+
+	public function ss_dt_equipment(){
+
+		$equipment = 	$this->poc_model->get_details("equipment_details",$this->session->userdata("user_filter_used"));
+
+		$data 	=	array();
+		$recordsTotal =0;
+
+		foreach ($equipment as $key => $value) {
+			$data[] = 	array(
+							($key+1),
+							$value["facility"],
+							$value["equipment"],
+							Date('Y-F-d',strtotime($value['date_added'])),
+							Date('Y-F-d',strtotime($value['date_removed'])),
+							$value["deactivation_reason"],
+							'<a href="javascript:void(null);" >View History</a',
+							'<a title="toggle rollout '.$value["facility"].'" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="rollout_toggle('.$value["facility_equipment_id"].')"><span style="font-size: 1.4em;color: #3e8f3e;" class="glyphicon glyphicon-ok-sign"></span></a>',
+							'<a title=" Edit Equipment ('.$value["facility"].')" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_equipment('.$value["facility_equipment_id"].')"><span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span></a>'
+						);
+			$recordsTotal++;
+		}
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
+
+	}
 }
