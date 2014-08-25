@@ -13,16 +13,16 @@
  */
 
 
-$db_procedures["drop_get_facilities_details"]  		=	"DROP PROCEDURE IF EXISTS `get_facilities_details`; ";
-
-
+$db_procedures["drop_get_facility_details"]  			=	"DROP PROCEDURE IF EXISTS `get_facility_details`; ";
 $db_procedures["drop_get_expected_reporting_devices"]  	=	"DROP PROCEDURE IF EXISTS `get_expected_reporting_devices`; ";
+$db_procedures["drop_get_region_details"]  				=	"DROP PROCEDURE IF EXISTS `get_region_details`; ";
+$db_procedures["drop_get_district_details"]  			=	"DROP PROCEDURE IF EXISTS `get_district_details`; ";
 
 
 
 
-$db_procedures["get_facilities_details"]  		=	
-					"CREATE PROCEDURE  get_facilities_details (user_group_id int(11), user_filter_used int(11)) 
+$db_procedures["get_facility_details"]  		=	
+					"CREATE PROCEDURE  get_facility_details (user_group_id int(11), user_filter_used int(11)) 
 						BEGIN 
 							CASE `user_filter_used`
 							WHEN 0 THEN
@@ -231,6 +231,63 @@ $db_procedures["get_expected_reporting_devices"]  =
 						END CASE;
 					END;
 				";
+
+$db_procedures["get_region_details"]  			=	
+				"CREATE PROCEDURE  get_region_details () 
+					BEGIN
+						SELECT 		
+							`reg`.`id`					AS `region_id`,
+							`reg`.`name`				AS `region_name`,
+							`reg`.`fusion_id`			AS `region_fusion_id`,
+
+							`par_reg`.`partner_id`,
+							`par`.`name`				AS `partner_name`,
+							`par`.`email`				AS `partner_email`,
+							`par`.`phone`				AS `partner_phone`
+
+
+						FROM `region` `reg`
+							LEFT OUTER JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+							RIGHT OUTER JOIN `district` `dis`
+							ON `dis`.`region_id` = `reg`.`id`		
+
+						GROUP BY `region_id`
+						ORDER BY `region_name` ASC;
+					END;
+				";
+
+$db_procedures["get_district_details"]  			=	
+				"CREATE PROCEDURE  get_district_details () 
+					BEGIN
+						SELECT 
+
+							`dis`.`id` 				AS `district_id`,
+							`dis`.`name` 			AS `district_name`,
+							`dis`.`status` 			AS `district_status`,
+							`dis`.`region_id`,
+							`reg`.`name`			AS `region_name`,
+							`reg`.`fusion_id`		AS `region_fusion_id`,
+							`par_reg`.`partner_id`,
+							`par`.`name`			AS `partner_name`,
+							`par`.`email`			AS `partner_email`,
+							`par`.`phone`			AS `partner_phone`
+
+						FROM `district` `dis`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+
+						GROUP BY `district_id`
+						ORDER BY `district_name` ASC;
+					END;
+				";
+
 
 $config["procedures_sql"] = $db_procedures;
 
