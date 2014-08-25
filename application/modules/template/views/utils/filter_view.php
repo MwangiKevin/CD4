@@ -5,7 +5,7 @@
           type:"POST",
           async:false,
           data:"type="+type+"&value="+value,
-            url:"<?php echo base_url()."Home/date_filter_post"; ?>",  
+            url:"<?php echo base_url()."template/date_filter_post"; ?>",  
             success:function(data) {
                   $("#exists").val(data);           
               }
