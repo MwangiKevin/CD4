@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
 	$('#equipment_table').dataTable({
 		"bJQueryUI":true, 
-		"sAjaxSource": "http://localhost/cd4/poc/equipment/ss_dt_equipment" ,
+		"sAjaxSource": "<?php echo base_url('poc/equipment/ss_dt_equipment'); ?>" ,
 		"aoColumnDefs": [
 		{ "bSortable": false, "aTargets": [ 0 ] }
 		],

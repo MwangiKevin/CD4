@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
 	$('#tests_table').dataTable({
 		"bJQueryUI":true, 
-		"sAjaxSource": "http://localhost/cd4/poc/tests/ss_dt_tests" ,
+		"sAjaxSource": "<?php echo base_url('poc/tests/ss_dt_tests'); ?>" ,
 		"aoColumnDefs": [
 		{ "bSortable": false, "aTargets": [ 0 ] }
 		],
