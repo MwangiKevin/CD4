@@ -19,7 +19,7 @@ class home extends MY_Controller {
 		$this->load->model('home_model');
 
 		$this->data['menus']	= 	$this->home_model->menus(1);
-		$this->data['xmldata'] 	= 	$this->home_model->home_map_data($this->get_filter_start_date(),$this->get_filter_stop_date());
+		//$this->data['xmldata'] 	= 	$this->home_model->home_map_data($this->get_filter_start_date(),$this->get_filter_stop_date());
 
 		$this->load->module('charts/equipment');
 		$this->load->module('charts/tests');
@@ -29,6 +29,11 @@ class home extends MY_Controller {
 	public function index(){
 		//header('location:'.base_url().'login');
 		$this -> template($this->data);
+
+	}
+
+	public function get_xml_map_data(){
+		echo $this->home_model->home_map_data($this->get_filter_start_date(),$this->get_filter_stop_date());
 	}
 }
 /* End of file home.php */

@@ -1,5 +1,5 @@
-<div id="tests-table">
-	<table style = "border: 1px solid #DDD;height:240px;vertical-align:center;" >
+<div id="tests-tbl">
+	<table style = "border: 1px solid #DDD;vertical-align:center;width:100%" >
 		<thead class="even" style="background:#f0f0f0" >
 			<tr style = "border: 1px solid #DDD;" >
 				<td></td>

@@ -1,8 +1,11 @@
+
+<div id ="gr_equipmenttestscolumn"> </div>
+
 <script id="equipmenttestscolumnscript" type="text/javascript" >	  
-	function equipment_tests_column(){
+
 
     	// Build the chart
-        $('#equipmenttestscolumn').highcharts({
+        $('#gr_equipmenttestscolumn').highcharts({
            chart: {
                 type: 'column',                
                 height:290
@@ -61,7 +64,6 @@
             },
             series: <?php echo json_encode($equipment_tests["data"]);?>
         });
-    
-    }
+
 	
 </script>

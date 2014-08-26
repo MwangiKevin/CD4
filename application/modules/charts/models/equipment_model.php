@@ -7,6 +7,8 @@ class equipment_model extends MY_Model{
 	*/
 
 	public function equipment_pie($user_group_id,$user_filter_used){
+	
+	
 
 
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
@@ -61,10 +63,16 @@ class equipment_model extends MY_Model{
 								SUM(CASE WHEN `eq`.`facility_equipment_status_id`= '1'    THEN 1 ELSE 0 END) AS `functional`,
 								SUM(CASE WHEN `eq`.`facility_equipment_status_id`= '2'    THEN 1 ELSE 0 END) AS `broken_down`,
 								SUM(CASE WHEN `eq`.`facility_equipment_status_id`= '3'    THEN 1 ELSE 0 END) AS `obsolete`
-							FROM `v_facility_equipment_details` `eq`
+							FROM 
+								(SELECT * 
+									FROM  `v_facility_equipment_details` 
+									WHERE 1 
+									$user_delimiter 
+								GROUP BY `facility_equipment_id`
+								) `eq`
+
 								WHERE `equipment_category_id`= '1'
-								$user_delimiter
-							GROUP BY `equipment_id`
+							GROUP BY `eq`.`equipment_id`
 							ORDER BY `equipment` ASC
 						";
 
@@ -90,7 +98,7 @@ class equipment_model extends MY_Model{
 
 			$eq_data[$key] =	$value;
 		}
-
+		//print_r($eq_data);
 		return $eq_data;
 	}
 	public function tests($from,$to){

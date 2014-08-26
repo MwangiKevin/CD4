@@ -146,14 +146,25 @@ class poc_model extends MY_Model{
 		return $facility_requests  =  R::getAll($sql);
 	}
 	
-	public function get_requested_facilities($user)
-	{
+	public function get_dev_reg_requests($user = 0){
+		$sql = "";
+		if($user == 0){
 		$sql = "SELECT `facility_id`,
 						`equipment_id` AS `Equipment`,
 						`serial_number` AS `Serial`,
 						`ctc_id_no` AS `CTC`
 				FROM facility_equipment_request
+				WHERE  request_status = 0";
+
+		}else{
+
+			$sql = "SELECT `facility_id`,
+						`equipment_id` AS `Equipment`,
+						`serial_number` AS `Serial`,
+						`ctc_id_no` AS `CTC`
+				FROM facility_equipment_request
 				WHERE requested_by = $user AND request_status = 0";
+		}
 
 		return $facilities_requested = R::getAll($sql);
 	}

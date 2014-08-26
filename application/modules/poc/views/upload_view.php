@@ -8,7 +8,7 @@ if (isset($message)){
 <center>
 	<div class="section-title" ><center>Last 500 PIMA uploads</center></div>
 	<div style="margin-bottom:20px">
-		<table id="data-table" class="data-table">
+		<table id="uploads_table" class="data-table">
 			<thead>				
 					<th>#</th>
 					<th style="width:15%">Date Uploaded</th>
@@ -21,31 +21,6 @@ if (isset($message)){
 					<th style="font-size: 1.1em;color: #eb9316; width:15%;"># of tests &lt 350 cells/mm3</th>
 					<th style="font-size: 1.1em;color: #c12e2a;" ># of errors</th>
 			</thead>
-			<tbody>				
-			<?php 
-
-				$max_rows = 500;
-				if (sizeof($uploads)<500){
-					$max_rows= sizeof($uploads);
-				}
-				for($i=0;$i<$max_rows;$i++){
-			?>	
-			<tr>
-				<td><?php echo $i+1;?></td>
-				<td><?php echo date('d-F-Y',strtotime($uploads[$i]["upload_date"]));?></td>
-				<td><?php echo $uploads[$i]["equipment_serial_number"];?></td>
-				<td><?php echo $uploads[$i]["facility_name"];?></td>
-				<td><?php echo $uploads[$i]["uploader_name"];?></td>
-				<td style="font-size: 1.1em;color: #2d6ca2;"><center><?php echo $uploads[$i]["total_tests"];?></center></td>
-				<td style="font-size: 1.1em;color: #2aabd2;"><center><?php echo $uploads[$i]["valid_tests"];?></center></td>
-				<td style="font-size: 1.1em;color: #3e8f3e;"><center><?php echo $uploads[$i]["passed"];?></center></td>
-				<td style="font-size: 1.1em;color: #eb9316;"><center><?php echo $uploads[$i]["failed"];?></center></td>
-				<td style="font-size: 1.1em;color: #c12e2a;"><center><?php echo $uploads[$i]["errors"];?></center></td>
-			</tr>
-			<?php
-				}
-			?>		
-			</tbody>
 		</table>
 	</div>		
 </center>	

@@ -11,20 +11,34 @@
 			<!-- PIMA -->
 			<div class="tab-pane  active" id="tabs1-pima">
 				<div class="panel panel-default" style="float:left;width:100%;margin-top:5px;box-shadow: 4px 4px 4px #888888;">	
-					<div  id = "expected_reporting_devices" style = "float:left;width:60%;padding-right:20px;" ></div>			
-					<div  id = "expectedreportingdevicespie" style = "float:left;width:39%" ></div>							
+					<div  id = "expected_reporting_devices" style = "float:left;width:60%;padding-right:20px;" >
+						<div class="loader" style"">Loading...</div>
+					</div>			
+					<div  id = "expected_reporting_devices_pie" style = "float:left;width:39%" >
+						<div class="loader" style"">Loading...</div>
+					</div>							
 				</div>
 				<div class="panel panel-default" style="float:left;width:100%;box-shadow: 4px 4px 4px #888888;" >	
-					<div id = "testspie" style = "float:left;width:30%" ></div>			
-					<div id = "pima_errors_pie" style = "float:left;width:30%" ></div>
+					<div id = "testspie" style = "float:left;width:30%" >
+						<div class="loader" style"">Loading...</div>
+					</div>			
+					<div id = "errors_reported_pie" style = "float:left;width:30%" >
+						<div class="loader" style"">Loading...</div>
+					</div>
 					<div  style = "float:left;width:39%">
 						<div class="section-title" ><center> PIMA Tests for <?php echo $date_filter_desc;?> </center></div>
-						<?php $this->pima->tests_table($user_group_id,$user_filter_used); ?>
+						<div id="pima-tests-table" >							
+							<div class="loader" style"">Loading...</div>
+						</div>
 					</div>						
 				</div>
 				<div class="panel panel-default" style="float:left;width:100%;box-shadow: 4px 4px 4px #888888;">	
-					<div  id = "pima_error_types_col" style = "float:left;width:50%;padding:20px;" >&nbsp</div>			
-					<div  id = "pima_error_trend" style = "float:right;width:50%" ></div>							
+					<div  id = "pima_error_types_col" style = "float:left;width:50%;padding:20px;" >
+						<div class="loader" style"">Loading...</div>
+					</div>			
+					<div  id = "pima_error_trend" style = "float:right;width:50%" >
+						<div class="loader" style"">Loading...</div>
+					</div>							
 				</div>
 			</div>				
 		</div><!-- /.tab-content -->

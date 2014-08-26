@@ -17,15 +17,16 @@ class errors extends MY_Controller {
 		$this->home_page();
 	}
 	public function home_page() {
-		$this->login_reroute(array(3,8,9,4));
+		$this->login_reroute(array(4));
 		$data['content_view'] = "poc/errors_view";
-		$data['title'] = "POC Errors";
+		$data['title'] = "Errors";
+		//$data['sidebar']	= "poc/sidebar_view";
 		$data['filter']	=	true;
-		$data	=  array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
+		$data	=array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
 		
-		$this->load->model('poc_model');
+		$this->load->model('nacp_model');
 
-		$data['menus']	= 	$this->poc_model->menus(5);
+		$data['menus']	= 	$this->nacp_model->menus(5);
 		$this -> template($data);
 	}
 	public function pima_error_criteria(){

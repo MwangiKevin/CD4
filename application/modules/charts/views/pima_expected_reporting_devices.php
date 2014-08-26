@@ -1,6 +1,10 @@
+
+<div id = "expected_reporting_devices-gr">
+
+</div>
+
 <script id = 'expected_reporting_devices_script'>
-    function expected_reporting_devices(){
-            $('#expected_reporting_devices').highcharts({
+            $('#expected_reporting_devices-gr').highcharts({
                  chart: { 
                     plotBackgroundColor: null,
                     plotBorderWidth: 2,
@@ -53,5 +57,4 @@
                 },
                 series: <?php echo json_encode($chart);?>
             });
-    }
 </script>

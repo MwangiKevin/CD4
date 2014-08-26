@@ -1,6 +1,6 @@
+<div id="pima_errors_column_gr"></div>
 <script id="errorscolumnscript" type="text/javascript">
-function errors_column() {
-        $('#errorscolumn').highcharts({
+        $('#pima_errors_column_gr').highcharts({
             chart: {
                 type: 'column',
                 height:260,                
@@ -10,7 +10,7 @@ function errors_column() {
                 text: 'PIMA Errors'
             },
             subtitle: {
-                text: ''
+                text: '' 
             },
             xAxis: {
                 categories: [
@@ -42,8 +42,6 @@ function errors_column() {
                 }
             },
             series: <?php echo $data;?>
-        });
-    };
-    
+        });    
 
-		</script>
+</script>
