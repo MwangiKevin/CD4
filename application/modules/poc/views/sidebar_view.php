@@ -7,64 +7,34 @@
 			</div>
 		</div>
 		<div>
-			<?php 
-				if(sizeof($devices_not_reported)>0){
-			?>
-			<div class="notice">
-				<a  href="#devicesnotreported" data-toggle="modal">
+			<div id ="dev_not_reported"><div class="" style"">Loading...</div></div>
+
+			<div class="notice" id="error_notf" style="display:none;">
+				<a href="errors" onclick="error_notification()" >
 					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					 <?php echo sizeof($devices_not_reported); ?> Devices Did not upload Last Month.
+					<span id= "notf_error"></span> Errors 
+					<b>(<span id= "notf_error_perc"></span> %)</b> reported last month out of 
+					<span id= "notf_total_err"></span> Tests, with 
+					<span id= "notf_succ_test"></span> successfull results
 				</a>
-			</div>			
-			<?php 
-				}else{
-			?>
-			<div class="success">
-				<a  href="#devicesnotreported" data-toggle="modal">
-					<i class="glyphicon glyphicon-ok"></i> 
-					 All devices uploaded last month
-				</a>
+
+				<script>
+				    $.getJSON("<?php echo base_url('poc/tests/notf_errors');?>/", function(data) {
+						var perc = 0;
+						if(data.total>0){
+				        	perc= round(((data.error/data.total)*100),2);
+				        }
+				        $('#notf_succ_test').html(data.succ_test);
+				        $('#notf_error').html(data.error);
+				        $('#notf_error_perc').html(perc);
+				        $('#notf_total_err').html(data.total);
+
+				        $('#error_notf').css("display","");
+					}); 
+				</script>
 			</div>
-			<?php 
-				}
-			?>
-			<div class="notice">
-				<a href="errors" onclick="error_notification()">
-					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					<?php echo $errors_agg["error"]." Errors <b>(";if($errors_agg["total"]>0){echo round((($errors_agg["error"]/$errors_agg["total"])*100),2);}else{ echo "0";}?>%)</b> reported last month out of <?php echo $errors_agg["total"];?> tests
-				</a>
-			</div>
-			<?php 
-				if(sizeof($facility_requests)>0){
-					foreach($facility_requests as $requests){
-			?>
-			<div class="notice">
-				<a  href="#requestsmade" data-toggle="modal">
-					<i class="glyphicon glyphicon-exclamation-sign"></i> 
-					 
-					 <?php 
-						 if (sizeof($facility_requests)>2) {
-						  	echo $requests['Totals'].' facility has been requested for registration.';
-						  } else {
-						  	echo $requests['Totals'].' facilities have been requested for registration.';
-						  }
-					   
-					 ?>
-					  
-				</a>
-			</div>			
-			<?php 
-				}}else{
-			?>
-			<div class="success">
-				<a  href="" data-toggle="modal">
-					<i class="glyphicon glyphicon-ok"></i> 
-					 No facilty requested for registration
-				</a>
-			</div>
-			<?php 
-				}
-			?>
+			<div id ="dev_reg_requests"><div class="" style"">Loading...</div></div>
+
 		</div>
 	</div>
 	<div>
@@ -111,43 +81,65 @@
 	        		not reported for <?php echo Date("Y,F", strtotime("last month"));?></h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
-	            	<table id="data-table-side">
+	            	<table id="dt_not_reported">
 	            		<thead>				
 							<th>#</th>
 							<th>Facility</th>							
 							<th>Equipment Type</th>
 							<th>Do upload</th>							
 						</thead>
-						<tbody>
-							<?php
-								$i=1;
-								foreach ($devices_not_reported as $equipment) {
-							?>
-							<tr>
-								<td><?php echo $i;?></td>
-								<td><?php echo $equipment['facility_name'];?></td>
-								<td>
-									<?php
-										if($equipment['equipment_id']=="4"){
-									?>
-									<a title =" view Equipment (<?php echo $equipment['facility_name'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
-										<span style="" class="glyphicon glyphicon-list-alt">
-										</span>
-										<?php echo $equipment['equipment'];?>
-									</a>
-									<?php 
-										$i++;
-										}
-									?>
-								</td>
-								<td><a href="uploads">Do upload</a></td>
-							</tr>
-							<?php
-								}
-							?>
-						</tbody>
 	            	</table>
-	      		</div>		      		
+	      		</div>
+	      		<script>
+	      			$( document ).ready(function() {
+	      				var fn_count_nr = 0; //will help to skip the first fnDrawCallback call.
+	      				var fn_count_rq = 0; 
+						var	table_nr =	$('#dt_not_reported').dataTable({
+												"bJQueryUI":true, 
+												"sAjaxSource": "<?php echo base_url("poc/Equipment/ss_dt_devices_not_reported");?>" ,
+												"aoColumnDefs": [
+												{ "bSortable": false, "aTargets": [ 0 ] }
+												],
+												"aaSorting": [[1, 'asc']],
+												"fnDrawCallback": function() {
+																if(fn_count_nr>0){
+																var oSettings = this.fnSettings();
+																var iTotalRecords = oSettings.fnRecordsTotal();
+																	if(iTotalRecords==0){
+																		$("#dev_not_reported").html('<div class="success"><a  href="#devicesnotreported" data-toggle="modal"><i class="glyphicon glyphicon-ok"></i> All devices uploaded last month</a>	</div>');
+																	
+																	}else{
+																		$("#dev_not_reported").html('<div class="notice"><a  href="#devicesnotreported" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> '+iTotalRecords+' Devices Did not upload Last Month.</a></div>');
+																	
+																	}
+																}
+																fn_count_nr++;
+															}
+											});	
+						var	table_rq =	$('#dt_req').dataTable({
+												"bJQueryUI":true, 
+												"sAjaxSource": "<?php echo base_url("poc/Equipment/ss_dt_device_reg_req");?>" ,
+												"aoColumnDefs": [
+												{ "bSortable": false, "aTargets": [ 0 ] }
+												],
+												"aaSorting": [[1, 'asc']],
+												"fnDrawCallback": function() {
+																if(fn_count_nr>0){
+																var oSettings = this.fnSettings();
+																var iTotalRecords = oSettings.fnRecordsTotal();
+																	if(iTotalRecords==0){
+																		$("#dev_reg_requests").html('<div class="success"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-ok"></i> You have no pending device registration requests</a>	</div>');
+																	
+																	}else{
+																		$("#dev_reg_requests").html('<div class="notice"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> You have made '+iTotalRecords+' requests for device registration .</a></div>');
+																	
+																	}
+																}
+																fn_count_nr++;
+															}
+											});	
+					});
+	      		</script>		      		
 	      		<div class="modal-footer" style="height:11px;padding-top:11px;">
 	      			<?php echo $this->config->item("copyrights");?>
 	      		</div> 
@@ -215,7 +207,7 @@
 	        		</h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
-	            	<table id="data-table-side">
+	            	<table id="dt_req">
 	            		<thead>				
 							<th>#</th>
 							<th>Facility</th>							
@@ -224,27 +216,6 @@
 							<th>CTC ID Number</th>
 						</thead>
 						<tbody>
-							<?php
-								$i=1;
-								foreach ($facilities_requested as $facilities) {
-									
-							?>
-							<tr>
-								<td><center><?php echo $i;?></center></td>
-								<td><center><?php echo $facilities['facility_id'];?></center></td>
-								<td><center>
-									<?php echo $facilities['Equipment'];?>
-									<?php 
-										$i++;
-									?>
-									</center>
-								</td>
-								<td><center><?php echo $facilities['Serial'];?></center></td>
-								<td><center><?php echo $facilities['CTC'];?></center></td>
-							</tr>
-							<?php
-								}
-							?>
 						</tbody>
 	            	</table>
 	      		</div>		      		
