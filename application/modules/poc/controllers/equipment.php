@@ -19,7 +19,7 @@ class equipment extends MY_Controller {
 		$data['title'] = "Equipment";
 		$data['sidebar']	= "poc/sidebar_view";
 		$data['filter']	=	false;
-		$data	= array_merge($data,$this->load_libraries(array('dataTables','poc_equipment')));
+		$data	= array_merge($data,$this->load_libraries(array('dataTables')));
 
 		$data['menus']	= 	$this->poc_model->menus(4);
 

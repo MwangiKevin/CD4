@@ -21,7 +21,7 @@ class errors extends MY_Controller {
 		$data['content_view'] = "poc/errors_view";
 		$data['title'] = "POC Errors";
 		$data['filter']	=	true;
-		$data	=  array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
+		$data	=  array_merge($data,$this->load_libraries(array('FusionCharts','jqueryui','highcharts','highcharts_drilldown')));
 		
 		$this->load->model('poc_model');
 

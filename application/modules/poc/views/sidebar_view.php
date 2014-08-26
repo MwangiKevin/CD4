@@ -22,7 +22,7 @@
 				    $.getJSON("<?php echo base_url('poc/tests/notf_errors');?>/", function(data) {
 						var perc = 0;
 						if(data.total>0){
-				        	perc= round(((data.error/data.total)*100),2);
+				        	perc= math.round(((data.error/data.total)*100),2);
 				        }
 				        $('#notf_succ_test').html(data.succ_test);
 				        $('#notf_error').html(data.error);
