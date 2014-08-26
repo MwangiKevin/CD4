@@ -9,7 +9,7 @@ $( document ).ready(function() {
 		],
 		"aaSorting": [[1, 'asc']]
 
-
+		
 	});	
 });
 </script>
