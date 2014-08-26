@@ -17,18 +17,12 @@ class upload extends MY_Controller {
 		$this->data['posted']			=	0;
 		$this->data['filter']			=	false;
 
-		$this->data		=	array_merge($this->data,$this->load_libraries(array("dataTables", "poc_uploads")));
+		$this->data		=	array_merge($this->data,$this->load_libraries(array("dataTables")));
 
 		$this->load->model('poc_model');
 
-		$this->data['uploads']              = $this->poc_model->get_Upload_details($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
 		$this->data['menus']	            = $this->poc_model->menus(2);
-		$this->data['device_types']         = $this->poc_model->get_Device_types();
-	
 		
-		//$this->data['sheet_data']		=	"";
-		//$this->data['upload_data']		=	array();
-
 		$this->load->module('uploads');
 
 	}
@@ -112,6 +106,37 @@ class upload extends MY_Controller {
 			}
 		}
 		
+	}
+	public function ss_dt_upload_data(){
+
+		$upload_data    =  $this->poc_model->get_Upload_details($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"));
+		
+		$data 	=	array();
+		$recordsTotal =0;
+
+		foreach ($upload_data as $key => $value) {
+			$data[] = 	array(
+							($key+1),
+							date('d-F-Y',strtotime($value["upload_date"])),
+							$value["equipment_serial_number"],
+							$value["facility_name"],
+							$value["uploader_name"],
+							$value["total_tests"],
+							$value["valid_tests"],
+							$value["passed"],
+							$value["failed"],
+							$value["errors"],
+						);
+			$recordsTotal++;
+		}
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
 	}
 
 
