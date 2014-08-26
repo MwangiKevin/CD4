@@ -20,7 +20,7 @@ $(document).ready(function() {
 		"bPaginate":true,
 		"bLengthChange": false,
 		"bJQueryUI":true, 
-		"sAjaxSource": "http://localhost/cd4/poc/upload/ss_dt_upload_data" ,
+		"sAjaxSource": "<?php echo base_url('poc/upload/ss_dt_upload_data'); ?>" ,
 		"aoColumnDefs": [
 		{ "bSortable": false, "aTargets": [ 0 ] }
 		],
