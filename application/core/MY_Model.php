@@ -294,6 +294,7 @@ class MY_Model extends CI_Model{
 
 	}
 
+	// .git.commit.now this function may need to be corrected. For some reason it is displaying wrong data
 	public function devices_not_reported(){
 
 		$user_device_details 	= 	$this->user_devices();	

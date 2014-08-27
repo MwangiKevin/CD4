@@ -558,7 +558,18 @@ class MY_Controller extends MX_Controller{
 			// echo "<pre>";
 		}
 
-      }
+     }
+
+     public function update_db_procedures(){
+
+      	$this->config->load('procedures_sql');
+
+		$procedures_sql = $this->config->item("procedures_sql");
+
+		foreach ($procedures_sql as $key => $sql) {
+			$this->db->query($sql);
+		}
+     }
 
     //this function sets the default user filter as the first locale of intrest by the user logged in
     public function set_default_user_filter(){

@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 application/cache
 application/logs
 logs
-=======
-=======
->>>>>>> 8b4195f225cf9d15c6f9d8b7630827a6ea84fb04
-*/config/development
-*/logs/log-*.php
-*/logs/!index.html
-*/cache/*
-*/cache/!index.html
-<<<<<<< HEAD
->>>>>>> 5c55f16927783375227cee369ffc6b75907e6742
-=======
->>>>>>> 8b4195f225cf9d15c6f9d8b7630827a6ea84fb04
+*.class
+*.pyc
+*.pyo
+*.sublime-workspace
+*.project
+/nbproject/private/
+application/config/database.php
+pdf
+
