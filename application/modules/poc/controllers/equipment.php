@@ -19,7 +19,7 @@ class equipment extends MY_Controller {
 		$data['title'] = "Equipment";
 		$data['sidebar']	= "poc/sidebar_view";
 		$data['filter']	=	false;
-		$data	= array_merge($data,$this->load_libraries(array('dataTables','poc_equipment')));
+		$data	= array_merge($data,$this->load_libraries(array('dataTables')));
 
 		$data['menus']	= 	$this->poc_model->menus(4);
 
@@ -85,7 +85,7 @@ class equipment extends MY_Controller {
 
 	public function ss_dt_equipment(){
 
-		$equipment = 	$this->poc_model->get_details("equipment_details",$this->session->userdata("user_filter_used"));
+		$equipment = 	$this->poc_model->db_filtered_view("v_facility_equipment_details",$this->session->userdata("user_filter_used"),null,array('facility_equipment_id'),array('facility_name'),"ASC");
 
 		$data 	=	array();
 		$recordsTotal =0;
@@ -93,14 +93,14 @@ class equipment extends MY_Controller {
 		foreach ($equipment as $key => $value) {
 			$data[] = 	array(
 							($key+1),
-							$value["facility"],
+							$value["facility_name"],
 							$value["equipment"],
 							Date('Y-F-d',strtotime($value['date_added'])),
 							Date('Y-F-d',strtotime($value['date_removed'])),
 							$value["deactivation_reason"],
 							'<a href="javascript:void(null);" >View History</a',
-							'<a title="toggle rollout '.$value["facility"].'" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="rollout_toggle('.$value["facility_equipment_id"].')"><span style="font-size: 1.4em;color: #3e8f3e;" class="glyphicon glyphicon-ok-sign"></span></a>',
-							'<a title=" Edit Equipment ('.$value["facility"].')" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_equipment('.$value["facility_equipment_id"].')"><span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span></a>'
+							'<a title="toggle rollout '.$value["facility_name"].'" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="rollout_toggle('.$value["facility_equipment_id"].')"><span style="font-size: 1.4em;color: #3e8f3e;" class="glyphicon glyphicon-ok-sign"></span></a>',
+							'<a title=" Edit Equipment ('.$value["facility_name"].')" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_equipment('.$value["facility_equipment_id"].')"><span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span></a>'
 						);
 			$recordsTotal++;
 		}

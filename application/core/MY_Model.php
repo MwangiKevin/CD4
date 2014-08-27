@@ -262,6 +262,7 @@ class MY_Model extends CI_Model{
 
 					AND `equipment_id` = '4'
 					$user_delimiter
+					GROUP BY `facility_equipment_id`
 				";
 		return R::getAll($sql);
 
