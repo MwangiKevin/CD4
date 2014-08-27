@@ -1,6 +1,18 @@
 <script>
 	$().ready(function() {
     	$("#dis_div").hide();
+
+
+	$('#facilities_table').dataTable({
+		"bJQueryUI":true, 
+		"sAjaxSource": "<?php echo base_url("admin/facilities/ss_dt_facilities");?>" ,
+		"aoColumnDefs": [
+		{ "bSortable": false, "aTargets": [ 0 ] }
+		],
+		"aaSorting": [[1, 'asc']]
+
+	});	
+
 	});
 
 	<?php
