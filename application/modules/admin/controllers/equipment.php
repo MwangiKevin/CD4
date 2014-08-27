@@ -20,7 +20,7 @@ class equipment extends MY_Controller {
 		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();		
 		$data['errors_agg'] = $this->admin_model->errors_reported();		
 		
-		$data['equipments'] = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0);	
+		$data['equipments'] = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0,null,array('facility_equipment_id'));	
 
 		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 		$data['equipment_1']	=	R::getAll("SELECT `equipment`.*,`equipment_category`.`description` AS `category_desc`, `equipment_category`.`id` AS `equipment_category_id` FROM `equipment` LEFT JOIN `equipment_category` ON `equipment_category`.`id`=`equipment`.`category` ");
