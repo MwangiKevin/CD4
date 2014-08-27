@@ -28,10 +28,6 @@ class facilities extends MY_Controller {
 		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();
 		
 		$data['errors_agg'] = $this->admin_model->errors_reported();
-		
-		//$data['facilities'] = 	$this->admin_model->get_details("facility_details",$this->session->userdata("user_filter_used"));
-
-		$data['facilities'] = 	$this->admin_model->db_filtered_view("v_facility_details",0);
 
 		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 		
