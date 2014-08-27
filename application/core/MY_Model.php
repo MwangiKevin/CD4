@@ -344,6 +344,12 @@ class MY_Model extends CI_Model{
 		$agg["error"]		= (int) $rs[0]["error"];
 		$agg["total"]       = (int) $rs[0]["total"];
 
+		$agg["perc_errors"]			=	0	;
+		if($agg["total"]>0){
+			$agg["perc_errors"]  = round((($agg["error"]/$agg["total"])*100),2);
+		}
+		
+
 		return $agg;
 
 	}
