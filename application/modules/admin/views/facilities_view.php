@@ -1,7 +1,7 @@
 <div >
 	<div class="section-title"><center><b><strong>Facility Details</strong></b></center></div>
 	<div>
-		<table id="data-table">
+		<table id="facilities_table">
 			<thead>
 				<tr>
 					<th rowspan = "2">#</th>
