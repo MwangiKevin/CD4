@@ -16,13 +16,13 @@ class equipment_model extends MY_Model{
 		$sql 	=	"SELECT 
 							`equipment`,
 							COUNT(*) AS `count`
-						FROM `v_facility_equipment_details` 
+						FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `e`
 						WHERE `equipment_category_id`	=	'1' 
 					";
 
 		$sql.=$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
-		$sql 	.=	" GROUP BY `equipment` ORDER BY `count` desc ";
+		$sql 	.=	" GROUP BY `equipment`  ORDER BY `count` desc ";
 
 
 		$equipment = R::getAll($sql_eq);
