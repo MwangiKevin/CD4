@@ -128,7 +128,7 @@
 																		$("#dev_reg_requests").html('<div class="success"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-ok"></i> You have no pending device registration requests</a>	</div>');
 																	
 																	}else{
-																		$("#dev_reg_requests").html('<div class="notice"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> You have made '+iTotalRecords+' requests for device registration .</a></div>');
+																		$("#dev_reg_requests").html('<div class="notice"><a  href="#requestsmade" data-toggle="modal"><i class="glyphicon glyphicon-exclamation-sign"></i> You have '+iTotalRecords+' requests for device registration pending approval.</a></div>');
 																	
 																	}
 																}
@@ -195,7 +195,7 @@
 	</div><!-- /.modal -->
 
 	<div class="modal fade" id="requestsmade" >
-	  	<div class="modal-dialog" style="width:37%;margin-bottom:2px;">
+	  	<div class="modal-dialog" style="width:45%;margin-bottom:2px;">
 	    	<div class="modal-content" >
 	      		<div class="modal-header">
 	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -211,6 +211,7 @@
 							<th>Equipment Type</th>
 							<th>Serial Number</th>
 							<th>CTC ID Number</th>
+							<th>Date Requested</th>
 						</thead>
 						<tbody>
 						</tbody>

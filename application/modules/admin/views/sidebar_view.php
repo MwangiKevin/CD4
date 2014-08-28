@@ -201,7 +201,7 @@
 	</div><!-- /.modal -->
 	
 	<div class="modal fade" id="requestsmade" >
-	  	<div class="modal-dialog" style="width:50%;margin-bottom:2px;">
+	  	<div class="modal-dialog" style="width:65%;margin-bottom:2px;">
 	    	<div class="modal-content" >
 	      		<div class="modal-header">
 	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
