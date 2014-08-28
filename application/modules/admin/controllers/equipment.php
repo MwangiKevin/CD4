@@ -3,6 +3,12 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class equipment extends MY_Controller {
 
+	function __construct() {
+		parent::__construct();
+		
+		$this->load->model('admin_model');
+	}
+
 	public function index(){
 
 		$this->home_page();
@@ -20,7 +26,7 @@ class equipment extends MY_Controller {
 		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();		
 		$data['errors_agg'] = $this->admin_model->errors_reported();		
 		
-		$data['equipments'] = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0,null,array('facility_equipment_id'));	
+		//$data['equipments'] = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0,null,array('facility_equipment_id'));	
 
 		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 		$data['equipment_1']	=	R::getAll("SELECT `equipment`.*,`equipment_category`.`description` AS `category_desc`, `equipment_category`.`id` AS `equipment_category_id` FROM `equipment` LEFT JOIN `equipment_category` ON `equipment_category`.`id`=`equipment`.`category` ");
@@ -195,10 +201,8 @@ class equipment extends MY_Controller {
 				$serial_number = $value['serial_number'];
 				$date_added = $value['date_added'];
 				
-				if($value['date_removed']!="")
-					{
-						$date_removed  = $value['date_removed'];
-					}
+				$date_removed  = $value['date_removed'];
+		
 				$deactivation_reason = $value['deactivation_reason'];
 				$status = $value['facility_equipment_status'];
 				$status_id = $value['facility_equipment_status_id'];
@@ -229,11 +233,9 @@ class equipment extends MY_Controller {
 								$facility_name ,
 								$serial_number,
 								Date("Y, M, d",strtotime($date_added)),
-								Date("Y, M, d",strtotime($date_removed)),
+								$date_removed,
 								$deactivation_reason,
-								"<center>
-								<a title ='<?php echo $status;?>' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment(<?php echo $equipment_id; ?>,'<?php echo $category; ?>','<?php echo $equipment; ?>','<?php echo $serial_number; ?>',<?php echo $facility; ?>,<?php echo $status_id;?>)' >
-									<span style='font-size: 1.4em;color: <?php echo $color;?>;' class='<?php echo $class;?>'></span>
+								"<center><a title ='<?php echo $status;?>' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment(<?php echo $equipment_id; ?>,'<?php echo $category; ?>','<?php echo $equipment; ?>','<?php echo $serial_number; ?>',<?php echo $facility; ?>,<?php echo $status_id;?>)'><span style='font-size: 1.4em;color: <?php echo $color;?>;' class='<?php echo $class;?>'></span>
 								</a>
 								</center>",
 								"<center><a title =' Edit Equipment (<?php echo $facility_name;?>)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment(<?php echo $equipment_id; ?>,'<?php echo $category; ?>','<?php echo $equipment; ?>','<?php echo $serial_number; ?>',<?php echo $facility; ?>,<?php echo $status_id;?>)'> <span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
