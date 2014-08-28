@@ -15,8 +15,9 @@ class equipment_model extends MY_Model{
 
 		$sql 	=	"SELECT 
 							`equipment`,
-							COUNT(*) AS `count`
-						FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `e`
+							COUNT(*) AS `all`,
+							SUM(CASE WHEN (`eq`.`facility_equipment_status_id`<> '4' )    THEN 1 ELSE 0 END) AS `count`
+						FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `eq`
 						WHERE `equipment_category_id`	=	'1' 
 					";
 
@@ -59,7 +60,8 @@ class equipment_model extends MY_Model{
 		$sql_fac 	=	"SELECT 
 								`eq`.`equipment_id`,
 								`eq`.`equipment`,
-								COUNT(*) AS total,
+								COUNT(*) AS `all`,
+								SUM(CASE WHEN (`eq`.`facility_equipment_status_id`<> '4' )    THEN 1 ELSE 0 END) AS `total`,
 								SUM(CASE WHEN `eq`.`facility_equipment_status_id`= '1'    THEN 1 ELSE 0 END) AS `functional`,
 								SUM(CASE WHEN `eq`.`facility_equipment_status_id`= '2'    THEN 1 ELSE 0 END) AS `broken_down`,
 								SUM(CASE WHEN `eq`.`facility_equipment_status_id`= '3'    THEN 1 ELSE 0 END) AS `obsolete`
