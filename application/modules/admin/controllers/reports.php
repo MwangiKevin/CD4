@@ -21,10 +21,7 @@ class reports extends MY_Controller {
 		$data	=array_merge($data,$this->load_libraries(array('admin_reports')));
 		
 		$this->load->model('admin_model');
-
-		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();
-		$data['errors_agg'] = $this->admin_model->errors_reported();		
-		$data['failed_uploads']	=	$this->admin_model->failed_upload();		
+	
 		$data['menus']	= 	$this->admin_model->menus(5);
 	
 
@@ -43,10 +40,6 @@ class reports extends MY_Controller {
 		//menu
 		$this->load->model('admin_model');
 		$data['menus']	= 	$this->admin_model->menus(5);
-		//sidebar content
-		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();
-		$data['errors_agg'] = $this->admin_model->errors_reported();		
-		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 		
 		$data['starting_year'] = $this->config->item("starting_year");
 		$data['devices'] = $this->admin_model->db_filtered_view("v_facility_pima_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
@@ -59,8 +52,6 @@ class reports extends MY_Controller {
 
 		$data['regions'] = $this->admin_model->db_filtered_view("v_facility_details",$this->session->userdata("user_filter_used"),null,null,array("facility_name"));
 
-		$data['requests'] = $this->admin_model->get_requests();
-		$data['totals'] = $this->admin_model->num_of_requests();
 		
 		$this -> template($data);
 		
