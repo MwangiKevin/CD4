@@ -145,24 +145,49 @@ class poc_model extends MY_Model{
 		return $facility_requests  =  R::getAll($sql);
 	}
 	
-	public function get_dev_reg_requests($user = 0){
+	public function get_dev_reg_requests($user_type,$user = 0){
 		$sql = "";
-		if($user == 0){
-		$sql = "SELECT `facility_id`,
-						`equipment_id` AS `Equipment`,
-						`serial_number` AS `Serial`,
-						`ctc_id_no` AS `CTC`
-				FROM facility_equipment_request
-				WHERE  request_status = 0";
+		if($user_type == 2){
+
+			$sql = "SELECT 	`fer`.`id`,
+						`fer`.`facility_id`,
+						`fac`.`name` 		AS `facility_name`,
+						`fer`.`equipment_id` ,
+						`eq`.`description`			AS `equipment_name`,
+						`fer`.`serial_number`,
+						`fer`.`date_requested`,
+						`usr`.`name` 			AS `user_name`,
+						`ctc_id_no` 		AS `CTC`
+				FROM `facility_equipment_request` `fer`
+					LEFT JOIN `facility` `fac`
+					ON `fer`.`facility_id`=`fac`.`id`
+					LEFT JOIN `equipment` `eq`
+					ON `fer`.`equipment_id`=`eq`.`id`
+					LEFT JOIN `user` `usr`
+					ON `fer`.`requested_by`=`usr`.`id`
+
+				WHERE  `request_status` = 0";
 
 		}else{
 
-			$sql = "SELECT `facility_id`,
-						`equipment_id` AS `Equipment`,
-						`serial_number` AS `Serial`,
-						`ctc_id_no` AS `CTC`
-				FROM facility_equipment_request
-				WHERE requested_by = $user AND request_status = 0";
+			$sql = "SELECT 	`fer`.`id`,
+						`fer`.`facility_id`,
+						`fac`.`name` 		AS `facility_name`,
+						`fer`.`equipment_id` ,
+						`eq`.`description`			AS `equipment_name`,
+						`fer`.`serial_number`,
+						`fer`.`date_requested`,
+						`usr`.`name` 			AS `user_name`,
+						`ctc_id_no` 		AS `CTC`
+				FROM `facility_equipment_request` `fer`
+					LEFT JOIN `facility` `fac`
+					ON `fer`.`facility_id`=`fac`.`id`
+					LEFT JOIN `equipment` `eq`
+					ON `fer`.`equipment_id`=`eq`.`id`
+					LEFT JOIN `user` `usr`
+					ON `fer`.`requested_by`=`usr`.`id`
+
+				WHERE `requested_by` = $user AND `request_status` = 0";
 		}
 
 		return $facilities_requested = R::getAll($sql);
