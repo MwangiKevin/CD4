@@ -1,7 +1,7 @@
 <div >
 	<div class="section-title"><center><b><strong>Facility Details</strong></b></center></div>
 	<div>
-		<table id="data-table">
+		<table id="facilities_table">
 			<thead>
 				<tr>
 					<th rowspan = "2">#</th>
@@ -19,61 +19,6 @@
 					<th>Edit Details</th>
 				</tr>
 			</thead>
-			<tbody>
-				<?php
-					$i=1;
-					foreach ($facilities as $facility) {
-				?>
-				<tr id="tr_<?php echo $facility["facility_id"]; ?>">
-					<td><?php echo $i;?></td>
-					<td><?php echo $facility['facility_name'];?></td>
-					<td><?php echo $facility['district_name'];?></td>
-					<td><?php echo $facility['region_name'];?></td>
-					<td><?php echo $facility['partner_name'];?></td>	
-					<td><?php echo $facility['equipment_count'];?></td>					
-					<td><?php echo $facility['users_count'];?></td>
-
-
-					<?php 
-						$color = "";
-						$class = "";
-
-						if($facility['facility_rollout_id']==4){								
-							$color = "#2d6ca2";
-							$class = "glyphicon glyphicon-minus-sign";								
-						}elseif($facility['facility_rollout_id']==1){							
-							$color = "#3e8f3e";
-							$class = "glyphicon glyphicon-ok-sign";								
-						}elseif($facility['facility_rollout_id']==3){									
-							$color = "#c12e2a";
-							$class = "glyphicon glyphicon-remove-sign";							
-						}else{							
-							$color = "#eb9316";
-							$class = "glyphicon glyphicon-question-sign";														
-						}
-					?>
-
-
-					<td>
-						<center>
-							<a title =" <?php echo $facility['facility_rollout_status'];?>" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_facility(<?php echo $facility['facility_id'];?>,'<?php echo $facility['facility_name'];?>','<?php echo $facility['district_name'];?>','<?php echo $facility['region_name'];?>','<?php echo $facility['partner_id'];?>','<?php echo $facility['facility_email'];?>','<?php echo $facility['facility_phone'];?>',<?php echo $facility['facility_rollout_id'];?>)">
-								<span style="font-size: 1.4em;color: <?php echo $color;?>;" class="<?php echo $class;?>"></span>
-							<a>
-						</center>
-					</td>
-					<td>
-						<center>
-							<a title =" Edit Facility (<?php echo $facility['facility_name'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_facility(<?php echo $facility['facility_id'];?>,'<?php echo $facility['facility_name'];?>','<?php echo $facility['district_name'];?>','<?php echo $facility['region_name'];?>','<?php echo $facility['partner_id'];?>','<?php echo $facility['facility_email'];?>','<?php echo $facility['facility_phone'];?>',<?php echo $facility['facility_rollout_id'];?>)"> 
-								<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span>
-							</a>
-						</center>
-					</td>
-				</tr>
-				<?php
-					$i++;
-					}
-				?>
-			</tbody>
 		</table>
 	</div>
 </div>
