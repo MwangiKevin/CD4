@@ -18,11 +18,6 @@ class users extends MY_Controller {
 		
 		$this->load->model('admin_model');
 
-		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();
-		
-		$data['errors_agg'] = $this->admin_model->errors_reported();
-		
-
 		$data['menus']	= 	$this->admin_model->menus(4);		
 		$data['users'] = 	$this->admin_model->db_filtered_view("v_non_system_user_details",0);		
 		$data['user_groups'] = 	$this->admin_model->user_groups();
@@ -30,10 +25,7 @@ class users extends MY_Controller {
 		$data['regions'] = 	$this->admin_model->regions();
 		$data['districts'] = 	$this->admin_model->districts();
 		$data['facilities'] = 	$this->admin_model->db_filtered_view("v_facility_details",0);
-		$data['requests'] = $this->admin_model->get_requests();
-		$data['totals'] = $this->admin_model->num_of_requests();
 
-		$data['failed_uploads']	=	$this->admin_model->failed_upload();
 
 		$this -> template($data);
 	}
