@@ -3,6 +3,12 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class equipment extends MY_Controller {
 
+	function __construct() {
+		parent::__construct();
+		
+		$this->load->model('admin_model');
+	}
+
 	public function index(){
 
 		$this->home_page();
@@ -15,7 +21,6 @@ class equipment extends MY_Controller {
 		$data['sidebar']	= "admin/sidebar_view";
 		$data['filter']	=	false;
 		$data	=array_merge($data,$this->load_libraries(array('admin_equipment')));		
-		$this->load->model('admin_model');
 		$data['menus']	= 	$this->admin_model->menus(3);
 		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();		
 		$data['errors_agg'] = $this->admin_model->errors_reported();		
@@ -30,6 +35,35 @@ class equipment extends MY_Controller {
 		$data['totals'] = $this->admin_model->num_of_requests();
 		
 		$this -> template($data);
+	}
+
+	
+	public function ss_dt_failed_uploads(){
+
+		$failed_uploads	=	$this->admin_model->failed_upload();
+
+		$data 	=	array();
+		$recordsTotal =0;
+
+		foreach ($failed_uploads as $key => $value) {
+			$data[] = 	array(
+							($key+1),
+							$value["name"],
+							$value["equipment"],
+							$value["serial_num"],
+							$value["attempts"],
+							);
+			$recordsTotal++;
+		}
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
+
 	}
 	
 	public function save_fac_equip(){

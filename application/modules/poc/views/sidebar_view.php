@@ -121,7 +121,7 @@
 												],
 												"aaSorting": [[1, 'asc']],
 												"fnDrawCallback": function() {
-																if(fn_count_nr>0){
+																if(fn_count_rq>0){
 																var oSettings = this.fnSettings();
 																var iTotalRecords = oSettings.fnRecordsTotal();
 																	if(iTotalRecords==0){
@@ -132,7 +132,7 @@
 																	
 																	}
 																}
-																fn_count_nr++;
+																fn_count_rq++;
 															}
 											});	
 					});
