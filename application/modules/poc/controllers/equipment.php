@@ -58,19 +58,34 @@ class equipment extends MY_Controller {
 
 	public function ss_dt_device_reg_req(){
 
-		$facilities_requested    = $this->poc_model->get_dev_reg_requests($this->session->userdata("id"));//full details of the facilities requested for registration
+		$facilities_requested    = $this->poc_model->get_dev_reg_requests($this->session->userdata("user_group_id"),$this->session->userdata("id"));//full details of the facilities requested for registration
 
 		$data 	=	array();
 		$recordsTotal =0;
 
 		foreach ($facilities_requested as $key => $value) {
-			$data[] = 	array(
-							($key+1),
-							$value["facility_id"],
-							$value["Equipment"],
-							$value["Serial"],
-							$value["CTC"]
-						);
+
+			if($this->session->userdata("user_group_id")==2){
+				$data[] = 	array(
+								($key+1),
+								$value["facility_name"],
+								$value["serial_number"],
+								$value["user_name"],
+								$value["CTC"],
+								$value["equipment_name"],
+								'<center><a href="http://localhost/cd4/admin/facilities/request_responce/'.$value["id"].'/1"><span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-ok-sign"></span></a></center>',
+								'<center><a href="http://localhost/cd4/admin/facilities/request_responce/'.$value["id"].'/3"><span style="font-size: 1.3em;color:#c12e2a;" class="glyphicon glyphicon-remove-sign"></span></a></center>'
+							);
+			}else{
+				$data[] = 	array(
+								($key+1),
+								$value["facility_name"],
+								$value["equipment_name"],
+								$value["serial_number"],
+								$value["CTC"],
+								Date('Y-F-d',strtotime($value['date_requested']))
+							);
+			}
 			$recordsTotal++;
 		}
 		$json_req 	=	array(
