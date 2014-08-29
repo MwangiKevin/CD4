@@ -22,8 +22,6 @@
 		</table>
 	</div>
 </div>
-
-
 <div>
 	<div class="tabbable span12" style="margin-top:5px;">
 		<ul class="nav nav-tabs">
