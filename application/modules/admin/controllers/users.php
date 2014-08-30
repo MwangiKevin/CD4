@@ -24,7 +24,7 @@ class users extends MY_Controller {
 		
 
 		$data['menus']	= 	$this->admin_model->menus(4);		
-		$data['users'] = 	$this->admin_model->db_filtered_view("v_non_system_user_details",0);		
+		//$data['users'] = 	$this->admin_model->db_filtered_view("v_non_system_user_details",0);		
 		$data['user_groups'] = 	$this->admin_model->user_groups();
 		$data['partners'] = 	$this->admin_model->partners();
 		$data['regions'] = 	$this->admin_model->regions();
@@ -284,6 +284,64 @@ class users extends MY_Controller {
 
 		$this->db->query($sql);
 
+	}
+
+	public function ss_dt_users()
+	{
+		$users  = 	$this->admin_model->db_filtered_view("v_non_system_user_details",0);		
+		
+		$data = array();
+		$recordsTotal = 0;
+
+		foreach ($users as $key => $value) {
+				$user_id 	= $value['user_id'];
+				$username 	= $value['username'];
+				$name     	= $value['name'];
+				$phone    	= $value['phone'];
+				$email	  	= $value['email'];
+				$user_group = $value['user_group'];
+				$status  	= $value['status'];
+
+			$class = "";
+			$color = "";
+
+				if($status==4){	
+					$class = "glyphicon glyphicon-minus-sign";
+					$color = "#2d6ca2";
+				}elseif($status==1){
+					$class = "glyphicon glyphicon-ok-sign";
+					$color = "#3e8f3e";							
+				}elseif($status==5){
+					$class = "glyphicon glyphicon-remove-sign";
+					$color = "#c12e2a";							
+				}else{
+					$class = "glyphicon glyphicon-question-sign";
+					$color = "#eb9316";															
+				}
+
+			$data[] = array(
+							($key+1),
+							$username,
+							$name,
+							$phone,
+							$email,
+							$user_group,
+							"<center><a title='User status ($username)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_user($user_id,$username,$user_group']',$name,$email,$phone,$status)'><span style='font-size: 1.3em;color:<?php echo $color;?>;' class='$class'></span> <?php echo status_desc></a></center>",
+							"<center><a title='Reset User ($username) Password' href='users/actions/reset_password/$user_id>' style='border-radius:1px;' class='' onclick='reset_password($user_id)'><span style='font-size:1.4em;color:#eb9316;' class='glyphicon glyphicon-pencil'></span></a></center>",
+							"<center><a title='Activate ($username) ' href='users/actions/activate_user/ $user_id' style='border-radius:1px;' class=''><span style='font-size:1.3em;color:#3e8f3e;' class='glyphicon glyphicon-ok-sign'></span></a></center>",
+							"<center><a title='Remove User ($username) ' href='users/actions/remove_user/$user_id' style='border-radius:1px;' class=''><span style='font-size:1.4em;color:#c12e2a;' class='glyphicon glyphicon-remove-sign'></span></a></center>",
+							"<center><a title='User status ($username)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_user($user_id,$username,$user_group']',$name,$email,$phone,$status)'><span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
+							);
+			$recordsTotal++;
+		}
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
 	}
 
 }

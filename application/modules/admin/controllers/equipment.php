@@ -235,10 +235,10 @@ class equipment extends MY_Controller {
 								Date("Y, M, d",strtotime($date_added)),
 								$date_removed,
 								$deactivation_reason,
-								"<center><a title ='<?php echo $status;?>' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment(<?php echo $equipment_id; ?>,'<?php echo $category; ?>','<?php echo $equipment; ?>','<?php echo $serial_number; ?>',<?php echo $facility; ?>,<?php echo $status_id;?>)'><span style='font-size: 1.4em;color: <?php echo $color;?>;' class='<?php echo $class;?>'></span>
+								"<center><a title ='$status' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment($equipment_id, $category, $equipment, $serial_number , $facility, $status_id)'><span style='font-size: 1.4em;color: $color' class='$class'></span>
 								</a>
 								</center>",
-								"<center><a title =' Edit Equipment (<?php echo $facility_name;?>)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment(<?php echo $equipment_id; ?>,'<?php echo $category; ?>','<?php echo $equipment; ?>','<?php echo $serial_number; ?>',<?php echo $facility; ?>,<?php echo $status_id;?>)'> <span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
+								"<center><a title =' Edit Equipment ( $facility_name)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment($equipment_id, $category, $equipment, $serial_number, $facility, $status_id)'> <span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
 							);
 				
 				$recordsTotal++;

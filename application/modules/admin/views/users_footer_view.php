@@ -4,6 +4,17 @@ $().ready(function() {
 	$("#reg_div").hide();
 	$("#dis_div").hide();
 	$("#fac_div").hide();
+
+	$('#users_table').dataTable({
+		"bJQueryUI":true, 
+		"sAjaxSource": "<?php echo base_url("admin/users/ss_dt_users");?>" ,
+		"aoColumnDefs": [
+		{ "bSortable": false, "aTargets": [ 0 ] }
+		],
+		"aaSorting": [[1, 'asc']]
+
+	});
+
 });
 $("#usr_grp").change(function(){ 
 	var usr_grp_id 	= $("#usr_grp").val();     	

@@ -1,7 +1,7 @@
 <div >
 	<div class="section-title"><center><b><strong>User Details</strong></b></center></div>
 	<div>
-		<table id="data-table">
+		<table id="users_table">
 			<thead>
 				<tr>
 					<th rowspan = "2" style="width:15%" >#</th>
@@ -20,81 +20,7 @@
 					<th>Edit Details</th>
 				</tr>
 			</thead>
-			<tbody>
-				<?php
-					$i=1;
-					foreach ($users as $user) {
-				?>
-				<tr id="tr_<?php echo $user["user_id"]; ?>" >
-					<td><?php echo $i;?></td>
-					<td><?php echo $user['username'];?></td>
-					<td><?php echo $user['name'];?></td>
-					<td><?php echo $user['phone'];?></td>
-					<td><?php echo $user['email'];?></td>	
-					<td><?php echo $user['user_group'];?></td>					
-					<td>
-
-					<?php 
-
-						$class = "";
-						$color = "";
-
-						if($user['status']==4){	
-							$class = "glyphicon glyphicon-minus-sign";
-							$color = "#2d6ca2";
-						}elseif($user['status']==1){
-							$class = "glyphicon glyphicon-ok-sign";
-							$color = "#3e8f3e";							
-						}elseif($user['status']==5){
-							$class = "glyphicon glyphicon-remove-sign";
-							$color = "#c12e2a";							
-						}else{
-							$class = "glyphicon glyphicon-question-sign";
-							$color = "#eb9316";															
-						}
-					?>
-
-						<center>
-							<a title =" User Status (<?php echo $user['username'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_user(<?php echo $user['user_id'];?>,'<?php echo $user["username"] ?>','<?php echo $user["user_group"] ?>','<?php echo $user["name"] ?>','<?php echo $user["email"] ?>','<?php echo $user["phone"] ?>','<?php echo $user["status"] ?>')"> 
-								<span style="font-size: 1.3em;color:<?php echo $color;?>;" class="<?php echo $class;?>"></span>  <?php echo $user['status_desc'];?>
-							</a>
-						</center>
-					</td>
-					<td>
-						<center>
-							<a title =" Reset User (<?php echo $user['username'];?>) Password" href="users/actions/reset_password/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" onclick="reset_password(<?php echo $user['user_id'];?>)"> 
-								<span style="font-size: 1.4em;color: #eb9316;" class="glyphicon glyphicon-pencil"></span>
-							</a>
-						</center>
-					</td>				
-					<td>
-						<center>
-							<a title =" Activate (<?php echo $user['username'];?>)" href="users/actions/activate_user/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" > 
-								<span style="font-size: 1.3em;color:#3e8f3e;;" class="glyphicon glyphicon-ok-sign"></span>
-							</a>	
-						</center>					
-					</td>
-					<td>
-						<center>
-							<a title =" Remove User (<?php echo $user['username'];?>) " href="users/actions/remove_user/<?php echo $user["user_id"];?>" style="border-radius:1px;" class="" > 
-								<span style="font-size: 1.4em;color: #c12e2a;" class="glyphicon glyphicon-remove-sign"></span>
-							</a>
-						</center>
-					</td>
-					<td>
-						<center>
-							<a title =" Edit User (<?php echo $user['username'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick="edit_user(<?php echo $user['user_id'];?>,'<?php echo $user["username"] ?>','<?php echo $user["user_group"] ?>','<?php echo $user["name"] ?>','<?php echo $user["email"] ?>','<?php echo $user["phone"] ?>','<?php echo $user["status"] ?>')"> 
-								<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span>
-							</a>
-						</center>
-					</td>
-				</tr>
-				<?php
-					$i++;
-					//javascript:void(null);
-					}
-				?>
-			</tbody>
+			
 		</table>
 	</div>
 </div>
