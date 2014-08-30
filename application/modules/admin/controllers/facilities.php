@@ -24,18 +24,10 @@ class facilities extends MY_Controller {
 		
 
 		$data['menus']	= 	$this->admin_model->menus(2);
-
-		$data['devices_not_reported'] = $this->admin_model->devices_not_reported();
 		
-		$data['errors_agg'] = $this->admin_model->errors_reported();
-
-		$data['failed_uploads']	=	$this->admin_model->failed_upload();
-		
-		$data['partners'] = 	$this->admin_model->partners();
-		$data['regions'] = 	$this->admin_model->regions();
-		$data['districts'] = 	$this->admin_model->districts();
-		$data['requests'] = $this->admin_model->get_requests();
-		$data['totals'] = $this->admin_model->num_of_requests();
+		$data['partners'] 		= 	$this->admin_model->partners();
+		$data['regions'] 		= 	$this->admin_model->regions();
+		$data['districts'] 		= 	$this->admin_model->districts();
 		
 		$this -> template($data);
 	}
@@ -146,18 +138,18 @@ class facilities extends MY_Controller {
 		foreach ($facilities as $key => $value) {
 
 
-				$facility_id			=	$value["facility_id"];
-				$facility_name			=	$value["facility_name"];
-				$facility_email			=	$value["facility_email"];
-				$facility_phone			=	$value["facility_phone"];
-				$facility_name			=	$value["facility_name"];
-				$district_name			=	$value["district_name"];
-				$region_name			=	$value["region_name"];
-				$partner_name			=	$value["partner_name"];
-				$partner_id				=	$value["partner_id"];
-				$equipment_count		=	$value["equipment_count"];
-				$users_count			=	$value["users_count"];
-				$facility_rollout_id	=	$value["facility_rollout_id"];
+				$facility_id				=	$value["facility_id"];
+				$facility_name				=	$value["facility_name"];
+				$facility_email				=	$value["facility_email"];
+				$facility_phone				=	$value["facility_phone"];
+				$facility_name				=	$value["facility_name"];
+				$district_name				=	$value["district_name"];
+				$region_name				=	$value["region_name"];
+				$partner_name				=	$value["partner_name"];
+				$partner_id					=	$value["partner_id"];
+				$equipment_count			=	$value["equipment_count"];
+				$users_count				=	$value["users_count"];
+				$facility_rollout_id		=	$value["facility_rollout_id"];
 				$facility_rollout_status	=	$value["facility_rollout_status"];
 
 			$color = "";
