@@ -247,6 +247,8 @@ class equipment_model extends MY_Model{
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
+		$today = Date("Y-m-d");
+
 
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
 
@@ -258,6 +260,7 @@ class equipment_model extends MY_Model{
 						FROM `v_tests_details`
 							WHERE 1
 							$user_delimiter	
+							AND `result_date`<= '$today'
 						GROUP BY `equipment_name`,`year` 
 						ORDER BY `equipment_name` ASC
 					";
