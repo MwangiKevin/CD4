@@ -148,7 +148,7 @@
 	public function districts(){
 		return R::getAll("	SELECT 
 									`dis`.`id`				AS `district_id`,									
-									`dis`.`name`				AS `district_name`,
+									`dis`.`name`			AS `district_name`,
 									`reg`.`id`				AS `region_id`,
 									`reg`.`name`			AS `region_name`,
 									`par_reg`.`partner_id`,
