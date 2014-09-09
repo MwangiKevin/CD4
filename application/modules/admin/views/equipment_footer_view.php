@@ -3,6 +3,18 @@ $().ready(function() {
 	$("#equipmentdiv").hide();
 	$("#ctcdiv").hide();
     	//$("#rolloutstatusdiv").modal("show");
+    
+    $('#equipment_table').dataTable({
+		"bJQueryUI":true, 
+		"sAjaxSource": "<?php echo base_url("admin/equipment/ss_dt_equipment");?>" ,
+		"aoColumnDefs": [
+		{ "bSortable": false, "aTargets": [ 0 ] }
+		],
+		"aaSorting": [[1, 'asc']]
+
+	});
+
+
     });
 
 var json_equipment 	= '<?php echo json_encode($equipment_1);?>';

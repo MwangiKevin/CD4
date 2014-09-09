@@ -281,9 +281,4 @@
 	</div>
 </div>
 
-
-
-
-.
-
 <?php $this->load->view("facilities_footer_view");?>
