@@ -29,14 +29,6 @@ class equipment extends MY_Controller {
 	public function home_page() {
 		$this->login_reroute(array(4));
 
-
-		$this->data['equipments'] = 	$this->nacp_model->get_details("equipment_details",$this->session->userdata("user_filter_used"));
-		//$data['equipments'] = 	$this->poc_model->equipments($this->session->userdata("user_filter_used"));
-		
-		$this -> template($this->data);
-	}
-
-	public function test(){
 		$this -> template($this->data);
 	}
 }
