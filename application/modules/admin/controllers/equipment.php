@@ -23,7 +23,7 @@ class equipment extends MY_Controller {
 		$data	=array_merge($data,$this->load_libraries(array('admin_equipment')));		
 		$data['menus']	= 	$this->admin_model->menus(3);
 		
-		$data['equipments'] = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0,null,array('facility_equipment_id'));	
+		//$data['equipments'] = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0,null,array('facility_equipment_id'));	
 
 		$data['equipment_1']	=	R::getAll("SELECT `equipment`.*,`equipment_category`.`description` AS `category_desc`, `equipment_category`.`id` AS `equipment_category_id` FROM `equipment` LEFT JOIN `equipment_category` ON `equipment_category`.`id`=`equipment`.`category` ");
 		$data['equipment_category']	=	R::getAll("SELECT * FROM `equipment_category` ");	
@@ -202,6 +202,79 @@ class equipment extends MY_Controller {
 		$this->db->query($sql);
 
 		$this->home_page();
+	}
+
+	public function ss_dt_equipment()
+	{
+		$equipments = 	$this->admin_model->db_filtered_view("v_facility_equipment_details",0,null,array('facility_equipment_id'));	
+
+		$data = array();
+		$recordsTotal =0;
+
+		foreach ($equipments as $key => $value) {
+				
+				$facility_name = $value['facility_name'];
+				$equipment = $value['equipment'];
+				if($value['equipment']=="Alere PIMA"){
+				?>
+								
+								<?php 
+							}
+				
+				$serial_number = $value['serial_number'];
+				$date_added = $value['date_added'];
+				
+				$date_removed  = $value['date_removed'];
+		
+				$deactivation_reason = $value['deactivation_reason'];
+				$status = $value['facility_equipment_status'];
+				$status_id = $value['facility_equipment_status_id'];
+				$equipment_id = $value['facility_equipment_id'];
+				$category = $value["equipment_category"];
+				$facility = $value['facility_id'];
+
+				$color = "";
+				$class = "";
+
+					if($status_id==4){								
+						$color = "#2d6ca2";
+						$class = "glyphicon glyphicon-minus-sign";								
+					}elseif($status_id==1){							
+						$color = "#3e8f3e";
+						$class = "glyphicon glyphicon-ok-sign";								
+					}elseif($status_id==3){									
+						$color = "#c12e2a";
+						$class = "glyphicon glyphicon-remove-sign";							
+					}else{							
+						$color = "#eb9316";
+						$class = "glyphicon glyphicon-question-sign";														
+					}
+
+				$data[] = array(
+								($key+1)       ,
+								$facility_name ,
+								$facility_name ,
+								$serial_number,
+								Date("Y, M, d",strtotime($date_added)),
+								$date_removed,
+								$deactivation_reason,
+								"<center><a title ='$status' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment($equipment_id, $category, $equipment, $serial_number , $facility, $status_id)'><span style='font-size: 1.4em;color: $color' class='$class'></span>
+								</a>
+								</center>",
+								"<center><a title =' Edit Equipment ( $facility_name)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment($equipment_id, $category, $equipment, $serial_number, $facility, $status_id)'> <span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
+							);
+				
+				$recordsTotal++;
+		}
+
+		$json_req 	=	array(
+			"sEcho"						=> 1,
+			"iTotalRecords"				=>$recordsTotal,
+			"iTotalDisplayRecords"		=>$recordsTotal,
+			"aaData"					=>$data
+			);
+
+		echo json_encode($json_req);
 	}
 }
 /* End of file equipment.php */

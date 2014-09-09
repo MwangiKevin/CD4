@@ -1,7 +1,7 @@
 <div >
 	<div class="section-title" ><center><b><strong>Equipment Details</strong></b></center></div>
 	<div>
-		<table id="data-table">
+		<table id="equipment_table">
 			<thead>
 				<tr>
 					<th rowspan = "2">#</th>
@@ -18,72 +18,7 @@
 					<th>Edit Details</th>
 				</tr>
 			</thead>
-			<tbody>
-				<?php
-				$i=1;
-				foreach ($equipments as $equipment) {
-					?>
-					<tr id="tr_<?php echo $equipment["facility_equipment_id"]; ?>">
-						<td><?php echo $i;?></td>
-						<td><?php echo $equipment['facility_name'];?></td>
-						<td>
-							<?php
-							if($equipment['equipment']=="Alere PIMA"){
-								?>
-								<a title =" view Equipment (<?php echo $equipment['facility_name'];?>'s')  PIMA Details" href="javascript:void(null);" style="border-radius:1px; " class="" onclick="edit_facility(<?php echo $equipment['facility_id'];?>)"> 
-									<span style="" class="glyphicon glyphicon-list-alt">
-									</span>
-									<?php echo $equipment['equipment'];?>
-								</a>
-								<?php 
-							}
-							?>
-						</td>					
-						<td><?php echo $equipment['serial_number'];?></td>
-						<td><?php echo Date("Y, M, d",strtotime($equipment['date_added'])) ;?></td>
-						<td><?php if($equipment['date_removed']!=""){echo Date("Y, M, d",strtotime($equipment['date_removed']));}?></td>
-						<td><?php echo $equipment['deactivation_reason'];?></td>
-						
-						<?php 
-						$color = "";
-						$class = "";
-
-						if($equipment['facility_equipment_status_id']==4){								
-							$color = "#2d6ca2";
-							$class = "glyphicon glyphicon-minus-sign";								
-						}elseif($equipment['facility_equipment_status_id']==1){							
-							$color = "#3e8f3e";
-							$class = "glyphicon glyphicon-ok-sign";								
-						}elseif($equipment['facility_equipment_status_id']==3){									
-							$color = "#c12e2a";
-							$class = "glyphicon glyphicon-remove-sign";							
-						}else{							
-							$color = "#eb9316";
-							$class = "glyphicon glyphicon-question-sign";														
-						}
-						?>
-
-						<td>
-							<center>
-								<a title ="<?php echo $equipment["facility_equipment_status"];?>" href="javascript:void(null);" style="border-radius:1px;" class="" onclick='edit_equipment(<?php echo $equipment["facility_equipment_id"]; ?>,"<?php echo $equipment["equipment_category"]; ?>","<?php echo $equipment["equipment"]; ?>","<?php echo $equipment["serial_number"]; ?>",<?php echo $equipment["facility_id"]; ?>,<?php echo $equipment["facility_equipment_status_id"];?>)' >
-									<span style="font-size: 1.4em;color: <?php echo $color;?>;" class="<?php echo $class;?>"></span>
-								</a>
-							</center>
-						</td>
-
-						<td>
-							<center>
-								<a title =" Edit Equipment (<?php echo $equipment['facility_name'];?>)" href="javascript:void(null);" style="border-radius:1px;" class="" onclick='edit_equipment(<?php echo $equipment["facility_equipment_id"]; ?>,"<?php echo $equipment["equipment_category"]; ?>","<?php echo $equipment["equipment"]; ?>","<?php echo $equipment["serial_number"]; ?>",<?php echo $equipment["facility_id"]; ?>,<?php echo $equipment["facility_equipment_status_id"];?>)'> 
-									<span style="font-size: 1.3em;color:#2aabd2;" class="glyphicon glyphicon-pencil"></span>
-								</a>
-							</center>
-						</td>
-					</tr>
-					<?php
-					$i++;
-				}
-				?>
-			</tbody>
+			
 		</table>
 	</div>
 </div>

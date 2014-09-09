@@ -535,6 +535,7 @@ $sql["v_pima_uploads_details"] = 						"SELECT
 															`facility_equipment`.`serial_number` AS `equipment_serial_number`,
 															`tst`.`result_date`,
 															`tst`.`valid`,
+															`tst`.`timestamp` AS `test_timestamp`,
 															`pim_tst`.`device_test_id`,
 															`pim_tst`.`pima_upload_id`,
 															`pim_tst`.`assay_id`,															
