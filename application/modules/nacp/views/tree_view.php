@@ -1,8 +1,8 @@
 <div class = "row">
-    <div class="col-md-12" id ="desc">Hello</div>
-    <div class="col-md-3 tree well " style="overflow-y: auto; height: 300px !important;" id="tree">
+    <div class="col-md-12" id ="desc"></div>
+    <div class="col-md-3 tree-outer well " style="overflow-y: auto; height: 340px !important;" id="tree">
     </div>
-    <div class="col-md-9" style="overflow-y: auto; height: 300px !important;">
+    <div class="col-md-9" style="overflow-y: auto; height: 340px !important;">
     </div>
 </div>
 

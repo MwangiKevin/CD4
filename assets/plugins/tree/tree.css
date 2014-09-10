@@ -1,4 +1,5 @@
-.tree {
+
+.tree-outer{
     min-height:20px;
     padding:19px;
     margin-bottom:20px;
@@ -11,9 +12,11 @@
     -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05)
 }
+.tree {
+}
 .tree li {
     list-style-type:none;
-    margin:0;
+    margin:0;    
     padding:10px 5px 0 5px;
     position:relative
 }
@@ -37,12 +40,12 @@
     width:25px
 }
 .tree li span {
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
+    -moz-border-radius:50px;
+    -webkit-border-radius:50px;
     border:1px solid #999;
-    border-radius:5px;
+    border-radius:50px;
     display:inline-block;
-    padding:3px 8px;
+    padding:3px 3px 3px 3px;
     text-decoration:none
 }
 .tree li.parent_li>span {

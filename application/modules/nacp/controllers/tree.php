@@ -41,14 +41,16 @@ class tree extends MY_Controller {
 			$str.="	<li style=''>
                 		<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
                 		<a href='#' onclick='reload(9,".$r_value["region_id"].")'>".$r_value["region_name"]."</a>
+                		<a href='#''> <span class='badge pull-right' style='background-color: #428bca;'>R</span></a>
                 		<ul>
                     ";
 
 			$districts_schema  = $this->get_districts_schema($r_value["region_id"]);	
 			foreach ($districts_schema as $d_key => $d_value) {
 				$str.="	<li style='display:none'>
-	                		<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
+	                		<span class='active badge badge-success' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
 	                		<a href='#' onclick='reload(8,".$d_value["district_id"].")'>".$d_value["district_name"]."</a>
+                			<a href='#''> <span class='badge pull-right' style='background-color: #5cb85c;'>D</span></a>
 	                		<ul>
 	                    ";
 
@@ -56,8 +58,9 @@ class tree extends MY_Controller {
 	            foreach ($facilities_schema as $f_key => $f_value) {
 
 					$str.="	<li style='display:none'>
-		                		<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
+		                		<span class='badge badge-success ' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
 		                		<a href='#' onclick='reload(6,".$f_value["facility_id"].")'>".$f_value["facility_name"]."</a>
+                				<a href='#''> <span class='badge pull-right' style='background-color: #5bc0de;'>F</span></a>
 		                	</li>
 		                    ";
 	            }
@@ -73,7 +76,7 @@ class tree extends MY_Controller {
 		echo $str = "<div class='tree'>
     				<ul>
         				<li>
-        				<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
+        				<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-minus-sign'></i> </span>
 		                <a href='#' onclick='reload(0,0)'>National</a>	
 		                	<ul>	
 		                		$str
