@@ -40,7 +40,7 @@ class tree extends MY_Controller {
 		foreach ($regions_schema as $r_key => $r_value) {
 			$str.="	<li style=''>
                 		<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
-                		<a href='#' onclick='reload(9,".$r_value["region_id"].")'>".$r_value["region_name"]."</a>
+                		<a href='#' onclick='load_tree_data(9,".$r_value["region_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."\")'>".$r_value["region_name"]."</a>
                 		<a href='#''> <span class='badge pull-right' style='background-color: #428bca;'>R</span></a>
                 		<ul>
                     ";
@@ -49,7 +49,7 @@ class tree extends MY_Controller {
 			foreach ($districts_schema as $d_key => $d_value) {
 				$str.="	<li style='display:none'>
 	                		<span class='active badge badge-success' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
-	                		<a href='#' onclick='reload(8,".$d_value["district_id"].")'>".$d_value["district_name"]."</a>
+	                		<a href='#' onclick='load_tree_data(8,".$d_value["district_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."\")'>".$d_value["district_name"]."</a>
                 			<a href='#''> <span class='badge pull-right' style='background-color: #5cb85c;'>D</span></a>
 	                		<ul>
 	                    ";
@@ -59,7 +59,7 @@ class tree extends MY_Controller {
 
 					$str.="	<li style='display:none'>
 		                		<span class='badge badge-success ' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
-		                		<a href='#' onclick='reload(6,".$f_value["facility_id"].")'>".$f_value["facility_name"]."</a>
+		                		<a href='#' onclick='load_tree_data(6,".$f_value["facility_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."\")'>".$f_value["facility_name"]."</a>
                 				<a href='#''> <span class='badge pull-right' style='background-color: #5bc0de;'>F</span></a>
 		                	</li>
 		                    ";
@@ -77,7 +77,7 @@ class tree extends MY_Controller {
     				<ul>
         				<li>
         				<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-minus-sign'></i> </span>
-		                <a href='#' onclick='reload(0,0)'>National</a>	
+		                <a href='#' onclick='load_tree_data(0,0,\"National\")'>National</a>	
 		                	<ul>	
 		                		$str
 		                	</ul>
