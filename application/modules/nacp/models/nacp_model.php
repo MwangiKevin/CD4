@@ -17,7 +17,7 @@ class nacp_model extends MY_Model{
 								'name'			=>	'Regional Drilldown',
 
 								'other'			=>	"",
-								'url'			=>	base_url()."nacp/drilldown",
+								'url'			=>	base_url()."nacp/tree",
 
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
