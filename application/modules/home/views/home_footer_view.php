@@ -29,7 +29,7 @@ function draw_charts(user_group_id,user_filter_used){
         $("#equipment-test-table").load("<?php echo base_url()."charts/equipment/equipment_tests_table/"; ?>"+user_group_id+"/"+user_filter_used );  
         $("#equipmenttestscolumn").load("<?php echo base_url('charts/equipment/equipment_tests_column'); ?>/"+user_group_id+"/"+user_filter_used ); 
         $("#testspie").load("<?php echo base_url('charts/tests/tests_pie'); ?>/"+user_group_id+"/"+user_filter_used ); 
-		    $("#tests-table").load("<?php echo base_url()."charts/tests/tests_table/"; ?>"+user_group_id+"/"+user_filter_used ); 
+		$("#tests-table").load("<?php echo base_url()."charts/tests/tests_table/"; ?>"+user_group_id+"/"+user_filter_used ); 
         $("#cd4testtrends").load("<?php echo base_url('charts/tests/tests_line_trend'); ?>/"+user_group_id+"/"+user_filter_used ); 
         $("#expected_reporting_devices").load("<?php echo base_url('charts/pima/expected_reporting_devices'); ?>/"+user_group_id+"/"+user_filter_used ); 
 

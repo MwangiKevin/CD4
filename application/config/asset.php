@@ -117,6 +117,7 @@ $config['plugin_js_files']	=	array(
 									array('title'	=> 'highcharts'			,	'file'	=>	'Highcharts/js/modules/no-data-to-display.js'),
 									array('title'	=> 'highchart-canvas'			,	'file'	=>	'Highcharts/js/modules/canvas-tools.js'),
 									array('title'	=> 'highcharts_drilldown'			,	'file'	=>	'Highcharts/js/modules/drilldown.js'),
+									array('title'	=> 'tree'				,	'file'	=>	'tree/tree.js'),
 									array('title'	=> 'ajax_file_uploader'	,	'file'	=>	'ajax_file_uploader/ajaxfileupload.js')
 									
 								);	
@@ -137,7 +138,8 @@ $config['plugin_css_files']	=	array(
 									array('title' 	=> 	'dataTables'		,			'file'	=>	'DataTables/media/css/jquery.dataTables_themeroller.css'),
 									array('title'	=> 	'jqueryui'			,			'file'	=>	'jquery_ui/css/smoothness/jquery-ui-1.10.3.custom.css'),
 									array('title'	=> 	'bootstrap-datepicker'		,	'file'	=>	'bootstrapDatepicker/css/datepicker.css'),
-									array('title'	=> 	'datepicker'		,			'file'	=>	'datepicker/css/datepicker.css')
+									array('title'	=> 	'datepicker'		,			'file'	=>	'datepicker/css/datepicker.css'),
+									array('title'	=> 	'tree'				,			'file'	=>	'tree/tree.css')
 								);
 $config['plugin_php_files']	=	array(
 									array('title'	=> 	'phpexcel'		,			'file'	=>	'PHPExcel/PHPExcel.php'),
