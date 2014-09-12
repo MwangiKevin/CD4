@@ -88,7 +88,7 @@ class tree extends MY_Controller {
 
 	}
 	private function get_regions_schema(){
-		return $schema = R::getAll("SELECT * FROM `v_regions` ORDER BY `region_name` ASC");
+		return $schema = R::getAll("SELECT * FROM `v_regions` GROUP BY `region_id` ORDER BY `region_name` ASC ");
 	}
 	private function get_districts_schema($reg){
 		return $schema = R::getAll("SELECT * FROM `v_district_details` WHERE `region_id`='$reg' ORDER BY `district_name` ASC");
