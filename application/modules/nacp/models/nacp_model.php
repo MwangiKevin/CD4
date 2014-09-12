@@ -17,20 +17,20 @@ class nacp_model extends MY_Model{
 								'name'			=>	'Regional Drilldown',
 
 								'other'			=>	"",
-								'url'			=>	base_url()."nacp/drilldown",
+								'url'			=>	base_url()."nacp/tree",
 
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
 								),
-						array(	'num'			=>	3,
-								'name'			=>	'Reporting Cycle',
+						// array(	'num'			=>	3,
+						// 		'name'			=>	'Reporting Cycle',
 
-								'url'			=>	base_url()."nacp/reporting_cycle",
+						// 		'url'			=>	base_url()."nacp/reporting_cycle",
 
-								'other'			=>	"",
-					 			'selected'		=>	false,
-					 			'selectedString'=>	"",							
-								),
+						// 		'other'			=>	"",
+					 // 			'selected'		=>	false,
+					 // 			'selectedString'=>	"",							
+						// 		),
 						// array(	'num'			=>	4,
 						// 		'name'			=>	'CD4 Access',
 						// 		'url'			=>	base_url()."poc/access_mapping",
