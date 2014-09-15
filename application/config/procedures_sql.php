@@ -354,7 +354,7 @@ $db_procedures["get_tests_details"]  				=
 					END;
 				";
 
-				//tests_model
+//tests_model
 $db_procedures["tests_line_trend"]	=	
 					"CREATE PROCEDURE  tests_line_trend(user_group_id int(11),user_filter_used int(11), from_date date,to_date date) 
 						BEGIN	
@@ -390,7 +390,7 @@ $db_procedures["tests_line_trend"]	=
 									LEFT JOIN facility `f`
 										ON `c_t`.`facility_id` = `f`.`id`
 									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
-									AND `partner_id` = user_group_id 
+									AND `partner_id` = user_filter_used 
 									GROUP BY 	`yearmonth`
 									ORDER BY 	`result_date` DESC;
 								WHEN 6 THEN
@@ -406,7 +406,7 @@ $db_procedures["tests_line_trend"]	=
 										
 									FROM `cd4_test` `c_t`
 									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
-									AND `c_t`.`facility_id` = user_group_id 
+									AND `c_t`.`facility_id` = user_filter_used 
 									GROUP BY 	`yearmonth`
 									ORDER BY 	`result_date` DESC;
 								WHEN 8 THEN
@@ -444,7 +444,7 @@ $db_procedures["tests_line_trend"]	=
 										
 									FROM `cd4_test` `c_t`
 									LEFT JOIN facility `f`
-										ON `c_t`.`facility_id ` = `f`.`id`
+										ON `c_t`.`facility_id` = `f`.`id`
 									LEFT JOIN `district` `d`
 										ON `d`.`id` = `f`.`district_id`
 									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
