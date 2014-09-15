@@ -71,7 +71,7 @@ class tests_model extends MY_Model{
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
-		$sql = "CAL tests_table(".$from.",".$to.",".$user_group_id.",".$user_filter_used.")";
+		$sql = "CALL tests_table('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
 			
 		// $sql 	= 	"SELECT 
 // 							
