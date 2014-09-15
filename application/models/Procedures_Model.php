@@ -18,7 +18,7 @@ class Procedures_Model extends MY_Model{
 	
 	
 	//tests_model.php
-	public function tests_line_trend(){
+	public function tests_line_trend($user_group_id,$user_filter_id,$from,$to,){
 		return R::getAll("call tests_line_trend('$user_group_id', '$user_filter_id','$from','$to')");
 	}
 	
