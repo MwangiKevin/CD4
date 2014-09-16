@@ -357,6 +357,7 @@ $db_procedures["get_tests_details"]  				=
 //tests_model
 $db_procedures["tests_line_trend"]	=	
 					"CREATE PROCEDURE  tests_line_trend(user_group_id int(11),user_filter_used int(11), from_date date,to_date date) 
+					"CREATE PROCEDURE  tests_line_trend(user_group_id int(11),user_filter_used int(11), from_date varchar(50),to_date date varchar(50)) 
 						BEGIN	
 							CASE `user_filter_used`
 							WHEN 0 THEN
