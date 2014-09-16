@@ -354,9 +354,9 @@ $db_procedures["get_tests_details"]  				=
 					END;
 				";
 
-				//tests_model
+//tests_model
 $db_procedures["tests_line_trend"]	=	
-					"CREATE PROCEDURE  tests_line_trend(user_group_id int(11),user_filter_used int(11), from_date varchar(50),to_date varchar(50)) 
+					"CREATE PROCEDURE  tests_line_trend(user_group_id int(11),user_filter_used int(11), from_date date,to_date date) 
 						BEGIN	
 							CASE `user_filter_used`
 							WHEN 0 THEN
@@ -370,7 +370,7 @@ $db_procedures["tests_line_trend"]	=
 									SUM(CASE WHEN `c_t`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
 									SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
 								FROM `cd4_test` `c_t`
-								WHERE `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date' 
+								WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date 
 								GROUP BY 	`yearmonth`
 								ORDER BY 	`result_date` DESC;
 							ELSE
@@ -384,15 +384,29 @@ $db_procedures["tests_line_trend"]	=
 										SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
 										SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
 										SUM(CASE WHEN `c_t`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-										SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,
-										
-										`f`.`partner_id` AS `partner_id`	
+										SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
 										
 									FROM `cd4_test` `c_t`
 									LEFT JOIN facility `f`
 										ON `c_t`.`facility_id` = `f`.`id`
-									WHERE `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
-									AND `partner_id` = user_group_id 
+									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
+									AND `partner_id` = user_filter_used 
+									GROUP BY 	`yearmonth`
+									ORDER BY 	`result_date` DESC;
+								WHEN 6 THEN
+									SELECT
+										COUNT(*) AS `total`,
+										MONTH(`c_t`.`result_date`) AS `month`,
+										YEAR(`c_t`.`result_date`) AS `YEAR`,
+										CONCAT(YEAR(`c_t`.`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+										SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
+										SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
+										SUM(CASE WHEN `c_t`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
+										SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
+										
+									FROM `cd4_test` `c_t`
+									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
+									AND `c_t`.`facility_id` = user_filter_used 
 									GROUP BY 	`yearmonth`
 									ORDER BY 	`result_date` DESC;
 								WHEN 8 THEN
@@ -411,7 +425,7 @@ $db_procedures["tests_line_trend"]	=
 									FROM `cd4_test` `c_t`
 									LEFT JOIN facility `f`
 										ON `c_t`.`facility_id` = `f`.`id`
-									WHERE `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
 									AND `district_id` = user_filter_used
 									GROUP BY 	`yearmonth`
 									ORDER BY 	`result_date` DESC;
@@ -430,10 +444,10 @@ $db_procedures["tests_line_trend"]	=
 										
 									FROM `cd4_test` `c_t`
 									LEFT JOIN facility `f`
-										ON `c_t`.`facility_id ` = `f`.`id`
+										ON `c_t`.`facility_id` = `f`.`id`
 									LEFT JOIN `district` `d`
 										ON `d`.`id` = `f`.`district_id`
-									WHERE `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
 										AND `region_id` = user_filter_used
 									GROUP BY 	`yearmonth`
 									ORDER BY 	`result_date` DESC;
@@ -451,9 +465,7 @@ $db_procedures["sql_eq"]=
 		END;
 	";
 
-$db_procedures["equipment_tests_column"] =
-	"
-		CREATE PROCEDURE equipment_tests_column(user_group_id int(11),user_filter_used int(11), today varchar(50))
+$db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_column(user_group_id int(11),user_filter_used int(11), today varchar(50))
 		BEGIN
 			CASE `user_filter_used`
 			WHEN 0 THEN
@@ -523,9 +535,7 @@ $db_procedures["equipment_tests_column"] =
 				END CASE;
 			END;
 	";					
-$db_procedures["equipment_tests_pie"] =
-	"
-		CREATE PROCEDURE equipment_tests_pie(from_date varchar(50),to_date varchar(50),user_group_id int(11),user_filter_used int(11))
+$db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(from_date varchar(50),to_date varchar(50),user_group_id int(11),user_filter_used int(11))
 		BEGIN
 		CASE `user_filter_id`
 		WHEN 0 THEN
@@ -542,7 +552,8 @@ $db_procedures["equipment_tests_pie"] =
 				AND `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
             GROUP BY `equipment_name`
 			ORDER BY `equipment_name` ASC;
-			
+		
+		ELSE	
 			CASE `user_group_id`
 			WHEN 3 THEN
 			
@@ -613,7 +624,7 @@ $db_procedures["equipment_tests_pie"] =
 		END CASE;
 		END;
 	";
-// 	
+	
 $db_procedures["equipment_pie"]=
 	"
 		CREATE PROCEDURE equipment_pie(user_group_id int(11), user_filter_used int(11))
@@ -672,9 +683,8 @@ $db_procedures["equipment_pie"]=
 		END; 
 	";	
 	
-$db_procedures["tests_table"] = 	
-	"
-		CREATE PROCEDURE tests_table(from_date varchar(50),to_date varchar(50),user_group_id int(11),user_filter_used int(11))
+	
+$db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
 		BEGIN
 		CASE `user_filter_used`
 		WHEN 0 THEN
@@ -687,8 +697,8 @@ $db_procedures["tests_table"] =
 				SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
 			FROM `cd4_test` `c_t`
 
-			WHERE `result_date` BETWEEN 'from_date' AND 'to_date';
-						
+			WHERE `result_date` BETWEEN from_date AND to_date;
+		ELSE				
 			CASE `user_group_id`
 			WHEN 3 THEN
 				SELECT 
@@ -696,13 +706,24 @@ $db_procedures["tests_table"] =
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND`c_t`.`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
 					SUM(CASE WHEN `c_t`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-					SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,
-					`f`.`partner_id` AS `partner_id`	
+					SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN 'from_date' AND 'to_date'
+				WHERE `result_date` BETWEEN from_date AND to_date
 				AND `partner_id` = user_filter_used;
+			WHEN 6 THEN
+				SELECT 
+					COUNT(*) AS `total`,
+					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
+					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND`c_t`.`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
+					SUM(CASE WHEN `c_t`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
+					SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
+				FROM `cd4_test` `c_t`
+				LEFT JOIN facility `f`
+					ON `c_t`.`facility_id` = `f`.`id`
+				WHERE `result_date` BETWEEN from_date AND to_date
+				AND `c_t`.`facility_id` = user_filter_used;
 			WHEN 9 THEN
 				SELECT 
 					COUNT(*) AS `total`,
@@ -716,7 +737,7 @@ $db_procedures["tests_table"] =
 					ON `c_t`.`facility_id` = `f`.`id`
 				LEFT JOIN `district` `d`
 					ON `d`.`id` = `f`.`district_id`
-				WHERE `result_date` BETWEEN 'from_date' AND 'to_date'
+				WHERE `result_date` BETWEEN from_date AND to_date
 				AND `region_id` = user_filter_used;
 			WHEN 8 THEN
 				SELECT 
@@ -729,11 +750,11 @@ $db_procedures["tests_table"] =
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN 'from_date' AND 'to_date'
+				WHERE `result_date` BETWEEN from_date AND to_date
 				AND `district_id` = user_filter_used;
 			END CASE;
 		END CASE;
-		END;
+	END;
 	";
 	
 	
