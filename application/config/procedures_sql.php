@@ -636,7 +636,8 @@ $db_procedures["equipment_pie"]=
 				ON `f_eq`.`equipment_id` =  `eq`.`id`
 			GROUP BY `facility_equipment_id`) `eq_s`
 			WHERE `equipment_category_id`	=	'1'
-	 		GROUP BY `equipment`  ORDER BY `count` desc;
+	 		GROUP BY `equipment`  
+	 		ORDER BY `count` desc;
 	 	
 			CASE `user_group_id`
 			WHEN 3 THEN
@@ -662,7 +663,8 @@ $db_procedures["equipment_pie"]=
 					 
 						ON `f_eq`.`facility_id` = 					
 				WHERE `equipment_category_id`	=	'1'
-		 		GROUP BY `equipment`  ORDER BY `count` desc;
+		 		GROUP BY `equipment`  
+		 		ORDER BY `count` desc;
 			
 			WHEN 9 THEN
 			WHEN 8 THEN

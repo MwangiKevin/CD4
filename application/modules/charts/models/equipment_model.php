@@ -14,13 +14,13 @@ class equipment_model extends MY_Model{
 		$sql = "CALL eqipment_pie(".$user_group_id.",".$user_filter_used.")";
 		//$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
 
-		$sql 	=	"SELECT 
-							`equipment`,
-							COUNT(*) AS `all`,
-							SUM(CASE WHEN (`eq`.`facility_equipment_status_id`<> '4' )    THEN 1 ELSE 0 END) AS `count`
-						FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `eq`
-						WHERE `equipment_category_id`	=	'1' 
-					";
+		// $sql 	=	"SELECT 
+							// `equipment`,
+							// COUNT(*) AS `all`,
+							// SUM(CASE WHEN (`eq`.`facility_equipment_status_id`<> '4' )    THEN 1 ELSE 0 END) AS `count`
+						// FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `eq`
+						// WHERE `equipment_category_id`	=	'1' 
+					// ";
 
 		$sql.=$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
