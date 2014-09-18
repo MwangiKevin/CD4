@@ -16,9 +16,8 @@ class Procedures_Model extends MY_Model{
 		return R::getAll("call get_district_details()");
 	}
 	
-	
 	//tests_model.php
-	public function tests_line_trend($user_group_id,$user_filter_id,$from,$to,){
+	public function tests_line_trend($user_group_id,$user_filter_id,$from,$to){
 		return R::getAll("call tests_line_trend('$user_group_id', '$user_filter_id','$from','$to')");
 	}
 	

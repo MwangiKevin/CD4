@@ -3,7 +3,8 @@ class tests_model extends MY_Model{
 	public function tests_pie($from,$to,$user_group_id,$user_filter_used){
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
-
+		//$sql = "CALL tests_pie('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+		
 		$sql 	= 	"SELECT 
 							COUNT(*) AS `total`,
 							SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
