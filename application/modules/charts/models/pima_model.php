@@ -7,25 +7,25 @@ class pima_model extends MY_Model{
 		$beg_year = $this->config->item("starting_year");
 		$beg_date = "$beg_year-1-1";
 
-		//$sql_expected = "CALL expected_reporting_devices_pie_expected(".$user_group_id.", ".$user_filter_used.",'".$to."','".$beg_date."' )";
-		$sql_expected = "SELECT 
-								COUNT(DISTINCT `facility_equipment_id`) AS `expected`
-							FROM `v_facility_equipment_details`
-							WHERE 1 
-							AND `date_added` BETWEEN '$beg_date' AND '$to' 
-							AND ((`date_removed` IS NULL) OR (`date_removed` IS NOT NULL AND `date_removed` > '$to') ) 
-							$user_delimiter 
-						";
+		$sql_expected = "CALL expected_reporting_devices_pie_expected(".$user_group_id.", ".$user_filter_used.",'".$beg_date."','".$to."' )";
+		// $sql_expected = "SELECT 
+								// COUNT(DISTINCT `facility_equipment_id`) AS `expected`
+							// FROM `v_facility_equipment_details`
+							// WHERE 1 
+							// AND `date_added` BETWEEN '$beg_date' AND '$to' 
+							// AND ((`date_removed` IS NULL) OR (`date_removed` IS NOT NULL AND `date_removed` > '$to') ) 
+							// $user_delimiter 
+						// ";
 
-		//$sql_reported = "CALL expected_reporting_devices_pie_reported('".$from."','".$to."')";
+		$sql_reported = "CALL expected_reporting_devices_pie_reported(".$user_group_id.", ".$user_filter_used.",'".$from."','".$to."')";
 		
-		$sql_reported = "SELECT 
-								COUNT(DISTINCT `facility_equipment_id`) AS `reported`
-							FROM `v_tests_details`
-							WHERE 1
-							AND `result_date` BETWEEN '$from' AND '$to' 
-							$user_delimiter 
-						";
+		// $sql_reported = "SELECT 
+								// COUNT(DISTINCT `facility_equipment_id`) AS `reported`
+							// FROM `v_tests_details`
+							// WHERE 1
+							// AND `result_date` BETWEEN '$from' AND '$to' 
+							// $user_delimiter 
+						// ";
 		$expected_res  	= R::getAll($sql_expected);			
 		$reported_res  	= R::getAll($sql_reported);	
 
@@ -96,20 +96,20 @@ class pima_model extends MY_Model{
 	public function errors_pie($user_group_id,$user_filter_used,$from,$to){
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
-		//$sql = "CALL errors_pie(".$user_group_id.", ".$user_filter_used.",'".$from."','".$to."' )";
-		$sql 	=	 	"SELECT 
-								COUNT(`error_id`) AS `num`,
-								`error_code`,
-								`error_detail`,
-								`error_type_description`
-							FROM `v_pima_error_details`
-
-							WHERE 1
-							AND `result_date` BETWEEN '$from' AND '$to' 
-							$user_delimiter 
-
-							GROUP BY `error_id`
-						";
+		$sql = "CALL errors_pie(".$user_group_id.", ".$user_filter_used.",'".$from."','".$to."' )";
+		// echo $sql 	=	 	"SELECT 
+								// COUNT(`error_id`) AS `num`,
+								// `error_code`,
+								// `error_detail`,
+								// `error_type_description`
+							// FROM `v_pima_error_details`
+// 
+							// WHERE 1
+							// AND `result_date` BETWEEN '$from' AND '$to' 
+							// $user_delimiter 
+// 
+							// GROUP BY `error_id`
+						// ";
 		$res  = R::getAll($sql);
 
 		$data = array();
