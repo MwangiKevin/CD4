@@ -17,9 +17,10 @@ class run_procedures extends MY_Controller {
 		$procedures_sql = $this->config->item("procedures_sql");
 		foreach ($procedures_sql as $key => $sql) {
 			$this->db->query($sql);
+			echo "Created procedure $key <br/>";
 		}
 				
-		echo "Procedures Updated";
+		echo "<br/>ALL Procedures Updated";
      }
 
 }
