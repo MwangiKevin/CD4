@@ -6,6 +6,7 @@
         </div>
     </div>
     <div class="col-md-3 well " style="overflow-y: auto; height: 560px !important;" id="tree">
+                    <div class="loader" style"">Loading...</div>  
     </div>
     <div class="col-md-9" style="overflow-y: auto; height: 560px !important;">
         <div class="row">
