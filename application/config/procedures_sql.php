@@ -2441,7 +2441,7 @@ $db_procedures["get_error_details"] = "CREATE PROCEDURE get_error_details(from_d
 								LEFT JOIN `equipment` `e`
 								ON `f_e`.`equipment_id`=`e`.`id`
 
-					WHERE `r`.`partner_id` = `user_filter_used`
+					WHERE `r`.`id` = `user_filter_used`
 					AND `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 
 					GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
