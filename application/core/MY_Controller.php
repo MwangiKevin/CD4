@@ -568,7 +568,9 @@ class MY_Controller extends MX_Controller{
 
 		foreach ($procedures_sql as $key => $sql) {
 			$this->db->query($sql);
+			echo "Created procedure $key <br/>";
 		}
+		echo "<br/>ALL Procedures Updated";
      }
 
     //this function sets the default user filter as the first locale of intrest by the user logged in

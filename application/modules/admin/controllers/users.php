@@ -3,9 +3,9 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class users extends MY_Controller {
 
-	function __construct() {
+
+	function __construct(){
 		parent::__construct();
-		
 		$this->load->model('admin_model');
 	}
 
@@ -22,8 +22,6 @@ class users extends MY_Controller {
 		$data['filter']	=	false;
 		$data	=array_merge($data,$this->load_libraries(array('dataTables','admin_users')));
 		
-		$this->load->model('admin_model');
-
 		$data['menus']	= 	$this->admin_model->menus(4);		
 		//$data['users'] = 	$this->admin_model->db_filtered_view("v_non_system_user_details",0);		
 		$data['user_groups'] = 	$this->admin_model->user_groups();

@@ -8,7 +8,7 @@
 
   });
 function secondCriteria(sel){
-  if(sel.value==1){
+  if(sel.value==0){
       draw_charts();
     }
  	$.ajax({
@@ -30,44 +30,24 @@ function draw_charts(){
     $("#error_table").html('<div class="loader" style"">Loading...</div>'); 
     $("#errors_column").html('<div class="loader" style"">Loading...</div>'); 
 
-    var criteria1= $("#criteria1").val();
-    var criteria2= $("#criteria2").val();   
-    
-    $.ajax({
-          type:"POST",
-          async:true,
-          data:"criteria1="+criteria1+"&criteria2="+criteria2,
-            url:"<?php echo base_url()."charts/pima_errors/monthly_error_trend"; ?>",  
-            success:function(data) {
-                  $("#monthly_error_trend").html(data);  
-              }
-      });
-    $.ajax({
-          type:"POST",
-          async:true,
-          data:"criteria1="+criteria1+"&criteria2="+criteria2,
-            url:"<?php echo base_url()."charts/pima_errors/error_type_pie"; ?>",  
-            success:function(data) {
-                  $("#error_type_pie").html(data); 
-              }
-      });
 
-    $.ajax({
-          type:"POST",
-          async:true,
-            url:"<?php echo base_url()."charts/pima_errors/error_table/";?>"+criteria1+"/"+criteria2,  
-            success:function(data) {
-                  $("#error_table").html(data);     
-              }
-      });
-    $.ajax({
-          type:"POST",
-          async:true,
-            url:"<?php echo base_url()."charts/pima_errors/errors_column/";?>"+criteria1+"/"+criteria2,  
-            success:function(data) {
-                  $("#errors_column").html(data);
-              }
-      });
+      var criteria1= 0;
+      var criteria2= 0;  
+
+
+    if($("#criteria1").val()==0){
+
+    }else{
+      criteria1= $("#criteria1").val();
+      criteria2= $("#criteria2").val();  
+    } 
+   
+
+    $("#monthly_error_trend").load("<?php echo base_url('charts/pima_errors/monthly_error_trend'); ?>/"+criteria1+"/"+criteria2); 
+    $("#error_type_pie").load("<?php echo base_url('charts/pima_errors/error_type_pie'); ?>/"+criteria1+"/"+criteria2); 
+    $("#error_table").load("<?php echo base_url('charts/pima_errors/error_table'); ?>/"+criteria1+"/"+criteria2); 
+    $("#errors_column").load("<?php echo base_url('charts/pima_errors/errors_column'); ?>/"+criteria1+"/"+criteria2); 
+
 
 
 }
