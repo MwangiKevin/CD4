@@ -13,27 +13,29 @@
  */
 
 
-$db_procedures["drop_get_facility_details"]  			=	"DROP PROCEDURE IF EXISTS `get_facility_details`; ";
-$db_procedures["drop_get_expected_reporting_devices"]  	=	"DROP PROCEDURE IF EXISTS `get_expected_reporting_devices`; ";
-$db_procedures["drop_get_region_details"]  				=	"DROP PROCEDURE IF EXISTS `get_region_details`; ";
-$db_procedures["drop_get_district_details"]  			=	"DROP PROCEDURE IF EXISTS `get_district_details`; ";
-$db_procedures["drop_get_tests_details"]  				=	"DROP PROCEDURE IF EXISTS `get_tests_details`; ";
-$db_procedures["drop_tests_line_trend"] 				=   "DROP PROCEDURE IF EXISTS `tests_line_trend` ";
-$db_procedures["drop_equipment_tests_column"]			=	"DROP PROCEDURE IF EXISTS `equipment_tests_column`";
-$db_procedures["drop_sql_eq"]							= 	"DROP PROCEDURE IF EXISTS `sql_eq`";
-$db_procedures["drop_equipment_tests_pie"]				= 	"DROP PROCEDURE IF EXISTS `equipment_tests_pie`";
-$db_procedures["drop_equipment_pie"]					= 	"DROP PROCEDURE IF EXISTS `equipment_pie`";
-$db_procedures["drop_tests_table"] 						=	"DROP PROCEDURE IF EXISTS `tests_table`";
-$db_procedures["drop_tests_pie"]						=	"DROP PROCEDURE IF EXISTS `tests_pie`"; 
-$db_procedures["drop_error_yearly_trends"]				=	"DROP PROCEDURE IF EXISTS `error_yearly_trends`";
-$db_procedures["drop_error_types_col_sql_pl"]			=	"DROP PROCEDURE IF EXISTS `error_types_col_sql_pl`";
-$db_procedures["drop_error_types_col_sql"]				=	"DROP PROCEDURE IF EXISTS `error_types_col_sql`";	
+$db_procedures["drop_get_facility_details"]  					=	"DROP PROCEDURE IF EXISTS `get_facility_details`; ";
+$db_procedures["drop_get_expected_reporting_devices"]  			=	"DROP PROCEDURE IF EXISTS `get_expected_reporting_devices`; ";
+$db_procedures["drop_get_region_details"]  						=	"DROP PROCEDURE IF EXISTS `get_region_details`; ";
+$db_procedures["drop_get_district_details"]  					=	"DROP PROCEDURE IF EXISTS `get_district_details`; ";
+$db_procedures["drop_get_tests_details"]  						=	"DROP PROCEDURE IF EXISTS `get_tests_details`; ";
+$db_procedures["drop_tests_line_trend"] 						=   "DROP PROCEDURE IF EXISTS `tests_line_trend` ";
+$db_procedures["drop_equipment_tests_column"]					=	"DROP PROCEDURE IF EXISTS `equipment_tests_column`";
+$db_procedures["drop_sql_eq"]									= 	"DROP PROCEDURE IF EXISTS `sql_eq`";
+$db_procedures["drop_equipment_tests_pie"]						= 	"DROP PROCEDURE IF EXISTS `equipment_tests_pie`";
+$db_procedures["drop_equipment_pie"]							= 	"DROP PROCEDURE IF EXISTS `equipment_pie`";
+$db_procedures["drop_tests_table"] 								=	"DROP PROCEDURE IF EXISTS `tests_table`";
+$db_procedures["drop_tests_pie"]								=	"DROP PROCEDURE IF EXISTS `tests_pie`"; 
+$db_procedures["drop_error_yearly_trends"]						=	"DROP PROCEDURE IF EXISTS `error_yearly_trends`";
+$db_procedures["drop_error_types_col_sql_pl"]					=	"DROP PROCEDURE IF EXISTS `error_types_col_sql_pl`";
+$db_procedures["drop_error_types_col_sql"]						=	"DROP PROCEDURE IF EXISTS `error_types_col_sql`";	
 $db_procedures["drop_expected_reporting_devices_pie_expected"]	=	"DROP PROCEDURE IF EXISTS `expected_reporting_devices_pie_expected`";
 $db_procedures["drop_expected_reporting_devices_pie_reported"]	=	"DROP PROCEDURE IF EXISTS `expected_reporting_devices_pie_reported`";
 $db_procedures["drop_errors_pie"]								=	"DROP PROCEDURE IF EXISTS `errors_pie`";
 $db_procedures["drop_error_types_col_sql_errors"]				=	"DROP PROCEDURE IF EXISTS `error_types_col_sql_errors`";
 
-$db_procedures["drop_get_error_details"]  			=	"DROP PROCEDURE IF EXISTS `get_error_details`; ";
+$db_procedures["drop_get_error_details"]  						=	"DROP PROCEDURE IF EXISTS `get_error_details`; ";
+$db_procedures["drop_error_charts_data"]  						=	"DROP PROCEDURE IF EXISTS `error_charts_data`; ";
+$db_procedures["drop_error_aggr_tbl"]  							=	"DROP PROCEDURE IF EXISTS `error_aggr_tbl`; ";
 	
 
 $db_procedures["get_facility_details"]  		=	
@@ -2058,7 +2060,7 @@ $db_procedures["get_error_details"] = "CREATE PROCEDURE get_error_details(from_d
 						
 					GROUP BY `pima_test_id`
 					ORDER BY `pima_test_id` ASC;
-			WHEN 6 THEN
+			WHEN 8 THEN
 
 				SELECT 
 						`p_t`.`id` AS `pima_test_id`,
@@ -2116,7 +2118,7 @@ $db_procedures["get_error_details"] = "CREATE PROCEDURE get_error_details(from_d
 						
 					GROUP BY `pima_test_id`
 					ORDER BY `pima_test_id` ASC;
-			WHEN 6 THEN
+			WHEN 9 THEN
 
 				SELECT 
 						`p_t`.`id` AS `pima_test_id`,
@@ -2238,7 +2240,267 @@ $db_procedures["get_error_details"] = "CREATE PROCEDURE get_error_details(from_d
 	";
 
 
-	
+
+
+	$db_procedures["error_charts_data"] = "CREATE PROCEDURE error_charts_data(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
+	BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN		
+			SELECT 
+					CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+					MONTH(`result_date`) AS `month`,
+					YEAR(`result_date`) AS `year`,
+					`tst`.`valid`,
+					`p_e`.`error_code`,
+					`p_e`.`error_detail`,
+					`p_e`.`pima_error_type`,
+					`e_t`.`description` AS `error_type_description`,
+					COUNT(`p_e`.`error_code`) AS `error_count`,
+					COUNT(`tst`.`valid`)	AS `valid_count`
+
+				FROM `pima_test` `p_t`
+					LEFT JOIN  `pima_error` `p_e`
+					ON `p_t`.`error_id`=`p_e`.`id`
+						LEFT JOIN `pima_error_type` `e_t`
+						ON `p_e`.`pima_error_type`=`e_t`.`id`
+					LEFT JOIN `cd4_test` `tst`
+					ON `p_t`.`cd4_test_id`= `tst`.`id`
+						LEFT JOIN `facility` `f`
+						ON `tst`.`facility_id` =`f`.`id`
+							LEFT JOIN `partner` `p`
+							ON `f`.`partner_id` =`p`.`id`
+						LEFT JOIN `district` `d`
+						ON `f`.`district_id` = `d`.`id`
+							LEFT JOIN `region` `r`
+							ON `d`.`region_id` = `r`.`id`
+						LEFT JOIN `facility_equipment` `f_e`
+						ON `f`.`id` =`f_e`.`facility_id`
+							LEFT JOIN `equipment` `e`
+							ON `f_e`.`equipment_id`=`e`.`id`
+
+
+				GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
+				ORDER BY `result_date` ASC;
+		ELSE 
+			CASE `user_group_id`
+			WHEN 3 THEN
+
+				SELECT 
+						CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+						MONTH(`result_date`) AS `month`,
+						YEAR(`result_date`) AS `year`,
+						`tst`.`valid`,
+						`p_e`.`error_code`,
+						`p_e`.`error_detail`,
+						`p_e`.`pima_error_type`,
+						`e_t`.`description` AS `error_type_description`,
+						COUNT(`p_e`.`error_code`) AS `error_count`,
+						COUNT(`tst`.`valid`)	AS `valid_count`
+
+					FROM `pima_test` `p_t`
+						LEFT JOIN  `pima_error` `p_e`
+						ON `p_t`.`error_id`=`p_e`.`id`
+							LEFT JOIN `pima_error_type` `e_t`
+							ON `p_e`.`pima_error_type`=`e_t`.`id`
+						LEFT JOIN `cd4_test` `tst`
+						ON `p_t`.`cd4_test_id`= `tst`.`id`
+							LEFT JOIN `facility` `f`
+							ON `tst`.`facility_id` =`f`.`id`
+								LEFT JOIN `partner` `p`
+								ON `f`.`partner_id` =`p`.`id`
+							LEFT JOIN `district` `d`
+							ON `f`.`district_id` = `d`.`id`
+								LEFT JOIN `region` `r`
+								ON `d`.`region_id` = `r`.`id`
+							LEFT JOIN `facility_equipment` `f_e`
+							ON `f`.`id` =`f_e`.`facility_id`
+								LEFT JOIN `equipment` `e`
+								ON `f_e`.`equipment_id`=`e`.`id`
+
+					WHERE `f`.`partner_id` = `user_filter_used`
+
+					GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
+					ORDER BY `result_date` ASC;
+			WHEN 6 THEN
+
+				SELECT 
+						CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+						MONTH(`result_date`) AS `month`,
+						YEAR(`result_date`) AS `year`,
+						`tst`.`valid`,
+						`p_e`.`error_code`,
+						`p_e`.`error_detail`,
+						`p_e`.`pima_error_type`,
+						`e_t`.`description` AS `error_type_description`,
+						COUNT(`p_e`.`error_code`) AS `error_count`,
+						COUNT(`tst`.`valid`)	AS `valid_count`
+
+					FROM `pima_test` `p_t`
+						LEFT JOIN  `pima_error` `p_e`
+						ON `p_t`.`error_id`=`p_e`.`id`
+							LEFT JOIN `pima_error_type` `e_t`
+							ON `p_e`.`pima_error_type`=`e_t`.`id`
+						LEFT JOIN `cd4_test` `tst`
+						ON `p_t`.`cd4_test_id`= `tst`.`id`
+							LEFT JOIN `facility` `f`
+							ON `tst`.`facility_id` =`f`.`id`
+								LEFT JOIN `partner` `p`
+								ON `f`.`partner_id` =`p`.`id`
+							LEFT JOIN `district` `d`
+							ON `f`.`district_id` = `d`.`id`
+								LEFT JOIN `region` `r`
+								ON `d`.`region_id` = `r`.`id`
+							LEFT JOIN `facility_equipment` `f_e`
+							ON `f`.`id` =`f_e`.`facility_id`
+								LEFT JOIN `equipment` `e`
+								ON `f_e`.`equipment_id`=`e`.`id`
+
+					WHERE `f`.`id` = `user_filter_used`
+
+					GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
+					ORDER BY `result_date` ASC;
+			WHEN 8 THEN
+
+				SELECT 
+						CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+						MONTH(`result_date`) AS `month`,
+						YEAR(`result_date`) AS `year`,
+						`tst`.`valid`,
+						`p_e`.`error_code`,
+						`p_e`.`error_detail`,
+						`p_e`.`pima_error_type`,
+						`e_t`.`description` AS `error_type_description`,
+						COUNT(`p_e`.`error_code`) AS `error_count`,
+						COUNT(`tst`.`valid`)	AS `valid_count`
+
+					FROM `pima_test` `p_t`
+						LEFT JOIN  `pima_error` `p_e`
+						ON `p_t`.`error_id`=`p_e`.`id`
+							LEFT JOIN `pima_error_type` `e_t`
+							ON `p_e`.`pima_error_type`=`e_t`.`id`
+						LEFT JOIN `cd4_test` `tst`
+						ON `p_t`.`cd4_test_id`= `tst`.`id`
+							LEFT JOIN `facility` `f`
+							ON `tst`.`facility_id` =`f`.`id`
+								LEFT JOIN `partner` `p`
+								ON `f`.`partner_id` =`p`.`id`
+							LEFT JOIN `district` `d`
+							ON `f`.`district_id` = `d`.`id`
+								LEFT JOIN `region` `r`
+								ON `d`.`region_id` = `r`.`id`
+							LEFT JOIN `facility_equipment` `f_e`
+							ON `f`.`id` =`f_e`.`facility_id`
+								LEFT JOIN `equipment` `e`
+								ON `f_e`.`equipment_id`=`e`.`id`
+
+					WHERE `d`.`id` = `user_filter_used`
+
+					GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
+					ORDER BY `result_date` ASC;
+			WHEN 9 THEN
+
+				SELECT 
+						CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+						MONTH(`result_date`) AS `month`,
+						YEAR(`result_date`) AS `year`,
+						`tst`.`valid`,
+						`p_e`.`error_code`,
+						`p_e`.`error_detail`,
+						`p_e`.`pima_error_type`,
+						`e_t`.`description` AS `error_type_description`,
+						COUNT(`p_e`.`error_code`) AS `error_count`,
+						COUNT(`tst`.`valid`)	AS `valid_count`
+
+					FROM `pima_test` `p_t`
+						LEFT JOIN  `pima_error` `p_e`
+						ON `p_t`.`error_id`=`p_e`.`id`
+							LEFT JOIN `pima_error_type` `e_t`
+							ON `p_e`.`pima_error_type`=`e_t`.`id`
+						LEFT JOIN `cd4_test` `tst`
+						ON `p_t`.`cd4_test_id`= `tst`.`id`
+							LEFT JOIN `facility` `f`
+							ON `tst`.`facility_id` =`f`.`id`
+								LEFT JOIN `partner` `p`
+								ON `f`.`partner_id` =`p`.`id`
+							LEFT JOIN `district` `d`
+							ON `f`.`district_id` = `d`.`id`
+								LEFT JOIN `region` `r`
+								ON `d`.`region_id` = `r`.`id`
+							LEFT JOIN `facility_equipment` `f_e`
+							ON `f`.`id` =`f_e`.`facility_id`
+								LEFT JOIN `equipment` `e`
+								ON `f_e`.`equipment_id`=`e`.`id`
+
+					WHERE `r`.`partner_id` = `user_filter_used`
+
+					GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
+					ORDER BY `result_date` ASC;
+			WHEN 12 THEN
+
+				SELECT 
+						CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,
+						MONTH(`result_date`) AS `month`,
+						YEAR(`result_date`) AS `year`,
+						`tst`.`valid`,
+						`p_e`.`error_code`,
+						`p_e`.`error_detail`,
+						`p_e`.`pima_error_type`,
+						`e_t`.`description` AS `error_type_description`,
+						COUNT(`p_e`.`error_code`) AS `error_count`,
+						COUNT(`tst`.`valid`)	AS `valid_count`
+
+					FROM `pima_test` `p_t`
+						LEFT JOIN  `pima_error` `p_e`
+						ON `p_t`.`error_id`=`p_e`.`id`
+							LEFT JOIN `pima_error_type` `e_t`
+							ON `p_e`.`pima_error_type`=`e_t`.`id`
+						LEFT JOIN `cd4_test` `tst`
+						ON `p_t`.`cd4_test_id`= `tst`.`id`
+							LEFT JOIN `facility` `f`
+							ON `tst`.`facility_id` =`f`.`id`
+								LEFT JOIN `partner` `p`
+								ON `f`.`partner_id` =`p`.`id`
+							LEFT JOIN `district` `d`
+							ON `f`.`district_id` = `d`.`id`
+								LEFT JOIN `region` `r`
+								ON `d`.`region_id` = `r`.`id`
+							LEFT JOIN `facility_equipment` `f_e`
+							ON `f`.`id` =`f_e`.`facility_id`
+								LEFT JOIN `equipment` `e`
+								ON `f_e`.`equipment_id`=`e`.`id`
+
+					WHERE `f_e`.`id` = `user_filter_used`
+
+					GROUP BY `yearmonth`,`valid`,`pima_error_type`,`error_code`
+					ORDER BY `result_date` ASC;
+
+			END CASE;
+		END CASE;
+	END;
+					";
+	$db_procedures["error_aggr_tbl"] = "CREATE PROCEDURE error_aggr_tbl(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
+	BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN		
+			
+		ELSE 
+			CASE `user_group_id`
+
+			WHEN 3 THEN
+
+			WHEN 6 THEN
+
+			WHEN 8 THEN
+				
+			WHEN 9 THEN
+				
+			WHEN 12 THEN
+				
+
+			END CASE;
+		END CASE;
+	END;
+					";
 	
 
 $config["procedures_sql"] = $db_procedures;
