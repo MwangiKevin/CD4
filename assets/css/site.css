@@ -1162,10 +1162,10 @@ height:auto;
   80%,
   100% {
     box-shadow: 0 0 #D6D6D6;
-    height: 4em;
+    height: 2em;
   }
   40% {
-    box-shadow: 0 -2em #D0D0D0;
+    box-shadow: 0 -2em #D6D6D6;
     height: 5em;
   }
 }
@@ -1174,10 +1174,10 @@ height:auto;
   80%,
   100% {
     box-shadow: 0 0 #D6D6D6;
-    height: 4em;
+    height: 2em;
   }
   40% {
-    box-shadow: 0 -2em #D0D0D0;
+    box-shadow: 0 -2em #D6D6D6;
     height: 5em;
   }
 }
