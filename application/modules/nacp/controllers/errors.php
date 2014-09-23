@@ -22,7 +22,7 @@ class errors extends MY_Controller {
 		$data['title'] = "Errors";
 		//$data['sidebar']	= "poc/sidebar_view";
 		$data['filter']	=	true;
-		$data	=array_merge($data,$this->load_libraries(array('FusionCharts','poc_errors','jqueryui','highcharts','highcharts_drilldown')));
+		$data	=array_merge($data,$this->load_libraries(array('FusionCharts','jqueryui','highcharts','highcharts_drilldown')));
 		
 		$this->load->model('nacp_model');
 

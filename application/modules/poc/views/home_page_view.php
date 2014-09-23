@@ -21,7 +21,7 @@
 				<div class="panel panel-default" style="float:left;width:100%;box-shadow: 4px 4px 4px #888888;" >	
 					<div id = "testspie" style = "float:left;width:30%" >
 						<div class="loader" style"">Loading...</div>
-					</div>			
+					</div>	
 					<div id = "errors_reported_pie" style = "float:left;width:30%" >
 						<div class="loader" style"">Loading...</div>
 					</div>
