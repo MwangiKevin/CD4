@@ -32,6 +32,9 @@ $db_procedures["drop_expected_reporting_devices_pie_expected"]	=	"DROP PROCEDURE
 $db_procedures["drop_expected_reporting_devices_pie_reported"]	=	"DROP PROCEDURE IF EXISTS `expected_reporting_devices_pie_reported`";
 $db_procedures["drop_errors_pie"]								=	"DROP PROCEDURE IF EXISTS `errors_pie`";
 $db_procedures["drop_error_types_col_sql_errors"]				=	"DROP PROCEDURE IF EXISTS `error_types_col_sql_errors`";
+$db_procedures["drop_expected_reporting_dev_array_added"] 		=	"DROP PROCEDURE IF EXISTS `expected_reporting_dev_array_added`";
+$db_procedures["drop_expected_reporting_dev_array_removed"]		=	"DROP PROCEDURE IF EXISTS `expected_reporting_dev_array_removed`";
+$db_procedures["drop_reported_devices"]							=	"DROP PROCEDURE IF EXISTS `reported_devices`";
 
 $db_procedures["drop_get_error_details"]  						=	"DROP PROCEDURE IF EXISTS `get_error_details`; ";
 $db_procedures["drop_error_charts_data"]  						=	"DROP PROCEDURE IF EXISTS `error_charts_data`; ";
@@ -1862,11 +1865,539 @@ BEGIN
 END
 ";	
 	
+$db_procedures['expected_reporting_dev_array_added']=
+"
+CREATE PROCEDURE expected_reporting_dev_array_added(user_group_id int(11),user_filter_used int(11))
+BEGIN
+	CASE `user_filter_used`
+	WHEN 0 THEN
+		
+		SELECT
+			`t1`.`date_added` as `rank_date`,
+			`t1`.`yearmonth`,
+			`t1`.`month`, 
+			`t1`.`rolledout`, 
+			SUM(`t2`.`rolledout`) AS `cumulative`
+		FROM
+			(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             			`fac_eq`.`date_added`, 
+						MONTH(`fac_eq`.`date_added`) AS `month`,
+						COUNT(*) AS `rolledout` 
 
+			FROM `facility_equipment` `fac_eq`
+            LEFT JOIN `equipment` `eq`
+            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+			WHERE `fac_eq`.`date_added` <> '0000-00-00'
+			AND `eq`.`id` = '4' 
+			GROUP BY `yearmonth`) AS `t1` 
+		INNER JOIN 
+			(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             			`fac_eq`.`date_added`, 
+						MONTH(`fac_eq`.`date_added`) AS `month`,
+						COUNT(*) AS `rolledout` 			
+            FROM `facility_equipment` `fac_eq`
+            LEFT JOIN `equipment` `eq`
+		        ON `fac_eq`.`equipment_id`= `eq`.`id`
+			WHERE `fac_eq`.`date_added` <> '0000-00-00'
+			AND `eq`.`id` = '4' 
+			GROUP BY `yearmonth`) AS `t2` 
+		ON `t1`.`date_added` >= `t2`.`date_added` 
+		group by `t1`.`date_added`;
+		
+	ELSE
+		CASE `user_group_id`
+		WHEN 3 THEN
+		
+			SELECT
+				`t1`.`date_added` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`rolledout`, 
+				SUM(`t2`.`rolledout`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             		`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout` 
+
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+            		ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id`
+				WHERE `fac_eq`.`date_added` <> '0000-00-00'
+				AND `eq`.`id` = '4'
+				AND `fac`.`partner_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1`
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             			`fac_eq`.`date_added`, 
+						MONTH(`fac_eq`.`date_added`) AS `month`,
+						COUNT(*) AS `rolledout`
+ 			
+	            FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+			        ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+			        ON	`fac_eq`.`facility_id` = `fac`.`id`
+				WHERE `fac_eq`.`date_added` <> '0000-00-00'
+				AND `eq`.`id` = '4' 
+				AND `fac`.`partner_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t2` 
+			ON `t1`.`date_added` >= `t2`.`date_added` 
+			GROUP BY `t1`.`date_added`;
+		
+		WHEN 9 THEN
+		
+			SELECT
+				`t1`.`date_added` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`rolledout`, 
+				SUM(`t2`.`rolledout`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+					`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout` 
+
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+            		ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id`
+				LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+			WHERE `fac_eq`.`date_added` <> '0000-00-00'
+			AND `eq`.`id` = '4'
+			AND `dis`.`region_id` = `user_filter_used`
+			GROUP BY `yearmonth`) AS `t1`
+		INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             		`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout`
+ 			
+            FROM `facility_equipment` `fac_eq`
+            LEFT JOIN `equipment` `eq`
+		        ON `fac_eq`.`equipment_id`= `eq`.`id`
+			LEFT JOIN `equipment_category` `eq_cat`
+				ON `eq`.`category`= `eq_cat`.`id`
+			LEFT JOIN `facility` `fac`
+        		ON	`fac_eq`.`facility_id` = `fac`.`id`
+			LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+			WHERE `fac_eq`.`date_added` <> '0000-00-00'
+			AND `eq`.`id` = '4' 
+			AND `dis`.`region_id` = `user_filter_used`
+			GROUP BY `yearmonth`) AS `t2` 
+		ON `t1`.`date_added` >= `t2`.`date_added` 
+		GROUP BY `t1`.`date_added`;
+			
+		WHEN 8 THEN
+			SELECT
+				`t1`.`date_added` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`rolledout`, 
+				SUM(`t2`.`rolledout`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             		`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout` 
+
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+	            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+			        ON	`fac_eq`.`facility_id` = `fac`.`id`
+				LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+				WHERE `fac_eq`.`date_added` <> '0000-00-00'
+				AND `eq`.`id` = '4'
+				AND `fac`.`district_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1` 
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             		`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout`
+ 			
+	            FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+			        ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+			        ON	`fac_eq`.`facility_id` = `fac`.`id`
+
+				WHERE `fac_eq`.`date_added` <> '0000-00-00'
+				AND `eq`.`id` = '4' 
+				AND `fac`.`district_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t2` 
+			ON `t1`.`date_added` >= `t2`.`date_added` 
+			group by `t1`.`date_added`;
+			
+		WHEN 6 THEN
+		
+			SELECT
+				`t1`.`date_added` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`rolledout`, 
+				SUM(`t2`.`rolledout`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             		`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout` 
+
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+	            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+				        ON	`fac_eq`.`facility_id` = `fac`.`id`
+				LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+				WHERE `fac_eq`.`date_added` <> '0000-00-00'
+				AND `eq`.`id` = '4'
+				AND `fac`.`id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1` 
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
+             		`fac_eq`.`date_added`, 
+					MONTH(`fac_eq`.`date_added`) AS `month`,
+					COUNT(*) AS `rolledout`
+ 			
+	            FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+			        ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `equipment_category` `eq_cat`
+					ON `eq`.`category`= `eq_cat`.`id`
+				LEFT JOIN `facility` `fac`
+				        ON	`fac_eq`.`facility_id` = `fac`.`id`
+
+				WHERE `fac_eq`.`date_added` <> '0000-00-00'
+				AND `eq`.`id` = '4' 
+				AND `fac`.`id` = 11
+				GROUP BY `yearmonth`) AS `t2` 
+			ON `t1`.`date_added` >= `t2`.`date_added` 
+			group by `t1`.`date_added`;
+		END CASE;
+	END CASE;
+END;
+";
 	
+$db_procedures['expected_reporting_dev_array_removed']=
+"
+CREATE PROCEDURE expected_reporting_dev_array_removed(user_group_id int(11),user_filter_used int(11))
+BEGIN
+	CASE `user_filter_used`
+	WHEN 0 THEN
+		
+		SELECT
+			`t1`.`date_removed` as `rank_date`,
+			`t1`.`yearmonth`,
+			`t1`.`month`, 
+			`t1`.`removed`, 
+			SUM(`t2`.`removed`) AS `cumulative`
+		FROM
+			(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+				`date_removed`, 
+				MONTH(`date_removed`) AS `month`,
+				COUNT(*) AS `removed` 			
+			FROM `facility_equipment` `fac_eq`
+			LEFT JOIN `equipment` `eq`
+				ON `fac_eq`.`equipment_id`= `eq`.`id`	 
+			WHERE `date_removed` <> '0000-00-00'
+			AND `equipment_id` = '4' 
+			GROUP BY `yearmonth`) AS `t1` 
+		INNER JOIN 
+			(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+				`date_removed`, 
+				MONTH(`date_removed`) AS `month`,
+				COUNT(*) AS `removed` 			
+			FROM `facility_equipment` `fac_eq`
+            LEFT JOIN `equipment` `eq`
+            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+			WHERE `date_removed` <> '0000-00-00'
+			AND `equipment_id` = '4' 
+			GROUP BY `yearmonth`) AS `t2` 
+			ON `t1`.`date_removed` >= `t2`.`date_removed` 							
+			group by `t1`.`date_removed`;
+	ELSE
+		CASE `user_group_id`
+		WHEN 3 THEN
+		
+			SELECT
+				`t1`.`date_removed` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`removed`, 
+				SUM(`t2`.`removed`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+				LEFT JOIN `equipment` `eq`
+					ON `fac_eq`.`equipment_id`= `eq`.`id`	
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id` 
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `fac`.`partner_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1` 
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+	            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id`
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `fac`.`partner_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t2` 
+				ON `t1`.`date_removed` >= `t2`.`date_removed` 							
+				group by `t1`.`date_removed`;
+				
+		WHEN 9 THEN
+		
+			SELECT
+				`t1`.`date_removed` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`removed`, 
+				SUM(`t2`.`removed`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+				LEFT JOIN `equipment` `eq`
+					ON `fac_eq`.`equipment_id`= `eq`.`id`	
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id` 
+				LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `dis`.`region_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1` 
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+	            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id`
+				LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `dis`.`region_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t2` 
+				ON `t1`.`date_removed` >= `t2`.`date_removed` 							
+				group by `t1`.`date_removed`;
+		
+		WHEN 8 THEN
+		
+			SELECT
+				`t1`.`date_removed` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`removed`, 
+				SUM(`t2`.`removed`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+				LEFT JOIN `equipment` `eq`
+					ON `fac_eq`.`equipment_id`= `eq`.`id`	
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id` 
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `fac`.`district_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1` 
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+	            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id`
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `fac`.`district_id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t2` 
+				ON `t1`.`date_removed` >= `t2`.`date_removed` 							
+				group by `t1`.`date_removed`;
+				
+		WHEN 6 THEN
+		
+			SELECT
+				`t1`.`date_removed` as `rank_date`,
+				`t1`.`yearmonth`,
+				`t1`.`month`, 
+				`t1`.`removed`, 
+				SUM(`t2`.`removed`) AS `cumulative`
+			FROM
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+				LEFT JOIN `equipment` `eq`
+					ON `fac_eq`.`equipment_id`= `eq`.`id`	
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id` 
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `fac`.`id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t1` 
+			INNER JOIN 
+				(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
+					`date_removed`, 
+					MONTH(`date_removed`) AS `month`,
+					COUNT(*) AS `removed` 			
+				FROM `facility_equipment` `fac_eq`
+	            LEFT JOIN `equipment` `eq`
+	            	ON `fac_eq`.`equipment_id`= `eq`.`id`
+				LEFT JOIN `facility` `fac`
+        			ON	`fac_eq`.`facility_id` = `fac`.`id`
+				WHERE `date_removed` <> '0000-00-00'
+				AND `equipment_id` = '4' 
+				AND `fac`.`id` = `user_filter_used`
+				GROUP BY `yearmonth`) AS `t2` 
+				ON `t1`.`date_removed` >= `t2`.`date_removed` 							
+				group by `t1`.`date_removed`;
+		END CASE;
+	END CASE;
+END;
+";	
 	
-	
-	
+$db_procedures['reported_devices']=
+"
+CREATE PROCEDURE reported_devices(user_group_id int(11),user_filter_used int(11),year int(11))
+BEGIN
+	CASE `user_filter_used`
+	WHEN 0 THEN
+		SELECT 
+			`t1`.`month`,
+			COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
+		FROM (
+				SELECT 
+					DISTINCT `tst`.`facility_equipment_id`,
+					MONTH(`tst`.`result_date`) AS `month`
+				FROM `cd4_test` `tst`
+				WHERE 1 
+				AND YEAR(`tst`.`result_date`) = `year`
+			)AS `t1`					
+		GROUP BY `t1`.`month`;
+	ELSE
+		CASE `user_group_id`
+		WHEN 3 THEN
+			SELECT 
+				`t1`.`month`,
+				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
+			FROM (
+					SELECT 
+					DISTINCT `tst`.`facility_equipment_id`,
+					MONTH(`tst`.`result_date`) AS `month`
+					FROM `cd4_test` `tst`
+                    LEFT JOIN `facility` `f`
+	                	ON `f`.`id` = `tst`.`facility_id`
+					WHERE 1 
+					AND YEAR(`tst`.`result_date`) = `year` 
+	                AND partner_id = `user_filter_used`
+				 )AS `t1`					
+			GROUP BY `t1`.`month`;
+			
+		WHEN 9 THEN 
+		
+			SELECT
+				`t1`.`month`,
+				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
+			FROM 
+				(SELECT 
+					DISTINCT `tst`.`facility_equipment_id`,
+					MONTH(`tst`.`result_date`) AS `month`
+				FROM `cd4_test` `tst`
+                LEFT JOIN `facility` `f`
+                    ON `f`.`id` = `tst`.`facility_id`
+				LEFT JOIN `district` `dis`
+					ON `f`.`district_id` = `dis`.`id`
+				WHERE 1 
+				AND YEAR(`tst`.`result_date`) = `year` 
+                AND `dis`.`region_id` = `user_filter_used`
+				)AS `t1`					
+			GROUP BY `t1`.`month`;
+			
+		WHEN 8 THEN
+		
+			SELECT
+				`t1`.`month`,
+				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
+			FROM 
+				(SELECT 
+					DISTINCT `tst`.`facility_equipment_id`,
+					MONTH(`tst`.`result_date`) AS `month`
+				FROM `cd4_test` `tst`
+                LEFT JOIN `facility` `f`
+                    ON `f`.`id` = `tst`.`facility_id`
+				WHERE 1 
+				AND YEAR(`tst`.`result_date`) = `year`
+                AND `f`.`district_id` = `user_filter_used`
+				)AS `t1`					
+			GROUP BY `t1`.`month`;
+			
+		WHEN 6 THEN
+			SELECT
+				`t1`.`month`,
+				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
+			FROM 
+				(SELECT 
+					DISTINCT `tst`.`facility_equipment_id`,
+					MONTH(`tst`.`result_date`) AS `month`
+				FROM `cd4_test` `tst`
+                LEFT JOIN `facility` `f`
+                    ON `f`.`id` = `tst`.`facility_id`
+				WHERE 1 
+				AND YEAR(`tst`.`result_date`) = `year` 
+                AND `f`.`id` = `user_filter_used`
+				)AS `t1`					
+			GROUP BY `t1`.`month`;
+			
+		END CASE;
+	END CASE;
+END;
+";
 	
 	
 	
