@@ -1559,8 +1559,8 @@ BEGIN
 				LEFT JOIN `district` `d`
 					ON `d`.`id` = `f`.`district_id`
 				WHERE 1 
-				AND `fe`.`date_added` BETWEEN 'beg_date' AND 'to_date'
-				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > 'to_date') ) 
+				AND `fe`.`date_added` BETWEEN `beg_date` AND `to_date`
+				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > `to_date`) ) 
 			    AND `d`.`region_id` = user_filter_used;
 
 			WHEN 8 THEN
@@ -1571,8 +1571,8 @@ BEGIN
 				LEFT JOIN `facility` `f`
 					ON `fe`.`facility_id` = `f`.`id`
 				WHERE 1 
-				AND `fe`.`date_added` BETWEEN 'beg_date' AND 'to_date'
-				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > 'to_date') ) 
+				AND `fe`.`date_added` BETWEEN `beg_date` AND `to_date`
+				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > `to_date`) ) 
 			    AND `f`.`district_id` = user_filter_used;
 				
 			WHEN 6 THEN
@@ -1583,8 +1583,8 @@ BEGIN
 				LEFT JOIN `facility` `f`
 					ON `fe`.`facility_id` = `f`.`id`
 				WHERE 1 
-				AND `fe`.`date_added` BETWEEN 'beg_date' AND 'to_date' 
-				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > 'to_date') ) 
+				AND `fe`.`date_added` BETWEEN `beg_date` AND `to_date` 
+				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > `to_date`) ) 
 			    AND `f`.`id` = user_filter_used;
 			
 		END CASE;
