@@ -580,7 +580,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 				END CASE;
 			END;
 	";					
-$db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(from_date varchar(50),to_date varchar(50),user_group_id int(11),user_filter_used int(11))
+$db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
 		BEGIN
 		CASE `user_filter_used`
 		WHEN 0 THEN
@@ -594,7 +594,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
                 LEFT JOIN `cd4_test` `c_t`
                 ON `c_t`.`equipment_id` = `e`.`id`
 			WHERE 1
-				AND `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+				AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
             GROUP BY `equipment_name`
 			ORDER BY `equipment_name` ASC;
 		
@@ -616,7 +616,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
                     LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
-					AND `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
 					AND  `partner_id` = user_filter_used
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
@@ -639,7 +639,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 					LEFT JOIN `district` `d`
 						ON `d`.`id` = `f`.`district_id`
 				WHERE 1
-					AND `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
 					AND  `region_id` = user_filter_used
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
@@ -660,7 +660,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
                 LEFT JOIN facility `f`
 				ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
-					AND `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
 					AND  `district_id` = user_filter_used
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
@@ -681,7 +681,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
                 LEFT JOIN facility `f`
 				ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
-					AND `c_t`.`result_date` BETWEEN 'from_date' AND  'to_date'
+					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
 					AND  `facility_id` = user_filter_used
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
@@ -1559,8 +1559,8 @@ BEGIN
 				LEFT JOIN `district` `d`
 					ON `d`.`id` = `f`.`district_id`
 				WHERE 1 
-				AND `fe`.`date_added` BETWEEN 'beg_date' AND 'to_date'
-				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > 'to_date') ) 
+				AND `fe`.`date_added` BETWEEN `beg_date` AND `to_date`
+				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > `to_date`) ) 
 			    AND `d`.`region_id` = user_filter_used;
 
 			WHEN 8 THEN
@@ -1571,8 +1571,8 @@ BEGIN
 				LEFT JOIN `facility` `f`
 					ON `fe`.`facility_id` = `f`.`id`
 				WHERE 1 
-				AND `fe`.`date_added` BETWEEN 'beg_date' AND 'to_date'
-				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > 'to_date') ) 
+				AND `fe`.`date_added` BETWEEN `beg_date` AND `to_date`
+				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > `to_date`) ) 
 			    AND `f`.`district_id` = user_filter_used;
 				
 			WHEN 6 THEN
@@ -1583,8 +1583,8 @@ BEGIN
 				LEFT JOIN `facility` `f`
 					ON `fe`.`facility_id` = `f`.`id`
 				WHERE 1 
-				AND `fe`.`date_added` BETWEEN 'beg_date' AND 'to_date' 
-				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > 'to_date') ) 
+				AND `fe`.`date_added` BETWEEN `beg_date` AND `to_date` 
+				AND ((`fe`.`date_removed` IS NULL) OR (`fe`.`date_removed` IS NOT NULL AND `fe`.`date_removed` > `to_date`) ) 
 			    AND `f`.`id` = user_filter_used;
 			
 		END CASE;
