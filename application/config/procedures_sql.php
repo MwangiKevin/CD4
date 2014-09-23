@@ -501,7 +501,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 					AND `c_t`.`result_date`<= 'today'
 				GROUP BY `e`.`description`,`year` 
 				ORDER BY `e`.`description` ASC;
-				
+			ELSE	
 					CASE `user_group_id`
 					WHEN 3 THEN
 					
@@ -516,7 +516,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 	                    LEFT JOIN facility `f`
 							ON `c_t`.`facility_id` = `f`.`id`
 						WHERE 1
-							AND `c_t`.`result_date`<= 'today'
+							AND `c_t`.`result_date`<= `today`
 							AND `partner_id` = user_filter_used
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
@@ -531,10 +531,12 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 						FROM `equipment` `e`
 		                    LEFT JOIN cd4_test `c_t`
 		                    ON `c_t`.`equipment_id` = `e`.`id`
-	                    LEFT JOIN `district` `d`
+		                    LEFT JOIN facility `f`
+							ON `c_t`.`facility_id` = `f`.`id`
+	                    	LEFT JOIN `district` `d`
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
-							AND `c_t`.`result_date`<= 'today'
+							AND `c_t`.`result_date`<= `today`
 							AND `region_id` = user_filter_used
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
@@ -548,10 +550,12 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 						FROM `equipment` `e`
 		                    LEFT JOIN cd4_test `c_t`
 		                    ON `c_t`.`equipment_id` = `e`.`id`
-	                    LEFT JOIN facility `f`
-							ON `c_t`.`facility_id ` = `f`.`id`
+		                    LEFT JOIN facility `f`
+							ON `c_t`.`facility_id` = `f`.`id`
+	                    	LEFT JOIN `district` `d`
+							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
-							AND `c_t`.`result_date`<= 'today'
+							AND `c_t`.`result_date`<= `today`
 							AND `district_id` = user_filter_used
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
@@ -567,7 +571,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 	                    LEFT JOIN facility `f`
 							ON `c_t`.`facility_id ` = `f`.`id`
 						WHERE 1
-							AND `c_t`.`result_date`<= 'today'
+							AND `c_t`.`result_date`<= `today`
 							AND `facility_id` = user_filter_used
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
