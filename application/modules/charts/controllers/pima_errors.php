@@ -3,51 +3,21 @@ if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class pima_errors extends MY_Controller {
 
-  public $criteria1= 0;
-  public $criteria2= 0;
-
-  public $user_group_id = 0;
-  public $user_filter_used= 0;
-
-
   function __construct() {
     parent::__construct();
     
     $this->load->model('pima_errors_model');
   }
 
-  public function translate_criteria(){
 
-    if($this->criteria1 == 2){
-      $this->user_group_id = 3;
-      $this->user_filter_used = $this->criteria2;
-    }elseif ($this->criteria1 == 3) {
-      $this->user_group_id = 9;
-      $this->user_filter_used = $this->criteria2;
-    }elseif ($this->criteria1 == 4) {
-      $this->user_group_id = 8;
-      $this->user_filter_used = $this->criteria2;
-    }elseif ($this->criteria1 == 5) {
-      $this->user_group_id = 6;
-      $this->user_filter_used = $this->criteria2;
-    }elseif ($this->criteria1 == 6) {
-      $this->user_group_id = 12;
-      $this->user_filter_used = $this->criteria2;
-    }
-  }
-
-  public function monthly_error_trend(){
+  public function monthly_error_trend($criteria1,$criteria2){
 
     $from 		=	$this->get_filter_start_date();
     $to			=	$this->get_filter_stop_date();
-    $this->criteria1 	= 	(int) $this->input->post('criteria1');
-    $this->criteria2 	= 	(int) $this->input->post('criteria2');
 
-    $this->translate_criteria();
 
     $this->load->model('pima_errors_model');
-    //$res = $this->pima_errors_model->error_details_charts($from,$to,$criteria1,$criteria2); 
-    $res = $this->pima_errors_model->error_charts_data($from,$to,$this->user_group_id,$this->user_filter_used); 
+    $res = $this->pima_errors_model->error_charts_data($from,$to,$criteria1,$criteria2); 
 
     $Xvalues="";
 
@@ -202,18 +172,12 @@ class pima_errors extends MY_Controller {
     echo $script;
 
   }
-  public function error_type_pie(){
+  public function error_type_pie($criteria1,$criteria2){
 
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
-    $this->criteria1        =     (int) $this->input->post('criteria1');
-    $this->criteria2        =     (int) $this->input->post('criteria2');
 
-    //$res = $this->pima_errors_model->error_details_charts($from,$to,$criteria1,$criteria2); 
-
-    $this->translate_criteria();
-
-    $res = $this->pima_errors_model->error_charts_data($from,$to,$this->user_group_id,$this->user_filter_used); 
+    $res = $this->pima_errors_model->error_charts_data($from,$to,$criteria1,$criteria2); 
 
     $error_types    = R::getAll("SELECT `description` FROM `pima_error_type`");        
     $errors         = R::getAll("SELECT `error_code`,`description` AS `type` ,CONCAT(`error_detail`,'(',`error_code`,')') AS `cat` FROM `pima_error` LEFT JOIN `pima_error_type` ON `pima_error_type`.`id` = `pima_error`.`pima_error_type`");
@@ -380,14 +344,11 @@ class pima_errors extends MY_Controller {
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
 
-    $this->criteria1  = $criteria1;
-    $this->criteria2  = $criteria2;
 
     //$res = $this->pima_errors_model->error_details_charts($from,$to,$criteria1,$criteria2); 
     
-    $this->translate_criteria();
       
-    $res = $this->pima_errors_model->error_charts_data($from,$to,$this->user_group_id,$this->user_filter_used); 
+    $res = $this->pima_errors_model->error_charts_data($from,$to,$criteria1,$criteria2); 
 
     $errors         = R::getAll("SELECT `error_code`,`description` AS `error_type` ,CONCAT(`error_detail`,'(',`error_code`,')') AS `name` FROM `pima_error` LEFT JOIN `pima_error_type` ON `pima_error_type`.`id` = `pima_error`.`pima_error_type` ORDER BY `name`");
 
