@@ -12,21 +12,6 @@ class equipment_model extends MY_Model{
 
 		$sql_eq = "CALL sql_eq()";
 		$sql = "CALL equipment_pie('".$user_group_id."','".$user_filter_used."')";
-		//$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
-
-		// $sql 	=	"SELECT 
-							 // `equipment`,
-							 // COUNT(*) AS `all`,
-							 // SUM(CASE WHEN (`eq`.`facility_equipment_status_id`<> '4' )    THEN 1 ELSE 0 END) AS `count`
-// 							 
-						 // FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `eq`
-// 						 
-						 // WHERE `equipment_category_id`	=	'1' 
-					 // ";
-
-		//$sql.=$this->sql_user_delimiter($user_group_id,$user_filter_used);
-
-		// $sql 	.=	" GROUP BY `equipment`  ORDER BY `count` desc ";
 
 
 		$equipment = R::getAll($sql_eq);
@@ -158,18 +143,19 @@ class equipment_model extends MY_Model{
 
 		$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
 
-		$sql 	=	"SELECT 
-							`equipment_name`,
-							COUNT(*) as `count`,
-							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,							
-							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`				
-						FROM `v_tests_details`
-							WHERE 1
-							$user_delimiter
-							AND `result_date` BETWEEN '$from' AND '$to'
-						GROUP BY `equipment_name`
-						ORDER BY `equipment_name` ASC
-					";
+		// $sql 	=	"SELECT 
+		// 					`equipment_name`,
+		// 					COUNT(*) as `count`,
+		// 					SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,							
+		// 					SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`				
+		// 				FROM `v_tests_details`
+		// 					WHERE 1
+		// 					$user_delimiter
+		// 					AND `result_date` BETWEEN '$from' AND '$to'
+		// 				GROUP BY `equipment_name`
+		// 				ORDER BY `equipment_name` ASC
+		// 			";
+		$sql = "CALL equipment_tests_data('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
 
 		$equipment 			= R::getAll($sql_eq);
 		$equip_tst 		=	R::getAll($sql);	
