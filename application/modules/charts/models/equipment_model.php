@@ -177,7 +177,7 @@ class equipment_model extends MY_Model{
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
 		$sql_eq = "CALL sql_eq()";
-		$sql = "CALL equipment_tests_pie(".$from.", ".$to.", ".$user_group_id.", ".$user_filter_used.")";
+		$sql = "CALL equipment_tests_pie('".$from."', '".$to."', ".$user_group_id.", ".$user_filter_used.")";
 		
 
 		$equipment 			= R::getAll($sql_eq);
