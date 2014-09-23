@@ -56,18 +56,6 @@ class pima_errors_model extends MY_Model{
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
 		$sql = "CALL error_yearly_trends(".$user_group_id.",".$user_filter_used.",".$year.")";
-		// $sql 	=	"SELECT 
-							// MONTH(`result_date`) AS `month`,
-							// SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,
-							// SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,
-							// CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`	
-						// FROM `v_tests_details`
-						// WHERE 1
-						// AND YEAR(`result_date`)  = '$year' 
-						// $user_delimiter
-						// 
-						// GROUP BY `yearmonth`
-					// ";
 
 		$res 	=	R::getAll($sql);
 
@@ -102,42 +90,15 @@ class pima_errors_model extends MY_Model{
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
-		//$sql_pl 	= 	"SELECT * FROM `pima_error_type`";
 		$sql_pl = "CALL error_types_col_sql_pl(".$user_group_id.",".$user_filter_used.", '".$from."','".$to."')";
 
-		// $sql 		= 	"SELECT 
-								// COUNT(`error_id`) AS `count`,
-								// `pima_error_type`,
-								// `error_type_description`
-							// FROM `v_pima_error_details`
-							// WHERE 1
-							// 
-							// AND `result_date` BETWEEN '$from' AND '$to'
-							// $user_delimiter
-							// 
-							// GROUP BY `pima_error_type`
-						// ";
 						
 		$sql = "CALL error_types_col_sql (".$user_group_id.",".$user_filter_used.", '".$from."','".$to."')";
 		
 		
 		$sql_errors = "CALL error_types_col_sql_errors(".$user_group_id.",".$user_filter_used.", '".$from."','".$to."')";
 						
-		// $sql_errors 		= 	"SELECT 
-								// COUNT(`error_id`) AS `count`,
-								// `error_id`,
-								// `error_code`,
-								// `error_detail`,
-								// `pima_error_type`,
-								// `error_type_description`
-							// FROM `v_pima_error_details`
-							// WHERE 1
-							// 
-							// AND `result_date` BETWEEN '$from' AND '$to'
-							// $user_delimiter
-							// 
-							// GROUP BY `error_id`
-						// ";
+
 
 		$types 	= R::getAll($sql_pl);			
 		$res 	= R::getAll($sql);		

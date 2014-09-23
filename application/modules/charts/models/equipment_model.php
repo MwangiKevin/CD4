@@ -12,22 +12,6 @@ class equipment_model extends MY_Model{
 
 		$sql_eq = "CALL sql_eq()";
 		$sql = "CALL equipment_pie('".$user_group_id."','".$user_filter_used."')";
-		//$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
-
-		// $sql 	=	"SELECT 
-							 // `equipment`,
-							 // COUNT(*) AS `all`,
-							 // SUM(CASE WHEN (`eq`.`facility_equipment_status_id`<> '4' )    THEN 1 ELSE 0 END) AS `count`
-// 							 
-						 // FROM (SELECT * FROM `v_facility_equipment_details` GROUP BY `facility_equipment_id`) `eq`
-// 						 
-						 // WHERE `equipment_category_id`	=	'1' 
-					 // ";
-
-		//$sql.=$this->sql_user_delimiter($user_group_id,$user_filter_used);
-
-		// $sql 	.=	" GROUP BY `equipment`  ORDER BY `count` desc ";
-
 
 		$equipment = R::getAll($sql_eq);
 		$equipment_r = R::getAll($sql);
@@ -204,23 +188,9 @@ class equipment_model extends MY_Model{
 		$sql_eq = "CALL sql_eq()";
 		$sql = "CALL equipment_tests_pie(".$from.", ".$to.", ".$user_group_id.", ".$user_filter_used.")";
 		
-		//$sql_eq	=	"SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC ";
-		// $sql 	=	"SELECT 
-							 // `equipment_name`,
-							 // COUNT(*) as `count`,
-							 // SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`,							
-							 // SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`				
-						 // FROM `v_tests_details`
-							 // WHERE 1
-							 // $user_delimiter							
-							 // AND `result_date` BETWEEN '$from' AND '$to'
-						 // GROUP BY `equipment_name`
-						 // ORDER BY `equipment_name` ASC
-					 // ";
+
 		$equipment 			= R::getAll($sql_eq);
 		$equip_tst =	R::getAll($sql);	
-// print_r($equip_tst);
-		// die;
 		$data=array();
 
 		foreach ($equipment as $key => $value) {
@@ -254,20 +224,6 @@ class equipment_model extends MY_Model{
 		$sql = "CALL equipment_tests_column(".$user_group_id.",".$user_filter_used.",".$today.") ";
 		$sql_eq	="CALL sql_eq()";
 
-		//previous sql
-		// $sql_eq = "SELECT `description` as `equipment`,`id` FROM `equipment` WHERE `category`= '1' ORDER BY `description` ASC";
-		// $sql 	=	"SELECT 
-							// `equipment_name`,
-							// YEAR(`result_date`) AS `year`,
-							// COUNT(*) as `count`,
-							// SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`			
-						// FROM `v_tests_details`
-							// WHERE 1
-							// $user_delimiter	
-							// AND `result_date`<= '$today'
-						// GROUP BY `equipment_name`,`year` 
-						// ORDER BY `equipment_name` ASC
-					// ";
 					
 		$equipment 			= R::getAll($sql_eq);
 		$equip_tst =	R::getAll($sql);	
@@ -307,10 +263,6 @@ class equipment_model extends MY_Model{
 
 		$chart["categories"]	=	$categories;
 		$chart["data"]			=	$data;
-
-		// echo "<pre>";
-		// print_r($chart);
-		// echo "</pre>";
 
 		return $chart;
 	}
