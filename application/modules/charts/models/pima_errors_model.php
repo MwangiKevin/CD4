@@ -4,7 +4,7 @@ class pima_errors_model extends MY_Model{
 	public function error_charts_data($from,$to,$user_group_id,$user_filter_used){
 
 
-		$sql = "CALL error_charts_data('".$from."','".$to."',".$user_group_id.",".$user_filter_used." )";
+		echo $sql = "CALL error_charts_data('".$from."','".$to."',".$user_group_id.",".$user_filter_used." )";
 
 		return R::getAll($sql);
 	}
