@@ -28,11 +28,11 @@
             </div>
         </div>
     </div>
-  <!--   <div class="col-md-11" style="">
+    <div class="col-md-11" style="">
         <div id="monthly_error_trend">
             <div class="loader" style"">Loading...</div>
         </div>
-    </div> -->
+    </div>
 </div>
 
 <script>
@@ -69,15 +69,8 @@ function load_tree_data(type,id,type_identifier){
     $("#equipment-test-table").load("<?php echo base_url()."charts/equipment/equipment_tests_table/"; ?>"+type+"/"+id );  
     $("#tests-table").load("<?php echo base_url()."charts/tests/tests_table/"; ?>"+type+"/"+id ); 
     $("#cd4testtrends").load("<?php echo base_url('charts/tests/tests_line_trend'); ?>/"+type+"/"+id ); 
-    $.ajax({
-      type:"POST",
-      async:true,
-      data:"criteria1="+type+"&criteria2="+id,
-      url:"<?php echo base_url()."charts/pima_errors/monthly_error_trend"; ?>",  
-      success:function(data) {
-          $("#monthly_error_trend").html(data);  
-      }
-  });
+    $("#monthly_error_trend").load("<?php echo base_url('charts/pima_errors/monthly_error_trend'); ?>/"+type+"/"+id ); 
+
 }
 
 </script>
