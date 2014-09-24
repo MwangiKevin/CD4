@@ -389,9 +389,10 @@ $db_procedures["tests_line_trend"]	=
 									SUM(CASE WHEN `c_t`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
 									SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
 								FROM `cd4_test` `c_t`
-								WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date 
+								WHERE `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+								AND `c_t`.`result_date` <= CURDATE() 
 								GROUP BY 	`yearmonth`
-								ORDER BY 	`result_date` DESC;
+								ORDER BY 	`c_t`.`result_date` DESC;
 								
 							ELSE
 								CASE `user_group_id`
@@ -409,10 +410,11 @@ $db_procedures["tests_line_trend"]	=
 									FROM `cd4_test` `c_t`
 									LEFT JOIN facility `f`
 										ON `c_t`.`facility_id` = `f`.`id`
-									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
-									AND `partner_id` = user_filter_used 
+									WHERE `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+									AND `partner_id` = `user_filter_used`
+									AND `c_t`.`result_date` <= CURDATE() 
 									GROUP BY 	`yearmonth`
-									ORDER BY 	`result_date` DESC;
+									ORDER BY 	`c_t`.`result_date` DESC;
 								WHEN 6 THEN
 									SELECT
 										COUNT(*) AS `total`,
@@ -425,10 +427,11 @@ $db_procedures["tests_line_trend"]	=
 										SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`
 										
 									FROM `cd4_test` `c_t`
-									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
-									AND `c_t`.`facility_id` = user_filter_used 
+									WHERE `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+									AND `c_t`.`facility_id` = `user_filter_used`
+									AND `c_t`.`result_date` <= CURDATE() 
 									GROUP BY 	`yearmonth`
-									ORDER BY 	`result_date` DESC;
+									ORDER BY 	`c_t`.`result_date` DESC;
 								WHEN 8 THEN
 									SELECT
 										COUNT(*) AS `total`,
@@ -445,10 +448,11 @@ $db_procedures["tests_line_trend"]	=
 									FROM `cd4_test` `c_t`
 									LEFT JOIN facility `f`
 										ON `c_t`.`facility_id` = `f`.`id`
-									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
-									AND `district_id` = user_filter_used
+									WHERE `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+									AND `district_id` = `user_filter_used`
+									AND `c_t`.`result_date` <= CURDATE()
 									GROUP BY 	`yearmonth`
-									ORDER BY 	`result_date` DESC;
+									ORDER BY 	`c_t`.`result_date` DESC;
 								WHEN 9 THEN
 									SELECT
 										COUNT(*) AS `total`,
@@ -467,8 +471,9 @@ $db_procedures["tests_line_trend"]	=
 										ON `c_t`.`facility_id` = `f`.`id`
 									LEFT JOIN `district` `d`
 										ON `d`.`id` = `f`.`district_id`
-									WHERE `c_t`.`result_date` BETWEEN from_date AND  to_date
-										AND `region_id` = user_filter_used
+									WHERE `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+									AND `region_id` = `user_filter_used`
+									AND `c_t`.`result_date` <= CURDATE()
 									GROUP BY 	`yearmonth`
 									ORDER BY 	`result_date` DESC;
 								END CASE;
@@ -518,7 +523,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 							ON `c_t`.`facility_id` = `f`.`id`
 						WHERE 1
 							AND `c_t`.`result_date`<= `today`
-							AND `partner_id` = user_filter_used
+							AND `partner_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 						
@@ -538,7 +543,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
 							AND `c_t`.`result_date`<= `today`
-							AND `region_id` = user_filter_used
+							AND `region_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 						
@@ -557,7 +562,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
 							AND `c_t`.`result_date`<= `today`
-							AND `district_id` = user_filter_used
+							AND `district_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 					WHEN 6 THEN
@@ -573,7 +578,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 							ON `c_t`.`facility_id ` = `f`.`id`
 						WHERE 1
 							AND `c_t`.`result_date`<= `today`
-							AND `facility_id` = user_filter_used
+							AND `facility_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 					
@@ -596,6 +601,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
                 ON `c_t`.`equipment_id` = `e`.`id`
 			WHERE 1
 				AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+				AND `c_t`.`result_date` <= CURDATE() 
             GROUP BY `equipment_name`
 			ORDER BY `equipment_name` ASC;
 		
@@ -618,7 +624,8 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 					ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `partner_id` = user_filter_used
+					AND  `partner_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 			
@@ -641,7 +648,8 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 						ON `d`.`id` = `f`.`district_id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `region_id` = user_filter_used
+					AND  `region_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 				
@@ -662,7 +670,8 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 				ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `district_id` = user_filter_used
+					AND  `district_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 			
@@ -683,7 +692,8 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 				ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `facility_id` = user_filter_used
+					AND  `facility_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 			
@@ -693,8 +703,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 	";
 	
 $db_procedures["equipment_pie"]=
-	"
-	CREATE PROCEDURE equipment_pie(user_group_id int(11),user_filter_used int(11))
+	"CREATE PROCEDURE equipment_pie(user_group_id int(11),user_filter_used int(11))
 	BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -850,10 +859,13 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 				SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
 			FROM `cd4_test` `c_t`
 
-			WHERE `result_date` BETWEEN from_date AND to_date;
+			WHERE `result_date` BETWEEN `from_date` AND `to_date`
+			AND `result_date` <= CURDATE()
+			;
 		ELSE				
 			CASE `user_group_id`
 			WHEN 3 THEN
+			
 				SELECT 
 					COUNT(*) AS `total`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
@@ -863,9 +875,13 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `partner_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `partner_id` = `user_filter_used`
+				AND `result_date` <= CURDATE() 
+				;
+				
 			WHEN 6 THEN
+			
 				SELECT 
 					COUNT(*) AS `total`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
@@ -875,9 +891,13 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `c_t`.`facility_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `c_t`.`facility_id` = `user_filter_used`
+				AND `result_date` <= CURDATE() 
+				;
+				
 			WHEN 9 THEN
+			
 				SELECT 
 					COUNT(*) AS `total`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
@@ -890,8 +910,11 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 					ON `c_t`.`facility_id` = `f`.`id`
 				LEFT JOIN `district` `d`
 					ON `d`.`id` = `f`.`district_id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `region_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `region_id` = `user_filter_used`
+				AND `result_date` <= CURDATE() 
+				;
+				
 			WHEN 8 THEN
 				SELECT 
 					COUNT(*) AS `total`,
@@ -903,8 +926,11 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `district_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `district_id` = `user_filter_used`
+				AND `result_date` <= CURDATE()
+				
+				;
 			END CASE;
 		END CASE;
 	END;
@@ -912,8 +938,7 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 	
 	
 $db_procedures['tests_pie']=
-"
-CREATE PROCEDURE tests_pie(from_date date, to_date date, user_group_id int(11), user_filter_used int(11))
+"CREATE PROCEDURE tests_pie(from_date date, to_date date, user_group_id int(11), user_filter_used int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -926,7 +951,9 @@ BEGIN
 			
 		FROM `cd4_test`
 		
-		WHERE `result_date` BETWEEN `from_date` AND `to_date`;
+		WHERE `result_date` BETWEEN `from_date` AND `to_date`
+		AND `result_date` <= CURDATE()
+		;
 	ELSE
 		CASE `user_group_id`
 		WHEN 3 THEN
@@ -943,7 +970,9 @@ BEGIN
 				ON `tst`.`facility_id` = `f`.`id`
 			
 			WHERE `result_date` BETWEEN `from_date` AND `to_date`
-			AND `partner_id` = `user_filter_used`;
+			AND `partner_id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 		WHEN 9 THEN
 		
 			SELECT 
@@ -960,7 +989,9 @@ BEGIN
 				ON `f`.`district_id` = `d`.`id`
 			
 			WHERE `result_date` BETWEEN `from_date` AND `to_date`
-			AND `d`.`region_id` = `user_filter_used`;
+			AND `d`.`region_id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 			
 		WHEN 8 THEN
 		
@@ -976,7 +1007,9 @@ BEGIN
 				ON `tst`.`facility_id` = `f`.`id`
 						
 			WHERE `result_date` BETWEEN `from_date` AND `from_date`
-			AND `f`.`district_id` = `user_filter_used`;
+			AND `f`.`district_id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 			
 		WHEN 6 THEN
 			SELECT 
@@ -991,14 +1024,16 @@ BEGIN
 				ON `tst`.`facility_id` = `f`.`id`
 						
 			WHERE `result_date` BETWEEN `from_date` AND `from_date`
-			AND `f`.`id` = `user_filter_used`;
+			AND `f`.`id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 		END CASE;
 	END CASE;	
 END
 ";
 
-$db_procedures['error_yearly_trends'] = "
-CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used int(11), year int(4))
+$db_procedures['error_yearly_trends'] = 
+"CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used int(11), year int(4))
 	BEGIN
 		CASE `user_filter_used`
 		WHEN 0 THEN
@@ -1015,6 +1050,7 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 			
 			WHERE 1 
 			AND YEAR(`tst`.`result_date`) = `year` 
+			AND `tst`.`result_date` <= CURDATE()
 			GROUP BY `yearmonth`;
 		ELSE			
 			CASE `user_group_id`
@@ -1033,6 +1069,7 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 				 WHERE 1 
 				 AND YEAR(`tst`.`result_date`) = `year` 
 				 AND `fac`.`partner_id` = `user_filter_used`
+				 AND `tst`.`result_date` <= CURDATE()
 				 GROUP BY `yearmonth`;
 			
 			WHEN 9 THEN
@@ -1052,6 +1089,7 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 				WHERE 1 
 				AND YEAR(`tst`.`result_date`) = `year`
 				AND `dis`.`region_id` = `user_filter_used`
+				AND `tst`.`result_date` <= CURDATE()
 				GROUP BY `yearmonth`;
 			WHEN 8 THEN
 			
@@ -1068,6 +1106,7 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 				WHERE 1 
 				AND YEAR(`tst`.`result_date`) = `year`
 				AND `fac`.`district_id` = `user_filter_used`
+				AND `tst`.`result_date` <= CURDATE()
 				GROUP BY `yearmonth`;
 				
 			WHEN 6 THEN
@@ -1085,6 +1124,7 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 				WHERE 1 
 				AND YEAR(`tst`.`result_date`) = `year`
 				AND `fac`.`id` = `user_filter_used`
+				AND `tst`.`result_date` <= CURDATE()
 				GROUP BY `yearmonth`;
 
 			END CASE;
@@ -1092,8 +1132,8 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 	END;
 ";
 
-$db_procedures['error_types_col_sql'] = "
-CREATE PROCEDURE error_types_col_sql(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
+$db_procedures['error_types_col_sql'] = 
+"CREATE PROCEDURE error_types_col_sql(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1298,15 +1338,15 @@ BEGIN
 END
 ";
  	
-$db_procedures['error_types_col_sql_pl'] = "
-CREATE PROCEDURE error_types_col_sql_pl(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
+$db_procedures['error_types_col_sql_pl'] = 
+"CREATE PROCEDURE error_types_col_sql_pl(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
 BEGIN 
 	SELECT * FROM `pima_error_type`;
 END
 ";
 
-$db_procedures['error_types_col_sql_errors']="
-CREATE PROCEDURE error_types_col_sql_errors(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
+$db_procedures['error_types_col_sql_errors']=
+"CREATE PROCEDURE error_types_col_sql_errors(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1525,8 +1565,8 @@ BEGIN
 END
 ";
 
-$db_procedures['expected_reporting_devices_pie_expected']="
-CREATE PROCEDURE expected_reporting_devices_pie_expected(user_group_id int(11),user_filter_used int(11), beg_date date,to_date date)
+$db_procedures['expected_reporting_devices_pie_expected']=
+"CREATE PROCEDURE expected_reporting_devices_pie_expected(user_group_id int(11),user_filter_used int(11), beg_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1593,8 +1633,8 @@ BEGIN
 END
 ";
 
-$db_procedures['expected_reporting_devices_pie_reported']="
-CREATE PROCEDURE expected_reporting_devices_pie_reported(user_group_id int(11),user_filter_used int(11), from_date date, to_date date)
+$db_procedures['expected_reporting_devices_pie_reported']=
+"CREATE PROCEDURE expected_reporting_devices_pie_reported(user_group_id int(11),user_filter_used int(11), from_date date, to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1660,8 +1700,8 @@ BEGIN
 END
 ";
 	
-$db_procedures["errors_pie"]= "
-CREATE PROCEDURE errors_pie(user_group_id int(11),user_filter_used int(11),from_date date,to_date date)
+$db_procedures["errors_pie"]= 
+"CREATE PROCEDURE errors_pie(user_group_id int(11),user_filter_used int(11),from_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1871,8 +1911,7 @@ END
 ";	
 	
 $db_procedures['expected_reporting_dev_array_added']=
-"
-CREATE PROCEDURE expected_reporting_dev_array_added(user_group_id int(11),user_filter_used int(11))
+"CREATE PROCEDURE expected_reporting_dev_array_added(user_group_id int(11),user_filter_used int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -2105,8 +2144,7 @@ END;
 ";
 	
 $db_procedures['expected_reporting_dev_array_removed']=
-"
-CREATE PROCEDURE expected_reporting_dev_array_removed(user_group_id int(11),user_filter_used int(11))
+"CREATE PROCEDURE expected_reporting_dev_array_removed(user_group_id int(11),user_filter_used int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -2308,8 +2346,7 @@ END;
 ";	
 	
 $db_procedures['reported_devices']=
-"
-CREATE PROCEDURE reported_devices(user_group_id int(11),user_filter_used int(11),year int(11))
+"CREATE PROCEDURE reported_devices(user_group_id int(11),user_filter_used int(11),year int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -2403,24 +2440,7 @@ BEGIN
 	END CASE;
 END;
 ";
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 $db_procedures["get_error_details"] = "CREATE PROCEDURE get_error_details(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
 	BEGIN
 		CASE `user_filter_used`
@@ -3259,6 +3279,7 @@ $db_procedures["equipment_tests_data"] = "CREATE PROCEDURE equipment_tests_data(
 							ON `f_e`.`equipment_id` = `eq`.`id`
 
 					WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
+					AND `tst`.`result_date` <= CURDATE()
 
 				GROUP BY `equipment_name`
 				ORDER BY `equipment_name` DESC;
@@ -3287,6 +3308,7 @@ $db_procedures["equipment_tests_data"] = "CREATE PROCEDURE equipment_tests_data(
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `p`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -3312,6 +3334,7 @@ $db_procedures["equipment_tests_data"] = "CREATE PROCEDURE equipment_tests_data(
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `f`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -3338,6 +3361,7 @@ $db_procedures["equipment_tests_data"] = "CREATE PROCEDURE equipment_tests_data(
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `d`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -3364,6 +3388,7 @@ $db_procedures["equipment_tests_data"] = "CREATE PROCEDURE equipment_tests_data(
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `r`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -3390,6 +3415,7 @@ $db_procedures["equipment_tests_data"] = "CREATE PROCEDURE equipment_tests_data(
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `f_e`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;

@@ -95,7 +95,6 @@ class pima_model extends MY_Model{
 
 		//$categories 	=	$this->get_yearmonth_categories($from,$to);
 
-		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
 		
 
