@@ -6,7 +6,7 @@ logs
 *.pyo
 *.sublime-workspace
 *.project
-/nbproject/private/
+nbproject/private/
 application/config/database.php
 pdf
 
