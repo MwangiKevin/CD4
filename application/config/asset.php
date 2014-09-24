@@ -119,7 +119,7 @@ $config['plugin_js_files']	=	array(
 									array('title'	=> 'highcharts_drilldown'		,	'file'	=>	'Highcharts/js/modules/drilldown.js'),
 									array('title'	=> 'tree'				,	'file'	=>	'tree/tree.js'),
 									array('title'	=> 'ajax_file_uploader'	,	'file'	=>	'ajax_file_uploader/ajaxfileupload.js'),
-									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/js/highmaps.js'),
+									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/js/modules/map.js'),
 									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/mapdata/tz_all.js')
 					
 								);	
