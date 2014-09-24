@@ -120,7 +120,7 @@ $config['plugin_js_files']	=	array(
 									array('title'	=> 'tree'				,	'file'	=>	'tree/tree.js'),
 									array('title'	=> 'ajax_file_uploader'	,	'file'	=>	'ajax_file_uploader/ajaxfileupload.js'),
 									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/js/modules/map.js'),
-									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/mapdata/tz_all.js')
+									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/mapdata/tz-all.js')
 					
 								);	
 $config['plugin_css_files']	=	array(

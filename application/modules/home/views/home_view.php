@@ -1,26 +1,9 @@
 <div>
 	<div>
 		<div class="panel panel-default" style="width:40%;margin-right:5px; float:left;box-shadow: 4px 4px 4px #888888;">
-			<div id='mapDiv' style="">
+			<div id='homemap' style="">
 				<div class="loader" style"">Loading...</div>
 			</div>
-			<script type="text/javascript">		
-				$().ready(function() {
-					$.ajax({
-				          type:"POST",        
-
-				            url:"<?php echo base_url('home/get_xml_map_data');?>",             
-				            success:function(data) {
-				                mapdata = data;
-								var map = new FusionMaps("<?php echo base_url();?>assets/plugins/Fusion/FusionMaps/FCMap_Tanzania.swf", "Tanzania","450","450","0","0");
-								var xml = "";
-								var mapdata;
-								map.setXMLData("<map  markerBorderColor='000000' markerBgColor='FF5904' markerRadius='6' useHoverColor='1' showMarkerToolTip='1'  showExportDataMenuItem='1' canvasBorderColor='FFFFFF' borderColor='000000' fillColor='FFFFFF' numberSuffix='%' includeValueInLabels='0' labelSepChar=':-:' baseFontSize='9'><data>"+mapdata+"</data><styles><definition><style name='TTipFont' type='font' isHTML='1'  color='FFFFFF' bgColor='666666' size='11'/><style name='HTMLFont' type='font' color='333333' borderColor='CCCCCC' bgColor='FFFFFF'/><style name='myShadow' type='Shadow' distance='1'/></definition><application><apply toObject='MARKERS' styles='myShadow' /><apply toObject='MARKERLABELS' styles='HTMLFont,myShadow' /><apply toObject='TOOLTIP' styles='TTipFont'/></application></styles></map>");
-								map.render("mapDiv");
-				            }
-				      });
-				  });
-			</script>
 		</div>		
 		<div class="panel panel-default" style="width:57%; float:right;height:452px;box-shadow: 4px 4px 4px #888888;">
 			<div style="font-size: 14px;width:35%; height:22px; float:right; background-color:#33c6e7; color:#fff; opacity:20border-style: double;border-color: black;border-radius: 3px;margin-right:1%" >
