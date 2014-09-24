@@ -3,7 +3,7 @@ class tests_model extends MY_Model{
 	public function tests_pie($from,$to,$user_group_id,$user_filter_used){
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
-		$sql = "CALL tests_pie('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+		echo $sql = "CALL tests_pie('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
 
 		$tst 	=	R::getAll($sql);
 
