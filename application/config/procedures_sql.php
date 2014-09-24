@@ -692,8 +692,7 @@ $db_procedures["equipment_tests_pie"] =	"CREATE PROCEDURE equipment_tests_pie(fr
 	";
 	
 $db_procedures["equipment_pie"]=
-	"
-	CREATE PROCEDURE equipment_pie(user_group_id int(11),user_filter_used int(11))
+	"CREATE PROCEDURE equipment_pie(user_group_id int(11),user_filter_used int(11))
 	BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -911,8 +910,7 @@ $db_procedures["tests_table"] = "CREATE PROCEDURE tests_table(from_date date,to_
 	
 	
 $db_procedures['tests_pie']=
-"
-CREATE PROCEDURE tests_pie(from_date date, to_date date, user_group_id int(11), user_filter_used int(11))
+"CREATE PROCEDURE tests_pie(from_date date, to_date date, user_group_id int(11), user_filter_used int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -996,8 +994,8 @@ BEGIN
 END
 ";
 
-$db_procedures['error_yearly_trends'] = "
-CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used int(11), year int(4))
+$db_procedures['error_yearly_trends'] = 
+"CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used int(11), year int(4))
 	BEGIN
 		CASE `user_filter_used`
 		WHEN 0 THEN
@@ -1091,8 +1089,8 @@ CREATE PROCEDURE error_yearly_trends (user_group_id int(11), user_filter_used in
 	END;
 ";
 
-$db_procedures['error_types_col_sql'] = "
-CREATE PROCEDURE error_types_col_sql(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
+$db_procedures['error_types_col_sql'] = 
+"CREATE PROCEDURE error_types_col_sql(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1297,15 +1295,15 @@ BEGIN
 END
 ";
  	
-$db_procedures['error_types_col_sql_pl'] = "
-CREATE PROCEDURE error_types_col_sql_pl(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
+$db_procedures['error_types_col_sql_pl'] = 
+"CREATE PROCEDURE error_types_col_sql_pl(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
 BEGIN 
 	SELECT * FROM `pima_error_type`;
 END
 ";
 
-$db_procedures['error_types_col_sql_errors']="
-CREATE PROCEDURE error_types_col_sql_errors(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
+$db_procedures['error_types_col_sql_errors']=
+"CREATE PROCEDURE error_types_col_sql_errors(user_group_id int(11),user_filter_used int(11), from_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1524,8 +1522,8 @@ BEGIN
 END
 ";
 
-$db_procedures['expected_reporting_devices_pie_expected']="
-CREATE PROCEDURE expected_reporting_devices_pie_expected(user_group_id int(11),user_filter_used int(11), beg_date date,to_date date)
+$db_procedures['expected_reporting_devices_pie_expected']=
+"CREATE PROCEDURE expected_reporting_devices_pie_expected(user_group_id int(11),user_filter_used int(11), beg_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1592,8 +1590,8 @@ BEGIN
 END
 ";
 
-$db_procedures['expected_reporting_devices_pie_reported']="
-CREATE PROCEDURE expected_reporting_devices_pie_reported(user_group_id int(11),user_filter_used int(11), from_date date, to_date date)
+$db_procedures['expected_reporting_devices_pie_reported']=
+"CREATE PROCEDURE expected_reporting_devices_pie_reported(user_group_id int(11),user_filter_used int(11), from_date date, to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1659,8 +1657,8 @@ BEGIN
 END
 ";
 	
-$db_procedures["errors_pie"]= "
-CREATE PROCEDURE errors_pie(user_group_id int(11),user_filter_used int(11),from_date date,to_date date)
+$db_procedures["errors_pie"]= 
+"CREATE PROCEDURE errors_pie(user_group_id int(11),user_filter_used int(11),from_date date,to_date date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -1870,8 +1868,7 @@ END
 ";	
 	
 $db_procedures['expected_reporting_dev_array_added']=
-"
-CREATE PROCEDURE expected_reporting_dev_array_added(user_group_id int(11),user_filter_used int(11))
+"CREATE PROCEDURE expected_reporting_dev_array_added(user_group_id int(11),user_filter_used int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -2104,8 +2101,7 @@ END;
 ";
 	
 $db_procedures['expected_reporting_dev_array_removed']=
-"
-CREATE PROCEDURE expected_reporting_dev_array_removed(user_group_id int(11),user_filter_used int(11))
+"CREATE PROCEDURE expected_reporting_dev_array_removed(user_group_id int(11),user_filter_used int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -2307,8 +2303,7 @@ END;
 ";	
 	
 $db_procedures['reported_devices']=
-"
-CREATE PROCEDURE reported_devices(user_group_id int(11),user_filter_used int(11),year int(11))
+"CREATE PROCEDURE reported_devices(user_group_id int(11),user_filter_used int(11),year int(11))
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -2402,24 +2397,7 @@ BEGIN
 	END CASE;
 END;
 ";
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 $db_procedures["get_error_details"] = "CREATE PROCEDURE get_error_details(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
 	BEGIN
 		CASE `user_filter_used`
