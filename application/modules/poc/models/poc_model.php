@@ -109,19 +109,15 @@ class poc_model extends MY_Model{
 		$sql 	=	"CALL get_uploads_dt($user_group_id,$user_filter_used)";
 
 		return $res 	=	R::getAll($sql);
-
-
 	}
 
 
-	public function get_Device_types()
-	{
+	public function get_Device_types(){
 		$sql = "SELECT * FROM equipment WHERE category = 1";
 		return $result  =  R::getAll($sql);
 	}
 
-	public function register_facility($user_id)
-	{
+	public function register_facility($user_id){
 		$facility_request = array(
 			'id' 			 =>   NULL,
 
@@ -139,8 +135,7 @@ class poc_model extends MY_Model{
 		return $insert;
 	}
 
-	public function get_requested($user_id)
-	{
+	public function get_requested($user_id){
 		$sql = "SELECT `facility_id`,
 				COUNT(`id`) AS `Totals`
 				FROM  `facility_equipment_request`
