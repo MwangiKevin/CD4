@@ -4044,6 +4044,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 		CASE `user_filter_used`
 		WHEN 0 THEN
 			SELECT 
+					`f_e`.`id` AS `facility_equipment_id`,
 					`f_e`.*
 				FROM `facility_equipment` `f_e`
 					LEFT JOIN `equipment` `e`
@@ -4065,6 +4066,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 			CASE `user_group_id`
 			WHEN 3 THEN					
 				SELECT 
+						`f_e`.`id` AS `facility_equipment_id`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4085,6 +4087,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 
 			WHEN 6 THEN	
 				SELECT 
+						`f_e`.`id` AS `facility_equipment_id`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4105,6 +4108,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 
 			WHEN 8 THEN	
 				SELECT 
+						`f_e`.`id` AS `facility_equipment_id`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4124,6 +4128,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
 			WHEN 9 THEN	
 				SELECT 
+						`f_e`.`id` AS `facility_equipment_id`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
