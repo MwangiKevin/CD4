@@ -42,6 +42,7 @@ $db_procedures["drop_equipment_tests_data"]  					=	"DROP PROCEDURE IF EXISTS `e
 $db_procedures["drop_get_tests_dt"]  							=	"DROP PROCEDURE IF EXISTS `get_tests_dt`; ";
 $db_procedures["drop_get_uploads_dt"]  							=	"DROP PROCEDURE IF EXISTS `get_uploads_dt`; ";
 $db_procedures["drop_get_errors_notf"]  						=	"DROP PROCEDURE IF EXISTS `get_errors_notf`; ";
+$db_procedures["drop_active_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `active_user_devices`; ";
 	
 
 $db_procedures["get_facility_details"]  		=	
@@ -4037,7 +4038,113 @@ $db_procedures["get_errors_notf"] = "CREATE PROCEDURE get_errors_notf(from_date 
 	END;
 					";
 
-	
+$db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(user_group_id int(11),user_filter_used int(11))
+	BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN
+			SELECT 
+					`f_e`.*
+				FROM `facility_equipment` `f_e`
+					LEFT JOIN `equipment` `e`
+					ON 	`f_e`.`equipment_id`=`e`.`id`
+						LEFT JOIN `equipment_category` `e_c`
+						ON 	`e`.`category`=`e_c`.`id`
+					LEFT JOIN `facility` `f`
+					ON `f_e`.`facility_id`=`f`.`id`			
+						LEFT JOIN `partner` `p`
+						ON `f`.`partner_id` =`p`.`id`
+							LEFT JOIN `district` `d`
+							ON `f`.`district_id` = `d`.`id`
+								LEFT JOIN `region` `r`
+								ON `d`.`region_id` = `r`.`id`
+					WHERE 1
+					AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+
+		ELSE 
+			CASE `user_group_id`
+			WHEN 3 THEN					
+				SELECT 
+						`f_e`.*
+					FROM `facility_equipment` `f_e`
+						LEFT JOIN `equipment` `e`
+						ON 	`f_e`.`equipment_id`=`e`.`id`
+							LEFT JOIN `equipment_category` `e_c`
+							ON 	`e`.`category`=`e_c`.`id`
+						LEFT JOIN `facility` `f`
+						ON `f_e`.`facility_id`=`f`.`id`			
+							LEFT JOIN `partner` `p`
+							ON `f`.`partner_id` =`p`.`id`
+								LEFT JOIN `district` `d`
+								ON `f`.`district_id` = `d`.`id`
+									LEFT JOIN `region` `r`
+									ON `d`.`region_id` = `r`.`id`
+						WHERE 1
+						AND `p`.`id` = `user_filter_used`
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+
+			WHEN 6 THEN	
+				SELECT 
+						`f_e`.*
+					FROM `facility_equipment` `f_e`
+						LEFT JOIN `equipment` `e`
+						ON 	`f_e`.`equipment_id`=`e`.`id`
+							LEFT JOIN `equipment_category` `e_c`
+							ON 	`e`.`category`=`e_c`.`id`
+						LEFT JOIN `facility` `f`
+						ON `f_e`.`facility_id`=`f`.`id`			
+							LEFT JOIN `partner` `p`
+							ON `f`.`partner_id` =`p`.`id`
+								LEFT JOIN `district` `d`
+								ON `f`.`district_id` = `d`.`id`
+									LEFT JOIN `region` `r`
+									ON `d`.`region_id` = `r`.`id`
+						WHERE 1
+						AND `f`.`id` = `user_filter_used`
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+
+			WHEN 8 THEN	
+				SELECT 
+						`f_e`.*
+					FROM `facility_equipment` `f_e`
+						LEFT JOIN `equipment` `e`
+						ON 	`f_e`.`equipment_id`=`e`.`id`
+							LEFT JOIN `equipment_category` `e_c`
+							ON 	`e`.`category`=`e_c`.`id`
+						LEFT JOIN `facility` `f`
+						ON `f_e`.`facility_id`=`f`.`id`			
+							LEFT JOIN `partner` `p`
+							ON `f`.`partner_id` =`p`.`id`
+								LEFT JOIN `district` `d`
+								ON `f`.`district_id` = `d`.`id`
+									LEFT JOIN `region` `r`
+									ON `d`.`region_id` = `r`.`id`
+						WHERE 1
+						AND `d`.`id` = `user_filter_used`
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+			WHEN 9 THEN	
+				SELECT 
+						`f_e`.*
+					FROM `facility_equipment` `f_e`
+						LEFT JOIN `equipment` `e`
+						ON 	`f_e`.`equipment_id`=`e`.`id`
+							LEFT JOIN `equipment_category` `e_c`
+							ON 	`e`.`category`=`e_c`.`id`
+						LEFT JOIN `facility` `f`
+						ON `f_e`.`facility_id`=`f`.`id`			
+							LEFT JOIN `partner` `p`
+							ON `f`.`partner_id` =`p`.`id`
+								LEFT JOIN `district` `d`
+								ON `f`.`district_id` = `d`.`id`
+									LEFT JOIN `region` `r`
+									ON `d`.`region_id` = `r`.`id`
+						WHERE 1
+						AND `r`.`id` = `user_filter_used`
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');	
+			END CASE;
+		END CASE;
+	END;
+";
+
 
 $config["procedures_sql"] = $db_procedures;
 
