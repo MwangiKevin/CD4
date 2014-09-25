@@ -253,17 +253,21 @@ class MY_Model extends CI_Model{
 		$user_group_id  = $this->session->userdata("user_group_id");
 		$user_filter= $this->session->userdata("user_filter");
 
+		$user_filter_used= (int) $user_filter[0]["user_filter_id"];
+		
 		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		$sql = 	"SELECT 
-						* 
-					FROM `v_facility_equipment_details`
-					WHERE 1
+		// $sql = 	"SELECT 
+		// 				* 
+		// 			FROM `v_facility_equipment_details`
+		// 			WHERE 1
 
-					AND `equipment_id` = '4'
-					$user_delimiter
-					GROUP BY `facility_equipment_id`
-				";
+		// 			AND `equipment_id` = '4'
+		// 			$user_delimiter
+		// 			GROUP BY `facility_equipment_id`
+		// 		";
+
+		$sql 	=	"CALL active_user_devices($user_group_id,$user_filter_used)";	
 		return R::getAll($sql);
 
 	}
@@ -278,18 +282,22 @@ class MY_Model extends CI_Model{
 		$user_group_id  = $this->session->userdata("user_group_id");
 		$user_filter= $this->session->userdata("user_filter");
 
+		$user_filter_used= (int) $user_filter[0]["user_filter_id"];
+
 		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		$sql 	= 	"SELECT 
-							`facility_equipment_id`
-						FROM `v_tests_details`
-						WHERE 1
+		// $sql 	= 	"SELECT 
+		// 					`facility_equipment_id`
+		// 				FROM `v_tests_details`
+		// 				WHERE 1
 
-						AND `result_date` BETWEEN '$from' AND '$to'
-						$user_delimiter
+		// 				AND `result_date` BETWEEN '$from' AND '$to'
+		// 				$user_delimiter
 
-						GROUP BY `facility_equipment_id`
-					";					
+		// 				GROUP BY `facility_equipment_id`
+		// 			";		
+
+		$sql 	=	"CALL uploaded_user_devices('$from','$to',$user_group_id,$user_filter_used)";			
 
 		return R::getAll($sql);			
 
@@ -324,19 +332,9 @@ class MY_Model extends CI_Model{
 		$user_group_id  = $this->session->userdata("user_group_id");
 		$user_filter= $this->session->userdata("user_filter");
 
+		$user_filter_used = (int) $user_filter[0]["user_filter_id"];
 
-		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
-
-		$sql  	=	"SELECT 
-							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `succ_test`,
-							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `error`,
-							COUNT(*) AS `total`
-						FROM `v_tests_details`
-						WHERE 1
-
-						AND `result_date` BETWEEN '$from' AND '$to'
-						$user_delimiter
-					";
+		$sql 	=	"CALL get_errors_notf('$from','$to',$user_group_id,$user_filter_used)";
 
 		$rs 	=	 R::getAll($sql); 
 
