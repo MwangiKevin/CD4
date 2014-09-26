@@ -141,7 +141,8 @@ class tests_model extends MY_Model{
 										),
 								1 	=>	array(
 											"name"	=>	"Below critical level",
-											"data"	=>	$bel
+											"data"	=>	$bel,
+											"color" => "#caa6bb"
 										)
 							);
 
