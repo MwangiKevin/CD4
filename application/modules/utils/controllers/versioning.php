@@ -16,7 +16,7 @@ class versioning extends MY_Controller {
 	}
 	public  function write_version() {
 		
-		$data = exec('git describe git describe --exact-match');
+		$data = exec('git describe --exact-match');
 
 		if ( ! write_file('version.txt', $data))
 		{
