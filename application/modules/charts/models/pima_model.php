@@ -95,7 +95,6 @@ class pima_model extends MY_Model{
 
 		//$categories 	=	$this->get_yearmonth_categories($from,$to);
 
-		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
 		
 
@@ -116,73 +115,9 @@ class pima_model extends MY_Model{
 	private function expected_reporting_dev_array($user_group_id,$user_filter_used,$year){
 		//error_reporting(0);
 		$sql_added = "CALL expected_reporting_dev_array_added(".$user_group_id.", ".$user_filter_used.")";
-		// $sql_added	=	"SELECT
-								// `t1`.`date_added` as `rank_date`,
-								// `t1`.`yearmonth`,
-								// `t1`.`month`, 
-								// `t1`.`rolledout`, 
-								// SUM(`t2`.`rolledout`) AS `cumulative`
-							// FROM
-								// (SELECT 	CONCAT(YEAR(`date_added`),'-',MONTH(`date_added`)) AS `yearmonth`,
-                                 			// `date_added`, 
-											// MONTH(`date_added`) AS `month`,
-											// COUNT(*) AS `rolledout` 			
-										// FROM `v_facility_reporting_view` 		 
-										// WHERE `date_added` <> '0000-00-00'
-										// AND `equipment_id` = '4' 
-// 
-										// $user_delimiter 
-// 
-										// GROUP BY `yearmonth`) AS `t1` 
-							// INNER JOIN 
-								// (SELECT 	CONCAT(YEAR(`date_added`),'-',MONTH(`date_added`)) AS `yearmonth`,
-                                 			// `date_added`, 
-											// MONTH(`date_added`) AS `month`,
-											// COUNT(*) AS `rolledout` 			
-										// FROM `v_facility_reporting_view` 		 
-										// WHERE `date_added` <> '0000-00-00'
-										// AND `equipment_id` = '4' 
-// 
-										// $user_delimiter 
-// 
-										// GROUP BY `yearmonth`) AS `t2` 
-							// ON `t1`.`date_added` >= `t2`.`date_added` 
-							// group by `t1`.`date_added`";
-// 
+
 		$sql_removed = "CALL expected_reporting_dev_array_removed(".$user_group_id.", ".$user_filter_used.")";
-		// echo $sql_removed	="SELECT 
-									// `t1`.`date_removed` as `rank_date`,
-									// `t1`.`yearmonth`,
-									// `t1`.`month`, 
-									// `t1`.`removed`, 
-									// SUM(`t2`.`removed`) AS `cumulative`
-								// FROM
-									// (SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
-												// `date_removed`, 
-												// MONTH(`date_removed`) AS `month`,
-												// COUNT(*) AS `removed` 			
-											// FROM `v_facility_reporting_view` 		 
-											// WHERE `date_removed` <> '0000-00-00'
-											// AND `equipment_id` = '4' 
-// 
- 											// $user_delimiter 
-// 
-											// GROUP BY `yearmonth`) AS `t1` 
-								// INNER JOIN 
-									// (SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
-												// `date_removed`, 
-												// MONTH(`date_removed`) AS `month`,
-												// COUNT(*) AS `removed` 			
-											// FROM `v_facility_reporting_view` 		 
-											// WHERE `date_removed` <> '0000-00-00'
-											// AND `equipment_id` = '4' 
-// 
-											 // $user_delimiter 
-// 
-											// GROUP BY `yearmonth`) AS `t2` 
-								// ON `t1`.`date_removed` >= `t2`.`date_removed` 
-// 								
-								// group by `t1`.`date_removed`";
+	
 
 		$devices_added_assoc 	=	R::getAll($sql_added);
 		$devices_removed_assoc 	=	R::getAll($sql_removed);
