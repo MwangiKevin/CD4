@@ -3,7 +3,7 @@ class tests_model extends MY_Model{
 	public function tests_pie($from,$to,$user_group_id,$user_filter_used){
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
-		echo $sql = "CALL tests_pie('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+		$sql = "CALL tests_pie('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
 
 		$tst 	=	R::getAll($sql);
 
@@ -61,20 +61,7 @@ class tests_model extends MY_Model{
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
 		$sql = "CALL tests_table('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
-			
-		// $sql 	= 	"SELECT 
-// 							
-							// COUNT(*) AS `total`,
-							// SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
-							// SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
-							// SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-							// SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
-						// FROM `v_tests_details`
-// 
-						// WHERE `result_date` BETWEEN '$from' AND '$to'
-						// $user_delimiter
-// 
-					// ";
+
 		$tests 	=	R::getAll($sql);
 
 		$tests[0]["title"]= 'Tests';

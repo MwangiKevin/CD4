@@ -36,7 +36,7 @@
 			</div>									
 		</div>								
 	</div>
-	<div class="row" style="margin-top:30px;">
+	<div class="row" style="margin-top:20px;">
 		<div class="col-md-4" id="equipmenttestscolumn">				
 			<div class="loader" style"">Loading...</div>	
 		</div>
@@ -49,10 +49,12 @@
 				<div class="loader" style"">Loading...</div>	
 			</div>	
 		</div>
-		<div class="col-md-12" style="margin-top:30px; " id="cd4testtrends">
+	</div>
+	<div class="row" style="">
+		<div class="col-md-12" style="margin-top:20px; " id="cd4testtrends">
 			<div class="loader" style"">Loading...</div>
 		</div>	
-		<div class="col-md-12" style=" margin-top:30px;" id="expected_reporting_devices">
+		<div class="col-md-12" style=" margin-top:20px;" id="expected_reporting_devices">
 			<div class="loader" style"">Loading...</div>
 		</div>	
 	</div>

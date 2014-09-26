@@ -257,16 +257,6 @@ class MY_Model extends CI_Model{
 		
 		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		// $sql = 	"SELECT 
-		// 				* 
-		// 			FROM `v_facility_equipment_details`
-		// 			WHERE 1
-
-		// 			AND `equipment_id` = '4'
-		// 			$user_delimiter
-		// 			GROUP BY `facility_equipment_id`
-		// 		";
-
 		$sql 	=	"CALL active_user_devices($user_group_id,$user_filter_used)";	
 		return R::getAll($sql);
 
@@ -285,17 +275,6 @@ class MY_Model extends CI_Model{
 		$user_filter_used= (int) $user_filter[0]["user_filter_id"];
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
-
-		// $sql 	= 	"SELECT 
-		// 					`facility_equipment_id`
-		// 				FROM `v_tests_details`
-		// 				WHERE 1
-
-		// 				AND `result_date` BETWEEN '$from' AND '$to'
-		// 				$user_delimiter
-
-		// 				GROUP BY `facility_equipment_id`
-		// 			";		
 
 		$sql 	=	"CALL uploaded_user_devices('$from','$to',$user_group_id,$user_filter_used)";			
 
