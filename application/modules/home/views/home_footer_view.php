@@ -1,5 +1,6 @@
 <script>
 $().ready(function() {
+        $("#homemap").load("<?php echo base_url('charts/map/home'); ?>"); 
         $("#equipmentpie").load("<?php echo base_url('charts/equipment/equipment_pie/0/0'); ?>"); 
         $("#equipment-table").load("<?php echo base_url('charts/equipment/equipment_table/0/0'); ?>" ); 
         $("#equipmenttestpie").load("<?php echo base_url('charts/equipment/equipment_tests_pie/0/0'); ?>"); 

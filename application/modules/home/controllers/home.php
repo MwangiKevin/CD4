@@ -14,7 +14,7 @@ class home extends MY_Controller {
 		$this->data['content_view'] = "home/home_view";
 		$this->data['title'] = "Home";
 		$this->data['filter']	=	true;
-		$this->data	=	array_merge($this->data,$this->load_libraries(array('dataTables','FusionCharts','highcharts','highcharts_drilldown')));
+		$this->data	=	array_merge($this->data,$this->load_libraries(array('dataTables','FusionCharts','highcharts','highmaps','highcharts_drilldown')));
 		
 		$this->load->model('home_model');
 
