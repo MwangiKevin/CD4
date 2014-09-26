@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','session','github_updater','form_validation','encrypt','rb/rb');
+$autoload['libraries'] = array('database','session','github_updater','form_validation','encrypt','rb/rb','ftp');
 
 
 /*
