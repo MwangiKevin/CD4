@@ -7,12 +7,13 @@ class backup extends MY_Controller {
 		parent::__construct();
 		ini_set('memory_limit', '-1');
 		$this->load->dbutil();
+		$this->load->config("ftp_backup");
 	}
 	public function backup(){
 		echo "hello";
 	}
 
-	public function routine_backup(){
+	public function routine_backup($download_option=false,$ftp_servers=array()){
 		$tables = array(
 						"activation_link",
 						"assay",
@@ -64,17 +65,30 @@ class backup extends MY_Controller {
 						);
 
 		$backup =& $this->dbutil->backup($prefs);
-		//echo $backup;
+		
 		$db_name='cd4'.time().'.zip';
 		$save='backup/'.$db_name;
 		write_file($save,$backup);
-        //force_download($db_name,$backup);
+
+		if($download_option){force_download($db_name,$backup);}
+
+		$all_ftp_servers = $this->config->item("ftp_backup");
+
+		foreach ($ftp_servers as $key => $value) {
+			$config = $all_ftp_servers[$value];
+
+			$this->ftp->connect($config);
+
+			$this->ftp->upload($db_name, $backup, 'ascii', 0775);
+
+			$this->ftp->close();
+		}
+
 	}
-	public function op(){
+	public function optimize_database(){
 		$result = $this->dbutil->optimize_database();
 
-		if ($result !== FALSE)
-		{	
+		if ($result !== FALSE){	
 			echo "<pre/>";
 			print_r($result);
 		}
@@ -82,8 +96,7 @@ class backup extends MY_Controller {
 	public function tables(){
 		$tables = $this->db->list_tables();
 
-		foreach ($tables as $table)
-		{
+		foreach ($tables as $table){
 			echo "<br/>".$table;
 		}
 	}
