@@ -15,54 +15,54 @@ class backup extends MY_Controller {
 
 	public function routine_backup($download_option=false,$ftp_servers=array()){
 		$tables = array(
-						"activation_link",
-						"assay",
-						"book",
-						"calibur_upload",
-						"cd4_test",
-						"commodity",
-						"commodity_temp",
-						"county",
-						"district",
-						"district_user",
-						"equipment",
-						"equipment_category",
-						"equipment_status",
-						"facility",
-						"facility_equipment",
-						"facility_equipment_request",
-						"facility_pima",
-						"facility_type",
-						"facility_user",
-						"fcdrr",
-						"fcdrr_temp",
-						"partner",
-						"partner_regions",
-						"partner_user",
-						"password_log",
-						"patient_age_group",
-						"pima_control",
-						"pima_error",
-						"pima_error_type",
-						"pima_failed_upload_devices",
-						"pima_test",
-						"pima_test_pass_fail",
-						"pima_upload",
-						"reagent",
-						"reagent_category",
-						"region",
-						"region_user",
-						"status",
-						"user",
-						"user_access_level",
-						"user_group",
-						"user_status",
-						"userlog",
+			"activation_link",
+			"assay",
+			"book",
+			"calibur_upload",
+			"cd4_test",
+			"commodity",
+			"commodity_temp",
+			"county",
+			"district",
+			"district_user",
+			"equipment",
+			"equipment_category",
+			"equipment_status",
+			"facility",
+			"facility_equipment",
+			"facility_equipment_request",
+			"facility_pima",
+			"facility_type",
+			"facility_user",
+			"fcdrr",
+			"fcdrr_temp",
+			"partner",
+			"partner_regions",
+			"partner_user",
+			"password_log",
+			"patient_age_group",
+			"pima_control",
+			"pima_error",
+			"pima_error_type",
+			"pima_failed_upload_devices",
+			"pima_test",
+			"pima_test_pass_fail",
+			"pima_upload",
+			"reagent",
+			"reagent_category",
+			"region",
+			"region_user",
+			"status",
+			"user",
+			"user_access_level",
+			"user_group",
+			"user_status",
+			"userlog",
 			);
 		$prefs = array(
-						'format'=>'zip',
-						'tables'=>$tables
-						);
+			'format'=>'zip',
+			'tables'=>$tables
+			);
 
 		$backup =& $this->dbutil->backup($prefs);
 		
@@ -77,13 +77,49 @@ class backup extends MY_Controller {
 		foreach ($ftp_servers as $key => $value) {
 			$config = $all_ftp_servers[$value];
 
-			$this->ftp->connect($config);
+			$config["from"]=$save;
+			$config["to"]=$db_name;
 
-			$this->ftp->upload($db_name, $backup, 'ascii', 0775);
+			$this->ftp_send($config);
 
-			$this->ftp->close();
+			// $this->ftp->connect($config);
+
+			// print_r($config);
+
+			// echo $string = read_file('backup/cd41411795771.zip');
+
+			// $this->ftp->upload('backup/cd41411795771.zip', 'z.zip', 'ascii', 0775);
+
+			// $list = $this->ftp->list_files('/');
+
+			// print_r($list);
+
+			// $this->ftp->close();
 		}
 
+	}
+
+	public function ftp_send($config){
+
+		// connect and login to FTP server
+		$ftp_server = $config["hostname"];
+		$ftp_conn = ftp_connect($ftp_server) or die("Could not connect to $ftp_server");
+		$login = ftp_login($ftp_conn, $config["username"], $config["password"]);
+
+		$file = $config["from"];
+
+			// upload file
+		if (ftp_put($ftp_conn, $config["to"], $file, FTP_ASCII))
+		{
+			echo "Successfully uploaded $file.";
+		}
+		else
+		{
+			echo "Error uploading $file.";
+		}
+
+// close connection
+		ftp_close($ftp_conn);
 	}
 	public function optimize_database(){
 		$result = $this->dbutil->optimize_database();
@@ -99,5 +135,15 @@ class backup extends MY_Controller {
 		foreach ($tables as $table){
 			echo "<br/>".$table;
 		}
+	}
+
+	public function test_backup_download(){
+
+		$this->routine_backup(true);
+	}
+
+	public function test_backup_ftp(){
+
+		$this->routine_backup(false,array(0));
 	}
 }

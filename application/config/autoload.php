@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','session','github_updater','form_valid
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','cookie','path','asset','html','file');
+$autoload['helper'] = array('url','form','cookie','path','asset','html','file','download');
 
 
 /*
