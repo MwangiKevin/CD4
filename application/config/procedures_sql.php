@@ -493,7 +493,7 @@ $db_procedures["sql_eq"]=
 		END;
 	";
 
-$db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_column(user_group_id int(11),user_filter_used int(11), today date)
+$db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_column(user_group_id int(11),user_filter_used int(11))
 		BEGIN
 			CASE `user_filter_used`
 			WHEN 0 THEN
@@ -507,7 +507,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
                     LEFT JOIN cd4_test `c_t`
                     ON `c_t`.`equipment_id` = `e`.`id`
 				WHERE 1
-					AND `c_t`.`result_date`<= 'today'
+					AND `c_t`.`result_date`<= CURDATE()
 				GROUP BY `e`.`description`,`year` 
 				ORDER BY `e`.`description` ASC;
 			ELSE	
@@ -525,7 +525,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 	                    LEFT JOIN facility `f`
 							ON `c_t`.`facility_id` = `f`.`id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
+							AND `c_t`.`result_date`<= CURDATE()
 							AND `partner_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
@@ -545,7 +545,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 	                    	LEFT JOIN `district` `d`
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
+							AND `c_t`.`result_date`<= CURDATE()
 							AND `region_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
@@ -564,7 +564,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 	                    	LEFT JOIN `district` `d`
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
+							AND `c_t`.`result_date`<= CURDATE()
 							AND `district_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
@@ -580,7 +580,7 @@ $db_procedures["equipment_tests_column"] =	"CREATE PROCEDURE equipment_tests_col
 	                    LEFT JOIN facility `f`
 							ON `c_t`.`facility_id ` = `f`.`id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
+							AND `c_t`.`result_date`<= CURDATE()
 							AND `facility_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;

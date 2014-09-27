@@ -22,6 +22,7 @@ class MY_Controller extends MX_Controller{
 			$this->set_user_filter(0);
 		}
 		$this->timeout();
+		$this->load->module("utils/versioning");
 	}
 	
 	protected function timeout(){
