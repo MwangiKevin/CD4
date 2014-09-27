@@ -8,7 +8,7 @@ class versioning extends MY_Controller {
 	}
 	public function index(){
 
-		return $string = read_file('version.txt');
+		return $string = read_file('ver.txt');
 	}
 	
 	public  function get_git_version() {
@@ -18,7 +18,7 @@ class versioning extends MY_Controller {
 		
 		$data = exec('git describe --exact-match');
 
-		if ( ! write_file('version.txt', $data))
+		if ( ! write_file('ver.txt', $data))
 		{
 			echo 'Unable to write the file';
 		}
