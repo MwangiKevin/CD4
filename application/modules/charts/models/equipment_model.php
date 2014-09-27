@@ -212,7 +212,7 @@ class equipment_model extends MY_Model{
 		$today = Date("Y-m-d");
 		
 		//procedures
-		$sql = "CALL equipment_tests_column(".$user_group_id.",".$user_filter_used.",'".$today."') ";
+		$sql = "CALL equipment_tests_column(".$user_group_id.",".$user_filter_used.") ";
 		$sql_eq	="CALL sql_eq()";
 
 					
