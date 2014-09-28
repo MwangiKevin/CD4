@@ -29,7 +29,6 @@
 					<div class="loader" style"">Loading...</div>	
 				</div>
 				<div class="col-md-6">		
-					<!-- <div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?> </center></div> -->
 					<div id="equipment-test-table">
 						<div class="loader" style"">Loading...</div>	
 					</div>									
@@ -38,14 +37,13 @@
 		</div>							
 	</div>
 	<div class="row" style="margin-top:20px;">
-		<div class="col-md-4" id="equipmenttestscolumn">				
+		<div class="col-md-3" id="equipmenttestscolumn">				
 			<div class="loader" style"">Loading...</div>	
 		</div>
 		<div class="col-md-4" id="testspie">
 			<div class="loader" style"">Loading...</div>
 		</div>
-		<div class="col-md-4" >
-			<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
+		<div class="col-md-5" >
 			<div id="tests-table">				
 				<div class="loader" style"">Loading...</div>	
 			</div>	

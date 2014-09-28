@@ -1,4 +1,4 @@
-<div style="border-color: #407BAF;border-style: solid;border-width: 2px;background-color: #FAFBFC;vertical-align: middle;height:190px;">
+<div style="border-color: #407BAF;border-style: solid;border-width: 2px;background-color: #FAFBFC;vertical-align: middle;height:195px;">
 
     <div class="section-title" ><center>Equipment Tests for <?php echo $this -> session -> userdata('filter_desc');?> </center></div>
 

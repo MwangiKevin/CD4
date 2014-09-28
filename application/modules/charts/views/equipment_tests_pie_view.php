@@ -12,7 +12,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,                
-                height:190
+                height:195
             },
             title: {
                 text: 'Equipment & Tests'
