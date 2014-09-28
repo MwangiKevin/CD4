@@ -28,6 +28,8 @@ class home extends MY_Controller {
 
 	public function index(){
 		//header('location:'.base_url().'login');
+
+		//print_r($this->data);
 		$this -> template($this->data);
 
 	}
