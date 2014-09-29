@@ -30,7 +30,13 @@
 					}); 
 				</script>
 			</div>
+			<?php
+				if($this->session->userdata("user_group_id")==3){
+			?>
 			<div id ="dev_reg_requests"><div class="" style"">Loading...</div></div>
+			<?php
+				}
+			?>
 
 		</div>
 	</div>

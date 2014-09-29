@@ -7,22 +7,12 @@ class pima_model extends MY_Model{
 		$beg_year = $this->config->item("starting_year");
 		$beg_date = "$beg_year-1-1";
 
-		$sql_expected = "SELECT 
-								COUNT(DISTINCT `facility_equipment_id`) AS `expected`
-							FROM `v_facility_equipment_details`
-							WHERE 1 
-							AND `date_added` BETWEEN '$beg_date' AND '$to' 
-							AND ((`date_removed` IS NULL) OR (`date_removed` IS NOT NULL AND `date_removed` > '$to') ) 
-							$user_delimiter 
-						";
+		$sql_expected = "CALL expected_reporting_devices_pie_expected(".$user_group_id.", ".$user_filter_used.",'".$beg_date."','".$to."' )";
 
-		$sql_reported = "SELECT 
-								COUNT(DISTINCT `facility_equipment_id`) AS `reported`
-							FROM `v_tests_details`
-							WHERE 1
-							AND `result_date` BETWEEN '$from' AND '$to' 
-							$user_delimiter 
-						";
+
+		$sql_reported = "CALL expected_reporting_devices_pie_reported(".$user_group_id.", ".$user_filter_used.",'".$from."','".$to."')";
+		
+
 		$expected_res  	= R::getAll($sql_expected);			
 		$reported_res  	= R::getAll($sql_reported);	
 
@@ -43,21 +33,8 @@ class pima_model extends MY_Model{
 	}
 	public function tests_table($from,$to,$user_group_id,$user_filter_used){
 
-		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
-		$sql 	= 	"SELECT 
-							COUNT(*) AS `total`,
-							SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
-							SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
-							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
-						FROM `v_tests_details`
-
-						WHERE `result_date` BETWEEN '$from' AND '$to'
-						AND `equipment_id` = '4' 
-						$user_delimiter
-
-					";
+		$sql = "CALL tests_table('".$from."','".$to."','".$user_group_id."','".$user_filter_used."')";
 		$tests 	=	R::getAll($sql);
 
 		$tests[0]["title"]= 'Tests';
@@ -92,20 +69,8 @@ class pima_model extends MY_Model{
 	public function errors_pie($user_group_id,$user_filter_used,$from,$to){
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
+		$sql = "CALL errors_pie(".$user_group_id.", ".$user_filter_used.",'".$from."','".$to."' )";
 
-		$sql 	=	 	"SELECT 
-								COUNT(`error_id`) AS `num`,
-								`error_code`,
-								`error_detail`,
-								`error_type_description`
-							FROM `v_pima_error_details`
-
-							WHERE 1
-							AND `result_date` BETWEEN '$from' AND '$to' 
-							$user_delimiter 
-
-							GROUP BY `error_id`
-						";
 		$res  = R::getAll($sql);
 
 		$data = array();
@@ -130,88 +95,29 @@ class pima_model extends MY_Model{
 
 		//$categories 	=	$this->get_yearmonth_categories($from,$to);
 
-		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
+		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
+		
 
 		$data["chart"][0]["name"] 	= 	"Expected Reporting Devices";
-		$data["chart"][0]["data"] 	= 	$this->expected_reporting_dev_array($user_delimiter,$year);
+		
+		// $data["chart"][0]["data"] 	= "CALL expected_reporting_dev_array(".$user_group_id.", ".$user_filter_used.", ".$year.")";
+		$data["chart"][0]["data"] 	= 	$this->expected_reporting_dev_array($user_group_id,$user_filter_used,$year);
 
 		$data["chart"][1]["name"] 	= 	"Reported Devices";
 		$data["chart"][1]["color"] 	= 	"#a4d53a";
-		$data["chart"][1]["data"] 	= 	$this->reported_devices($user_delimiter,$year);
+		
+	    $data["chart"][1]["data"] 	= 	$this->reported_devices($user_group_id, $user_filter_used,$year);
 
 		return $data;
 
 	}
 
-	private function expected_reporting_dev_array($user_delimiter, $year){
+	private function expected_reporting_dev_array($user_group_id,$user_filter_used,$year){
 		//error_reporting(0);
+		$sql_added = "CALL expected_reporting_dev_array_added(".$user_group_id.", ".$user_filter_used.")";
 
-		$sql_added	=	"SELECT
-								`t1`.`date_added` as `rank_date`,
-								`t1`.`yearmonth`,
-								`t1`.`month`, 
-								`t1`.`rolledout`, 
-								SUM(`t2`.`rolledout`) AS `cumulative`
-							FROM
-								(SELECT 	CONCAT(YEAR(`date_added`),'-',MONTH(`date_added`)) AS `yearmonth`,
-                                 			`date_added`, 
-											MONTH(`date_added`) AS `month`,
-											COUNT(*) AS `rolledout` 			
-										FROM `v_facility_reporting_view` 		 
-										WHERE `date_added` <> '0000-00-00'
-										AND `equipment_id` = '4' 
-
-										$user_delimiter 
-
-										GROUP BY `yearmonth`) AS `t1` 
-							INNER JOIN 
-								(SELECT 	CONCAT(YEAR(`date_added`),'-',MONTH(`date_added`)) AS `yearmonth`,
-                                 			`date_added`, 
-											MONTH(`date_added`) AS `month`,
-											COUNT(*) AS `rolledout` 			
-										FROM `v_facility_reporting_view` 		 
-										WHERE `date_added` <> '0000-00-00'
-										AND `equipment_id` = '4' 
-
-										$user_delimiter 
-
-										GROUP BY `yearmonth`) AS `t2` 
-							ON `t1`.`date_added` >= `t2`.`date_added` 
-							group by `t1`.`date_added`";
-
-		$sql_removed	="SELECT 
-									`t1`.`date_removed` as `rank_date`,
-									`t1`.`yearmonth`,
-									`t1`.`month`, 
-									`t1`.`removed`, 
-									SUM(`t2`.`removed`) AS `cumulative`
-								FROM
-									(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
-												`date_removed`, 
-												MONTH(`date_removed`) AS `month`,
-												COUNT(*) AS `removed` 			
-											FROM `v_facility_reporting_view` 		 
-											WHERE `date_removed` <> '0000-00-00'
-											AND `equipment_id` = '4' 
-
-											$user_delimiter 
-
-											GROUP BY `yearmonth`) AS `t1` 
-								INNER JOIN 
-									(SELECT 	CONCAT(YEAR(`date_removed`),'-',MONTH(`date_removed`)) AS `yearmonth`,
-												`date_removed`, 
-												MONTH(`date_removed`) AS `month`,
-												COUNT(*) AS `removed` 			
-											FROM `v_facility_reporting_view` 		 
-											WHERE `date_removed` <> '0000-00-00'
-											AND `equipment_id` = '4' 
-
-											$user_delimiter 
-
-											GROUP BY `yearmonth`) AS `t2` 
-								ON `t1`.`date_removed` >= `t2`.`date_removed` 
-								
-								group by `t1`.`date_removed`";
+		$sql_removed = "CALL expected_reporting_dev_array_removed(".$user_group_id.", ".$user_filter_used.")";
+	
 
 		$devices_added_assoc 	=	R::getAll($sql_added);
 		$devices_removed_assoc 	=	R::getAll($sql_removed);
@@ -279,25 +185,27 @@ class pima_model extends MY_Model{
 
 		return $consolidated_array;
 	}
-	private function reported_devices($user_delimiter, $year){
-
-		$sql = 	"SELECT 
-						`t1`.`month`,
-						COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
-
-					FROM (
-							SELECT 
-								DISTINCT `facility_equipment_id`,
-								MONTH(`result_date`) AS `month`
-							FROM `v_tests_details`
-							WHERE 1 
-
-							AND YEAR(`result_date`) = '$year' 
-
-							$user_delimiter
-						)AS `t1`					
-					GROUP BY `t1`.`month`
-				";
+	private function reported_devices($user_group_id,$user_filter_used, $year){
+		
+		$sql = "CALL reported_devices(".$user_group_id.",".$user_filter_used.",".$year.")";
+		
+		// echo $sql = 	"SELECT 
+						// `t1`.`month`,
+						// COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
+// 
+					// FROM (
+							// SELECT 
+								// DISTINCT `facility_equipment_id`,
+								// MONTH(`result_date`) AS `month`
+							// FROM `v_tests_details`
+							// WHERE 1 
+// 
+							// AND YEAR(`result_date`) = '$year' 
+// 
+							// $user_delimiter
+						// )AS `t1`					
+					// GROUP BY `t1`.`month`
+				// ";
 		$res = R::getAll($sql);
 
 		$reported_array = array(); 
