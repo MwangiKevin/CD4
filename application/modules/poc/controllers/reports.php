@@ -11,7 +11,7 @@ class reports extends MY_Controller {
 
 		$this->data['content_view'] = "poc/reports_view2";
 		$this->data['title'] = "Reports";
-		$this->data['sidebar']	= "poc/sidebar_view";
+		//$this->data['sidebar']	= "poc/sidebar_view";
 
 		$this->load->model('poc_model');
 		
