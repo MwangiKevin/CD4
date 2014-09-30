@@ -11,7 +11,9 @@ BEGIN
 			
 		FROM `cd4_test`
 		
-		WHERE `result_date` BETWEEN `from_date` AND `to_date`;
+		WHERE `result_date` BETWEEN `from_date` AND `to_date`
+		AND `result_date` <= CURDATE()
+		;
 	ELSE
 		CASE `user_group_id`
 		WHEN 3 THEN
@@ -28,7 +30,9 @@ BEGIN
 				ON `tst`.`facility_id` = `f`.`id`
 			
 			WHERE `result_date` BETWEEN `from_date` AND `to_date`
-			AND `partner_id` = `user_filter_used`;
+			AND `partner_id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 		WHEN 9 THEN
 		
 			SELECT 
@@ -45,7 +49,9 @@ BEGIN
 				ON `f`.`district_id` = `d`.`id`
 			
 			WHERE `result_date` BETWEEN `from_date` AND `to_date`
-			AND `d`.`region_id` = `user_filter_used`;
+			AND `d`.`region_id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 			
 		WHEN 8 THEN
 		
@@ -61,7 +67,9 @@ BEGIN
 				ON `tst`.`facility_id` = `f`.`id`
 						
 			WHERE `result_date` BETWEEN `from_date` AND `from_date`
-			AND `f`.`district_id` = `user_filter_used`;
+			AND `f`.`district_id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 			
 		WHEN 6 THEN
 			SELECT 
@@ -76,7 +84,9 @@ BEGIN
 				ON `tst`.`facility_id` = `f`.`id`
 						
 			WHERE `result_date` BETWEEN `from_date` AND `from_date`
-			AND `f`.`id` = `user_filter_used`;
+			AND `f`.`id` = `user_filter_used`
+			AND `result_date` <= CURDATE()
+			;
 		END CASE;
 	END CASE;	
 END
