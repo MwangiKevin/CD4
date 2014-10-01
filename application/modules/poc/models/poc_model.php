@@ -11,7 +11,7 @@ class poc_model extends MY_Model{
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	2,
-								'name'			=>	'POC Device Uploads',
+								'name'			=>	'PIMA Uploads',
 								'url'			=>	base_url()."poc/upload",
 								'other'			=>	"",
 					 			'selected'		=>	false,
@@ -39,8 +39,15 @@ class poc_model extends MY_Model{
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	5,
-								'name'			=>	'POC Device Errors',
+								'name'			=>	'PIMA Errors',
 								'url'			=>	base_url()."poc/errors",
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
+						array(	'num'			=>	9,
+								'name'			=>	'PIMA Controls',
+								'url'			=>	base_url()."poc/pima_controls",
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
@@ -84,40 +91,20 @@ class poc_model extends MY_Model{
 
 	public function get_Upload_details($user_group_id,$user_filter_used){
 
-		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
-		$sql 	=	"SELECT 
-							`pima_upload_id`,
-							`upload_date`,
-							`equipment_serial_number`,
-							`facility_name`,
-							`uploader_name`,
-							COUNT(`pima_test_id`) AS `total_tests`,
-							SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid_tests`,
-							SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,
-							SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` < 350 THEN 1 ELSE 0 END) AS `failed`,
-							SUM(CASE WHEN `valid`= '1'  AND  `cd4_count` >= 350 THEN 1 ELSE 0 END) AS `passed`
-						FROM `v_pima_uploads_details`
-						WHERE 1 
-						$user_delimiter 
-						GROUP BY `pima_upload_id`
-						ORDER BY `upload_date` DESC
-						LIMIT 500
-					";
+
+		$sql 	=	"CALL get_uploads_dt($user_group_id,$user_filter_used)";
+
 		return $res 	=	R::getAll($sql);
-
-
 	}
 
 
-	public function get_Device_types()
-	{
+	public function get_Device_types(){
 		$sql = "SELECT * FROM equipment WHERE category = 1";
 		return $result  =  R::getAll($sql);
 	}
 
-	public function register_facility($user_id)
-	{
+	public function register_facility($user_id){
 		$facility_request = array(
 			'id' 			 =>   NULL,
 
@@ -135,8 +122,7 @@ class poc_model extends MY_Model{
 		return $insert;
 	}
 
-	public function get_requested($user_id)
-	{
+	public function get_requested($user_id){
 		$sql = "SELECT `facility_id`,
 				COUNT(`id`) AS `Totals`
 				FROM  `facility_equipment_request`

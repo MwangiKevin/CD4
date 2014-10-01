@@ -10,12 +10,12 @@
 					<span class="input-group-addon" style="width: 40%;">Criteria:</span>
 					<select id="criteria1" name="criteria1" class="textfield form-control" onchange="secondCriteria(this);">
 	                   	<!--<option value="">---Choose Criteria---</option>-->
-						<option value="1">National</option>
-						<option value="2">Partner</option>
-						<option value="3">Region</option>
-						<option value="4">District</option>
-						<option value="5">Facility</option>
-						<option value="6">Device</option>                   					
+						<option value="0">National</option>
+						<option value="3">Partner</option>
+						<option value="9">Region</option>
+						<option value="8">District</option>
+						<option value="6">Facility</option>
+						<option value="12">Device</option>                   					
 	                </select>
                 </div>
                 <div id= "criteria2Div" class="input-group" style="width: 25%;padding:4px;float:left;">
