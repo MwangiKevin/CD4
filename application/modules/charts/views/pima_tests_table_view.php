@@ -1,4 +1,4 @@
-<div style="border-color: #407BAF;border-style: solid;border-width: 2px;background-color: #FAFBFC;vertical-align: middle;">
+<div style="overflow-y: auto; height: <?php echo $height?>px !important;border-color: #407BAF;border-style: solid;border-width: 2px;background-color: #FAFBFC;vertical-align: middle;">
 
 	<div class="section-title" ><center>PIMA Tests for <?php echo $this -> session -> userdata('filter_desc');?> </center></div>
 
