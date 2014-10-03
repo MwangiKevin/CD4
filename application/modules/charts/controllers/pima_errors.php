@@ -10,7 +10,7 @@ class pima_errors extends MY_Controller {
   }
 
 
-  public function monthly_error_trend($criteria1,$criteria2){
+  public function monthly_error_trend($criteria1,$criteria2,$height=195){
 
     $from 		=	$this->get_filter_start_date();
     $to			=	$this->get_filter_stop_date();
@@ -172,7 +172,7 @@ class pima_errors extends MY_Controller {
     echo $script;
 
   }
-  public function error_type_pie($criteria1,$criteria2){
+  public function error_type_pie($criteria1,$criteria2,$height=195){
 
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
@@ -329,7 +329,7 @@ class pima_errors extends MY_Controller {
 
   }
 
-  public function error_table($criteria1,$criteria2){
+  public function error_table($criteria1,$criteria2,$height=195){
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
 
@@ -339,7 +339,7 @@ class pima_errors extends MY_Controller {
     $this->load->view('pima_error_table_view',$res[0]);
   }
 
-  public function errors_column($criteria1,$criteria2){
+  public function errors_column($criteria1,$criteria2,$height=195){
 
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
@@ -376,7 +376,7 @@ class pima_errors extends MY_Controller {
         //print "</pre>";
     $this->load->view('pima_error_column_view',$data);
   }
-  public function error_yearly_trends($user_group_id,$user_filter_used){
+  public function error_yearly_trends($user_group_id,$user_filter_used,$height=195){
 
     $this->load->model('pima_errors_model');
 
@@ -387,11 +387,12 @@ class pima_errors extends MY_Controller {
 
   }
 
-  public function error_types_col($user_group_id,$user_filter_used){
+  public function error_types_col($user_group_id,$user_filter_used,$height=195){
 
     $this->load->model('pima_errors_model');
 
     $data   =   $this->pima_errors_model->error_types_col($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());
+    //$data['height'] = $height;
 
     $this->load->view("pima_error_types_col_view",$data);
 
