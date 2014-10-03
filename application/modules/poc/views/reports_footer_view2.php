@@ -39,7 +39,46 @@ $(function() {
 
                 //Optional: setDate: The same as minDate.
             });
-   });
+   	});
+   	
+   	$('#datepickerFromd').on("change", function() {
+
+       //Begin the re-creation
+       $('#datepickerTod').datepicker( "destroy" );
+
+       $('#datepickerTod').datepicker({
+                /**
+                 * Set the date to be the same as the first
+                 **/
+                 minDate : $('#datepickerFromd').datepicker( "getDate" ),
+                 dateFormat: 'yy-mm-dd',
+                 maxDate: new Date(),
+                 changeMonth: true,
+                 changeYear: true              
+
+                //Optional: setDate: The same as minDate.
+            });
+   	});
+
+	$('#datepickerFromf').on("change", function() {
+
+       //Begin the re-creation
+       $('#datepickerTof').datepicker( "destroy" );
+
+       $('#datepickerTof').datepicker({
+                /**
+                 * Set the date to be the same as the first
+                 **/
+                 minDate : $('#datepickerFromf').datepicker( "getDate" ),
+                 dateFormat: 'yy-mm-dd',
+                 maxDate: new Date(),
+                 changeMonth: true,
+                 changeYear: true              
+
+                //Optional: setDate: The same as minDate.
+            });
+   	});
+
     /**
         *  On the 'On change' event listener, 
         *  dynamically re-create the 'end' date based
@@ -63,7 +102,47 @@ $(function() {
 
                 //Optional: setDate: The same as minDate.
             });
-   });
+   		});
+
+
+		$('#datepickerTod').on("change", function() {
+
+       //Begin the re-creation
+       $('#datepickerFromd').datepicker( "destroy" );
+
+       $('#datepickerFromd').datepicker({
+                /**
+                 * Set the date to be the same as the first
+                 **/
+                 minDate : new Date(<?php echo $starting_year;?>,0,1),
+                 dateFormat: 'yy-mm-dd',
+                 maxDate: $('#datepickerTod').datepicker( "getDate" ),
+                 changeMonth: true,
+                 changeYear: true             
+
+                //Optional: setDate: The same as minDate.
+            });
+   		});
+   		
+		$('#datepickerTof').on("change", function() {
+
+       //Begin the re-creation
+       $('#datepickerFromf').datepicker( "destroy" );
+
+       $('#datepickerFromf').datepicker({
+                /**
+                 * Set the date to be the same as the first
+                 **/
+                 minDate : new Date(<?php echo $starting_year;?>,0,1),
+                 dateFormat: 'yy-mm-dd',
+                 maxDate: $('#datepickerTof').datepicker( "getDate" ),
+                 changeMonth: true,
+                 changeYear: true             
+
+                //Optional: setDate: The same as minDate.
+            });
+   		});
+
 
         $().ready(function() {
 

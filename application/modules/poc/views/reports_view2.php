@@ -6,7 +6,7 @@
 		
 		<div class="section-title" style="width: 30%;" ><center>Criteria: Show All (By Device & Facility)</center></div>
 		<div class="mycontainer" id="full">
-		<form method="post" action="<?php echo base_url();?>poc/reports/submit" id="form-report">	
+		<form method="post" action="<?php echo base_url();?>poc/reports/submit2/1" id="form-report">	
 			<table>
 				<tr>
 					<td style="width:35%;">
@@ -24,7 +24,7 @@
 						<div id="startDate">
 							<div class="input-group" style="width: 100%;padding:4px;">
 								<span class="input-group-addon" style="width: 40%;padding:4px;"> Start Date: </span> 
-								<input type="text" class="textfield form-control" id="datepickerFrom" >
+								<input type="text" class="textfield form-control" id="datepickerFrom" name="datepickerFrom" >
 							</div>
 						</div>
 					</td>
@@ -32,7 +32,7 @@
 						<div id="endDate">
 							<div class="input-group" style="width: 100%;padding:4px;">
 								<span class="input-group-addon" style="width: 40%;padding:4px;"> End Date: </span>
-								<input type="text" class="textfield form-control"  id="datepickerTo">
+								<input type="text" class="textfield form-control"  id="datepickerTo" name="datepickerTo">
 							</div>
 						</div>
 					</td>
@@ -61,7 +61,7 @@
 		
 		<div class="section-title" style="width: 30%;" ><center>Criteria: By Device</center></div>
 		<div class="mycontainer" id="full">
-		<form method="post" action="<?php echo base_url();?>poc/reports/submit" id="form-report">	
+		<form method="post" action="<?php echo base_url();?>poc/reports/submit2/2" id="form-report">	
 			<table>
 				<tr>
 					<td>
@@ -80,7 +80,7 @@
 						<div id="startDate">
 							<div class="input-group" style="width: 100%;padding:4px;">
 								<span class="input-group-addon" style="width: 40%;padding:4px;"> Start Date: </span> 
-								<input type="text" class="textfield form-control" id="datepickerFromd" >
+								<input type="text" class="textfield form-control" id="datepickerFromd" name="datepickerFromd">
 							</div>
 						</div>
 					</td>
@@ -88,7 +88,7 @@
 						<div id="endDate">
 							<div class="input-group" style="width: 100%;padding:4px;">
 								<span class="input-group-addon" style="width: 40%;padding:4px;"> End Date: </span>
-								<input type="text" class="textfield form-control"  id="datepickerTod">
+								<input type="text" class="textfield form-control"  id="datepickerTod" name="datepickerTod">
 							</div>
 						</div>
 					</td>
@@ -117,7 +117,7 @@
 		
 		<div class="section-title" style="width: 30%;" ><center>Criteria: By Facility</center></div>
 		<div class="mycontainer" id="full">
-		<form method="post" action="<?php echo base_url();?>poc/reports/submit" id="form-report">
+		<form method="post" action="<?php echo base_url();?>poc/reports/submit2/3" id="form-report">
 			<table>
 				<tr>
 					<td>
@@ -137,7 +137,7 @@
 						<div id="startDate">
 							<div class="input-group" style="width: 100%;padding:4px;">
 								<span class="input-group-addon" style="width: 40%;padding:4px;"> Start Date: </span> 
-								<input type="text" class="textfield form-control" id="datepickerFromf" >
+								<input type="text" class="textfield form-control" id="datepickerFromf" name="datepickerFromf">
 							</div>
 						</div>
 					</td>
@@ -145,7 +145,7 @@
 						<div id="endDate">
 							<div class="input-group" style="width: 100%;padding:4px;">
 								<span class="input-group-addon" style="width: 40%;padding:4px;"> End Date: </span>
-								<input type="text" class="textfield form-control"  id="datepickerTof">
+								<input type="text" class="textfield form-control"  id="datepickerTof" name="datepickerTof">
 							</div>
 						</div>
 					</td>
