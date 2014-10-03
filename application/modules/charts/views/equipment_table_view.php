@@ -1,4 +1,4 @@
-<div style="border-color: #407BAF;border-style: solid;border-width: 2px;background-color: #FAFBFC;vertical-align: middle;height:195px;">
+<div style="overflow-y: auto; height: <?php echo $height?>px !important;border-color: #407BAF;border-style: solid;border-width: 2px;background-color: #FAFBFC;vertical-align: middle;height:195px;">
     
     <div class="section-title" ><center>CD4 Equipment </center></div>
 
