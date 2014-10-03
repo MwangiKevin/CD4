@@ -7,7 +7,7 @@ class pima extends MY_Controller {
 		parent::__construct();
 		$this->load->model('pima_model');
 	}
-	public function expected_reporting_devices($user_group_id,$user_filter_used,$height=195){		
+	public function expected_reporting_devices($user_group_id,$user_filter_used,$height=250){		
 
 		$data 	= 	$this->pima_model->expected_reporting_devices($user_group_id,$user_filter_used,$this->get_date_filter_year());
 		$data["year"] = $this->get_date_filter_year();
@@ -27,6 +27,7 @@ class pima extends MY_Controller {
 
 	public function errors_reported($user_group_id,$user_filter_used,$height=195){
 		$data 	= 	$this->pima_model->errors_pie($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());		
+		$data['height'] = $height;
 		$this->load->view("pima_errors_pie",$data);
 	}
 

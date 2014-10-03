@@ -22,7 +22,7 @@ class tests extends MY_Controller {
 
 
 	
-	public function tests_line_trend($user_filter_type,$filter,$height=195){
+	public function tests_line_trend($user_filter_type,$filter,$height=250){
 
 		$this->load->model('tests_model');
 		$data['height'] = $height;

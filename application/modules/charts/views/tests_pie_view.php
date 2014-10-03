@@ -40,7 +40,7 @@
                 plotBorderWidth: null,
                 plotShadow: true, 
                 type: 'pie',
-                height: 195
+                height: <?php echo $height;?>
 
             },
             title: {

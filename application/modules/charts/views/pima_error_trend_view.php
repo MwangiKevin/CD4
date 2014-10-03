@@ -7,7 +7,7 @@
                     plotShadow: true,       
                     zoomType: 'x',
                     type: 'area',
-                    height:350
+                    height:<?php echo $height;?>
                 },
                 title: {
                     text: 'Error Trends (Year <?php echo $date_filter_year;?>)',

@@ -12,7 +12,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,                
-                height:195
+                height:<?php echo $height;?>
             },
             title: {
                 text: 'Equipment & Tests'
