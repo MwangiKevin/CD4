@@ -12,20 +12,48 @@
         <div class="row">
         	<div class="col-md-12" id="">   
                 <div class="panel panel-default" style="width:100%;float:left;padding:30px;box-shadow: 4px 4px 4px #888888;" id="cd4testtrends">
-                    <div class="loader" style"">Loading...</div>
+                    <div>
+                    	<table>
+                    		<thead>
+                    			<tr>
+                    				<th>#</th>
+                    				<th>Facility</th>
+                    				<th>Date</th>
+                    				<th>Type</th>
+                    				<th>Reported</th>
+                    			</tr>
+                    		</thead>
+                    		<tbody></tbody>
+                    	</table>
+                    </div>
                 </div>  
             </div>
-            <div class="col-md-7" id="">
-                <div class="section-title" ><center>Loading Header</center></div>
-                <div id="tests-table">              
-                    <!-- <div class="loader" style"">Loading...</div>     -->
-                </div>  
+            <div class="col-md-6" id="">
+            	<div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
+                    <div class="section-title" ><center>Loading Header</center></div>
+		            <div id="tests-table">              
+		               <!-- <div class="loader" style"">Loading...</div>     -->
+		            </div>  
+                </div> 
+                
             </div>
-            <div class="col-md-5" id="">        
-                <div class="section-title" ><center>Loading Header</center></div>                      
-                <div id="equipment-test-table">
-                    <!-- <div class="loader" style"">Loading...</div>     -->
-                </div>
+            <div class="col-md-6" id="">        
+               
+                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
+                    <div class="section-title" ><center>Loading Header</center></div>                      
+	                <div id="equipment-test-table">
+	                    <!-- <div class="loader" style"">Loading...</div>     -->
+	                </div>
+                </div> 
+            </div>
+            <div class="col-md-6" id="">        
+               
+                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
+                    <div class="section-title" ><center>Loading Header</center></div>                      
+	                <div id="equipment-test-table">
+	                    <!-- <div class="loader" style"">Loading...</div>     -->
+	                </div>
+                </div> 
             </div>
             
         </div>
