@@ -40,7 +40,7 @@
                 plotBorderWidth: null,
                 plotShadow: true, 
                 type: 'pie',
-                height: 290
+                height: 195
 
             },
             title: {
@@ -73,7 +73,7 @@
             series: [{
                 name: '#',
                 data: testsData,
-                size: '40%',
+                size: '100%',
                 dataLabels: {
                     formatter: function() {
                         return this.y > 0 ? this.point.name : null ;
@@ -84,8 +84,8 @@
             }, {
                 name: '#',
                 data: testsTypeData,
-                size: '100%',
-                innerSize: '80%',
+                size: '230%',
+                innerSize: '200%',
                 dataLabels: {
                     formatter: function() {
                         // display only if larger than 1

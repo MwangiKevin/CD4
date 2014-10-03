@@ -8,7 +8,7 @@
         $('#gr_equipmenttestscolumn').highcharts({
            chart: {
                 type: 'column',                
-                height:290
+                height:195
             },
             title: {
                 text: 'Yearly CD4 Tests'
