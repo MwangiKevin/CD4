@@ -3,127 +3,134 @@ $this->load->library('mpdf');
 $mpdf = new mPDF();
 
 
-if(empty($res)){
-	echo "no data";
-	print_r("Result ". $res);
-	die;
-}else{
-	echo "data exists";
-	
-}
+// if(empty($res)){
+	// echo "no data";
+	// print_r("Result ". $res);
+	// die;
+// }else{
+	// echo "data exists";
+// 	
+// }
 
 
 
 if($criteria == 1){//by device and facility
-$i = 0;
-foreach($res as $key => $value){
-	$i++;
-	$content2 = '
-		<tr>
-			<td>'.$i.'</td>
+	$i = 0;
+	$top = '
+		<center>
+			<img src='.base_url('img/tz.png').'>
+			<table border="1" bckground-color="#FFBBFF">
+				<tr>
+					<td></td>
+					<td>Facility</td>
+					<td>PIMA Device</td>
+					<td>Sample Code</td>
+					<td>CD4 Count (cells/mm) </td>
+					<td> Successful Tests </td>
+					<td> Device Operator  </td>
+					<td> Date of Result </td>
+				<tr>';
+
+	foreach ($res as $key => $value) {
+		$i++;				
+		$body .=	'<tr>
+			<td> '.$i.' </td>
 			<td>'.$value["facility_name"].'</td>
 			<td>'.$value["equipment_serial_number"].'</td>
 			<td>'.$value["sample_code"].'</td>
-			<td>'.$value["cd4_count"].'</td>
+			<td>'.$value["cd4_count"].'	</td>
 			<td>'.$value["validity"].'</td>
 			<td>'.$value["operator"].'</td>
 			<td>'.$value["result_date"].'</td>
-		</tr>
+		</tr>';
+	}	
+			
+	$bottom = '</table>
+		</center>
 	';
-}
-
-
-$content1 = '
-<center
-<img src="<?php echo base_url("img/tz.png");?>" height="140" width="70%" alt="NACP">
-<div id="head-section">
-	<h1>Samples Report</h1>
-	<h2>District/Area/Facility Report: Area Name</h2>
-</div>
-<hr/>
-	<table style="font-size:65%;"  id="tests_table" class="table table-bordered table-responsive">
-		<thead>		
-			<tr class="active" >
-				<th rowspan="2"></th>
-				<th rowspan="2">Facility</th>
-				<th rowspan="2">PIMA Device</th>
-				<th rowspan="2">Sample Code</th>
-				<th rowspan="2">CD4 Count (cells/mm)</th>
-				<th rowspan="2">Successful Tests </th>
-				<th rowspan="2">Device Operator</th>
-				<th rowspan="2">Date of Result </th>				
-			</tr>';
-			
-			
-$content3 =	'</thead>
-		<tbody>
-</table>
-<hr/>
-<p style="float: right;">End-of-report</p>
-</center>
-';	
-$final_report = $content1+$content2+$content3;
-
+	
+	$final_report = $top.$body.$bottom;
 }else if($criteria == 2){//device
-$content = '
-<center>
-<img src="<?php echo base_url("img/tz.png");?>" height="140" width="70%" alt="NACP">
-<div id="head-section">
-	<h1>Samples Report</h1>
-	<h2>District/Area/Facility Report: Area Name</h2>
-</div>
-<hr/>
-	<table style="font-size:65%;"  id="tests_table" class="table table-bordered table-responsive">
-		<thead>
-			<tr class="active" >
-				<th rowspan="2"></th>
-				<th rowspan="2">Facility</th>
-				<th rowspan="2">PIMA Device</th>
-				<th rowspan="2">Sample Code</th>
-				<th rowspan="2">CD4 Count (cells/mm)</th>
-				<th rowspan="2">Device Operator</th>
-				<th rowspan="2">Date of Result </th>				
-			</tr>
-		</thead>
-		<tbody>
-</table>
-<hr/>
-<p style="float: right;">End-of-report</p>
-</center>
-';	
+
+	$i = 0;
+	$top = '
+		<center>
+			<img src='.base_url('img/tz.png').'>
+			<table border="1" bckground-color="#FFBBFF">
+				<tr>
+					<td></td>
+					<td>Facility</td>
+					<td>PIMA Device</td>
+					<td>Sample Code</td>
+					<td>CD4 Count (cells/mm) </td>
+					<td> Device Operator  </td>
+					<td> Date of Result </td>
+				<tr>';
+				
+	foreach ($res as $key => $value) {
+			$i++;				
+			$body .=	'<tr>
+				<td> '.$i.' </td>
+				<td>'.$value["facility_name"].'</td>
+				<td>'.$value["equipment_serial_number"].'</td>
+				<td>'.$value["sample_code"].'</td>
+				<td>'.$value["cd4_count"].'	</td>
+				<td>'.$value["operator"].'</td>
+				<td>'.$value["result_date"].'</td>
+			</tr>';
+		}
+
+
+	$bottom = '</table>
+		</center>
+	';
+	
+	$final_report = $top.$body.$bottom;
 }else if($criteria == 3){//facility
-$content = '
-<center>
-<img src="<?php echo base_url("img/tz.png");?>" height="140" width="70%" alt="NACP">
-<div id="head-section">
-	<h1>Samples Report</h1>
-	<h2>District/Area/Facility Report: Area Name</h2>
-</div>
-<hr/>
-	<table style="font-size:65%;"  id="tests_table" class="table table-bordered table-responsive">
-		<thead>
-			<tr class="active" >
-				<th rowspan="2"></th>
-				<th rowspan="2">Facility</th>
-				<th rowspan="2">PIMA Device</th>
-				<th rowspan="2">Sample Code</th>
-				<th rowspan="2">Error Type</th>
-				<th rowspan="2">Error Description </th>
-				<th rowspan="2">Device Operator </th>
-				<th rowspan="2">Date of Result </th>				
-			</tr>
-		</thead>
-		<tbody>
-</table>
-<hr/>
-<p style="float: right;">End-of-report</p>
-</center>
-';
+
+	$i = 0;
+	$top = '
+		<center>
+			<img src='.base_url('img/tz.png').'>
+			<table border="1" bckground-color="#FFBBFF">
+				<tr>
+					<td></td>
+					<td>Facility</td>
+					<td>PIMA Device</td>
+					<td>Sample Code</td>
+					<th> Error Type</th>
+					<th> Error Description </th>
+					<td> Device Operator  </td>
+					<td> Date of Result </td>
+				<tr>';
+				
+	foreach ($res as $key => $value) {
+			$i++;				
+			$body =	'<tr>
+				<td> '.$i.' </td>
+				<td>'.$value["facility_name"].'</td>
+				<td>'.$value["equipment_serial_number"].'</td>
+				<td>'.$value["sample_code"].'</td>
+				<td>'.$value["error_type_description"].'	</td>
+				<td>'.$value["error_detail"].' </td>
+				<td>'.$value["operator"].'</td>
+				<td>'.$value["result_date"].'</td>
+			</tr>';
+		}
+
+
+	$bottom = '</table>
+		</center>
+	';
+	
+	$final_report = $top.$body.$bottom;
 }else{}
 
 
 	$mpdf->WriteHTML($final_report);
-	$mpdf->Output(I);
+	$report_name = "Test";
+	$file_name = $this->config->item('server_root').'downloads/'.$title.'.pdf';
+	$mpdf->Output($file_name,I);
 	exit;	
 ?>
 

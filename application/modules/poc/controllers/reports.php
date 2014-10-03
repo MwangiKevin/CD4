@@ -41,6 +41,10 @@ class reports extends MY_Controller {
 
 		$this -> template($this->data);
 	}
+	
+	public function pdf_view(){
+		$this->load->view("pdf_report");
+	}
 	public function submit2($criteria){//generates the reports
 		$format = (int) $this->input->post("format");//detailed or summary
 		$report_type	=	(int) $this->input->post("report_type");
@@ -137,6 +141,7 @@ class reports extends MY_Controller {
 	
 			$this->worksheet($worksheet);
 		}else if($format == 2){//pdf report
+		
 			$user_group_id 		= 	$this->session->userdata("user_group_id");
 			$user_filter_used 	=	$this->session->userdata("user_filter_used");
 	
@@ -168,6 +173,7 @@ class reports extends MY_Controller {
 			$sql.=$where_clause;
 	
 			$result = R::getAll($sql);
+			
 			
 			$this->data["criteria"] = $criteria;
 			$this->data["res"] = $result;
