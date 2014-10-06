@@ -44,6 +44,8 @@ $db_procedures["drop_get_uploads_dt"]  							=	"DROP PROCEDURE IF EXISTS `get_u
 $db_procedures["drop_get_errors_notf"]  						=	"DROP PROCEDURE IF EXISTS `get_errors_notf`; ";
 $db_procedures["drop_active_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `active_user_devices`; ";
 $db_procedures["drop_uploaded_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `uploaded_user_devices`; ";
+
+$db_procedures["drop_reports"]									=	"DROP PROCEDURE IF EXISTS `reports`; ";
 	
 
 $db_procedures["get_facility_details"]  		=	
@@ -4327,6 +4329,13 @@ $db_procedures["uploaded_user_devices"] = "CREATE PROCEDURE uploaded_user_device
 	END;
 ";
 
+$db_procedure["reports"] ="CREATE OR REPLACE reports(select_items varchar(1000), db_view varchar(1000), where varchar(1000))
+BEGIN
+	SELECT 	`select_items` 
+	FROM	`db_view`
+	WHERE 1 `where`; 
+END; 
+";
 
 $config["procedures_sql"] = $db_procedures;
 
