@@ -1,17 +1,26 @@
 			<div style="heigth:200px">&nbsp;</div>
 			<div id="footer">
 				<div id="network">	
+
+					<div class="left" style="padding-left:0%;">	
+						<ul class="tabbed" id="network-tabs">
+							<li class="current-tab" ><?php echo "Version_".$this->versioning->index();;?> </li>
+						</ul>						
+					</div>	
 					<?php
-						if(!$menuless){
-					?>					
-					<div class="left" style="padding-left:43%;">	
+						if(!$menuless && !isset($hide_user_filter)){
+					?>				
+					<div class="left" style="padding-left:43%;">
+
 						<ul class="tabbed" id="network-tabs" >
+							
 							<li class="<?php
 											if($this->session -> userdata("user_filter_used")==0){
 												echo "current-tab";
 											}
 											?>" >
-								<a onclick = "user_filter(0)" href="">National Data</a></li>						
+								<a onclick = "user_filter(0)" href="">National Data</a>
+							</li>						
 							<?php
 								$user_filter = $this->session -> userdata("user_filter");
 								

@@ -116,16 +116,20 @@ $config['plugin_js_files']	=	array(
 									array('title'	=> 'highcharts'			,	'file'	=>	'Highcharts/js/modules/exporting.js'),
 									array('title'	=> 'highcharts'			,	'file'	=>	'Highcharts/js/modules/no-data-to-display.js'),
 									array('title'	=> 'highchart-canvas'			,	'file'	=>	'Highcharts/js/modules/canvas-tools.js'),
-									array('title'	=> 'highcharts_drilldown'			,	'file'	=>	'Highcharts/js/modules/drilldown.js'),
+									array('title'	=> 'highcharts_drilldown'		,	'file'	=>	'Highcharts/js/modules/drilldown.js'),
 									array('title'	=> 'tree'				,	'file'	=>	'tree/tree.js'),
-									array('title'	=> 'ajax_file_uploader'	,	'file'	=>	'ajax_file_uploader/ajaxfileupload.js')
-									
+									array('title'	=> 'ajax_file_uploader'	,	'file'	=>	'ajax_file_uploader/ajaxfileupload.js'),
+									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/js/modules/map.js'),
+									array('title'	=> 'highcharts'			,	'file'	=>	'Highmaps/js/themes/grid.js'),
+									array('title'	=> 'highmaps'			,	'file'	=>	'Highmaps/mapdata/tz-all.js')
+					
 								);	
 $config['plugin_css_files']	=	array(
 									//array('title' 	=> 	'jquery'			,			'file'	=>	'jquery_ui/css/smoothness/jquery-ui-1.10.3.custom.css'),
 									array('title' 	=> 	'dhtmlxcombo'		,			'file'	=>	'dhtmlx/dhtmlxcombo.css'),
 									array('title' 	=> 	'fancybox'			,			'file'	=>	'FancyBox/jquery.fancybox.css'),
-									array('title' 	=> 	'fancybox'			,			'file'	=>	'FancyBox/jquery.fancybox.css'),
+									array('title' 	=> 	'fa'				,			'file'	=>	'font-awesome/css/font-awesome.min.css'),
+									array('title' 	=> 	'fa-ie'				,			'file'	=>	'font-awesome/css/font-awesome-ie7.min.css'),
 									array('title' 	=> 	'calendar'			,			'file'	=>	'Calendar/calendar.css'),
 									array('title' 	=> 	'calendar_css_only'	,			'file'	=>	'Calendar/calendar.css'),
 									array('title' 	=> 	'bootstrap'			,			'file'	=>	'Bootstrap/css/bootstrap.min.css'),

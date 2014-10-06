@@ -4,19 +4,7 @@ class tests_model extends MY_Model{
 
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 		$sql = "CALL tests_pie('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
-		
-		// $sql 	= 	"SELECT 
-							// COUNT(*) AS `total`,
-							// SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
-							// SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
-							// SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-							// SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
-						// FROM `v_tests_details`
-// 
-						// WHERE `result_date` BETWEEN '$from' AND '$to'
-						// $user_delimiter
-// 
-					// ";
+
 		$tst 	=	R::getAll($sql);
 
 		$tst[0]["title"]= 'Tests';
@@ -73,20 +61,7 @@ class tests_model extends MY_Model{
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
 		$sql = "CALL tests_table('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
-			
-		// $sql 	= 	"SELECT 
-// 							
-							// COUNT(*) AS `total`,
-							// SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
-							// SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND`cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
-							// SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-							// SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
-						// FROM `v_tests_details`
-// 
-						// WHERE `result_date` BETWEEN '$from' AND '$to'
-						// $user_delimiter
-// 
-					// ";
+
 		$tests 	=	R::getAll($sql);
 
 		$tests[0]["title"]= 'Tests';
@@ -136,23 +111,6 @@ class tests_model extends MY_Model{
 		//location models("Procedures_Model");
 		$sql = "CALL tests_line_trend(".$user_group_id.",".$user_filter_used.",'".$from."','".$to."') ";
 		
-		// echo $sql 	= 	"SELECT 
-		// 					COUNT(*) AS `total`,
-		// 					MONTH(`result_date`) AS `month`,
-		// 					YEAR(`result_date`) AS `year`,
-		// 					CONCAT(YEAR(`result_date`),'-',MONTH(`result_date`)) AS `yearmonth`,	
-		// 					SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
-		// 					SUM(CASE WHEN `patient_age_group_id`='3' AND `valid`= '1' AND `cd4_count` >= 350 THEN 1 ELSE 0 END ) AS `passed`,
-		// 					SUM(CASE WHEN `valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,	
-		// 					SUM(CASE WHEN `valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
-		// 				FROM `v_tests_details`
-
-		// 				WHERE `result_date` BETWEEN '$from' AND '$to'
-		// 				$user_delimiter
-
-		// 				GROUP BY 	`yearmonth`
-		// 				ORDER BY 	`result_date` DESC	
-		// 			";
 
 
 		$tests 	=	R::getAll($sql);
@@ -183,7 +141,8 @@ class tests_model extends MY_Model{
 										),
 								1 	=>	array(
 											"name"	=>	"Below critical level",
-											"data"	=>	$bel
+											"data"	=>	$bel,
+											"color" => "#caa6bb"
 										)
 							);
 
