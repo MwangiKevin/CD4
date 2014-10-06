@@ -11,7 +11,7 @@
                     plotShadow: true,       
                     zoomType: 'x',
                     type: 'area',
-                    height:350
+                    height:<?php echo $height;?>
                 },
                 title: {
                     text: 'Expected Reporting Devices (Year <?php echo $year;?>)',
