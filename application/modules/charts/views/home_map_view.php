@@ -12,6 +12,12 @@
                     
                 // Initiate the chart
                 $('#gr_homemap').highcharts('Map', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,                
+                        height:<?php echo $height;?>
+                    },
                     
                     title : {
                         text : 'National PIMA Testing Distribution'
@@ -26,6 +32,9 @@
 
                     colorAxis: {
                         min: 0
+                    },        
+                    credits:{
+                        enabled:false
                     },
 
                     series : [{

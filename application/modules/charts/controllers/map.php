@@ -11,9 +11,10 @@ class map extends MY_Controller {
 	}
 
 
-	public function home() {
+	public function home($height=400) {
 
 		$data["map_data"] = $this->map_model->home_map_data();
+		$data['height'] = $height;
 
 		$this->load->view("home_map_view",$data);
 	}

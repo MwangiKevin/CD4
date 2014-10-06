@@ -13,7 +13,7 @@
                     plotShadow: true,    
                     zoomType: 'x',
                     type: 'area',
-                    height:350
+                    height:<?php echo $height;?>
                 },
                 title: {
                     text: 'Testing Trends (last 4 years)',
