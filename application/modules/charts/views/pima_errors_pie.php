@@ -6,7 +6,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                height:290
+                height:<?php echo $height;?>
             },
             title: {
                 text: 'PIMA Errors'

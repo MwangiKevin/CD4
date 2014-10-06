@@ -25,6 +25,9 @@ class home extends MY_Controller {
 
 	public function index(){
 		$this->data['hide_user_filter']	=	true;
+		//header('location:'.base_url().'login');
+
+		//print_r($this->data);
 		$this -> template($this->data);
 
 	}

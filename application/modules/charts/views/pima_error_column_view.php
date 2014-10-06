@@ -3,7 +3,7 @@
         $('#pima_errors_column_gr').highcharts({
             chart: {
                 type: 'column',
-                height:260,                
+                height:<?php echo $height;?>,                
                 zoomType: 'x'
             },
             title: {

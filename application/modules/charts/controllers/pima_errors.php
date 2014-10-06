@@ -10,7 +10,7 @@ class pima_errors extends MY_Controller {
   }
 
 
-  public function monthly_error_trend($criteria1,$criteria2){
+  public function monthly_error_trend($criteria1,$criteria2,$height=250){
 
     $from 		=	$this->get_filter_start_date();
     $to			=	$this->get_filter_stop_date();
@@ -120,7 +120,9 @@ class pima_errors extends MY_Controller {
     $chart_data = $this->config->item("hgc_column_stacked_grouped");
     $chart_data["xAxis"]["categories"]= $categories;
     $chart_data["yAxis"]['title']['text'] = "# Reported";
-    $chart_data["chart"]["width"] = "1150";
+    //$chart_data["chart"]["width"] = "1150";
+    $chart_data["chart"]["height"] = $height;
+
 
     $series =   array(
       array(
@@ -153,14 +155,26 @@ class pima_errors extends MY_Controller {
 
     $json       =     json_encode($chart_data);     
 
-    $json       =str_replace('"tooltip":"null"', "tooltip: {
+    $json       =str_replace('"tooltip":"null"', "tooltip: {  
+
       formatter: function() {
-        var perc = ((this.y)/(this.point.stackTotal))*100
-        return '<b>'+ this.x +'</b><br/>'+
-        this.series.name +': '+ this.y +'<br/>'+
-        'Percentage: '+ perc +'%<br/>'+
-        'Total: '+ this.point.stackTotal;
-      }
+        var s = '<b>'+ this.x +'</b>',
+            sum = 0;
+
+        $.each(this.points, function(i, point) {
+
+            s += '<br/>'+ point.series.name +': '+
+                point.y ;
+                if(point.series.name!='Total Errors'){
+                  sum += point.y;
+                }
+        });
+
+        s += '<br/>--------------<br/>Total Attempted: '+sum
+
+        return s;
+    },
+    shared: true
     }", $json) ;
 
     $script = "
@@ -170,9 +184,8 @@ class pima_errors extends MY_Controller {
     $('#monthly_error_trend').highcharts(".$json.");
     </script>";
     echo $script;
-
   }
-  public function error_type_pie($criteria1,$criteria2){
+  public function error_type_pie($criteria1,$criteria2,$height=265){
 
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
@@ -275,7 +288,7 @@ class pima_errors extends MY_Controller {
         $('#error_type_pie_gr').highcharts({
           chart: {
             type: 'pie',
-            height: 265
+            height: ".$height."
 
           },
           title: {
@@ -326,20 +339,19 @@ class pima_errors extends MY_Controller {
         </script>";
 
     echo $script;
-
   }
-
-  public function error_table($criteria1,$criteria2){
+  public function error_table($criteria1,$criteria2,$height=265){
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
 
     $this->load->model('pima_errors_model');
     $res = $this->pima_errors_model->error_details_table($from,$to,$criteria1,$criteria2); 
+    $data =$res[0];
+    $data['height'] =$height;
 
-    $this->load->view('pima_error_table_view',$res[0]);
+    $this->load->view('pima_error_table_view',$data);
   }
-
-  public function errors_column($criteria1,$criteria2){
+  public function errors_column($criteria1,$criteria2,$height=250){
 
     $from             =     $this->get_filter_start_date();
     $to               =     $this->get_filter_stop_date();
@@ -368,6 +380,7 @@ class pima_errors extends MY_Controller {
       }
     }
 
+    $data['height'] = $height;
     $data["data"] = json_encode($errors);
 
         //print "<pre>";
@@ -376,25 +389,24 @@ class pima_errors extends MY_Controller {
         //print "</pre>";
     $this->load->view('pima_error_column_view',$data);
   }
-  public function error_yearly_trends($user_group_id,$user_filter_used){
+  public function error_yearly_trends($user_group_id,$user_filter_used,$height=250){
 
     $this->load->model('pima_errors_model');
 
     $data           =   $this->pima_errors_model->error_yearly_trends($user_group_id,$user_filter_used,$this->get_date_filter_year());
     $data["date_filter_year"] = $this->get_date_filter_year();
+    $data['height'] = $height;
 
     $this->load->view("pima_error_trend_view",$data);
-
   }
-
-  public function error_types_col($user_group_id,$user_filter_used){
+  public function error_types_col($user_group_id,$user_filter_used,$height=250){
 
     $this->load->model('pima_errors_model');
 
     $data   =   $this->pima_errors_model->error_types_col($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());
+    $data['height'] = $height;
 
     $this->load->view("pima_error_types_col_view",$data);
-
   }
 
 }
