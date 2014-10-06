@@ -13,7 +13,7 @@
                     plotShadow: true,    
                     zoomType: 'x',
                     type: 'area',
-                    height:350
+                    height:<?php echo $height;?>
                 },
                 title: {
                     text: 'Testing Trends (last 4 years)',
@@ -32,6 +32,7 @@
                     }
                 },
                 yAxis: {
+                    gridLineWidth: 2,
                     title: {
                         text: '# Tests'
                     },
@@ -47,8 +48,9 @@
                         lineColor: '#666666',
                         lineWidth: 1,
                         marker: {
-                            lineWidth: 1,
-                            lineColor: '#666666'
+                            lineWidth: 0,
+                            lineColor: '#666666',
+                            radius: 0
                         }                
                     }            
                 },            
