@@ -114,10 +114,10 @@ if($report_type == 1){
 	$top = '
 		<center>
 			<img src='.base_url('img/tz.png').' height = "20%" width = "90%">
-			<center> <strong>
+			<center> 
 				<h2> Errors Report Only </h2>
 				<p> Date '.$date_from.' - '.$date_to.'<p>	 
-			<center> </strong>
+			<center> 
 			<hr/>
 			<table border="1" background-color="#FFBBFF">
 				<tr>

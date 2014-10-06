@@ -5,13 +5,12 @@ $(function() {
 	*/
 	$('#datepickerFrom').datepicker({dateFormat: 'yy-mm-dd', minDate : new Date(<?php echo $starting_year;?>,0,1), maxDate: new Date(),changeMonth: true,changeYear: true});
 	$('#datepickerTo').datepicker({dateFormat: 'yy-mm-dd',minDate : new Date(<?php echo $starting_year;?>,0,1),maxDate: new Date(),changeMonth: true,changeYear: true});
-    //devices
+	//devices
     $('#datepickerFromd').datepicker({dateFormat: 'yy-mm-dd', minDate : new Date(<?php echo $starting_year;?>,0,1), maxDate: new Date(),changeMonth: true,changeYear: true});
     $('#datepickerTod').datepicker({dateFormat: 'yy-mm-dd',minDate : new Date(<?php echo $starting_year;?>,0,1),maxDate: new Date(),changeMonth: true,changeYear: true});
     //facilities
     $('#datepickerFromf').datepicker({dateFormat: 'yy-mm-dd', minDate : new Date(<?php echo $starting_year;?>,0,1), maxDate: new Date(),changeMonth: true,changeYear: true});
     $('#datepickerTof').datepicker({dateFormat: 'yy-mm-dd',minDate : new Date(<?php echo $starting_year;?>,0,1),maxDate: new Date(),changeMonth: true,changeYear: true});
-
 });
 
    /**
@@ -36,9 +35,8 @@ $(function() {
 
                 //Optional: setDate: The same as minDate.
             });
-   	});
-   	
-   	$('#datepickerFromd').on("change", function() {
+   });
+      	$('#datepickerFromd').on("change", function() {
 
        //Begin the re-creation
        $('#datepickerTod').datepicker( "destroy" );
@@ -75,7 +73,7 @@ $(function() {
                 //Optional: setDate: The same as minDate.
             });
    	});
-
+   	
     /**
         *  On the 'On change' event listener, 
         *  dynamically re-create the 'end' date based
@@ -100,9 +98,8 @@ $(function() {
                 //Optional: setDate: The same as minDate.
             });
    		});
-
-
-		$('#datepickerTod').on("change", function() {
+   		
+   		$('#datepickerTod').on("change", function() {
 
        //Begin the re-creation
        $('#datepickerFromd').datepicker( "destroy" );
@@ -140,18 +137,7 @@ $(function() {
             });
    		});
 
-
-        $().ready(function() {
-
-           $("#devicesdiv").show();
-           $("#facilitydiv").show();
-           $("#monthlydiv").hide();
-           $("#quarterlydiv").hide();
-           $("#biannualdiv").hide();
-           $("#yearlydiv").hide();
-           $("#CustDatesdiv").hide();
-
-       });
+      
 
         $('#criteria').change(function(){
 
