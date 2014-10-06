@@ -7,7 +7,7 @@
                     plotShadow: true,       
                     zoomType: 'x',
                     type: 'area',
-                    height:350
+                    height:<?php echo $height;?>
                 },
                 title: {
                     text: 'Error Trends (Year <?php echo $date_filter_year;?>)',
@@ -37,9 +37,10 @@
                         lineColor: '#666666',
                         lineWidth: 1,
                         marker: {
-                            lineWidth: 1,
-                            lineColor: '#666666'
-                        }                
+                            lineWidth: 0,
+                            lineColor: '#666666',
+                            radius: 0
+                        }             
                     }            
                 },            
                 credits:{

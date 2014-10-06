@@ -11,7 +11,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,                
-                height:200
+                height:<?php echo $height;?>
             },
             title: {
                 text: 'CD4 Equipment'

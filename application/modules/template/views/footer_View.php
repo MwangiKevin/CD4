@@ -1,15 +1,15 @@
 			<div style="heigth:200px">&nbsp;</div>
 			<div id="footer">
 				<div id="network">	
-					<?php
-						if(!$menuless){
-					?>	
 
 					<div class="left" style="padding-left:0%;">	
 						<ul class="tabbed" id="network-tabs">
 							<li class="current-tab" ><?php echo "Version_".$this->versioning->index();;?> </li>
 						</ul>						
-					</div>				
+					</div>	
+					<?php
+						if(!$menuless && !isset($hide_user_filter)){
+					?>				
 					<div class="left" style="padding-left:43%;">
 
 						<ul class="tabbed" id="network-tabs" >
