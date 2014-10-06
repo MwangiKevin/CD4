@@ -11,7 +11,7 @@ class reports extends MY_Controller {
 
 		$this->data['content_view'] = "poc/reports_view2";
 		$this->data['title'] = "Reports";
-		$this->data['sidebar']	= "poc/sidebar_view";
+		//$this->data['sidebar']	= "poc/sidebar_view";
 
 		$this->load->model('poc_model');
 		
@@ -54,7 +54,13 @@ class reports extends MY_Controller {
 		}else if($criteria == 2){//by device
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFromd")));
 			$date_to 		=	date('Y-m-d',strtotime($this->input->post("datepickerTod")));
-			$device			=	(int) $this->input->post("device");
+			$device			=	(int)$this->input->post("device");
+			
+			// $device_array[] = preg_split(".", $device_string);
+			// $device = $device_array[0];
+			// $devce_name = $device_array[1];
+			// echo $device.' ... ' .$device_name;
+			// die;
 		}else if($criteria == 3){//facility
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFromf")));
 			$date_to 		=	date('Y-m-d',strtotime($this->input->post("datepickerTof")));
@@ -95,10 +101,13 @@ class reports extends MY_Controller {
 	
 			$sql.=$where_clause;
 	
-			//echo $sql;
+			// echo $sql;
+			// die;
 	
 			$res = R::getAll($sql);
 	
+			// print_r ($res);
+			// die;
 			$col_data = array();
 			$row_data = array();
 	
@@ -149,12 +158,21 @@ class reports extends MY_Controller {
 	
 			if ( $report_type == 1 ){
 				$this->db_view = "v_pima_tests_details";
+				//$db_view = "v_pima_tests_details";
+				
+				// $select = ;
+				
 				$where_clause .= " AND `valid` = '1' ";
 			}else if ($report_type==2){
 				$this->db_view = "v_pima_error_details";
+				//$db_view = "v_pima_error_details";
+				
+				// $select = ;
 				$where_clause .= " AND `valid` = '0' ";
 			}else{			
 				$this->db_view = "v_pima_tests_details";
+				
+				// $select = ;
 			}
 	
 			if( $criteria == 1 ){
@@ -171,12 +189,26 @@ class reports extends MY_Controller {
 			$where_clause 	.= 	" AND ( `sample_code` NOT LIKE '%CONTROL%' ) ";
 	
 			$sql.=$where_clause;
-	
+			
+			
+			// echo $sql;
+			// die;
 			$result = R::getAll($sql);
+			// $i=0;
+			// foreach ($result as $key => $value) {
+				// $i++;
+			// }
+			// echo $i;
+			// die;
+						
+			// echo $result = "CALL reports(".$select.", ".$db_view.", ".$where_clause.")";
+			//echo $result;
 			
 			
-			$this->data["criteria"] = $criteria;
+			$this->data["report_type"] = $report_type;
 			$this->data["res"] = $result;
+			$this->data["date_to"] = $date_to;
+			$this->data["date_from"] = $date_from;
 			$this->load->view("pdf_report",$this->data);
 			
 						
