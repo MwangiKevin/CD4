@@ -1,4 +1,4 @@
-<div id="pima-tests-tbl">
+<div id="pima-tests-tbl" style="overflow-y: auto; height: <?php echo $height?>px !important;">
 	<table style = "border: 1px solid #DDD;height:240px;vertical-align:center;" >
 		<thead class="even" style="background:#f0f0f0" >
 			<tr style = "border: 1px solid #DDD;" >

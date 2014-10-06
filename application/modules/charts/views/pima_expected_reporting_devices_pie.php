@@ -8,7 +8,7 @@
             plotBackgroundColor: null,
             plotBorderWidth: 2,
             plotShadow: true,                
-            height:350
+            height:<?php echo $height;?>
         },
         title: {
             text: 'Expected PIMA Reporting (<?php echo $date_filter_desc;?>)'
