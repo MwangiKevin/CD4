@@ -11,7 +11,7 @@
                     plotShadow: true,       
                     zoomType: 'x',
                     type: 'area',
-                    height:350
+                    height:<?php echo $height;?>
                 },
                 title: {
                     text: 'Expected Reporting Devices (Year <?php echo $year;?>)',
@@ -39,11 +39,12 @@
                     area: {
                         stacking: null,
                         lineColor: '#666666',
-                        lineWidth: 1,
+                        lineWidth: 1,                       
                         marker: {
-                            lineWidth: 1,
-                            lineColor: '#666666'
-                        }                
+                            lineWidth: 0,
+                            lineColor: '#666666',
+                            radius: 0
+                        }               
                     }            
                 },            
                 credits:{

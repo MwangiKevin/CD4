@@ -7,7 +7,7 @@
                 plotBorderWidth: 2,
                 plotShadow: true, 
                 type:"bar",
-                height:"350",
+                height:<?php echo $height;?>,
                 //width:"1150"
             },
                 title:{

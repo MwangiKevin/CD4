@@ -98,7 +98,6 @@ $config['plugin_js_files']	=	array(
 									array('title'	=> 'dhtmlxcommon'		,	'file'	=>	'dhtmlx/dhtmlxcommon.js'),
 									array('title'	=> 'dhtmlxcombo'		,	'file'	=>	'dhtmlx/dhtmlxcombo.js'),
 									array('title'	=> 'dhtmlxcombo_extra'	,	'file'	=>	'dhtmlx/dhtmlxcombo_extra.js'),
-									array('title'	=> 'FusionCharts'		,	'file'	=>	'Fusion/FusionCharts/FusionCharts.js'),
 									array('title'	=> 'jquery.fancybox.js?v=2.0.6'	,	'file'	=>	'FancyBox/jquery.fancybox.js?v=2.0.6'),
 									array('title'	=> 'fancybox'			,	'file'	=>	'FancyBox/jquery.fancybox.pack.js'),
 									array('title'	=> 'calendar'			,	'file'	=>	'Calendar/calendar.js'),
@@ -128,7 +127,8 @@ $config['plugin_css_files']	=	array(
 									//array('title' 	=> 	'jquery'			,			'file'	=>	'jquery_ui/css/smoothness/jquery-ui-1.10.3.custom.css'),
 									array('title' 	=> 	'dhtmlxcombo'		,			'file'	=>	'dhtmlx/dhtmlxcombo.css'),
 									array('title' 	=> 	'fancybox'			,			'file'	=>	'FancyBox/jquery.fancybox.css'),
-									array('title' 	=> 	'fancybox'			,			'file'	=>	'FancyBox/jquery.fancybox.css'),
+									array('title' 	=> 	'fa'				,			'file'	=>	'font-awesome/css/font-awesome.min.css'),
+									array('title' 	=> 	'fa-ie'				,			'file'	=>	'font-awesome/css/font-awesome-ie7.min.css'),
 									array('title' 	=> 	'calendar'			,			'file'	=>	'Calendar/calendar.css'),
 									array('title' 	=> 	'calendar_css_only'	,			'file'	=>	'Calendar/calendar.css'),
 									array('title' 	=> 	'bootstrap'			,			'file'	=>	'Bootstrap/css/bootstrap.min.css'),
@@ -146,7 +146,6 @@ $config['plugin_css_files']	=	array(
 								);
 $config['plugin_php_files']	=	array(
 									array('title'	=> 	'phpexcel'		,			'file'	=>	'PHPExcel/PHPExcel.php'),
-									array('title'	=> 	'mpdf'			,			'file'	=>	'pdf/mpdf.php'),
-									array('title'	=>	'FusionCharts'	,			'file'	=>	'Fusion/FusionCharts/FusionCharts.php')
+									array('title'	=> 	'mpdf'			,			'file'	=>	'pdf/mpdf.php')
 								);
 /* End of file asset.php */

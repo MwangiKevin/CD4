@@ -73,7 +73,7 @@ class MY_Controller extends MX_Controller{
 	
 	public function load_libraries($arr){
 
-		array_unshift($arr, "jquery","jqueryui","bootstrap","nascop","site","calendar_css_only","dataTables");
+		array_unshift($arr, "jquery","jqueryui","bootstrap","nascop","site","calendar_css_only","dataTables","fa");
 				
 		$libs['js_files']				=	array();		
 		$libs['css_files']				=	array();			
