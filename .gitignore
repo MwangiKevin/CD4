@@ -8,7 +8,7 @@ logs
 *.sublime-workspace
 *.project
 nbproject/private/
-application/config/database.php
 pdf
 backup
 ver.txt
+application/config/database.php

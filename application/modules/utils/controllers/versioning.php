@@ -27,4 +27,7 @@ class versioning extends MY_Controller {
 			echo 'File written!';
 		}
 	}	
+	public  function update() {
+		echo exec('git pull origin master -t');
+	}	
 }
