@@ -164,7 +164,9 @@ class pima_errors extends MY_Controller {
 
             s += '<br/>'+ point.series.name +': '+
                 point.y ;
-            sum += point.y;
+                if(point.series.name!='Total Errors'){
+                  sum += point.y;
+                }
         });
 
         s += '<br/>--------------<br/>Total Attempted: '+sum
