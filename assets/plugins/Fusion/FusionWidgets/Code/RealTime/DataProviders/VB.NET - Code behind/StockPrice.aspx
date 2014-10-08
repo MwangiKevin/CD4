@@ -1,1 +1,0 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="StockPrice.aspx.vb" Inherits="StockPrice" %>
