@@ -11,6 +11,7 @@ class reports extends MY_Controller {
 		parent::__construct();
 
 		$this->data['content_view'] = "nacp/reports_view";
+		$this->data['controller']	=	"nacp/reports";
 		$this->data['title'] = "Reports";
 		
 		//$this->data['sidebar']	= "nacp/nacp_sidebar_view";
@@ -55,6 +56,8 @@ class reports extends MY_Controller {
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFrom")));
 			$date_to 		=	date('Y-m-d',strtotime($this->input->post("datepickerTo")));	
 			$location 		=	"";
+			$Final_report_title = "National ";
+			$user_filter_used = 0;
 		}else if($criteria == 2){//by device
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFromd")));
 			$date_to 		=	date('Y-m-d',strtotime($this->input->post("datepickerTod")));
@@ -62,7 +65,7 @@ class reports extends MY_Controller {
 			$device			=	(int)$this->input->post("device");
 			$user_group_id  = 7;
 			$user_filter_used = $device;
-			
+			$Final_report_title = "Device ";
 			$location = $device;
 		}else if($criteria == 3){//facility
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFromf")));
@@ -70,6 +73,8 @@ class reports extends MY_Controller {
 			$facility		=	(int) $this->input->post("facility");
 			
 			$user_filter_used	=	$facility;
+			$Final_report_title = "Facility ";
+			$user_group_id = 6;
 			$location = $facility;
 		}else if($criteria == 4){//district
 			$date_from 		= date('Y-m-d',strtotime($this->input->post("datepickerFromdis")));
@@ -77,6 +82,8 @@ class reports extends MY_Controller {
 			$district		=	(int) $this->input->post("district");
 			
 			$user_filter_used = $district;
+			$Final_report_title = "District ";
+			$user_group_id	=	8;
 			$location = $district;
 		}else if($criteria ==5 ){//region
 			$date_from 		= date('Y-m-d',strtotime($this->input->post("datepickerFromr")));
@@ -84,6 +91,8 @@ class reports extends MY_Controller {
 			$region 		= (int)$this->input->post("region");
 			
 			$user_filter_used = $region;
+			$Final_report_title = "Regional ";
+			$user_group_id 	=	9;
 			$location = $region;
 		}else if($criteria == 6){//partner
 			$date_from 		= date('Y-m-d',strtotime($this->input->post("datepickerFromp")));
@@ -91,6 +100,8 @@ class reports extends MY_Controller {
 			$partner 		= (int)$this->input->post("partner");
 			
 			$user_filter_used = $partner;
+			$Final_report_title = "Partners ";
+			$user_group_id = 3;
 			$location = $partner;
 		}else{}
 		
@@ -102,8 +113,7 @@ class reports extends MY_Controller {
 			if($report_title == 1){//tests only
 				if($report_type == 1){//detailed
 					$this->data["report_title"] = "Detailed Tests";
-					echo $sql = "CALL tests_detailed_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
-					die;
+					$sql = "CALL tests_detailed_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
 					$res = R::getAll($sql);
 					
 					$row_data[0] = array("Facility","Pima Device","Sample Code", "CD4 Count (cells/mm)", "Device Operator","Date of Result");
@@ -180,11 +190,10 @@ class reports extends MY_Controller {
 		}else if($format == 1){//pdf report	
 		
 			if($report_title == 1){//tests only
+				$Final_report_title .= "Tests ";
 				if($report_type == 1){//detailed
 					$this->data["report_title"] = "Detailed Tests";
 					$sql = "CALL tests_detailed_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
-					
-					
 					
 					$result = R::getAll($sql);
 				}else if($report_type == 2){//summarized GROUP BY MONTH
@@ -193,7 +202,8 @@ class reports extends MY_Controller {
 					
 					$result = R::getAll($sql);
 				}
-			}else if($report_title == 2){//errors only				
+			}else if($report_title == 2){//errors only
+				$Final_report_title .= "Errors ";				
 				if($report_type == 1){//detailed
 					$this->data["report_title"] = "Detailed Errors";
 					$sql = "CALL errors_detailed_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
@@ -212,6 +222,7 @@ class reports extends MY_Controller {
 			$this->data["res"] = $result;
 			$this->data["date_to"] = $date_to;
 			$this->data["date_from"] = $date_from;
+			$this->data['Final_report_title'] = $Final_report_title;
 			$this->load->view("pdf_report",$this->data);
 			
 						

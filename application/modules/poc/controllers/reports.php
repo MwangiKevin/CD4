@@ -10,6 +10,7 @@ class reports extends MY_Controller {
 		parent::__construct();
 
 		$this->data['content_view'] = "poc/reports_view";
+		$this->data['controller']	=	"poc/reports";
 		$this->data['title'] = "Reports";
 		//$this->data['sidebar']	= "poc/sidebar_view";
 
@@ -54,7 +55,7 @@ class reports extends MY_Controller {
 	
 	
 	
-	public function submit2($criteria){//generates the reports
+	public function submit2($criteria){//generates the reports	
 		$format = (int) $this->input->post("format");//pdf or excel
 		$report_type	=	(int) $this->input->post("report_type");//summary or detailed
 		$report_title  = (int)$this->input->post("report_title");//Test or Errors Report
@@ -65,7 +66,10 @@ class reports extends MY_Controller {
 		if($criteria == 1){//national
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFrom")));
 			$date_to 		=	date('Y-m-d',strtotime($this->input->post("datepickerTo")));	
+			
+			$Final_report_title = "National ";
 			$location 		=	"";
+			$user_filter_used = 0;
 		}else if($criteria == 2){//by device
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFromd")));
 			$date_to 		=	date('Y-m-d',strtotime($this->input->post("datepickerTod")));
@@ -73,7 +77,7 @@ class reports extends MY_Controller {
 			$device			=	(int)$this->input->post("device");
 			$user_group_id  = 7;
 			$user_filter_used = $device;
-
+			$Final_report_title = "Device ";
 			$location = $device;
 		}else if($criteria == 3){//facility
 			$date_from		=	date('Y-m-d',strtotime($this->input->post("datepickerFromf")));
@@ -81,6 +85,8 @@ class reports extends MY_Controller {
 			$facility		=	(int) $this->input->post("facility");
 			
 			$user_filter_used	=	$facility;
+			$user_group_id 	= 6;
+			$Final_report_title = "Facility ";
 			$location = $facility;
 		}else if($criteria == 4){//district
 			$date_from 		= date('Y-m-d',strtotime($this->input->post("datepickerFromdis")));
@@ -88,6 +94,8 @@ class reports extends MY_Controller {
 			$district		=	(int) $this->input->post("district");
 			
 			$user_filter_used = $district;
+			$Final_report_title = "District ";
+			$user_group_id 	=	8;
 			$location = $district;
 		}else if($criteria ==5 ){//region
 			$date_from 		= date('Y-m-d',strtotime($this->input->post("datepickerFromr")));
@@ -95,6 +103,8 @@ class reports extends MY_Controller {
 			$region 		= (int)$this->input->post("region");
 			
 			$user_filter_used = $region;
+			$user_group_id 	=	9;
+			$Final_report_title = "Regional ";
 			$location = $region;
 		}else if($criteria == 6){//partner
 			$date_from 		= date('Y-m-d',strtotime($this->input->post("datepickerFromp")));
@@ -102,45 +112,13 @@ class reports extends MY_Controller {
 			$partner 		= (int)$this->input->post("partner");
 			
 			$user_filter_used = $partner;
+			$user_group_id = 3;
+			$Final_report_title = "Partner ";
 			$location = $partner;
 		}else{}
 		
 		if($format == 2){//detailed, EXCEL 
-			ini_set("memory_limit","128M");		
-	
-			// $where_clause 	=	" AND `result_date` between '$date_from' and '$date_to' ";
-// 	
-			// if ( $report_type == 1 ){
-				// $this->db_view = "v_pima_tests_details";
-				// $where_clause .= " AND `valid` = '1' ";
-			// }else if ($report_type==2){
-				// $this->db_view = "v_pima_error_details";
-				// $where_clause .= " AND `valid` = '0' ";
-			// }else{			
-				// $this->db_view = "v_pima_tests_details";
-			// }
-// 	
-			// if( $criteria == 1 ){
-				// $where_clause 	.=	" ".$this->poc_model->sql_user_delimiter($user_group_id,$user_filter_used )." ";
-			// }else if( $criteria == 2 ){
-				// $where_clause 	.= 	" AND `facility_equipment_id`='$device' ";
-			// }else if( $criteria == 3 ){
-				// $where_clause 	.= 	" AND `facility_id`='$facility' ";
-			// }else{}
-// 	
-// 	
-			// $sql 			=	"SELECT * FROM `".$this->db_view."` WHERE 1";
-// 	
-			// $where_clause 	.= 	" AND ( `sample_code` NOT LIKE '%CONTROL%' ) ";
-// 	
-			// $sql.=$where_clause;
-// 	
-			// // echo $sql;
-			// // die;
-// 	
-			// $res = R::getAll($sql);
-			
-			
+			ini_set("memory_limit","128M");					
 			$col_data = array();
 			$row_data = array();
 			
@@ -224,6 +202,7 @@ class reports extends MY_Controller {
 		}else if($format == 1){//pdf report	
 		
 			if($report_title == 1){//tests only
+				$Final_report_title .= "Tests ";
 				if($report_type == 1){//detailed
 					$this->data["report_title"] = "Detailed Tests";
 					$sql = "CALL tests_detailed_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
@@ -235,7 +214,8 @@ class reports extends MY_Controller {
 					$sql = "CALL tests_summarized_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
 					$result = R::getAll($sql);
 				}
-			}else if($report_title == 2){//errors only				
+			}else if($report_title == 2){//errors only	
+				$Final_report_title .= "Errors ";			
 				if($report_type == 1){//detailed
 					$this->data["report_title"] = "Detailed Errors";
 					$sql = "CALL errors_detailed_report(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
@@ -254,6 +234,7 @@ class reports extends MY_Controller {
 			$this->data["res"] = $result;
 			$this->data["date_to"] = $date_to;
 			$this->data["date_from"] = $date_from;
+			$this->data["Final_report_title"]=$Final_report_title;
 			$this->load->view("pdf_report",$this->data);
 			
 						
