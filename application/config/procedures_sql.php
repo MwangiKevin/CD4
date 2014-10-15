@@ -45,7 +45,11 @@ $db_procedures["drop_get_errors_notf"]  						=	"DROP PROCEDURE IF EXISTS `get_e
 $db_procedures["drop_active_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `active_user_devices`; ";
 $db_procedures["drop_uploaded_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `uploaded_user_devices`; ";
 
-$db_procedures["drop_reports"]									=	"DROP PROCEDURE IF EXISTS `reports`; ";
+$db_procedures["drop_tests_detailed_report"]					= 	"DROP PROCEDURE IF EXISTS `tests_detailed_report`; ";
+$db_procedures["drop_errors_detailed_report"]					=	"DROP PROCEDURE IF EXISTS `errors_detailed_report`";
+
+$db_procedures["drop_tests_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `tests_summarized_report`";
+$db_procedures["drop_errors_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `errors_summarized_report`";
 	
 
 $db_procedures["get_facility_details"]  		=	
@@ -4329,15 +4333,1185 @@ $db_procedures["uploaded_user_devices"] = "CREATE PROCEDURE uploaded_user_device
 	END;
 ";
 
-$db_procedure["reports"] ="CREATE OR REPLACE reports(select_items varchar(1000), db_view varchar(1000), where varchar(1000))
-BEGIN
-	SELECT 	`select_items` 
-	FROM	`db_view`
-	WHERE 1 `where`; 
-END; 
+$db_procedures["tests_summarized_report"] ="
+	CREATE PROCEDURE tests_summarized_report(user_group_id int(11), user_filter_used int(11),date_from date, date_to date)
+	BEGIN
+		CASE `user_filter_used`
+			WHEN 0 THEN
+				SELECT 
+					`fac`.`name` 	AS `facility_name`,
+					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					COUNT(`pim_tst`.`sample_code`) AS tests_done,
+					`tst`.`cd4_count`,
+					`pim_tst`.`operator` AS `operator`,
+					MONTH(`tst`.`result_date`) AS `month`
+					
+				FROM `pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+					LEFT JOIN `patient_age_group` `ag`
+					ON `tst`.`patient_age_group_id` = `ag`.`id`
+					
+				WHERE 1
+				AND `tst`.`result_date` between `date_from` and `date_to`
+				AND ( `sample_code` NOT LIKE '%CONTROL%' )
+				AND `valid` = '1'
+				GROUP BY `facility_name`,`month`
+				;
+		ELSE
+			CASE `user_group_id`
+			WHEN 3 THEN
+				SELECT 
+					`fac`.`name` 	AS `facility_name`,
+					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					COUNT(`pim_tst`.`sample_code`) AS tests_done,
+					`tst`.`cd4_count`,
+					`pim_tst`.`operator`  AS `operator`,
+					MONTH(`tst`.`result_date`) AS `month`
+					
+				
+				FROM `pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+					LEFT JOIN `patient_age_group` `ag`
+					ON `tst`.`patient_age_group_id` = `ag`.`id`
+					
+				WHERE 1
+				AND `tst`.`result_date` between `date_from` and `date_to`
+				AND ( `sample_code` NOT LIKE '%CONTROL%' )
+				AND `valid` = '1'
+				AND `par_reg`.`partner_id` = `user_filter_used`
+				GROUP BY `facility_name`,`month`
+				;			
+			WHEN 9 THEN
+				SELECT 
+					`fac`.`name` 	AS `facility_name`,
+					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					COUNT(`pim_tst`.`sample_code`) as tests_done,
+					`tst`.`cd4_count`,
+					`pim_tst`.`operator`  AS `operator`,
+					MONTH(`tst`.`result_date`) AS `month`
+					
+				FROM `pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+					LEFT JOIN `patient_age_group` `ag`
+					ON `tst`.`patient_age_group_id` = `ag`.`id`
+					
+				WHERE 1
+				AND `tst`.`result_date` between `date_from` and `date_to`
+				AND ( `sample_code` NOT LIKE '%CONTROL%' )
+				AND `valid` = '1'
+				AND `dis`.`region_id` = `user_filter_used`
+				GROUP BY `facility_name`,`month`
+				;
+			WHEN 8 THEN
+				SELECT 
+					`fac`.`name` 	AS `facility_name`,
+					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					COUNT(`pim_tst`.`sample_code`) AS tests_done,
+					`tst`.`cd4_count`,
+					`pim_tst`.`operator`  AS `operator`,
+					`tst`.`result_date`,
+					MONTH(`tst`.`result_date`) AS `month`
+				
+				FROM `pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+					LEFT JOIN `patient_age_group` `ag`
+					ON `tst`.`patient_age_group_id` = `ag`.`id`
+					
+				WHERE 1
+				AND `tst`.`result_date` between `date_from` and `date_to`
+				AND ( `sample_code` NOT LIKE '%CONTROL%' )
+				AND `valid` = '1'
+				AND `fac`.`district_id` = `user_filter_used`
+				GROUP BY `facility_name`,`month`
+				;		
+			WHEN 6 THEN
+				SELECT 
+					`fac`.`name` 	AS `facility_name`,
+					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					COUNT(`pim_tst`.`sample_code`) AS tests_done,
+					`tst`.`cd4_count`,
+					`pim_tst`.`operator`  AS `operator`,
+					`tst`.`result_date`,
+					MONTH(`tst`.`result_date`) AS `month`
+					
+				FROM `pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+					LEFT JOIN `patient_age_group` `ag`
+					ON `tst`.`patient_age_group_id` = `ag`.`id`
+				WHERE 1
+				AND `tst`.`result_date` between `date_from` and `date_to`
+				AND ( `sample_code` NOT LIKE '%CONTROL%' )
+				AND `valid` = '1'
+				AND `fac`.`id` = `user_filter_used`
+				GROUP BY `facility_name`,`month`
+				;	
+			WHEN 7 THEN	
+				SELECT 
+					`fac`.`name` 	AS `facility_name`,
+					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					COUNT(`pim_tst`.`sample_code`) AS tests_done,
+					`tst`.`cd4_count`,
+					`pim_tst`.`operator`  AS `operator`,
+					`tst`.`result_date`,
+					MONTH(`tst`.`result_date`) AS `month`
+					
+				FROM `pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+					LEFT JOIN `patient_age_group` `ag`
+					ON `tst`.`patient_age_group_id` = `ag`.`id`
+				WHERE 1
+				AND `tst`.`result_date` between `date_from` and `date_to`
+				AND ( `sample_code` NOT LIKE '%CONTROL%' )
+				AND `valid` = '1'
+				AND `tst`.`facility_equipment_id` = `user_filter_used`
+				GROUP BY `facility_name`,`month`
+				;
+			END CASE;
+		END CASE;
+	END;
 ";
+
+
+$db_procedures["errors_summarized_report"] = "
+CREATE PROCEDURE errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+BEGIN 
+	CASE `user_filter_used`
+		WHEN 0 THEN
+			SELECT
+				`fac`.`name` 			AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				COUNT(`pim_tst`.`sample_code`) AS tests_done,
+				`p_e_ty`.`description` AS `error_type_description`,
+				`pima_err`.`error_detail`,
+				`pim_tst`.`operator`  AS `operator`,
+				MONTH(`tst`.`result_date`) AS `month`
+				
+	
+			FROM 
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`
+				LEFT JOIN `pima_error` `pima_err`
+				ON `pim_tst`.`error_id`=`pima_err`.`id`
+					LEFT JOIN `pima_error_type` `p_e_ty`
+					ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+					 
+			WHERE 1
+			AND `valid` = '0'
+		 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		 	AND `tst`.`result_date` between `date_from` and `date_to`  
+		 	GROUP BY `facility_name`,`month`
+			;
+	ELSE
+		CASE `user_group_id`
+		WHEN 3 THEN
+			SELECT
+				`fac`.`name` 			AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				COUNT(`pim_tst`.`sample_code`) AS tests_done,
+				`p_e_ty`.`description` AS `error_type_description`,
+				`pima_err`.`error_detail`,
+				`pim_tst`.`operator`  AS `operator`,
+				MONTH(`tst`.`result_date`) AS `month`
+	
+			FROM 
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`
+				LEFT JOIN `pima_error` `pima_err`
+				ON `pim_tst`.`error_id`=`pima_err`.`id`
+					LEFT JOIN `pima_error_type` `p_e_ty`
+					ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+					 
+			WHERE 1
+			AND `valid` = '0'
+		 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		 	AND `tst`.`result_date` between `date_from` and `date_to` 
+		 	AND `par_reg`.`partner_id` = `user_filter_used`
+		 	GROUP BY `facility_name`,`month`
+		 	; 
+		WHEN 9 THEN
+		SELECT
+				`fac`.`name` 			AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				COUNT(`pim_tst`.`sample_code`) AS tests_done,
+				`p_e_ty`.`description` AS `error_type_description`,
+				`pima_err`.`error_detail`,
+				`pim_tst`.`operator`  AS `operator`,
+				MONTH(`tst`.`result_date`) AS `month`
+	
+			FROM 
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`
+				LEFT JOIN `pima_error` `pima_err`
+				ON `pim_tst`.`error_id`=`pima_err`.`id`
+					LEFT JOIN `pima_error_type` `p_e_ty`
+					ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+					 
+			WHERE 1
+			AND `valid` = '0'
+		 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		 	AND `tst`.`result_date` between `date_from` and `date_to`
+		 	AND `dis`.`region_id` = `user_filter_used`  
+		 	GROUP BY `facility_name`,`month`
+		 	;
+		WHEN 8 THEN
+			SELECT
+				`fac`.`name` 			AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				COUNT(`pim_tst`.`sample_code`) AS tests_done,
+				`p_e_ty`.`description` AS `error_type_description`,
+				`pima_err`.`error_detail`,
+				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
+				MONTH(`tst`.`result_date`) AS `month`
+	
+			FROM 
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`
+				LEFT JOIN `pima_error` `pima_err`
+				ON `pim_tst`.`error_id`=`pima_err`.`id`
+					LEFT JOIN `pima_error_type` `p_e_ty`
+					ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+					 
+			WHERE 1
+			AND `valid` = '0'
+		 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		 	AND `tst`.`result_date` between `date_from` and `date_to`
+		 	AND `fac`.`district_id` = `user_filter_used`  
+		 	GROUP BY `facility_name`,`month`
+		 	;
+		WHEN 6 THEN 
+		SELECT
+				`fac`.`name` 			AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				COUNT(`pim_tst`.`sample_code`) AS tests_done,
+				`p_e_ty`.`description` AS `error_type_description`,
+				`pima_err`.`error_detail`,
+				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
+				MONTH(`tst`.`result_date`) AS `month`
+	
+			FROM 
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`
+				LEFT JOIN `pima_error` `pima_err`
+				ON `pim_tst`.`error_id`=`pima_err`.`id`
+					LEFT JOIN `pima_error_type` `p_e_ty`
+					ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+					 
+			WHERE 1
+			AND `valid` = '0'
+		 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		 	AND `tst`.`result_date` between `date_from` and `date_to`  
+		 	AND `fac`.`id` = `user_filter_used`
+			GROUP BY `facility_name`,`month`
+			;
+		WHEN 7 THEN
+		SELECT
+				`fac`.`name` 			AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				COUNT(`pim_tst`.`sample_code`) AS tests_done,
+				`p_e_ty`.`description` AS `error_type_description`,
+				`pima_err`.`error_detail`,
+				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
+				MONTH(`tst`.`result_date`) AS `month`
+	
+			FROM 
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+					LEFT JOIN `facility_equipment`
+					ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+					LEFT JOIN `pima_upload` `pim_upl`
+					ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+						LEFT JOIN `user` `usr`
+						ON `pim_upl`.`uploaded_by`= `usr`.`id`
+				LEFT JOIN `pima_error` `pima_err`
+				ON `pim_tst`.`error_id`=`pima_err`.`id`
+					LEFT JOIN `pima_error_type` `p_e_ty`
+					ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+					 
+			WHERE 1
+			AND `valid` = '0'
+		 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		 	AND `tst`.`result_date` between `date_from` and `date_to`  
+		 	AND `tst`.`facility_equipment_id` = `user_filter_used`
+			GROUP BY `facility_name`,`month`
+			;
+		END CASE;
+	END CASE;			
+END;
+";
+
+$db_procedures["tests_detailed_report"] = "
+CREATE PROCEDURE tests_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+BEGIN
+	CASE `user_filter_used`
+	WHEN 0 THEN
+		SELECT 
+			`fac`.`name` 	AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`tst`.`cd4_count`,
+			`pim_tst`.`operator` AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+			
+		FROM `pima_test`  `pim_tst`
+		LEFT JOIN `cd4_test` `tst`
+		ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+			LEFT JOIN `facility` `fac`
+			ON `tst`.`facility_id`=`fac`.`id`
+				LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+					LEFT JOIN `region` `reg`
+					ON `dis`.`region_id` = `reg`.`id`
+						LEFT JOIN `partner_regions` `par_reg`
+						ON `reg`.`id` = `par_reg`.`region_id`
+							LEFT JOIN `partner` `par`
+							ON `par_reg`.`partner_id`=`par`.`id`
+				LEFT JOIN `status` `st`
+				ON `fac`.`rollout_status`= `st`.`id`  
+				LEFT JOIN `facility_user` `fu`
+				ON `fac`.`id`=`fu`.`facility_id`
+				LEFT JOIN `facility_equipment` `fac_eq`
+				ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+			
+		WHERE 1
+		AND `tst`.`result_date` between `date_from` and `date_to`
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		AND `valid` = '1'
+		;
+	ELSE
+	CASE `user_group_id`
+	WHEN 3 THEN
+		SELECT 
+			`fac`.`name` 	AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`tst`.`cd4_count`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+			
+		
+		FROM `pima_test`  `pim_tst`
+		LEFT JOIN `cd4_test` `tst`
+		ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+			LEFT JOIN `facility` `fac`
+			ON `tst`.`facility_id`=`fac`.`id`
+				LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+					LEFT JOIN `region` `reg`
+					ON `dis`.`region_id` = `reg`.`id`
+						LEFT JOIN `partner_regions` `par_reg`
+						ON `reg`.`id` = `par_reg`.`region_id`
+							LEFT JOIN `partner` `par`
+							ON `par_reg`.`partner_id`=`par`.`id`
+				LEFT JOIN `status` `st`
+				ON `fac`.`rollout_status`= `st`.`id`  
+				LEFT JOIN `facility_user` `fu`
+				ON `fac`.`id`=`fu`.`facility_id`
+				LEFT JOIN `facility_equipment` `fac_eq`
+				ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+			
+		WHERE 1
+		AND `tst`.`result_date` between `date_from` and `date_to`
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		AND `valid` = '1'
+		AND `par_reg`.`partner_id` = `user_filter_used`
+		;	
+	WHEN 9 THEN
+	SELECT 
+		`fac`.`name` 	AS `facility_name`,
+		`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+		`pim_tst`.`sample_code`,
+		`tst`.`cd4_count`,
+		`pim_tst`.`operator`  AS `operator`,
+		`tst`.`result_date`,
+		`tst`.`result_date`
+		
+	FROM `pima_test`  `pim_tst`
+	LEFT JOIN `cd4_test` `tst`
+	ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+		LEFT JOIN `facility` `fac`
+		ON `tst`.`facility_id`=`fac`.`id`
+			LEFT JOIN `district` `dis`
+			ON `fac`.`district_id` = `dis`.`id`
+				LEFT JOIN `region` `reg`
+				ON `dis`.`region_id` = `reg`.`id`
+					LEFT JOIN `partner_regions` `par_reg`
+					ON `reg`.`id` = `par_reg`.`region_id`
+						LEFT JOIN `partner` `par`
+						ON `par_reg`.`partner_id`=`par`.`id`
+			LEFT JOIN `status` `st`
+			ON `fac`.`rollout_status`= `st`.`id`  
+			LEFT JOIN `facility_user` `fu`
+			ON `fac`.`id`=`fu`.`facility_id`
+			LEFT JOIN `facility_equipment` `fac_eq`
+			ON `fac`.`id` = `fac_eq`.`facility_id`
+		LEFT JOIN `facility_equipment`
+		ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+		LEFT JOIN `pima_upload` `pim_upl`
+		ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+			LEFT JOIN `user` `usr`
+			ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+		LEFT JOIN `patient_age_group` `ag`
+		ON `tst`.`patient_age_group_id` = `ag`.`id`
+		
+	WHERE 1
+	AND `tst`.`result_date` between `date_from` and `date_to`
+	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	AND `valid` = '1'
+	AND `dis`.`region_id` = `user_filter_used`
+	;
+	WHEN 8 THEN
+		SELECT 
+				`fac`.`name` 	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
+				`tst`.`result_date`
+			
+			FROM `pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+				
+			WHERE 1
+			AND `tst`.`result_date` between `date_from` and `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `valid` = '1'
+			AND `fac`.`district_id` = `user_filter_used`
+			;		
+	WHEN 6 THEN
+		SELECT 
+			`fac`.`name` 	AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`tst`.`cd4_count`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+			
+		FROM `pima_test`  `pim_tst`
+		LEFT JOIN `cd4_test` `tst`
+		ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+			LEFT JOIN `facility` `fac`
+			ON `tst`.`facility_id`=`fac`.`id`
+				LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+					LEFT JOIN `region` `reg`
+					ON `dis`.`region_id` = `reg`.`id`
+						LEFT JOIN `partner_regions` `par_reg`
+						ON `reg`.`id` = `par_reg`.`region_id`
+							LEFT JOIN `partner` `par`
+							ON `par_reg`.`partner_id`=`par`.`id`
+				LEFT JOIN `status` `st`
+				ON `fac`.`rollout_status`= `st`.`id`  
+				LEFT JOIN `facility_user` `fu`
+				ON `fac`.`id`=`fu`.`facility_id`
+				LEFT JOIN `facility_equipment` `fac_eq`
+				ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+		WHERE 1
+		AND `tst`.`result_date` between `date_from` and `date_to`
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		AND `valid` = '1'
+		AND `fac`.`id` = `user_filter_used`
+		;	
+	WHEN 7 THEN
+		SELECT 
+			`fac`.`name` 	AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`tst`.`cd4_count`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+			
+		FROM `pima_test`  `pim_tst`
+		LEFT JOIN `cd4_test` `tst`
+		ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+			LEFT JOIN `facility` `fac`
+			ON `tst`.`facility_id`=`fac`.`id`
+				LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+					LEFT JOIN `region` `reg`
+					ON `dis`.`region_id` = `reg`.`id`
+						LEFT JOIN `partner_regions` `par_reg`
+						ON `reg`.`id` = `par_reg`.`region_id`
+							LEFT JOIN `partner` `par`
+							ON `par_reg`.`partner_id`=`par`.`id`
+				LEFT JOIN `status` `st`
+				ON `fac`.`rollout_status`= `st`.`id`  
+				LEFT JOIN `facility_user` `fu`
+				ON `fac`.`id`=`fu`.`facility_id`
+				LEFT JOIN `facility_equipment` `fac_eq`
+				ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+		WHERE 1
+		AND `tst`.`result_date` between `date_from` and `date_to`
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		AND `valid` = '1'
+		AND `tst`.`facility_equipment_id` = `user_filter_used`
+		;
+	END CASE;
+	END CASE;
+END
+";
+
+$db_procedures["errors_detailed_report"] = "
+CREATE PROCEDURE errors_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+BEGIN
+	CASE `user_filter_used`
+	WHEN 0 THEN
+		SELECT
+			`fac`.`name` 			AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`p_e_ty`.`description` AS `error_type_description`,
+			`pima_err`.`error_detail`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`
+			
+
+		FROM 
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`
+			LEFT JOIN `pima_error` `pima_err`
+			ON `pim_tst`.`error_id`=`pima_err`.`id`
+				LEFT JOIN `pima_error_type` `p_e_ty`
+				ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+				 
+		WHERE 1
+		AND `valid` = '0'
+	 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	 	AND `tst`.`result_date` between `date_from` and `date_to`  
+		;
+	ELSE
+	CASE `user_group_id`
+	WHEN 3 THEN
+		SELECT
+			`fac`.`name` 			AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`p_e_ty`.`description` AS `error_type_description`,
+			`pima_err`.`error_detail`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`
+
+		FROM 
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`
+			LEFT JOIN `pima_error` `pima_err`
+			ON `pim_tst`.`error_id`=`pima_err`.`id`
+				LEFT JOIN `pima_error_type` `p_e_ty`
+				ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+				 
+		WHERE 1
+		AND `valid` = '0'
+	 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	 	AND `tst`.`result_date` between `date_from` and `date_to` 
+	 	AND `par_reg`.`partner_id` = `user_filter_used`
+	 	; 
+	WHEN 9 THEN
+		SELECT
+			`fac`.`name` 			AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`p_e_ty`.`description` AS `error_type_description`,
+			`pima_err`.`error_detail`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`
+
+		FROM 
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`
+			LEFT JOIN `pima_error` `pima_err`
+			ON `pim_tst`.`error_id`=`pima_err`.`id`
+				LEFT JOIN `pima_error_type` `p_e_ty`
+				ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+				 
+		WHERE 1
+		AND `valid` = '0'
+	 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	 	AND `tst`.`result_date` between `date_from` and `date_to`
+	 	AND `dis`.`region_id` = `user_filter_used`  
+	 	;
+	WHEN 8 THEN
+		SELECT
+			`fac`.`name` 			AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`p_e_ty`.`description` AS `error_type_description`,
+			`pima_err`.`error_detail`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+
+		FROM 
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`
+			LEFT JOIN `pima_error` `pima_err`
+			ON `pim_tst`.`error_id`=`pima_err`.`id`
+				LEFT JOIN `pima_error_type` `p_e_ty`
+				ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+				 
+		WHERE 1
+		AND `valid` = '0'
+	 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	 	AND `tst`.`result_date` between `date_from` and `date_to`
+	 	AND `fac`.`district_id` = `user_filter_used`  
+	 	;
+	WHEN 6 THEN
+		SELECT
+			`fac`.`name` 			AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`p_e_ty`.`description` AS `error_type_description`,
+			`pima_err`.`error_detail`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+
+		FROM 
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`
+			LEFT JOIN `pima_error` `pima_err`
+			ON `pim_tst`.`error_id`=`pima_err`.`id`
+				LEFT JOIN `pima_error_type` `p_e_ty`
+				ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+				 
+		WHERE 1
+		AND `valid` = '0'
+	 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	 	AND `tst`.`result_date` between `date_from` and `date_to`  
+	 	AND `fac`.`id` = `user_filter_used`
+		;
+	WHEN 7 THEN
+		SELECT
+			`fac`.`name` 			AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`p_e_ty`.`description` AS `error_type_description`,
+			`pima_err`.`error_detail`,
+			`pim_tst`.`operator`  AS `operator`,
+			`tst`.`result_date`,
+			`tst`.`result_date`
+
+		FROM 
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`
+			LEFT JOIN `pima_error` `pima_err`
+			ON `pim_tst`.`error_id`=`pima_err`.`id`
+				LEFT JOIN `pima_error_type` `p_e_ty`
+				ON `pima_err`.`pima_error_type`=`p_e_ty`.`id`
+				 
+		WHERE 1
+		AND `valid` = '0'
+	 	AND ( `sample_code` NOT LIKE '%CONTROL%' )
+	 	AND `tst`.`result_date` between `date_from` and `date_to`  
+	 	AND `tst`.`facility_equipment_id` = `user_filter_used`
+		;
+	END CASE;
+	END CASE;
+END
+";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $config["procedures_sql"] = $db_procedures;
 
 /* End of file procedures_sql.php */
 /* Location: ./application/config/sql.php */
+
+
+
+
+
+
+
+
+
+
+
+
+
