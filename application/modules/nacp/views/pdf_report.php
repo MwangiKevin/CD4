@@ -69,6 +69,7 @@ ini_set("memory_limit","500M");
 	// die;
 
 
+
 if($report_type == 2){
 	$i = 0;
 	$top = '
@@ -184,11 +185,11 @@ if($report_type == 2){
 }
 	$t=time();
 	$timestamp = (date("m-d-y_G.i.s",$t));
-
+	
 	$mpdf->WriteHTML($final_report);
 	$report_name = "Test";
-	$file_name = $this->config->item('server_root').'downloads/poc_'.$Final_report_title.'_'.$timestamp.'.pdf';
-	$mpdf->Output($file_name,F);
+	$file_name = $this->config->item('server_root').'downloads/nacp_'.$Final_report_title.'_'.$timestamp.'.pdf';
+	$mpdf->Output($file_name,F);//(I, just give name no path to save)
 	redirect($this->config->item('server_root').$controller, 'refresh');
 	exit;	
 ?>
