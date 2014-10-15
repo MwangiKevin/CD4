@@ -70,7 +70,6 @@ class MY_Model extends CI_Model{
 
 	//
 	public function db_filtered_view($name,$user_filter_used,$and ="",$group_by = array(), $order_by = array(), $order_by_direction="" ){
-
 		$user_group_id = $this->session->userdata("user_group_id");
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);

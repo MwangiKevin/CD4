@@ -9,7 +9,7 @@ table, th, td {
 	<div class="section-title" style="font-size: 200%"><center>Select a criteria and generate a report</center></div>
 		<div class="mycontainer" id="full">
 			<div class="section-title" style="width: 30%;" ><center> Criteria: National </center></div>
-			<form method="post" action="<?php echo base_url();?>poc/reports/submit2/1" id="form-report">	
+			<form method="post" action="<?php echo base_url();?>nacp/reports/submit2/1" id="form-report">	
 			<table>
 					<tr>
 						<td>
@@ -68,7 +68,7 @@ table, th, td {
 			</form>
 			
 			<div class="section-title" style="width: 30%;" ><center> Criteria: Partner </center></div>
-			<form method="post" action="<?php echo base_url();?>poc/reports/submit2/6" id="form-report">	
+			<form method="post" action="<?php echo base_url();?>nacp/reports/submit2/6" id="form-report">	
 			<table>
 					<tr>
 						<td>
@@ -139,7 +139,7 @@ table, th, td {
 			</form>
 			
 			<div class="section-title" style="width: 30%;" ><center>Criteria: By Device</center></div>
-			<form method="post" action="<?php echo base_url();?>poc/reports/submit2/2" id="form-report">	
+			<form method="post" action="<?php echo base_url();?>nacp/reports/submit2/2" id="form-report">	
 				<table>
 					<tr>
 						<td>
@@ -211,7 +211,7 @@ table, th, td {
 			
 			
 			<div class="section-title" style="width: 30%;" ><center>Criteria: By Region</center></div>
-			<form method="post" action="<?php echo base_url();?>poc/reports/submit2/5" id="form-report">
+			<form method="post" action="<?php echo base_url();?>nacp/reports/submit2/5" id="form-report">
 				<table>
 					<tr>
 						<td>
@@ -283,7 +283,7 @@ table, th, td {
 			</form>
 			
 			<div class="section-title" style="width: 30%;" ><center>Criteria: By District</center></div>
-			<form method="post" action="<?php echo base_url();?>poc/reports/submit2/4" id="form-report">
+			<form method="post" action="<?php echo base_url();?>nacp/reports/submit2/4" id="form-report">
 				<table>
 					<tr>
 						<td>
@@ -355,7 +355,7 @@ table, th, td {
 			</form>
 			
 			<div class="section-title" style="width: 30%;" ><center>Criteria: By Facility</center></div>
-			<form method="post" action="<?php echo base_url();?>poc/reports/submit2/3" id="form-report">
+			<form method="post" action="<?php echo base_url();?>nacp/reports/submit2/3" id="form-report">
 				<table>
 					<tr>
 						<td>
@@ -438,4 +438,4 @@ table, th, td {
 		</div> -->
 </div>
 
-<?php $this->load->view("reports_footer_view");?>
+<?php $this->load->view("report_footer_view");?>
