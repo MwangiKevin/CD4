@@ -260,7 +260,7 @@ class reports extends MY_Controller {
 
 		$this->load->module("utils/worksheets");
 
-		$this->worksheets->create_worksheet($worksheet);
+		$this->worksheets->outputCSV($worksheet);
 		
 	}
 	private function email(){
