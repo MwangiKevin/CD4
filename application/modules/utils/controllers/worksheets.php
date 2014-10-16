@@ -6,6 +6,7 @@ class worksheets extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('PHPExcel');
+
 	}
 
 	/**************************************** creating excel sheet for the system *************************/
@@ -14,6 +15,12 @@ class worksheets extends MY_Controller {
  	//check if the excel data has been set if not exit the excel generation    
 
 		if(count($excel_data)>0){
+			//echo "<pre/>";
+			//print_r($excel_data);
+			$cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp;
+			$cacheSettings = array( 'memoryCacheSize' => '2MB');
+			PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+			ini_set('max_execution_time', 123456);
 
 			$objPHPExcel = new PHPExcel();
 			$objPHPExcel -> getProperties() -> setCreator("CD4");
@@ -48,7 +55,7 @@ class worksheets extends MY_Controller {
 			// 	$objPHPExcel -> getActiveSheet() -> setCellValueByColumnAndRow($column, $rowExec, $cell);
 			// 	$rowExec++;
 			// 	$column++;
-				
+
 			// }
 
 			$objPHPExcel->getActiveSheet()->fromArray($excel_data['row_data'], NULL, 'A1');
@@ -72,5 +79,33 @@ class worksheets extends MY_Controller {
 			// Echo done
 		}
 	}
-	
+// header("Content-type: text/csv");
+// header("Content-Disposition: attachment; filename=file.csv");
+// // Disable caching
+// header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
+// header("Pragma: no-cache"); // HTTP 1.0
+// header("Expires: 0"); // Proxies
+
+// outputCSV(array(
+//     array("name 1", "age 1", "city 1"),
+//     array("name 2", "age 2", "city 2"),
+//     array("name 3", "age 3", "city 3")
+// ));
+
+public function outputCSV($data=array(    array("name 1", "age 1", "city 1"),    array("name 2", "age 2", "city 2"),    array("name 3", "age 3", "city 3"))) {
+	header("Content-type: text/csv");
+	header("Content-Disposition: attachment; filename=file.csv");
+// Disable caching
+	header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
+	header("Pragma: no-cache"); // HTTP 1.0
+	header("Expires: 0"); // Proxies
+
+
+    $output = fopen("php://output", "w");
+    foreach ($data["row_data"] as $row) {
+        fputcsv($output, $row); // here you can change delimiter/enclosure
+    }
+    fclose($output);
+}
+
 }
