@@ -256,7 +256,7 @@ class reports extends MY_Controller {
 
 		$worksheet["doc_creator"] 	= $this->session->userdata("username");
 		$worksheet["doc_title"] 	= $this->session->userdata("username");
-		$worksheet["file_name"] 	= "CD4_Report_(".$this->session->userdata("username").").xls";
+		$worksheet["file_name"] 	= "CD4_Report_(".$this->session->userdata("username").").csv";
 
 		$this->load->module("utils/worksheets");
 
