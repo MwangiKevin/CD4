@@ -10,7 +10,7 @@ class reports extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
 
-		$this->data['content_view'] = "nacp/reports_view";
+		$this->data['content_view'] = "poc/reports_view";
 		$this->data['controller']	=	"nacp/reports";
 		$this->data['title'] = "Reports";
 		
