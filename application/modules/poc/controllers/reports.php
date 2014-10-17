@@ -53,8 +53,6 @@ class reports extends MY_Controller {
 		$this->load->view("pdf_report");
 	}
 	
-	
-	
 	public function submit2($criteria){//generates the reports	
 		$format = (int) $this->input->post("format");//pdf or excel
 		$report_type	=	(int) $this->input->post("report_type");//summary or detailed
@@ -241,10 +239,6 @@ class reports extends MY_Controller {
 			//echo $format."PDF";
 		}else{echo $format."wrong value";}
 	}
-	
-	
-	
-	
 	
 	private function print_report(){
 		
