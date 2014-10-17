@@ -179,6 +179,55 @@ class poc_model extends MY_Model{
 		return $facilities_requested = R::getAll($sql);
 	}
 
+	function pima_controls()
+	{
+		$sql = "SELECT 
+					`pc`.`id` AS `PC ID`,
+					`pc`.`sample_code`,
+					`pc`.`cd4_count`,
+					`pc`.`facility_equipment_id` AS `PC FE ID`,
+					`pc`.`result_date`,
+					`fe`.`id` AS `FE ID` ,
+					`fe`.`facility_id` AS `FE FID`,
+					`fe`.`date_added`,
+					`fc`.`id` AS `FC ID`,
+					`fc`.`name`,
+					`eq`.`id`,
+					`eq`.`description`
+				FROM `pima_control` `pc`
+				LEFT JOIN `facility_equipment` `fe`
+				ON `pc`.`facility_equipment_id` = `fe`.`id`
+				LEFT JOIN `facility` `fc`
+				ON `fe`.`facility_id` = `fc`.`id`
+				LEFT JOIN `equipment` `eq`
+				ON `fe`.`equipment_id` = `eq`.`id`
+
+				WHERE `sample_code` = 'LOW' AND  `cd4_count` > 350 || `sample_code` = 'NORMAL' AND  `cd4_count` < 350	";
+
+		return $failed_controls = R::getAll($sql);
+	}
+
+	function pima_controls_success()
+	{
+		$sql = "SELECT 
+					COUNT(`id`) AS `success` 
+				FROM `pima_control` 
+				WHERE `sample_code` = 'NORMAL' AND `cd4_count` <> 350 || `sample_code` = 'LOW' AND `cd4_count` < 350";
+
+		return $success = R::getAll($sql);
+	}
+
+	function pima_controls_failed()
+	{
+		$sql = "SELECT 
+					COUNT(`id`) AS `fails` 
+				FROM `pima_control` 
+				WHERE `sample_code` = 'NORMAL' AND `cd4_count` < 350 || `sample_code` = 'LOW' AND `cd4_count` > 350";
+
+		return $fails = R::getAll($sql);
+	}
+
+
 }
 /* End of file poc_model.php */
 /* Location: ./application/modules/poc/models/poc_model.php */
