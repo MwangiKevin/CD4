@@ -6,6 +6,7 @@ class errors extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
+
 		
 		$this->load->module("charts/pima");
 		$this->load->module("charts/tests");
@@ -26,6 +27,8 @@ class errors extends MY_Controller {
 		$this->load->model('poc_model');
 
 		$data['menus']	= 	$this->poc_model->menus(5);
+
+		$data['hide_user_filter']	=	true;
 		$this -> template($data);
 	}
 	public function pima_error_criteria(){
