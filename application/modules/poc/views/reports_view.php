@@ -146,76 +146,8 @@ table, th, td {
 				</div>
 			</div>	
 		</form>
-	</div>
-
-	<div class="report-row">
-		<form method="post" action="<?php echo base_url();?>poc/reports/submit2/2" id="form-report">	
-			<div class="row">
-				<div class="col-md-2">
-					<div class="input-group " style="" id="devicesdiv">
-						<span class="input-group-addon small-caption" style="">Device:</span>
-						<select name='device' id='device' style=''; class="textfield form-control">
-							<option value='' selected='selected'>*Select Device*</option>
-							<?php foreach($devices as $device){ ?>
-							<option value='<?php echo $device["facility_equipment_id"].'.'.$device["facility_name"]; ?>'><?php echo "<b>".$device["facility_name"]."</b>&nbsp&nbsp&nbsp&nbsp(".$device["serial_number"].")"; ?></option>
-							<?php } ?>
-						</select>
-						<span id='locationInfo'></span>
-					</div>	
-				</div>
-				<div class="col-md-2">
-					<div class="input-group" style="">
-						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
-							<option value="">*Select Report Title*</option>
-							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
-						</select>
-					</div>	
-				</div>
-				<div class="col-md-2">
-					<div class="input-group" >
-						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
-							<option value="">*Select Report Type*</option>
-							<option value="1"> Detailed </option>
-							<option value="2"> Summarized </option>							                   	                  					
-						</select>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div id="startDate">
-						<div class="input-group" style="">
-							<span class="input-group-addon small-caption" style=""> From: </span> 
-							<input type="text" class="textfield form-control" id="datepickerFromd" name="datepickerFromd">
-						</div>
-					</div>
-					<div id="endDate">
-						<div class="input-group" style="">
-							<span class="input-group-addon small-caption" style=""> To: </span>
-							
-
-							<input type="text" class="textfield form-control"  id="datepickerTod" name="datepickerTod">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="input-group" style="">
-						<span class="input-group-addon small-caption" style=""> Format: </span>
-						<select required class="textfield form-control" name="format" id="format"  >
-							<option value="">*Select Format*</option>
-							<option value="1">PDF</option>
-							<option value="2">Excel</option>
-						</select>
-					</div>	
-				</div>
-				<div class="col-md-1">
-					<button id="click" type="submit"  class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-save"></i>Generate</button>
-				</div>
-			</div>	
-		</form>
 	</div>	
-
+	
 	<div class="report-row">
 		<form method="post" action="<?php echo base_url();?>poc/reports/submit2/5" id="form-report">	
 			<div class="row">
@@ -403,6 +335,74 @@ table, th, td {
 							
 
 							<input type="text" class="textfield form-control"  id="datepickerTof" name="datepickerTof">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="input-group" style="">
+						<span class="input-group-addon small-caption" style=""> Format: </span>
+						<select required class="textfield form-control" name="format" id="format"  >
+							<option value="">*Select Format*</option>
+							<option value="1">PDF</option>
+							<option value="2">Excel</option>
+						</select>
+					</div>	
+				</div>
+				<div class="col-md-1">
+					<button id="click" type="submit"  class="btn btn-primary btn-mini"><i class="glyphicon glyphicon-save"></i>Generate</button>
+				</div>
+			</div>	
+		</form>
+	</div>
+
+	<div class="report-row">
+		<form method="post" action="<?php echo base_url();?>poc/reports/submit2/2" id="form-report">	
+			<div class="row">
+				<div class="col-md-2">
+					<div class="input-group " style="" id="devicesdiv">
+						<span class="input-group-addon small-caption" style="">Device:</span>
+						<select name='device' id='device' style=''; class="textfield form-control">
+							<option value='' selected='selected'>*Select Device*</option>
+							<?php foreach($devices as $device){ ?>
+							<option value='<?php echo $device["facility_equipment_id"].'.'.$device["facility_name"]; ?>'><?php echo "<b>".$device["facility_name"]."</b>&nbsp&nbsp&nbsp&nbsp(".$device["serial_number"].")"; ?></option>
+							<?php } ?>
+						</select>
+						<span id='locationInfo'></span>
+					</div>	
+				</div>
+				<div class="col-md-2">
+					<div class="input-group" style="">
+						<span class="input-group-addon small-caption" style="">Report:</span>
+						<select required class="textfield form-control" name="report_title" id="report_title" >
+							<option value="">*Select Report Title*</option>
+							<option value="1"> Tests Report </option>
+							<option value="2"> Errors Report </option>							                   	                  					
+						</select>
+					</div>	
+				</div>
+				<div class="col-md-2">
+					<div class="input-group" >
+						<span class="input-group-addon small-caption" >Type :</span>
+						<select required class="textfield form-control" name="report_type" id="report_type" >
+							<option value="">*Select Report Type*</option>
+							<option value="1"> Detailed </option>
+							<option value="2"> Summarized </option>							                   	                  					
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div id="startDate">
+						<div class="input-group" style="">
+							<span class="input-group-addon small-caption" style=""> From: </span> 
+							<input type="text" class="textfield form-control" id="datepickerFromd" name="datepickerFromd">
+						</div>
+					</div>
+					<div id="endDate">
+						<div class="input-group" style="">
+							<span class="input-group-addon small-caption" style=""> To: </span>
+							
+
+							<input type="text" class="textfield form-control"  id="datepickerTod" name="datepickerTod">
 						</div>
 					</div>
 				</div>
