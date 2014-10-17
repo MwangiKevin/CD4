@@ -44,7 +44,7 @@ $db_procedures["drop_get_uploads_dt"]  							=	"DROP PROCEDURE IF EXISTS `get_u
 $db_procedures["drop_get_errors_notf"]  						=	"DROP PROCEDURE IF EXISTS `get_errors_notf`; ";
 $db_procedures["drop_active_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `active_user_devices`; ";
 $db_procedures["drop_uploaded_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `uploaded_user_devices`; ";
-	
+$db_procedures["drop_pima_controls"]							=	"DROP PROCEDURE IF EXISTS `pima_controls`; ";
 
 $db_procedures["get_facility_details"]  		=	
 					"CREATE PROCEDURE  get_facility_details (user_group_id int(11), user_filter_used int(11)) 
@@ -4327,6 +4327,10 @@ $db_procedures["uploaded_user_devices"] = "CREATE PROCEDURE uploaded_user_device
 	END;
 ";
 
+$db_procedures["pima_controls"] = "CREATE PROCEDURE pima_controls()
+					BEGIN
+
+					END;";
 
 $config["procedures_sql"] = $db_procedures;
 
