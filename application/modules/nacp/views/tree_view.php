@@ -11,13 +11,11 @@
     <div class="col-md-9" style="overflow-y: auto; height: 560px !important;">
         <div class="row">
             <div class="col-md-7" id="">
-                <div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
                 <div id="tests-table">              
                     <div class="loader" style"">Loading...</div>    
                 </div>  
             </div>
-            <div class="col-md-5" id="">        
-                <div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>                      
+            <div class="col-md-5" id="">                             
                 <div id="equipment-test-table">
                     <div class="loader" style"">Loading...</div>    
                 </div>
