@@ -19,7 +19,6 @@ table, th, td {
 	float:left;
 }
 </style>
-
 <div class="mycontainer" id="full">
 	<div class="section-title" style="font-size: 100%"><center>Select a criteria and generate a report</center></div>
 	<div class="report-row">
@@ -31,17 +30,19 @@ table, th, td {
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
+						<select required class="textfield form-control" name="report_title_national" id="report_title_national" >
 							<option value="">*Select Report Title*</option>
 							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
+							<option value="2"> Errors Report </option>
+							<option value="3"> Summarized By Month </option>
+							<option value="4"> Tests & Errors Report </option>							                   	                  					
 						</select>
 					</div>	
 				</div>
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
+						<select required class="textfield form-control" name="report_type_national" id="report_type_national" >
 							<option value="">*Select Report Type*</option>
 							<option value="1"> Detailed </option>
 							<option value="2"> Summarized </option>							                   	                  					
@@ -100,17 +101,19 @@ table, th, td {
 				<div class="col-md-2">
 					<div class="input-group" style="">
 						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
+						<select required class="textfield form-control" name="report_title_partner" id="report_title_partner" >
 							<option value="">*Select Report Title*</option>
 							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
+							<option value="2"> Errors Report </option>	
+							<option value="3"> Summarized By Month </option>
+							<option value="4"> Tests & Errors Report </option>						                   	                  					
 						</select>
 					</div>	
 				</div>
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
+						<select required class="textfield form-control" name="report_type_partner" id="report_type_partner" >
 							<option value="">*Select Report Type*</option>
 							<option value="1"> Detailed </option>
 							<option value="2"> Summarized </option>							                   	                  					
@@ -167,17 +170,19 @@ table, th, td {
 				<div class="col-md-2">
 					<div class="input-group" style="">
 						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
+						<select required class="textfield form-control" name="report_title_region" id="report_title_region" >
 							<option value="">*Select Report Title*</option>
 							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
+							<option value="2"> Errors Report </option>
+							<option value="3"> Summarized By Month </option>
+							<option value="4"> Tests & Errors Report </option>							                   	                  					
 						</select>
 					</div>	
 				</div>
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
+						<select required class="textfield form-control" name="report_type_region" id="report_type_region" >
 							<option value="">*Select Report Type*</option>
 							<option value="1"> Detailed </option>
 							<option value="2"> Summarized </option>							                   	                  					
@@ -236,17 +241,19 @@ table, th, td {
 				<div class="col-md-2">
 					<div class="input-group" style="">
 						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
+						<select required class="textfield form-control" name="report_title_district" id="report_title_district" >
 							<option value="">*Select Report Title*</option>
 							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
+							<option value="2"> Errors Report </option>
+							<option value="3"> Summarized By Month </option>
+							<option value="4"> Tests & Errors Report </option>								                   	                  					
 						</select>
 					</div>	
 				</div>
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
+						<select required class="textfield form-control" name="report_type_district" id="report_type_district" >
 							<option value="">*Select Report Type*</option>
 							<option value="1"> Detailed </option>
 							<option value="2"> Summarized </option>							                   	                  					
@@ -305,17 +312,19 @@ table, th, td {
 				<div class="col-md-2">
 					<div class="input-group" style="">
 						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
+						<select required class="textfield form-control" name="report_title_facility" id="report_title_facility" >
 							<option value="">*Select Report Title*</option>
 							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
+							<option value="2"> Errors Report </option>		
+							<option value="3"> Summarized By Month </option>
+							<option value="4"> Tests & Errors Report </option>				                   	                  					
 						</select>
 					</div>	
 				</div>
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
+						<select required class="textfield form-control" name="report_type_facility" id="report_type_facility" >
 							<option value="">*Select Report Type*</option>
 							<option value="1"> Detailed </option>
 							<option value="2"> Summarized </option>							                   	                  					
@@ -373,17 +382,19 @@ table, th, td {
 				<div class="col-md-2">
 					<div class="input-group" style="">
 						<span class="input-group-addon small-caption" style="">Report:</span>
-						<select required class="textfield form-control" name="report_title" id="report_title" >
+						<select required class="textfield form-control" name="report_title_device" id="report_title_device" >
 							<option value="">*Select Report Title*</option>
 							<option value="1"> Tests Report </option>
-							<option value="2"> Errors Report </option>							                   	                  					
+							<option value="2"> Errors Report </option>		
+							<option value="3"> Summarized By Month </option>
+							<option value="4"> Tests & Errors Report </option>						                   	                  					
 						</select>
 					</div>	
 				</div>
 				<div class="col-md-2">
 					<div class="input-group" >
 						<span class="input-group-addon small-caption" >Type :</span>
-						<select required class="textfield form-control" name="report_type" id="report_type" >
+						<select required class="textfield form-control" name="report_type_device" id="report_type_device" >
 							<option value="">*Select Report Type*</option>
 							<option value="1"> Detailed </option>
 							<option value="2"> Summarized </option>							                   	                  					
