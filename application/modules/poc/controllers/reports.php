@@ -222,14 +222,14 @@ class reports extends MY_Controller {
 				$sql = "CALL report_summarized_by_month(".$user_group_id.",".$user_filter_used.",'".$date_from."','".$date_to."')";
 				$res = R::getAll($sql);
 				
-				//gets the months between two dates
+			//gets the months between two dates
 				$start    = new DateTime($date_from);
 				$start->modify('first day of this month');
 				$end      = new DateTime($date_to);
 				$end->modify('first day of next month');
 				$interval = DateInterval::createFromDateString('1 month');
 				$period   = new DatePeriod($start, $interval, $end);
-				//gets the months between two dates
+			//gets the months between two dates
 				
 				$row_data[0][1] = "month";
 				$month_count=1;
