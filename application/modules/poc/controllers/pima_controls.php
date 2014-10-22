@@ -19,11 +19,21 @@ class pima_controls extends MY_Controller {
 
 		$this->data['tests'] = $this->poc_model->pima_controls_success();
 		$this->data['menus']	= 	$this->poc_model->menus(9);
+		$from = Date("Y-m-1" 	, strtotime("first day of last month"));
+  		$to   = Date("Y-m-t" 	, strtotime("last day of last month"));
 
+  		echo $from.   " need some space ".$to;
+		$tests = $this->poc_model->get_pima_controls_reported($from,$to,$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used")); 
+
+		// echo $this->session->userdata("user_group_id");
+		// echo $this->session->userdata("user_filter_used");die();
 		$this->load->module("charts/pima");
 		$this->load->module("charts/tests");
 		$this->load->module("charts/pima_errors");	
+		$this->load->module("charts/pima_controls");
 		$this->load->module("charts/pima_controls");	
+
+		//$this->get_pima_controls_reported($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"),"2013-08-01","2013-09-01");
 	}
 
 	public function index(){		
@@ -58,7 +68,7 @@ class pima_controls extends MY_Controller {
 		echo json_encode($json_req);
 	}
 
-		public function tree_schema(){
+	public function tree_schema(){
 		$regions_schema  = $this->get_regions_schema();
 
 		$str = "";
@@ -93,8 +103,8 @@ class pima_controls extends MY_Controller {
 		            foreach ($device_schema as $e_key => $e_value) {
 		            	$str .="<li style='display:none'>
 		            				<span class='badge badge-success' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign '></i></span>
-		            				<a href='#'></a>
-		            				<a href='#'><span class='badge pull-right' style='background-color:#5ac0de;'>E</span></a>
+		            				<a href='#' onclick ='load_tree_data(4,".$e_value["facility_equipment_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."&nbsp;>>&nbsp;".$e_value["equipment"]."\")'>".$e_value["equipment"]."</a>
+		            				<a href='#'><span class='badge pull-right' style='background-color:#D5D500;'>E</span></a>
 		            			</li>
 		            			";
 		            }

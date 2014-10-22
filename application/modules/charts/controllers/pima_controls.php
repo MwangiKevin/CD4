@@ -8,4 +8,11 @@ class pima_controls extends MY_Controller {
     
     $this->load->model('pima_controls_model');
   }
+
+  public function get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to)
+  {
+  	$data = $this->pima_controls_model->get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to);
+
+  	print_r($data);die();
+  }
 }

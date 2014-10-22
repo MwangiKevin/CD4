@@ -207,10 +207,18 @@ class poc_model extends MY_Model{
 		return $failed_controls = R::getAll($sql);
 	}
 
+	public function get_pima_controls_reported($from,$to,$user_group_id,$user_filter_used)
+	{
+		$sql = "CALL get_pima_controls_reported($from,$to,$user_group_id,$user_filter_used)";
+
+
+		return $res = R::getAll($sql);
+	}
+
 	function pima_controls_success()
 	{
 		$sql = "SELECT 
-					COUNT(`id`) AS `success` 
+					COUNT(`id`) AS `y` 
 				FROM `pima_control` 
 				WHERE `sample_code` = 'NORMAL' AND `cd4_count` <> 350 || `sample_code` = 'LOW' AND `cd4_count` < 350";
 
@@ -220,7 +228,7 @@ class poc_model extends MY_Model{
 	function pima_controls_failed()
 	{
 		$sql = "SELECT 
-					COUNT(`id`) AS `fails` 
+					COUNT(`id`) AS `y` 
 				FROM `pima_control` 
 				WHERE `sample_code` = 'NORMAL' AND `cd4_count` < 350 || `sample_code` = 'LOW' AND `cd4_count` > 350";
 
