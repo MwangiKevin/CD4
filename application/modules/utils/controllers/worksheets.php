@@ -79,23 +79,12 @@ class worksheets extends MY_Controller {
 			// Echo done
 		}
 	}
-// header("Content-type: text/csv");
-// header("Content-Disposition: attachment; filename=file.csv");
-// // Disable caching
-// header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
-// header("Pragma: no-cache"); // HTTP 1.0
-// header("Expires: 0"); // Proxies
-
-// outputCSV(array(
-//     array("name 1", "age 1", "city 1"),
-//     array("name 2", "age 2", "city 2"),
-//     array("name 3", "age 3", "city 3")
-// ));
 
 public function outputCSV($data=array(    array("name 1", "age 1", "city 1"),    array("name 2", "age 2", "city 2"),    array("name 3", "age 3", "city 3"))) {
 	header("Content-type: text/csv");
-	header("Content-Disposition: attachment; filename=file.csv");
-// Disable caching
+	$filename= $data["file_name"];
+	header("Content-Disposition: attachment; filename=$filename");
+	// Disable caching
 	header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
 	header("Pragma: no-cache"); // HTTP 1.0
 	header("Expires: 0"); // Proxies

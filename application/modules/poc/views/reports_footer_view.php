@@ -231,4 +231,78 @@ $(function() {
                 //Optional: setDate: The same as minDate.
             });
    		});
+   		
+   	//national disable report_type
+	$('#report_title_national').on('change', function(){
+		var report_type = $('#report_title_national  option:selected').val();
+		if(report_type == 3){
+			$('#report_type_national').prop('disabled', true);	
+		}else{
+			$('#report_type_national').prop('disabled', false);
+		}		
+	});
+	//partner disable report_type
+	$('#report_title_partner').on('change', function(){
+		var report_type = $('#report_title_partner  option:selected').val();
+		if(report_type == 3){
+			$('#report_type_partner').prop('disabled', true);	
+		}else{
+			$('#report_type_partner').prop('disabled', false);
+		}		
+	});
+	//region disable report_type
+	$('#report_title_region').on('change', function(){
+		var report_type = $('#report_title_region  option:selected').val();
+		if(report_type == 3){
+			$('#report_type_region').prop('disabled', true);	
+		}else{
+			$('#report_type_region').prop('disabled', false);
+		}		
+	});
+	//district disable report_type
+	$('#report_title_district').on('change', function(){
+		var report_type = $('#report_title_district  option:selected').val();
+		if(report_type == 3){
+			$('#report_type_district').prop('disabled', true);	
+		}else{
+			$('#report_type_district').prop('disabled', false);
+		}		
+	});
+	//device disable report_type
+	$('#report_title_device').on('change', function(){
+		var report_type = $('#report_title_device  option:selected').val();
+		if(report_type == 3){
+			$('#report_type_device').prop('disabled', true);	
+		}else{
+			$('#report_type_device').prop('disabled', false);
+		}		
+	});
+	//disable facility report_type
+	$('#report_title_facility').on('change', function(){
+		var report_type = $('#report_title_facility  option:selected').val();
+		if(report_type == 3){
+			$('#report_type_facility').prop('disabled', true);	
+		}else{
+			$('#report_type_facility').prop('disabled', false);
+		}		
+	}); 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
