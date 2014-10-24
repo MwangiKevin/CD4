@@ -247,16 +247,7 @@
 		                   	?>                					
 		                </select>
 						<span class="input-group-addon" style="width: 20%;">District:</span>
-						<!-- <input required id="editdis" name = "dis" class="textfield form-control"  readonly /> -->
-						<select  required id="editdis" name="dis" class="textfield form-control" >
-		                   	<!-- <option value="">*Select a District*</option>  -->
-		                   	<?php
-		                   		foreach($districts as $reg){
-		                   	?>   
-		                   	<!-- <option value= "<?php echo $reg["district_id"] ?>" ><?php echo $reg["district_name"] ?></option> -->
-		                   	<?php
-		                   		}
-		                   	?>                					
+						<select  required id="editdis" name="dis" class="textfield form-control" >            					
 		                </select>
 		            </div>	          
 					<div class="input-group" style="width: 100%;padding:4px;">
