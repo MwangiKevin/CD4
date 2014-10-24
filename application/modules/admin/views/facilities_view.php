@@ -234,9 +234,30 @@
 		            </div>					
 					<div id="equipmentdiv" class="input-group" style="width: 100%;padding:4px;">
 						<span class="input-group-addon" style="width: 20%;">Region:</span>
-						<input required id="editreg" name = "reg" class="textfield form-control"  readonly />
+						<!-- <input required id="editreg" name = "reg" class="textfield form-control"  readonly /> -->
+
+						<select  required id="editreg" name="reg" class="textfield form-control" >
+		                   	<option value="">*Select a Region*</option> 
+		                   	<?php
+		                   		foreach($regions as $reg){
+		                   	?>   
+		                   	<option value= "<?php echo $reg["region_id"] ?>" ><?php echo $reg["region_name"] ?></option>
+		                   	<?php
+		                   		}
+		                   	?>                					
+		                </select>
 						<span class="input-group-addon" style="width: 20%;">District:</span>
-						<input required id="editdis" name = "dis" class="textfield form-control"  readonly />
+						<!-- <input required id="editdis" name = "dis" class="textfield form-control"  readonly /> -->
+						<select  required id="editdis" name="dis" class="textfield form-control" >
+		                   	<!-- <option value="">*Select a District*</option>  -->
+		                   	<?php
+		                   		foreach($districts as $reg){
+		                   	?>   
+		                   	<!-- <option value= "<?php echo $reg["district_id"] ?>" ><?php echo $reg["district_name"] ?></option> -->
+		                   	<?php
+		                   		}
+		                   	?>                					
+		                </select>
 		            </div>	          
 					<div class="input-group" style="width: 100%;padding:4px;">
 						<span class="input-group-addon" style="width: 40%;">Partner:</span>

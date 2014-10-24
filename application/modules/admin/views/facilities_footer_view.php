@@ -46,7 +46,34 @@
 
 
 
-	function edit_facility(id,facility_name,district_name,region_name,partner_id,email,phone,rollout_status_id){
+	$("#editreg").change(function(){ 
+
+		var reg 	= $("#editreg").val();
+    	var options ='<option value="">*Select a District*</option>';
+
+    	for (i = 0; i < dis.length; ++i) {  		
+    		if(dis[i]["region_id"]==reg){
+    			options += '<option value="'+dis[i]["district_id"]+'">'+dis[i]["district_name"]+'</option>';
+    		}
+		}
+
+		$("#editdis").html(options);
+
+    });
+
+	function edit_facility(id,facility_name,district_id,region_id,partner_id,email,phone,rollout_status_id){
+
+		//initialize districts given the region
+
+    	var options ='<option value="">*Select a District*</option>';
+
+    	for (i = 0; i < dis.length; ++i) {  		
+    		if(dis[i]["region_id"]==region_id){
+    			options += '<option value="'+dis[i]["district_id"]+'">'+dis[i]["district_name"]+'</option>';
+    		}
+		}
+
+		$("#editdis").html(options);
 
 		var str = "#tr_"+id;
 
@@ -56,8 +83,8 @@
 
 		$("#editfacilityid").val(id);
 		$("#editfacname").val(facility_name);
-		$("#editdis").val(district_name);
-		$("#editreg").val(region_name);
+		$("#editdis").val(district_id);
+		$("#editreg").val(region_id);
 		$("#editpar").val(partner_id);
 
 
