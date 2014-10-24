@@ -258,10 +258,10 @@ class equipment extends MY_Controller {
 								Date("Y, M, d",strtotime($date_added)),
 								$date_removed,
 								$deactivation_reason,
-								"<center><a title ='$status' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment($equipment_id, $category, $equipment, $serial_number , $facility, $status_id)'><span style='font-size: 1.4em;color: $color' class='$class'></span>
+								"<center><a title ='$status' href='javascript:void(null);' style='border-radius:1px;' class='' onclick=\"edit_equipment($equipment_id, '$category', '$equipment', '$serial_number' , '$facility', $status_id)\"><span style='font-size: 1.4em;color: $color' class='$class'></span>
 								</a>
 								</center>",
-								"<center><a title =' Edit Equipment ( $facility_name)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick='edit_equipment($equipment_id, $category, $equipment, $serial_number, $facility, $status_id)'> <span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
+								"<center><a title =' Edit Equipment ( $facility_name)' href='javascript:void(null);' style='border-radius:1px;' class='' onclick=\"edit_equipment($equipment_id, '$category', '$equipment', '$serial_number', '$facility', $status_id)\"> <span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a></center>",
 							);
 				
 				$recordsTotal++;
