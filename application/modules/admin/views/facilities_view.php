@@ -209,22 +209,16 @@
 						<table id="data-table-edit">
 							<thead>
 								<tr>
-									<th rowspan = "2">#</th>
-									<th rowspan = "2">Facility Name</th>
-									<th rowspan = "2">District</th>
-									<th rowspan = "2">Region</th>
-									<th rowspan = "2">Partner</th>
-									<th rowspan = "2"># equipment</th>
-									<th rowspan = "2"># Users</th>
-									<th colspan="2"><center>Actions</center></th>
-								</tr>
-								<tr>
-									<th>Rollout</th>
-									<th>Edit Details</th>
+									<th>Facility Name</th>
+									<th>District</th>
+									<th>Region</th>
+									<th>Partner</th>
+									<th>Email</th>
+									<th>Phone</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="edit_table_row"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr id="edit_table_row"><td id="ed_dt_fac_name"></td><td id="ed_dt_dis_name"></td><td id="ed_dt_reg_name"></td><td id="ed_dt_par_name"></td><td id="ed_dt_email"></td><td id="ed_dt_phone"></td></tr>
 							</tbody>
 						</table>
 		            </div>	
@@ -234,7 +228,6 @@
 		            </div>					
 					<div id="equipmentdiv" class="input-group" style="width: 100%;padding:4px;">
 						<span class="input-group-addon" style="width: 20%;">Region:</span>
-						<!-- <input required id="editreg" name = "reg" class="textfield form-control"  readonly /> -->
 
 						<select  required id="editreg" name="reg" class="textfield form-control" >
 		                   	<option value="">*Select a Region*</option> 

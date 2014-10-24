@@ -182,8 +182,8 @@ class facilities extends MY_Controller {
 							$partner_name		,
 							$equipment_count	,
 							$users_count		,
-							"<center><a title='Active' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_id','$region_id','$partner_id','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.4em;color: $color;' class='$class'></span></a><a></a></center>",							
-							"<center><a title='Edit Facility ($facility_name)' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_id','$region_id','$partner_id','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a><a></a></center>",
+							"<center><a title='Active' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_id','$district_name','$region_id','$region_name','$partner_id','$partner_name','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.4em;color: $color;' class='$class'></span></a><a></a></center>",							
+							"<center><a title='Edit Facility ($facility_name)' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_id','$district_name','$region_id','$region_name','$partner_id','$partner_name','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a><a></a></center>",
 							
 						);
 			$recordsTotal++;

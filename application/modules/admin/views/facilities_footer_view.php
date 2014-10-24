@@ -61,7 +61,7 @@
 
     });
 
-	function edit_facility(id,facility_name,district_id,region_id,partner_id,email,phone,rollout_status_id){
+	function edit_facility(id,facility_name,district_id,district_name,region_id,region_name,partner_id,partner_name,email,phone,rollout_status_id){
 
 		//initialize districts given the region
 
@@ -75,11 +75,13 @@
 
 		$("#editdis").html(options);
 
-		var str = "#tr_"+id;
+		$("#ed_dt_fac_name").html(facility_name);
+		$("#ed_dt_dis_name").html(district_name);
+		$("#ed_dt_reg_name").html(region_name);
+		$("#ed_dt_par_name").html(partner_name);
+		$("#ed_dt_phone").html(phone);
+		$("#ed_dt_email").html(email);
 
-		var row = $(str).html();
-
-		$("#edit_table_row").html(row);
 
 		$("#editfacilityid").val(id);
 		$("#editfacname").val(facility_name);
