@@ -44,5 +44,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['searching/:any'] = 'home /:any';
 
+
+$route['admin/errors'] = 'nacp/errors';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
