@@ -4338,8 +4338,8 @@ $db_procedures["uploaded_user_devices"] = "CREATE PROCEDURE uploaded_user_device
 	END;
 ";
 
-$db_procedures["tests_summarized_report"] ="
-	CREATE PROCEDURE tests_summarized_report(user_group_id int(11), user_filter_used int(11),date_from date, date_to date)
+$db_procedures["tests_summarized_report"] =
+"	CREATE PROCEDURE tests_summarized_report(user_group_id int(11), user_filter_used int(11),date_from date, date_to date)
 	BEGIN
 		CASE `user_filter_used`
 			WHEN 0 THEN
@@ -4623,8 +4623,8 @@ $db_procedures["tests_summarized_report"] ="
 ";
 
 
-$db_procedures["errors_summarized_report"] = "
-CREATE PROCEDURE errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["errors_summarized_report"] = 
+"CREATE PROCEDURE errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN 
 	CASE `user_filter_used`
 		WHEN 0 THEN
@@ -4934,8 +4934,8 @@ BEGIN
 END;
 ";
 
-$db_procedures["tests_detailed_report"] = "
-CREATE PROCEDURE tests_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["tests_detailed_report"] = 
+"CREATE PROCEDURE tests_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -5207,8 +5207,8 @@ BEGIN
 END
 ";
 
-$db_procedures["errors_detailed_report"] = "
-CREATE PROCEDURE errors_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["errors_detailed_report"] = 
+"CREATE PROCEDURE errors_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -5504,8 +5504,8 @@ END
 ";
 
 
-$db_procedures["test_n_errors_summarized_report"]	="
-CREATE PROCEDURE test_n_errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["test_n_errors_summarized_report"]	=
+"CREATE PROCEDURE test_n_errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used` 
 	WHEN 0 THEN
@@ -5766,8 +5766,8 @@ BEGIN
 END;
 ";
 	
-$db_procedures["test_n_errors_detailed_report"]	="
-CREATE PROCEDURE test_n_errors_detailed_report(user_group_id int(11), user_filter_used int(11),  date_from date, date_to date)
+$db_procedures["test_n_errors_detailed_report"]	=
+"CREATE PROCEDURE test_n_errors_detailed_report(user_group_id int(11), user_filter_used int(11),  date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used` 
 	WHEN 0 THEN
@@ -6028,8 +6028,8 @@ BEGIN
 END
 ";
 
-$db_procedures["report_summarized_by_month"] = "
-CREATE PROCEDURE report_summarized_by_month(user_group_id int(11), user_filter_used int(11),  date_from date, date_to date)
+$db_procedures["report_summarized_by_month"] = 
+"CREATE PROCEDURE report_summarized_by_month(user_group_id int(11), user_filter_used int(11),  date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
