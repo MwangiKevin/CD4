@@ -207,12 +207,12 @@ class poc_model extends MY_Model{
 		return $failed_controls = R::getAll($sql);
 	}
 
-	public function get_pima_controls_reported($from,$to,$user_group_id,$user_filter_used)
+	public function get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to)
 	{
 		$sql = "CALL get_pima_controls_reported($from,$to,$user_group_id,$user_filter_used)";
 
-
-		return $res = R::getAll($sql);
+		$res = R::getAll($sql);
+		return $res;
 	}
 
 	function pima_controls_success()

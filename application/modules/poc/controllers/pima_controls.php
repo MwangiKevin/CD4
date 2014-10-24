@@ -16,25 +16,14 @@ class pima_controls extends MY_Controller {
 		$this->data	=  array_merge($this->data,$this->load_libraries(array('jqueryui','highcharts','highcharts_drilldown', 'tree')));
 		
 		$this->load->model('poc_model');
-
+		$this->data["user_group_id"] = $this->session->userdata("user_group_id");
+		$this->data["user_filter_used"] = $this->session->userdata("user_filter_used");
 		$this->data['tests'] = $this->poc_model->pima_controls_success();
 		$this->data['menus']	= 	$this->poc_model->menus(9);
-		$from = Date("Y-m-1" 	, strtotime("first day of last month"));
-  		$to   = Date("Y-m-t" 	, strtotime("last day of last month"));
-
-  		echo $from.   " need some space ".$to;
-		$tests = $this->poc_model->get_pima_controls_reported($from,$to,$this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used")); 
-
-		// echo $this->session->userdata("user_group_id");
-		// echo $this->session->userdata("user_filter_used");die();
-		$this->load->module("charts/pima");
-		$this->load->module("charts/tests");
-		$this->load->module("charts/pima_errors");	
-		$this->load->module("charts/pima_controls");
+	
 		$this->load->module("charts/pima_controls");	
 
-		//$this->get_pima_controls_reported($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"),"2013-08-01","2013-09-01");
-	}
+  	}
 
 	public function index(){		
 		$this -> template($this->data);
@@ -43,18 +32,24 @@ class pima_controls extends MY_Controller {
 	public function ss_pima_controls()
 	{
 		
-		$failed = $this->poc_model->pima_controls();
+		$pima_controls = $this->poc_model->get_pima_controls_reported($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"),$this->get_filter_start_date(),$this->get_filter_stop_date());
 
 		$data = array();
 		$recordsTotal =0;
 
-		foreach ($failed as $key => $value) {
+		foreach ($pima_controls as $key => $value) {
 			$data[] = array(
 							($key+1),
-							$value['name'],
-							$value['description'],
-							$value['date_added'],
-							$value['result_date']
+							$value['facility_name'],
+							$value['serial_number'],
+							$value['total'],
+							$value['total_unconfirmed_controls'],
+							$value['total_confirmed_controls'],
+							$value['low_confirmed_controls'],
+							$value['normal_confirmed_controls'],
+							$value['failed_confirmed_controls'],
+							$value['successful_confirmed_controls'],
+							$value['errors'],
 						);
 			$recordsTotal++;
 		}
@@ -103,7 +98,7 @@ class pima_controls extends MY_Controller {
 		            foreach ($device_schema as $e_key => $e_value) {
 		            	$str .="<li style='display:none'>
 		            				<span class='badge badge-success' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign '></i></span>
-		            				<a href='#' onclick ='load_tree_data(4,".$e_value["facility_equipment_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."&nbsp;>>&nbsp;".$e_value["equipment"]."\")'>".$e_value["equipment"]."</a>
+		            				<a href='#' onclick ='load_tree_data(12,".$e_value["facility_equipment_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."&nbsp;>>&nbsp;".$e_value["equipment"]."\")'>".$e_value["equipment"]."</a>
 		            				<a href='#'><span class='badge pull-right' style='background-color:#D5D500;'>E</span></a>
 		            			</li>
 		            			";

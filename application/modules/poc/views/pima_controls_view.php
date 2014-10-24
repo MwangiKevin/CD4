@@ -26,14 +26,14 @@
                     </div>
                 </div> 
             </div>
-            <div class="col-md-4" id="">        
+            <div class="col-md-5" id="">        
                 <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
                     <div id="div3">
                         <div class="loader" style"">Loading...</div>    
                     </div>
                 </div> 
             </div>
-            <div class="col-md-4" id="">
+            <div class="col-md-3" id="">
                 <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
                     <div id="div4">              
                         <div class="loader" style"">Loading...</div>      
@@ -65,7 +65,7 @@
             <div class="col-md-12" id="">   
                 <div class="section-title" ><center>Failed Controls</center></div>
                     <div>
-                        <table id="failed_controls_table">
+                        <table id="pima_controls_table">
                             <thead>
                                 <tr>
                                     <th>#</th>
