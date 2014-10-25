@@ -28,6 +28,7 @@ class facilities extends MY_Controller {
 		$data['partners'] 		= 	$this->admin_model->partners();
 		$data['regions'] 		= 	$this->admin_model->regions();
 		$data['districts'] 		= 	$this->admin_model->districts();
+
 		
 		$this -> template($data);
 	}
@@ -79,6 +80,7 @@ class facilities extends MY_Controller {
 
 		$id 		=	(int) $this->input->post("editfacilityid");
 		$par 		=	(int) $this->input->post("par");
+		$dis 		=	(int) $this->input->post("dis");
 		$status		=	(int) $this->input->post("editstatus");
 		$fac_name 	=	$this->input->post("facname");
 		$fac_email 	=	$this->input->post("email");
@@ -88,6 +90,7 @@ class facilities extends MY_Controller {
 							SET 
 								`name`				=	'$fac_name',
 								`partner_id`		=	'$par',
+								`district_id`		=	'$dis',
 								`email`				=	'$fac_email',
 								`phone`				=	'$fac_phone',
 								`rollout_status`	=	'$status'
@@ -143,8 +146,10 @@ class facilities extends MY_Controller {
 				$facility_email				=	$value["facility_email"];
 				$facility_phone				=	$value["facility_phone"];
 				$facility_name				=	$value["facility_name"];
+				$district_id				=	$value["district_id"];
 				$district_name				=	$value["district_name"];
 				$region_name				=	$value["region_name"];
+				$region_id					=	$value["region_id"];
 				$partner_name				=	$value["partner_name"];
 				$partner_id					=	$value["partner_id"];
 				$equipment_count			=	$value["equipment_count"];
@@ -177,8 +182,8 @@ class facilities extends MY_Controller {
 							$partner_name		,
 							$equipment_count	,
 							$users_count		,
-							"<center><a title='Active' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_name','$region_name','$partner_id','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.4em;color: $color;' class='$class'></span></a><a></a></center>",							
-							"<center><a title='Edit Facility ($facility_name)' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_name','$region_name','$partner_id','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a><a></a></center>",
+							"<center><a title='Active' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_id','$district_name','$region_id','$region_name','$partner_id','$partner_name','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.4em;color: $color;' class='$class'></span></a><a></a></center>",							
+							"<center><a title='Edit Facility ($facility_name)' href='javascript:void(null);'' style='border-radius:1px;' class='' onclick=\"edit_facility($facility_id,'$facility_name','$district_id','$district_name','$region_id','$region_name','$partner_id','$partner_name','$facility_email','$facility_phone',$facility_rollout_id)\"><span style='font-size: 1.3em;color:#2aabd2;' class='glyphicon glyphicon-pencil'></span></a><a></a></center>",
 							
 						);
 			$recordsTotal++;
