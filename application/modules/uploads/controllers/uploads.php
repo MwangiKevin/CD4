@@ -718,7 +718,7 @@ class uploads extends MY_Controller {
 
 		$device_id_key = (int) array_search("Device ID",$data[0]);
 		
-		if(((sizeof($data[$size-1])!= sizeof($data[$size-2]))&&($size>1))|| (($data[$size-1][$device_id_key] != $data[$size-2][$device_id_key]) && $size>2){
+		if(((sizeof($data[$size-1])!= sizeof($data[$size-2]))&&($size>1))|| (($data[$size-1][$device_id_key] != $data[$size-2][$device_id_key]) && $size>2)) {
 			unset($data[$size-1]);
 		}
 		return $data;
