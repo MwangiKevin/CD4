@@ -41,9 +41,12 @@ class uploads extends MY_Controller {
 
 		if (($handle = fopen("$file_dir", "r")) !== FALSE) {
 			while (($row_data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+
 				$sheet_data[$row]=$row_data;
 				$row++;
-			}			
+			}
+
+			$sheet_data = $this->remove_erroneous_last_row($sheet_data);		
 			fclose($handle);
 			if(count($sheet_data)>0){
 
@@ -664,6 +667,10 @@ class uploads extends MY_Controller {
 		foreach ($data as $datum) {
 			$trimmed_data[] = $datum;
 		}
+		
+		// echo "<pre/>";
+		// print_r($trimmed_data);
+		// die();
 
 		return $trimmed_data;
 
@@ -704,6 +711,18 @@ class uploads extends MY_Controller {
 										(`serial_num`,`user_id`,`equipment_id`,`status`) 
 										VALUES
 											('$serial_num','$user_id','4','1')");
+	}
+
+	private function remove_erroneous_last_row($data){
+		$size = sizeof($data);
+
+		$device_id_key = (int) array_search("Device ID",$data[0]);
+		
+		if((sizeof($data[$size-1])!= sizeof($data[$size-2]))|| ($data[$size-1][$device_id_key] != $data[$size-2][$device_id_key]) ){
+			unset($data[$size-1]);
+		}
+		return $data;
+
 	}
 	
 }
