@@ -28,8 +28,8 @@ class tests_model extends MY_Model{
 																										1	=>	'blw critical lvl',
 																								),
 																			'data'			=>	array(
-																										0	=>	$failed,
-																										1	=>	$passed
+																										0	=>	$passed,
+																										1	=>	$failed
 																								)
 																		)
 												),
