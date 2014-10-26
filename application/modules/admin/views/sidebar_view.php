@@ -129,7 +129,7 @@
 			  	<div class="modal-dialog" style="width:60%;margin-bottom:2px;">
 			    	<div class="modal-content" >
 			      		<div class="modal-header">
-			        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        		<button type="button" onclick="reset_upload_message()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			        		<h4 class="modal-title">System Uploads</h4>
 			      		</div>
 			      		<div class="modal-body" id ="modalbody">
@@ -204,7 +204,7 @@
 	  	<div class="modal-dialog" style="width:65%;margin-bottom:2px;">
 	    	<div class="modal-content" >
 	      		<div class="modal-header">
-	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        		<button type="button"  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        		<h4 class="modal-title">Facilities Requested for registration <?php echo Date("Y,F");?></h4>
 	      		</div>
 	      		<div class="modal-body" style="padding-bottom:0px;">
@@ -260,5 +260,9 @@
 							});
               }
       });
+ 	}
+
+ 	function reset_upload_message(){
+	    $('#modalbody').html('<div class="alert alert-info">Wait while data is being fetched and uploaded! This may take a few moments.</div><div class="progress progress-striped active"><div class="progress-bar "  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">45% Complete</span></div></div>');
  	}
 </script>
