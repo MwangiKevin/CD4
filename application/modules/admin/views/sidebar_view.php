@@ -162,7 +162,8 @@
 	            		<thead>				
 							<th>#</th>
 							<th>Facility</th>							
-							<th>Equipment Type</th>							
+							<th>Equipment Type</th>			
+							<th>Facility Phone</th>							
 						</thead>
 	            	</table>
 	      		</div>		      		
