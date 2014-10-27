@@ -4081,6 +4081,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 					`f_e`.`id` AS `facility_equipment_id`,
 					`e_c`.`description` AS `equipment_category`,
 					`f`.`name` AS `facility_name`,
+					`f`.`phone` AS `facility_phone`,
 					`f_e`.*
 				FROM `facility_equipment` `f_e`
 					LEFT JOIN `equipment` `e`
@@ -4109,6 +4110,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4136,6 +4138,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4163,6 +4166,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4189,6 +4193,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
