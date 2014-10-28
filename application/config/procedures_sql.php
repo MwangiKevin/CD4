@@ -44,16 +44,12 @@ $db_procedures["drop_get_uploads_dt"]  							=	"DROP PROCEDURE IF EXISTS `get_u
 $db_procedures["drop_get_errors_notf"]  						=	"DROP PROCEDURE IF EXISTS `get_errors_notf`; ";
 $db_procedures["drop_active_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `active_user_devices`; ";
 $db_procedures["drop_uploaded_user_devices"]  					=	"DROP PROCEDURE IF EXISTS `uploaded_user_devices`; ";
-
 $db_procedures["drop_tests_detailed_report"]					= 	"DROP PROCEDURE IF EXISTS `tests_detailed_report`; ";
 $db_procedures["drop_errors_detailed_report"]					=	"DROP PROCEDURE IF EXISTS `errors_detailed_report`";
-
 $db_procedures["drop_tests_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `tests_summarized_report`";
 $db_procedures["drop_errors_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `errors_summarized_report`";
-
 $db_procedures["drop_test_n_errors_summarized_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_summarized_report`";
 $db_procedures["drop_test_n_errors_detailed_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_detailed_report`";
-
 $db_procedures["drop_report_summarized_by_month"]				=	"DROP PROCEDURE IF EXISTS `report_summarized_by_month`";
 	
 
