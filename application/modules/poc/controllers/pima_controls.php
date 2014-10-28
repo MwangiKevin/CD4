@@ -23,6 +23,8 @@ class pima_controls extends MY_Controller {
 	
 		$this->load->module("charts/pima_controls");	
 
+		$pima_controls = $this->poc_model->get_pima_controls_reported($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"),$this->get_filter_start_date(),$this->get_filter_stop_date());
+
   	}
 
 	public function index(){		
@@ -31,7 +33,6 @@ class pima_controls extends MY_Controller {
 
 	public function ss_pima_controls()
 	{
-		
 		$pima_controls = $this->poc_model->get_pima_controls_reported($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"),$this->get_filter_start_date(),$this->get_filter_stop_date());
 
 		$data = array();

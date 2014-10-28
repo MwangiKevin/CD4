@@ -33,8 +33,8 @@
                     </div>
                 </div> 
             </div>
-            <div class="col-md-3" id="">
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
+            <div class="col-md-3" id="" style="">
+                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;height:250px;" >
                     <div id="div4">              
                         <div class="loader" style"">Loading...</div>      
                     </div>  

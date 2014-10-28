@@ -51,6 +51,8 @@ $db_procedures["drop_errors_detailed_report"]					=	"DROP PROCEDURE IF EXISTS `e
 $db_procedures["drop_tests_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `tests_summarized_report`";
 $db_procedures["drop_errors_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `errors_summarized_report`";
 $db_procedures["drop_get_pima_controls_reported"]				=  	"DROP PROCEDURE IF EXISTS `get_pima_controls_reported`";
+$db_procedures["drop_get_pima_controls_successful"]				=	" DROP PROCEDURE IF EXISTS `get_pima_controls_successful` ";
+$db_procedures["drop_get_pima_controls_failed"]					=	" DROP PROCEDURE IF EXISTS `get_pima_controls_failed` ";
 
 $db_procedures["get_facility_details"]  		=	
 					"CREATE PROCEDURE  get_facility_details (user_group_id int(11), user_filter_used int(11)) 
@@ -5664,6 +5666,219 @@ BEGIN
 		END CASE;
 	END
 	";
+$db_procedures["get_pima_controls_successful"] = "CREATE PROCEDURE `get_pima_controls_successful`(user_group_id int(11),user_filter_used int(11),year int(11))
+BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN
+		SELECT
+			`ab`.`month`,
+			count(`ab`.`facility_equipment_id`) AS `devices`
+			FROM (
+				SELECT
+					DISTINCT `ctr`.`facility_equipment_id`,
+					MONTH(`ctr`.`result_date`) AS `month`,
+					CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
+
+				FROM `pima_control` `ctr`
+				WHERE YEAR(`ctr`.`result_date`) = `year`
+				)AS `ab`
+			GROUP BY `ab`.`month`;
+
+		ELSE
+			CASE `user_group_id`
+			WHEN 3 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+			WHEN 6 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+			WHEN 8 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+
+			WHEN 9 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+			WHEN 12 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+
+			END CASE;
+		END CASE;
+	END
+	";
+$db_procedures["get_pima_controls_failed"] = "CREATE PROCEDURE `get_pima_controls_failed`(user_group_id int(11),user_filter_used int(11),year int(11))
+BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN
+		SELECT
+			`ab`.`month`,
+			count(`ab`.`facility_equipment_id`) AS `devices`
+			FROM (
+				SELECT
+					DISTINCT `ctr`.`facility_equipment_id`,
+					MONTH(`ctr`.`result_date`) AS `month`,
+					CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
+
+				FROM `pima_control` `ctr`
+				WHERE YEAR(`ctr`.`result_date`) = `year`
+				)AS `ab`
+			GROUP BY `ab`.`month`;
+
+		ELSE
+			CASE `user_group_id`
+			WHEN 3 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+			WHEN 6 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+			WHEN 8 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+
+			WHEN 9 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+			WHEN 12 THEN
+				SELECT
+					`ab`.`month`,
+					count(`ab`.`facility_equipment_id`) AS `devices`
+					FROM (
+						SELECT
+							DISTINCT `ctr`.`facility_equipment_id`,
+							MONTH(`ctr`.`result_date`) AS `month`,
+							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
+
+						FROM `pima_control` `ctr`
+						WHERE YEAR(`ctr`.`result_date`) = `year`
+						AND `facility_equipment_id` = `user_filter_used`
+						)AS `ab`
+					GROUP BY `ab`.`month`;
+
+
+			END CASE;
+		END CASE;
+	END
+	";
+
 
 $config["procedures_sql"] = $db_procedures;
 

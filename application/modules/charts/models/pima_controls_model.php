@@ -3,8 +3,9 @@ class pima_controls_model extends MY_Model{
 	
 	public function get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to)
 	{
-		
+		// echo $user_filter_used;die();
 		$sql_controls = "CALL get_pima_controls_reported('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+		// echo $sql_controls;die();
 
 		$controls = R::getAll($sql_controls);
 		//print_r($controls);die();
@@ -47,12 +48,67 @@ class pima_controls_model extends MY_Model{
 		return $data;
 	}
 
-	// public function FunctionName()
-	// {
-	// 	$sql_controls = "CALL get_pima_controls_reported('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+	public function successful_failed_controls($user_group_id,$user_filter_used,$year)
+	{
+		$data["chart"][0]["name"] 	= 	"Successful Controls";
+		
+		// $data["chart"][0]["data"] 	= "CALL expected_reporting_dev_array(".$user_group_id.", ".$user_filter_used.", ".$year.")";
+		$data["chart"][0]["data"] 	= 	$this->successful_controls($user_group_id,$user_filter_used,$year);
 
-	// 	$controls = R::getAll($sql_controls);
-	// }
+		$data["chart"][1]["name"] 	= 	"Failed Controls";
+		$data["chart"][1]["color"] 	= 	"#a4d53a";
+		
+	    $data["chart"][1]["data"] 	= 	$this->failed_controls($user_group_id,$user_filter_used,$year);
+	    //print_r($data);die();
+		return $data;
+	}
+
+	public function failed_controls($user_group_id,$user_filter_used,$year)
+	{
+		$sql_fails = "CALL get_pima_controls_failed(".$user_group_id.",".$user_filter_used.",".$year.")";
+
+		$fails   = R::getAll($sql_fails);
+
+		// print_r($controls);die();
+		$result_array = array();
+		for ($i=0; $i<12 ; $i++) { 
+			$result_array[$i] = 0;
+		}
+		
+		for ($i=0; $i<12 ; $i++) { 
+			foreach ($fails as $key => $value) {
+				if ($value["month"]==($i+1)) {
+					$result_array[$i] = (int) $value["devices"];
+				}
+			}
+		}
+		// print_r($result_array);die();
+		return $result_array;
+	}
+
+	public function successful_controls($user_group_id,$user_filter_used,$year)
+	{
+		// echo $user_group_id." space ".$user_filter_used;die();
+		$sql_success = "CALL get_pima_controls_successful(".$user_group_id.",".$user_filter_used.",".$year.")";
+		
+		$success = R::getAll($sql_success);
+		
+		// print_r($controls);die();
+		$result_array = array();
+		for ($i=0; $i<12 ; $i++) { 
+			$result_array[$i] = 0;
+		}
+		
+		for ($i=0; $i<12 ; $i++) { 
+			foreach ($success as $key => $value) {
+				if ($value["month"]==($i+1)) {
+					$result_array[$i] = (int) $value["devices"];
+				}
+			}
+		}
+		
+		return $result_array;
+	}
 	public function pima_controls_errors($user_group_id,$user_filter_used,$from,$to)
 	{
 		$sql_controls = "CALL get_pima_controls_reported('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
