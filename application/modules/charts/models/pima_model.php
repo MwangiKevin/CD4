@@ -107,7 +107,7 @@ class pima_model extends MY_Model{
 		$data["chart"][1]["color"] 	= 	"#a4d53a";
 		
 	    $data["chart"][1]["data"] 	= 	$this->reported_devices($user_group_id, $user_filter_used,$year);
-	    print_r($data);die();
+	    // print_r($data);die();
 		return $data;
 
 	}
