@@ -50,9 +50,12 @@ $db_procedures["drop_errors_detailed_report"]					=	"DROP PROCEDURE IF EXISTS `e
 
 $db_procedures["drop_tests_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `tests_summarized_report`";
 $db_procedures["drop_errors_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `errors_summarized_report`";
-$db_procedures["drop_get_pima_controls_reported"]				=  	"DROP PROCEDURE IF EXISTS `get_pima_controls_reported`";
-$db_procedures["drop_get_pima_controls_successful"]				=	" DROP PROCEDURE IF EXISTS `get_pima_controls_successful` ";
-$db_procedures["drop_get_pima_controls_failed"]					=	" DROP PROCEDURE IF EXISTS `get_pima_controls_failed` ";
+
+$db_procedures["drop_test_n_errors_summarized_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_summarized_report`";
+$db_procedures["drop_test_n_errors_detailed_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_detailed_report`";
+
+$db_procedures["drop_report_summarized_by_month"]				=	"DROP PROCEDURE IF EXISTS `report_summarized_by_month`";
+	
 
 $db_procedures["get_facility_details"]  		=	
 					"CREATE PROCEDURE  get_facility_details (user_group_id int(11), user_filter_used int(11)) 
@@ -2367,10 +2370,14 @@ BEGIN
 		FROM (
 				SELECT 
 					DISTINCT `tst`.`facility_equipment_id`,
-					MONTH(`tst`.`result_date`) AS `month`
+					MONTH(`pim_upl`.`upload_date`) AS `month`
 				FROM `cd4_test` `tst`
+					LEFT JOIN `pima_test` `pim_tst`
+					ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+						LEFT JOIN `pima_upload` `pim_upl`
+						ON `pim_upl`.`id` = `pim_tst`.`pima_upload_id`
 				WHERE 1 
-				AND YEAR(`tst`.`result_date`) = `year`
+				AND YEAR(`pim_upl`.`upload_date`) = `year`
 			)AS `t1`					
 		GROUP BY `t1`.`month`;
 	ELSE
@@ -2381,14 +2388,18 @@ BEGIN
 				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
 			FROM (
 					SELECT 
-					DISTINCT `tst`.`facility_equipment_id`,
-					MONTH(`tst`.`result_date`) AS `month`
+						DISTINCT `tst`.`facility_equipment_id`,
+						MONTH(`pim_upl`.`upload_date`) AS `month`
 					FROM `cd4_test` `tst`
-                    LEFT JOIN `facility` `f`
+						LEFT JOIN `pima_test` `pim_tst`
+						ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+							LEFT JOIN `pima_upload` `pim_upl`
+							ON `pim_upl`.`id` = `pim_tst`.`pima_upload_id`
+                    	LEFT JOIN `facility` `f`
 	                	ON `f`.`id` = `tst`.`facility_id`
 					WHERE 1 
-					AND YEAR(`tst`.`result_date`) = `year` 
-	                AND partner_id = `user_filter_used`
+					AND YEAR(`pim_upl`.`upload_date`) = `year`
+	                AND `f`.`partner_id` = `user_filter_used`
 				 )AS `t1`					
 			GROUP BY `t1`.`month`;
 			
@@ -2398,16 +2409,21 @@ BEGIN
 				`t1`.`month`,
 				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
 			FROM 
-				(SELECT 
-					DISTINCT `tst`.`facility_equipment_id`,
-					MONTH(`tst`.`result_date`) AS `month`
-				FROM `cd4_test` `tst`
-                LEFT JOIN `facility` `f`
-                    ON `f`.`id` = `tst`.`facility_id`
-				LEFT JOIN `district` `dis`
-					ON `f`.`district_id` = `dis`.`id`
+				(
+					SELECT 
+						DISTINCT `tst`.`facility_equipment_id`,
+						MONTH(`pim_upl`.`upload_date`) AS `month`
+					FROM `cd4_test` `tst`
+						LEFT JOIN `pima_test` `pim_tst`
+						ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+							LEFT JOIN `pima_upload` `pim_upl`
+							ON `pim_upl`.`id` = `pim_tst`.`pima_upload_id`
+                		LEFT JOIN `facility` `f`
+                    	ON `f`.`id` = `tst`.`facility_id`
+							LEFT JOIN `district` `dis`
+							ON `f`.`district_id` = `dis`.`id`
 				WHERE 1 
-				AND YEAR(`tst`.`result_date`) = `year` 
+				AND YEAR(`pim_upl`.`upload_date`) = `year`
                 AND `dis`.`region_id` = `user_filter_used`
 				)AS `t1`					
 			GROUP BY `t1`.`month`;
@@ -2418,14 +2434,19 @@ BEGIN
 				`t1`.`month`,
 				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
 			FROM 
-				(SELECT 
-					DISTINCT `tst`.`facility_equipment_id`,
-					MONTH(`tst`.`result_date`) AS `month`
-				FROM `cd4_test` `tst`
-                LEFT JOIN `facility` `f`
-                    ON `f`.`id` = `tst`.`facility_id`
+				(
+					SELECT 
+						DISTINCT `tst`.`facility_equipment_id`,
+						MONTH(`pim_upl`.`upload_date`) AS `month`
+					FROM `cd4_test` `tst`
+						LEFT JOIN `pima_test` `pim_tst`
+						ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+							LEFT JOIN `pima_upload` `pim_upl`
+							ON `pim_upl`.`id` = `pim_tst`.`pima_upload_id`
+                		LEFT JOIN `facility` `f`
+                    	ON `f`.`id` = `tst`.`facility_id`
 				WHERE 1 
-				AND YEAR(`tst`.`result_date`) = `year`
+				AND YEAR(`pim_upl`.`upload_date`) = `year`
                 AND `f`.`district_id` = `user_filter_used`
 				)AS `t1`					
 			GROUP BY `t1`.`month`;
@@ -2435,14 +2456,19 @@ BEGIN
 				`t1`.`month`,
 				COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
 			FROM 
-				(SELECT 
-					DISTINCT `tst`.`facility_equipment_id`,
-					MONTH(`tst`.`result_date`) AS `month`
-				FROM `cd4_test` `tst`
+				(
+					SELECT 
+						DISTINCT `tst`.`facility_equipment_id`,
+						MONTH(`pim_upl`.`upload_date`) AS `month`
+					FROM `cd4_test` `tst`
+						LEFT JOIN `pima_test` `pim_tst`
+						ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+							LEFT JOIN `pima_upload` `pim_upl`
+							ON `pim_upl`.`id` = `pim_tst`.`pima_upload_id`
                 LEFT JOIN `facility` `f`
                     ON `f`.`id` = `tst`.`facility_id`
 				WHERE 1 
-				AND YEAR(`tst`.`result_date`) = `year` 
+				AND YEAR(`pim_upl`.`upload_date`) = `year`
                 AND `f`.`id` = `user_filter_used`
 				)AS `t1`					
 			GROUP BY `t1`.`month`;
@@ -4055,6 +4081,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 					`f_e`.`id` AS `facility_equipment_id`,
 					`e_c`.`description` AS `equipment_category`,
 					`f`.`name` AS `facility_name`,
+					`f`.`phone` AS `facility_phone`,
 					`f_e`.*
 				FROM `facility_equipment` `f_e`
 					LEFT JOIN `equipment` `e`
@@ -4070,7 +4097,11 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 								LEFT JOIN `region` `r`
 								ON `d`.`region_id` = `r`.`id`
 					WHERE 1
-					AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+					AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2')
+					AND `e`.`id` ='4'
+					GROUP BY `facility_equipment_id`
+					ORDER BY `facility_name` ASC
+					;
 
 		ELSE 
 			CASE `user_group_id`
@@ -4079,6 +4110,7 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4095,13 +4127,18 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 									ON `d`.`region_id` = `r`.`id`
 						WHERE 1
 						AND `p`.`id` = `user_filter_used`
-						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2')
+						AND `e`.`id` ='4'
+						GROUP BY `facility_equipment_id`
+						ORDER BY `facility_name` ASC
+						;
 
 			WHEN 6 THEN	
 				SELECT 
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4118,13 +4155,18 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 									ON `d`.`region_id` = `r`.`id`
 						WHERE 1
 						AND `f`.`id` = `user_filter_used`
-						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2')
+						AND `e`.`id` ='4'
+						GROUP BY `facility_equipment_id`
+						ORDER BY `facility_name` ASC
+						;
 
 			WHEN 8 THEN	
 				SELECT 
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4141,12 +4183,17 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 									ON `d`.`region_id` = `r`.`id`
 						WHERE 1
 						AND `d`.`id` = `user_filter_used`
-						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2')
+						AND `e`.`id` ='4'
+						GROUP BY `facility_equipment_id`
+						ORDER BY `facility_name` ASC
+						;
 			WHEN 9 THEN	
 				SELECT 
 						`f_e`.`id` AS `facility_equipment_id`,
 						`e_c`.`description` AS `equipment_category`,
 						`f`.`name` AS `facility_name`,
+						`f`.`phone` AS `facility_phone`,
 						`f_e`.*
 					FROM `facility_equipment` `f_e`
 						LEFT JOIN `equipment` `e`
@@ -4163,7 +4210,11 @@ $db_procedures["active_user_devices"] = "CREATE PROCEDURE active_user_devices(us
 									ON `d`.`region_id` = `r`.`id`
 						WHERE 1
 						AND `r`.`id` = `user_filter_used`
-						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2');	
+						AND (`f_e`.`status` = '1' OR `f_e`.`status` = '2')
+						AND `e`.`id` ='4'
+						GROUP BY `facility_equipment_id`
+						ORDER BY `facility_name` ASC
+						;	
 			END CASE;
 		END CASE;
 	END;
@@ -4335,16 +4386,19 @@ $db_procedures["uploaded_user_devices"] = "CREATE PROCEDURE uploaded_user_device
 	END;
 ";
 
-$db_procedures["tests_summarized_report"] ="CREATE PROCEDURE tests_summarized_report(user_group_id int(11), user_filter_used int(11),date_from date, date_to date)
+$db_procedures["tests_summarized_report"] =
+"	CREATE PROCEDURE tests_summarized_report(user_group_id int(11), user_filter_used int(11),date_from date, date_to date)
 	BEGIN
 		CASE `user_filter_used`
 			WHEN 0 THEN
 				SELECT 
 					`fac`.`name` 	AS `facility_name`,
 					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					`pim_tst`.`sample_code`,
 					COUNT(`pim_tst`.`sample_code`) AS tests_done,
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator` AS `operator`,
+					`tst`.`result_date`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -4390,6 +4444,8 @@ $db_procedures["tests_summarized_report"] ="CREATE PROCEDURE tests_summarized_re
 					COUNT(`pim_tst`.`sample_code`) AS tests_done,
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
+					`pim_tst`.`sample_code`,
+					`tst`.`result_date`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				
@@ -4435,6 +4491,8 @@ $db_procedures["tests_summarized_report"] ="CREATE PROCEDURE tests_summarized_re
 					COUNT(`pim_tst`.`sample_code`) as tests_done,
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
+					`pim_tst`.`sample_code`,
+					`tst`.`result_date`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -4525,6 +4583,7 @@ $db_procedures["tests_summarized_report"] ="CREATE PROCEDURE tests_summarized_re
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
 					`tst`.`result_date`,
+					`pim_tst`.`sample_code`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -4569,6 +4628,7 @@ $db_procedures["tests_summarized_report"] ="CREATE PROCEDURE tests_summarized_re
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
 					`tst`.`result_date`,
+					`pim_tst`.`sample_code`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -4611,17 +4671,20 @@ $db_procedures["tests_summarized_report"] ="CREATE PROCEDURE tests_summarized_re
 ";
 
 
-$db_procedures["errors_summarized_report"] = "CREATE PROCEDURE errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["errors_summarized_report"] = 
+"CREATE PROCEDURE errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN 
 	CASE `user_filter_used`
 		WHEN 0 THEN
 			SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
 				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
 				MONTH(`tst`.`result_date`) AS `month`
 				
 	
@@ -4668,10 +4731,12 @@ BEGIN
 			SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
 				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
 				MONTH(`tst`.`result_date`) AS `month`
 	
 			FROM 
@@ -4716,10 +4781,12 @@ BEGIN
 		SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
 				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
 				MONTH(`tst`.`result_date`) AS `month`
 	
 			FROM 
@@ -4764,6 +4831,7 @@ BEGIN
 			SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
@@ -4813,6 +4881,7 @@ BEGIN
 		SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
@@ -4862,6 +4931,7 @@ BEGIN
 		SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
@@ -4912,7 +4982,8 @@ BEGIN
 END;
 ";
 
-$db_procedures["tests_detailed_report"] = "CREATE PROCEDURE tests_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["tests_detailed_report"] = 
+"CREATE PROCEDURE tests_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -5184,7 +5255,8 @@ BEGIN
 END
 ";
 
-$db_procedures["errors_detailed_report"] = "CREATE PROCEDURE errors_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
+$db_procedures["errors_detailed_report"] = 
+"CREATE PROCEDURE errors_detailed_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN
 	CASE `user_filter_used`
 	WHEN 0 THEN
@@ -5479,405 +5551,860 @@ BEGIN
 END
 ";
 
-$db_procedures["get_pima_controls_reported"] = "CREATE PROCEDURE `get_pima_controls_reported`(from_date date,to_date date,user_group_id int(11),user_filter_used int(11))
+
+$db_procedures["test_n_errors_summarized_report"]	=
+"CREATE PROCEDURE test_n_errors_summarized_report(user_group_id int(11), user_filter_used int(11), date_from date, date_to date)
 BEGIN
-		CASE `user_filter_used`
-		WHEN 0 THEN
-		SELECT
-				`f`.`name` AS `facility_name`,
-				`f_e`.`serial_number`,
-				COUNT(*) AS `total`,
-				SUM(CASE WHEN !(`sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%') THEN 1 ELSE 0 END) AS `total_unconfirmed_controls`,
-				SUM(CASE WHEN `sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `total_confirmed_controls`,
-				SUM(CASE WHEN `sample_code` LIKE '%LOW%' THEN 1 ELSE 0 END) AS `low_confirmed_controls`,
-				SUM(CASE WHEN `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `normal_confirmed_controls`,
-				SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END) AS `failed_confirmed_controls`,
-				SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`>=350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`<350) THEN 1 ELSE 0 END) AS `successful_confirmed_controls`,
-				SUM(CASE WHEN `error_id`>0 THEN 1 ELSE 0 END) AS `errors`
-			FROM `pima_control` `p_c`
-			LEFT JOIN `facility_equipment` `f_e`
-			ON `f_e`.`id` = `p_c`.`facility_equipment_id`
-				LEFT JOIN `facility` `f`
-				ON `f`.`id`=`f_e`.`facility_id`	
-					LEFT JOIN `partner` `p`
-					ON `f`.`partner_id` =`p`.`id`
-						LEFT JOIN `district` `d`
-						ON `f`.`district_id` = `d`.`id`
-							LEFT JOIN `region` `r`
-							ON `d`.`region_id` = `r`.`id`
-
-						WHERE `p_c`.`result_date` BETWEEN `from_date` AND `to_date`
-						AND `p_c`.`result_date`<=CURDATE()
-
-			GROUP BY `serial_number`;
-		ELSE
-			CASE `user_group_id`
-			WHEN 3 THEN
-				SELECT
-						`f`.`name` AS `facility_name`,
-						`f_e`.`serial_number`,
-						COUNT(*) AS `total`,
-						SUM(CASE WHEN !(`sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%') THEN 1 ELSE 0 END) AS `total_unconfirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `total_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' THEN 1 ELSE 0 END) AS `low_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `normal_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END) AS `failed_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`>=350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`<350) THEN 1 ELSE 0 END) AS `successful_confirmed_controls`,
-						SUM(CASE WHEN `error_id`>0 THEN 1 ELSE 0 END) AS `errors`
-					FROM `pima_control` `p_c`
-					LEFT JOIN `facility_equipment` `f_e`
-					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
-						LEFT JOIN `facility` `f`
-						ON `f`.`id`=`f_e`.`facility_id`	
-							LEFT JOIN `partner` `p`
-							ON `f`.`partner_id` =`p`.`id`
-								LEFT JOIN `district` `d`
-								ON `f`.`district_id` = `d`.`id`
-									LEFT JOIN `region` `r`
-									ON `d`.`region_id` = `r`.`id`
-
-								WHERE `p_c`.`result_date` BETWEEN `from_date` AND `to_date`
-								AND `p_c`.`result_date`<=CURDATE()
-								AND `f`.`id` = `user_filter_used`
-
-					GROUP BY `serial_number`;
-
-			WHEN 6 THEN
-				SELECT
-						`f`.`name` AS `facility_name`,
-						`f_e`.`serial_number`,
-						COUNT(*) AS `total`,
-						SUM(CASE WHEN !(`sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%') THEN 1 ELSE 0 END) AS `total_unconfirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `total_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' THEN 1 ELSE 0 END) AS `low_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `normal_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END) AS `failed_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`>=350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`<350) THEN 1 ELSE 0 END) AS `successful_confirmed_controls`,
-						SUM(CASE WHEN `error_id`>0 THEN 1 ELSE 0 END) AS `errors`
-					FROM `pima_control` `p_c`
-					LEFT JOIN `facility_equipment` `f_e`
-					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
-						LEFT JOIN `facility` `f`
-						ON `f`.`id`=`f_e`.`facility_id`	
-							LEFT JOIN `partner` `p`
-							ON `f`.`partner_id` =`p`.`id`
-								LEFT JOIN `district` `d`
-								ON `f`.`district_id` = `d`.`id`
-									LEFT JOIN `region` `r`
-									ON `d`.`region_id` = `r`.`id`
-
-								WHERE `p_c`.`result_date` BETWEEN `from_date` AND `to_date`
-								AND `p_c`.`result_date`<=CURDATE()
-								AND `p`.`id` = `user_filter_used`
-
-					GROUP BY `serial_number`;
-
-			WHEN 8 THEN
-				SELECT
-						`f`.`name` AS `facility_name`,
-						`f_e`.`serial_number`,
-						COUNT(*) AS `total`,
-						SUM(CASE WHEN !(`sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%') THEN 1 ELSE 0 END) AS `total_unconfirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `total_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' THEN 1 ELSE 0 END) AS `low_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `normal_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END) AS `failed_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`>=350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`<350) THEN 1 ELSE 0 END) AS `successful_confirmed_controls`,
-						SUM(CASE WHEN `error_id`>0 THEN 1 ELSE 0 END) AS `errors`
-					FROM `pima_control` `p_c`
-					LEFT JOIN `facility_equipment` `f_e`
-					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
-						LEFT JOIN `facility` `f`
-						ON `f`.`id`=`f_e`.`facility_id`	
-							LEFT JOIN `partner` `p`
-							ON `f`.`partner_id` =`p`.`id`
-								LEFT JOIN `district` `d`
-								ON `f`.`district_id` = `d`.`id`
-									LEFT JOIN `region` `r`
-									ON `d`.`region_id` = `r`.`id`
-
-								WHERE `p_c`.`result_date` BETWEEN `from_date` AND `to_date`
-								AND `p_c`.`result_date`<=CURDATE()
-								AND `d`.`id` = `user_filter_used`
-
-					GROUP BY `serial_number`;
-
-			WHEN 9 THEN
-				SELECT
-						`f`.`name` AS `facility_name`,
-						`f_e`.`serial_number`,
-						COUNT(*) AS `total`,
-						SUM(CASE WHEN !(`sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%') THEN 1 ELSE 0 END) AS `total_unconfirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `total_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' THEN 1 ELSE 0 END) AS `low_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `normal_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END) AS `failed_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`>=350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`<350) THEN 1 ELSE 0 END) AS `successful_confirmed_controls`,
-						SUM(CASE WHEN `error_id`>0 THEN 1 ELSE 0 END) AS `errors`
-					FROM `pima_control` `p_c`
-					LEFT JOIN `facility_equipment` `f_e`
-					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
-						LEFT JOIN `facility` `f`
-						ON `f`.`id`=`f_e`.`facility_id`	
-							LEFT JOIN `partner` `p`
-							ON `f`.`partner_id` =`p`.`id`
-								LEFT JOIN `district` `d`
-								ON `f`.`district_id` = `d`.`id`
-									LEFT JOIN `region` `r`
-									ON `d`.`region_id` = `r`.`id`
-
-								WHERE `p_c`.`result_date` BETWEEN `from_date` AND `to_date`
-								AND `p_c`.`result_date`<=CURDATE()
-								AND `r`.`id` = `user_filter_used`
-
-					GROUP BY `serial_number`;
-
-			WHEN 12 THEN
-				SELECT
-						`f`.`name` AS `facility_name`,
-						`f_e`.`serial_number`,
-						COUNT(*) AS `total`,
-						SUM(CASE WHEN !(`sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%') THEN 1 ELSE 0 END) AS `total_unconfirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' OR `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `total_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%LOW%' THEN 1 ELSE 0 END) AS `low_confirmed_controls`,
-						SUM(CASE WHEN `sample_code` LIKE '%NORMAL%' THEN 1 ELSE 0 END) AS `normal_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END) AS `failed_confirmed_controls`,
-						SUM(CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`>=350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`<350) THEN 1 ELSE 0 END) AS `successful_confirmed_controls`,
-						SUM(CASE WHEN `error_id`>0 THEN 1 ELSE 0 END) AS `errors`
-					FROM `pima_control` `p_c`
-					LEFT JOIN `facility_equipment` `f_e`
-					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
-						LEFT JOIN `facility` `f`
-						ON `f`.`id`=`f_e`.`facility_id`	
-							LEFT JOIN `partner` `p`
-							ON `f`.`partner_id` =`p`.`id`
-								LEFT JOIN `district` `d`
-								ON `f`.`district_id` = `d`.`id`
-									LEFT JOIN `region` `r`
-									ON `d`.`region_id` = `r`.`id`
-
-								WHERE `p_c`.`result_date` BETWEEN `from_date` AND `to_date`
-								AND `p_c`.`result_date`<=CURDATE()
-								AND `f_e`.`id` = `user_filter_used`
-
-					GROUP BY `serial_number`;
-
-			END CASE;
+	CASE `user_filter_used` 
+	WHEN 0 THEN
+		SELECT 
+			`fac`.`name`	AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`tst`.`cd4_count`,
+			CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+			`pim_tst`.`operator`,
+			`tst`.`result_date`
+		FROM
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+		WHERE 1
+		AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		;
+	ELSE
+		CASE `user_group_id`
+		WHEN 3 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `par_reg`.`partner_id` = `user_filter_used`
+			;
+		WHEN 9 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `dis`.`region_id` = `user_filter_used`
+			;  			
+		WHEN 8 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )	
+			AND `fac`.`district_id` = `user_filter_used`  
+			;	
+		WHEN 6 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `fac`.`id` = `user_filter_used`
+			;
+		WHEN 7 THEN 
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )		
+			AND `tst`.`facility_equipment_id` = `user_filter_used`
+			;
 		END CASE;
-	END
-	";
-$db_procedures["get_pima_controls_successful"] = "CREATE PROCEDURE `get_pima_controls_successful`(user_group_id int(11),user_filter_used int(11),year int(11))
+	END CASE;			
+END;
+";
+	
+$db_procedures["test_n_errors_detailed_report"]	=
+"CREATE PROCEDURE test_n_errors_detailed_report(user_group_id int(11), user_filter_used int(11),  date_from date, date_to date)
 BEGIN
-		CASE `user_filter_used`
-		WHEN 0 THEN
-		SELECT
-			`ab`.`month`,
-			count(`ab`.`facility_equipment_id`) AS `devices`
-			FROM (
-				SELECT
-					DISTINCT `ctr`.`facility_equipment_id`,
-					MONTH(`ctr`.`result_date`) AS `month`,
-					CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
-
-				FROM `pima_control` `ctr`
-				WHERE YEAR(`ctr`.`result_date`) = `year`
-				)AS `ab`
-			GROUP BY `ab`.`month`;
-
-		ELSE
-			CASE `user_group_id`
-			WHEN 3 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-			WHEN 6 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-			WHEN 8 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-
-			WHEN 9 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-			WHEN 12 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`ctr`.`sample_code` LIKE '%NORMAL%' AND `ctr`.`cd4_count`>=350) OR (`ctr`.`sample_code` LIKE '%LOW%' AND `ctr`.`cd4_count`<350) THEN 1 ELSE 0 END AS `successful_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-
-			END CASE;
+	CASE `user_filter_used` 
+	WHEN 0 THEN
+		SELECT 
+			`fac`.`name`	AS `facility_name`,
+			`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+			`pim_tst`.`sample_code`,
+			`tst`.`cd4_count`,
+			CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+			`pim_tst`.`operator`,
+			`tst`.`result_date` AS result_date
+		FROM
+			`pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+		WHERE 1
+		AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		;
+	ELSE
+		CASE `user_group_id`
+		WHEN 3 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `par_reg`.`partner_id` = `user_filter_used`
+			;
+		WHEN 9 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `dis`.`region_id` = `user_filter_used`
+			;  			
+		WHEN 8 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )	
+			AND `fac`.`district_id` = `user_filter_used`  
+			;	
+		WHEN 6 THEN
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `fac`.`id` = `user_filter_used`
+			;
+		WHEN 7 THEN 
+			SELECT 
+				`fac`.`name`	AS `facility_name`,
+				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
+				`tst`.`cd4_count`,
+				CASE WHEN `tst`.`valid`= '0' THEN 'FAILED' ELSE 'SUCCESSFUL' END  AS validity,
+				`pim_tst`.`operator`,
+				`tst`.`result_date`
+			FROM
+				`pima_test`  `pim_tst`
+				LEFT JOIN `cd4_test` `tst`
+				ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+					LEFT JOIN `facility` `fac`
+					ON `tst`.`facility_id`=`fac`.`id`
+						LEFT JOIN `district` `dis`
+						ON `fac`.`district_id` = `dis`.`id`
+							LEFT JOIN `region` `reg`
+							ON `dis`.`region_id` = `reg`.`id`
+								LEFT JOIN `partner_regions` `par_reg`
+								ON `reg`.`id` = `par_reg`.`region_id`
+									LEFT JOIN `partner` `par`
+									ON `par_reg`.`partner_id`=`par`.`id`
+						LEFT JOIN `status` `st`
+						ON `fac`.`rollout_status`= `st`.`id`  
+						LEFT JOIN `facility_user` `fu`
+						ON `fac`.`id`=`fu`.`facility_id`
+						LEFT JOIN `facility_equipment` `fac_eq`
+						ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+			WHERE 1
+			AND `tst`.`result_date` BETWEEN `date_from` AND `date_to`
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )		
+			AND `tst`.`facility_equipment_id` = `user_filter_used`
+			;
 		END CASE;
-	END
-	";
-$db_procedures["get_pima_controls_failed"] = "CREATE PROCEDURE `get_pima_controls_failed`(user_group_id int(11),user_filter_used int(11),year int(11))
+	END CASE;	
+END
+";
+
+$db_procedures["report_summarized_by_month"] = 
+"CREATE PROCEDURE report_summarized_by_month(user_group_id int(11), user_filter_used int(11),  date_from date, date_to date)
 BEGIN
-		CASE `user_filter_used`
-		WHEN 0 THEN
-		SELECT
-			`ab`.`month`,
-			count(`ab`.`facility_equipment_id`) AS `devices`
-			FROM (
-				SELECT
-					DISTINCT `ctr`.`facility_equipment_id`,
-					MONTH(`ctr`.`result_date`) AS `month`,
-					CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
-
-				FROM `pima_control` `ctr`
-				WHERE YEAR(`ctr`.`result_date`) = `year`
-				)AS `ab`
-			GROUP BY `ab`.`month`;
-
+	CASE `user_filter_used`
+	WHEN 0 THEN
+		SELECT 
+			`fac`.`name` 	AS `facility_name`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 1 THEN 1 ELSE 0 END) AS `jan_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 2 THEN 1 ELSE 0 END) AS `feb_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 3 THEN 1 ELSE 0 END) AS `mar_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 4 THEN 1 ELSE 0 END) AS `apr_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 5 THEN 1 ELSE 0 END) AS `may_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 6 THEN 1 ELSE 0 END) AS `jun_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 7 THEN 1 ELSE 0 END) AS `jul_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 8 THEN 1 ELSE 0 END) AS `aug_result`,
+			SUM( CASE WHEN MONTH(`tst`.`result_date`) = 9 THEN 1 ELSE 0 END) AS `sept_result`,
+            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 10 THEN 1 ELSE 0 END) AS `oct_result`,
+            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 11 THEN 1 ELSE 0 END) AS `nov_result`,
+            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 12 THEN 1 ELSE 0 END) AS `dec_result`
+			
+		FROM `pima_test`  `pim_tst`
+		LEFT JOIN `cd4_test` `tst`
+		ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+			LEFT JOIN `facility` `fac`
+			ON `tst`.`facility_id`=`fac`.`id`
+				LEFT JOIN `district` `dis`
+				ON `fac`.`district_id` = `dis`.`id`
+					LEFT JOIN `region` `reg`
+					ON `dis`.`region_id` = `reg`.`id`
+						LEFT JOIN `partner_regions` `par_reg`
+						ON `reg`.`id` = `par_reg`.`region_id`
+							LEFT JOIN `partner` `par`
+							ON `par_reg`.`partner_id`=`par`.`id`
+				LEFT JOIN `status` `st`
+				ON `fac`.`rollout_status`= `st`.`id`  
+				LEFT JOIN `facility_user` `fu`
+				ON `fac`.`id`=`fu`.`facility_id`
+				LEFT JOIN `facility_equipment` `fac_eq`
+				ON `fac`.`id` = `fac_eq`.`facility_id`
+			LEFT JOIN `facility_equipment`
+			ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+			LEFT JOIN `pima_upload` `pim_upl`
+			ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+				LEFT JOIN `user` `usr`
+				ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+			LEFT JOIN `patient_age_group` `ag`
+			ON `tst`.`patient_age_group_id` = `ag`.`id`
+			
+		WHERE 1
+		AND `tst`.`result_date` between date_from and date_to
+		AND ( `sample_code` NOT LIKE '%CONTROL%' )
+		AND `valid` = '1'
+		GROUP BY `facility_name`
+		;
 		ELSE
-			CASE `user_group_id`
-			WHEN 3 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-			WHEN 6 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-			WHEN 8 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-
-			WHEN 9 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-			WHEN 12 THEN
-				SELECT
-					`ab`.`month`,
-					count(`ab`.`facility_equipment_id`) AS `devices`
-					FROM (
-						SELECT
-							DISTINCT `ctr`.`facility_equipment_id`,
-							MONTH(`ctr`.`result_date`) AS `month`,
-							CASE WHEN (`sample_code` LIKE '%NORMAL%' AND `cd4_count`<350) OR (`sample_code` LIKE '%LOW%' AND `cd4_count`>=350) THEN 1 ELSE 0 END AS `failed_confirmed_controls`
-
-						FROM `pima_control` `ctr`
-						WHERE YEAR(`ctr`.`result_date`) = `year`
-						AND `facility_equipment_id` = `user_filter_used`
-						)AS `ab`
-					GROUP BY `ab`.`month`;
-
-
-			END CASE;
+		CASE `user_group_id`
+		WHEN 3 THEN
+			SELECT 
+				`fac`.`name` 	AS `facility_name`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 1 THEN 1 ELSE 0 END) AS `jan_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 2 THEN 1 ELSE 0 END) AS `feb_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 3 THEN 1 ELSE 0 END) AS `mar_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 4 THEN 1 ELSE 0 END) AS `apr_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 5 THEN 1 ELSE 0 END) AS `may_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 6 THEN 1 ELSE 0 END) AS `jun_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 7 THEN 1 ELSE 0 END) AS `jul_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 8 THEN 1 ELSE 0 END) AS `aug_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 9 THEN 1 ELSE 0 END) AS `sept_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 10 THEN 1 ELSE 0 END) AS `oct_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 11 THEN 1 ELSE 0 END) AS `nov_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 12 THEN 1 ELSE 0 END) AS `dec_result`
+				
+			FROM `pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+				
+			WHERE 1
+			AND `tst`.`result_date` between date_from and date_to
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `valid` = '1'
+			AND `par_reg`.`partner_id` = `user_filter_used`
+			GROUP BY `facility_name`
+			;
+		WHEN 9 THEN
+			SELECT 
+				`fac`.`name` 	AS `facility_name`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 1 THEN 1 ELSE 0 END) AS `jan_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 2 THEN 1 ELSE 0 END) AS `feb_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 3 THEN 1 ELSE 0 END) AS `mar_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 4 THEN 1 ELSE 0 END) AS `apr_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 5 THEN 1 ELSE 0 END) AS `may_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 6 THEN 1 ELSE 0 END) AS `jun_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 7 THEN 1 ELSE 0 END) AS `jul_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 8 THEN 1 ELSE 0 END) AS `aug_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 9 THEN 1 ELSE 0 END) AS `sept_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 10 THEN 1 ELSE 0 END) AS `oct_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 11 THEN 1 ELSE 0 END) AS `nov_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 12 THEN 1 ELSE 0 END) AS `dec_result`
+				
+			FROM `pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+				
+			WHERE 1
+			AND `tst`.`result_date` between date_from and date_to
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `valid` = '1'
+			AND `dis`.`region_id` = `user_filter_used`
+			GROUP BY `facility_name`
+			;
+		WHEN 8 THEN
+			SELECT 
+				`fac`.`name` 	AS `facility_name`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 1 THEN 1 ELSE 0 END) AS `jan_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 2 THEN 1 ELSE 0 END) AS `feb_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 3 THEN 1 ELSE 0 END) AS `mar_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 4 THEN 1 ELSE 0 END) AS `apr_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 5 THEN 1 ELSE 0 END) AS `may_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 6 THEN 1 ELSE 0 END) AS `jun_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 7 THEN 1 ELSE 0 END) AS `jul_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 8 THEN 1 ELSE 0 END) AS `aug_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 9 THEN 1 ELSE 0 END) AS `sept_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 10 THEN 1 ELSE 0 END) AS `oct_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 11 THEN 1 ELSE 0 END) AS `nov_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 12 THEN 1 ELSE 0 END) AS `dec_result`
+				
+			FROM `pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+				
+			WHERE 1
+			AND `tst`.`result_date` between date_from and date_to
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `valid` = '1'
+			AND `fac`.`district_id` = `user_filter_used`
+			GROUP BY `facility_name`
+			;
+		WHEN 6 THEN
+			SELECT 
+				`fac`.`name` 	AS `facility_name`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 1 THEN 1 ELSE 0 END) AS `jan_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 2 THEN 1 ELSE 0 END) AS `feb_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 3 THEN 1 ELSE 0 END) AS `mar_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 4 THEN 1 ELSE 0 END) AS `apr_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 5 THEN 1 ELSE 0 END) AS `may_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 6 THEN 1 ELSE 0 END) AS `jun_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 7 THEN 1 ELSE 0 END) AS `jul_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 8 THEN 1 ELSE 0 END) AS `aug_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 9 THEN 1 ELSE 0 END) AS `sept_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 10 THEN 1 ELSE 0 END) AS `oct_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 11 THEN 1 ELSE 0 END) AS `nov_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 12 THEN 1 ELSE 0 END) AS `dec_result`
+				
+			FROM `pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+				
+			WHERE 1
+			AND `tst`.`result_date` between date_from and date_to
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `valid` = '1'
+			AND `fac`.`id` = `user_filter_used`
+			AND `fac`.`id` = `user_filter_used`
+			GROUP BY `facility_name`
+		;
+		WHEN 7 THEN
+			SELECT 
+				`fac`.`name` 	AS `facility_name`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 1 THEN 1 ELSE 0 END) AS `jan_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 2 THEN 1 ELSE 0 END) AS `feb_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 3 THEN 1 ELSE 0 END) AS `mar_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 4 THEN 1 ELSE 0 END) AS `apr_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 5 THEN 1 ELSE 0 END) AS `may_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 6 THEN 1 ELSE 0 END) AS `jun_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 7 THEN 1 ELSE 0 END) AS `jul_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 8 THEN 1 ELSE 0 END) AS `aug_result`,
+				SUM( CASE WHEN MONTH(`tst`.`result_date`) = 9 THEN 1 ELSE 0 END) AS `sept_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 10 THEN 1 ELSE 0 END) AS `oct_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 11 THEN 1 ELSE 0 END) AS `nov_result`,
+	            SUM( CASE WHEN MONTH(`tst`.`result_date`) = 12 THEN 1 ELSE 0 END) AS `dec_result`
+				
+			FROM `pima_test`  `pim_tst`
+			LEFT JOIN `cd4_test` `tst`
+			ON `pim_tst`.`cd4_test_id`=`tst`.`id`
+				LEFT JOIN `facility` `fac`
+				ON `tst`.`facility_id`=`fac`.`id`
+					LEFT JOIN `district` `dis`
+					ON `fac`.`district_id` = `dis`.`id`
+						LEFT JOIN `region` `reg`
+						ON `dis`.`region_id` = `reg`.`id`
+							LEFT JOIN `partner_regions` `par_reg`
+							ON `reg`.`id` = `par_reg`.`region_id`
+								LEFT JOIN `partner` `par`
+								ON `par_reg`.`partner_id`=`par`.`id`
+					LEFT JOIN `status` `st`
+					ON `fac`.`rollout_status`= `st`.`id`  
+					LEFT JOIN `facility_user` `fu`
+					ON `fac`.`id`=`fu`.`facility_id`
+					LEFT JOIN `facility_equipment` `fac_eq`
+					ON `fac`.`id` = `fac_eq`.`facility_id`
+				LEFT JOIN `facility_equipment`
+				ON `tst`.`facility_equipment_id`=`facility_equipment`.`id`
+				LEFT JOIN `pima_upload` `pim_upl`
+				ON `pim_tst`.`pima_upload_id`=`pim_upl`.`id`
+					LEFT JOIN `user` `usr`
+					ON `pim_upl`.`uploaded_by`= `usr`.`id`																
+				LEFT JOIN `patient_age_group` `ag`
+				ON `tst`.`patient_age_group_id` = `ag`.`id`
+				
+			WHERE 1
+			AND `tst`.`result_date` between date_from and date_to
+			AND ( `sample_code` NOT LIKE '%CONTROL%' )
+			AND `valid` = '1'
+			AND `tst`.`facility_equipment_id` = `user_filter_used`
+			GROUP BY `facility_name`
+			;
 		END CASE;
-	END
-	";
+	END CASE;
+	
+END;
+";
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $config["procedures_sql"] = $db_procedures;

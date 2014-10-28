@@ -70,7 +70,6 @@ class MY_Model extends CI_Model{
 
 	//
 	public function db_filtered_view($name,$user_filter_used,$and ="",$group_by = array(), $order_by = array(), $order_by_direction="" ){
-
 		$user_group_id = $this->session->userdata("user_group_id");
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id,$user_filter_used);
@@ -258,6 +257,11 @@ class MY_Model extends CI_Model{
 		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
 		$sql 	=	"CALL active_user_devices($user_group_id,$user_filter_used)";	
+
+		// echo "<pre/>";
+		// print_r(R::getAll($sql));		
+		// die();
+		
 		return R::getAll($sql);
 
 	}
@@ -276,7 +280,7 @@ class MY_Model extends CI_Model{
 
 		$user_delimiter = $this->sql_user_delimiter($user_group_id, (int) $user_filter[0]["user_filter_id"]);
 
-		$sql 	=	"CALL uploaded_user_devices('$from','$to',$user_group_id,$user_filter_used)";			
+		$sql 	=	"CALL uploaded_user_devices('$from','$to',$user_group_id,$user_filter_used)";	
 
 		return R::getAll($sql);			
 
