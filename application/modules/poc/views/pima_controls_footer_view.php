@@ -1,20 +1,34 @@
 <script>
-function get_data_table (user_type,id) {
-  $('#pima_controls_table').dataTable({
-    "bJQueryUI":true, 
-    "sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/"+user_type+"/"+id ,
-    "aoColumnDefs": [
-    { "bSortable": false, "aTargets": [ 0 ] }
-    ],
-    "aaSorting": [[1, 'asc']]
+var pima_controls_table;
+pima_controls_table =  $('#pima_controls_table').dataTable({
+                                    "bJQueryUI":true, 
+                                    "sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/<?php echo "$user_group_id"?>/<?php echo "$user_filter_used"?>" ,
+                                    "aoColumnDefs": [
+                                    { "bSortable": false, "aTargets": [ 0 ] }
+                                    ],
+                                    "aaSorting": [[1, 'asc']]
 
-  }); 
+                                  }); 
+function get_data_table (user_type,id) {
+  console.log(pima_controls_table);
+  pima_controls_table.destroy();
+  pima_controls_table = $('#pima_controls_table').dataTable({
+                                    "bJQueryUI":true, 
+                                    "sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/"+user_type+"/"+id ,
+                                    "aoColumnDefs": [
+                                    { "bSortable": false, "aTargets": [ 0 ] }
+                                    ],
+                                    "aaSorting": [[1, 'asc']]
+
+                                  }); 
+
+   //pima_controls_table.fnReloadAjax("<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/"+0+"/"+0);
 
 }
 
 $( document ).ready(function() {
 
-	get_data_table("<?php echo "$user_group_id"?>","<?php echo "$user_filter_used"?>");
+	//get_data_table("<?php echo "$user_group_id"?>","<?php echo "$user_filter_used"?>");
 
 	 $.ajax({
       type:"POST",
@@ -94,7 +108,8 @@ function load_tree_data(type,id,type_identifier){
     $("#div3").load("<?php echo base_url('charts/pima_controls/get_pima_controls_errors'); ?>/"+type+"/"+id ); 
     $("#div4").load("<?php echo base_url('charts/pima_controls/get_pima_controls_tests_errors_controls'); ?>/"+type+"/"+id ); 
 
-   get_data_table(type,id);
+   //get_data_table(type,id);
+   //pima_controls_table.fnReloadAjax("<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/"+type+"/"+id);
 
 
 }
