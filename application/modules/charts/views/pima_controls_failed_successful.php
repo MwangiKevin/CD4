@@ -28,7 +28,7 @@ $('#div1').highcharts({
             },
             series: [{
                 type: 'pie',
-                name: 'Devices',
+                name: 'Controls',
                 size: '140%',
                 data: <?php echo json_encode($pie);?>
                 

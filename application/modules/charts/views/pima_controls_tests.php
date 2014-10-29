@@ -1,4 +1,5 @@
 <div id="pima_controls_vs_testst"></div>
+
 <script id="pima_controls_vs_tests_script" type="text/javascript">
 $('#div2').highcharts({
             chart: {
@@ -28,7 +29,7 @@ $('#div2').highcharts({
             },
             series: [{
                 type: 'pie',
-                name: 'Devices',
+                name: "Controls",
                 size: '140%',
                 data: <?php echo json_encode($pie); ?>
                 
