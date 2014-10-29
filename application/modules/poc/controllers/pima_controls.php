@@ -31,9 +31,10 @@ class pima_controls extends MY_Controller {
 		$this -> template($this->data);
 	}
 
-	public function ss_pima_controls()
+	public function ss_pima_controls($user_group_id,$user_filter_used)
 	{
-		$pima_controls = $this->poc_model->get_pima_controls_reported($this->session->userdata("user_group_id"),$this->session->userdata("user_filter_used"),$this->get_filter_start_date(),$this->get_filter_stop_date());
+		// echo $user_group_id;die();
+		$pima_controls = $this->poc_model->get_pima_controls_reported($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());
 
 		$data = array();
 		$recordsTotal =0;

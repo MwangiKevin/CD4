@@ -4,7 +4,7 @@ class pima_controls_model extends MY_Model{
 	public function get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to)
 	{
 		// echo $user_filter_used;die();
-		$sql_controls = "CALL get_pima_controls_reported('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+		$sql_controls = "CALL pima_control_reported(".$user_group_id.",".$user_filter_used.",'".$from."','".$to."')";
 		// echo $sql_controls;die();
 
 		$controls = R::getAll($sql_controls);
@@ -50,73 +50,47 @@ class pima_controls_model extends MY_Model{
 
 	public function successful_failed_controls($user_group_id,$user_filter_used,$year)
 	{
-		$data["chart"][0]["name"] 	= 	"Successful Controls";
-		
-		// $data["chart"][0]["data"] 	= "CALL expected_reporting_dev_array(".$user_group_id.", ".$user_filter_used.", ".$year.")";
-		$data["chart"][0]["data"] 	= 	$this->successful_controls($user_group_id,$user_filter_used,$year);
+		// echo $user_group_id." cssc ".$user_filter_used;die();
+		$sql_controls = "CALL get_pima_controls_chart(".$user_group_id.",".$user_filter_used.",".$year.")";
 
-		$data["chart"][1]["name"] 	= 	"Failed Controls";
-		$data["chart"][1]["color"] 	= 	"#a4d53a";
+		$res   = R::getAll($sql_controls);
+
+		$months = array(1,2,3,4,5,6,7,8,9,10,11,12);
+		// print_r($controls);die();
+		$data["chart"][0]["name"]	=  "Successful Controls";
+		$data["chart"][0]["color"]	=  "#a4d53a";
 		
-	    $data["chart"][1]["data"] 	= 	$this->failed_controls($user_group_id,$user_filter_used,$year);
-	    //print_r($data);die();
+		$data["chart"][1]["name"]	=  "Failed Controls";
+		$data["chart"][1]["color"]	=  "#aa1919";
+
+		foreach ($months as $key => $value) {	
+
+			$data["chart"][0]["data"][$key]	=  0;
+			$data["chart"][1]["data"][$key]	=  0;
+
+			foreach ($res as $key1 => $value1) {
+				
+				if( (int)$value == (int) $value1["month"]){
+
+					$data["chart"][0]["data"][$key]	=  (int) $value1["successful_confirmed_controls"];
+					$data["chart"][1]["data"][$key]	=  (int) $value1["failed_confirmed_controls"];
+
+				}
+			}
+		}
+		 //print_r($data);die();
 		return $data;
 	}
 
-	public function failed_controls($user_group_id,$user_filter_used,$year)
-	{
-		$sql_fails = "CALL get_pima_controls_failed(".$user_group_id.",".$user_filter_used.",".$year.")";
-
-		$fails   = R::getAll($sql_fails);
-
-		// print_r($controls);die();
-		$result_array = array();
-		for ($i=0; $i<12 ; $i++) { 
-			$result_array[$i] = 0;
-		}
-		
-		for ($i=0; $i<12 ; $i++) { 
-			foreach ($fails as $key => $value) {
-				if ($value["month"]==($i+1)) {
-					$result_array[$i] = (int) $value["devices"];
-				}
-			}
-		}
-		// print_r($result_array);die();
-		return $result_array;
-	}
-
-	public function successful_controls($user_group_id,$user_filter_used,$year)
-	{
-		// echo $user_group_id." space ".$user_filter_used;die();
-		$sql_success = "CALL get_pima_controls_successful(".$user_group_id.",".$user_filter_used.",".$year.")";
-		
-		$success = R::getAll($sql_success);
-		
-		// print_r($controls);die();
-		$result_array = array();
-		for ($i=0; $i<12 ; $i++) { 
-			$result_array[$i] = 0;
-		}
-		
-		for ($i=0; $i<12 ; $i++) { 
-			foreach ($success as $key => $value) {
-				if ($value["month"]==($i+1)) {
-					$result_array[$i] = (int) $value["devices"];
-				}
-			}
-		}
-		
-		return $result_array;
-	}
+	
 	public function pima_controls_errors($user_group_id,$user_filter_used,$from,$to)
 	{
-		$sql_controls = "CALL get_pima_controls_reported('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+		$sql_controls = "CALL pima_control_errors (".$user_group_id.",".$user_filter_used.",'".$from."','".$to."')";
 
 		$controls = R::getAll($sql_controls);
 		//print_r($controls);die();
 		$data["pie"][0]["name"] 		= "Correct Controls";
-		$data["pie"][0]["y"] 			= (int) $controls[0]["total"] - (int) $controls[0]["errors"];
+		$data["pie"][0]["y"] 			= (int) $controls[0]["correct"];
 		$data["pie"][0]["color"] 		= "#a4d53a";
 		$data["pie"][0]["sliced"] 	= false;
 		$data["pie"][0]["selected"] 	= false;

@@ -8,7 +8,7 @@ $('#div4').highcharts({
                 height:200
             },
             title: {
-                text: 'Correct Controls vs Erroneous Controls'
+                text: 'Correct against Erroneous Controls'
             },
             tooltip: {
                 pointFormat: '{series.name}: <div><b>{point.y}, </b><br/>Percentage Share: <b>{point.percentage:.1f}%</b></div>'
@@ -28,7 +28,7 @@ $('#div4').highcharts({
             },
             series: [{
                 type: 'pie',
-                name: 'Devices',
+                name: 'Controls',
                 size: '140%',
                 data: <?php echo json_encode($pie); ?>
                 
