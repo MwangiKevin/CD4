@@ -216,26 +216,7 @@ class poc_model extends MY_Model{
 		return $res;
 	}
 
-	function pima_controls_success()
-	{
-		$sql = "SELECT 
-					COUNT(`id`) AS `y` 
-				FROM `pima_control` 
-				WHERE `sample_code` = 'NORMAL' AND `cd4_count` <> 350 || `sample_code` = 'LOW' AND `cd4_count` < 350";
-
-		return $success = R::getAll($sql);
-	}
-
-	function pima_controls_failed()
-	{
-		$sql = "SELECT 
-					COUNT(`id`) AS `y` 
-				FROM `pima_control` 
-				WHERE `sample_code` = 'NORMAL' AND `cd4_count` < 350 || `sample_code` = 'LOW' AND `cd4_count` > 350";
-
-		return $fails = R::getAll($sql);
-	}
-
+	
 
 }
 /* End of file poc_model.php */

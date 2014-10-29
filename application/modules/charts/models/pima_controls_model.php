@@ -24,11 +24,11 @@ class pima_controls_model extends MY_Model{
 		return $data;
 	}
 
-	public function pima_controls_tests_pie($user_group_id,$user_filter_used,$from,$to)
+	public function pima_controls_tests_pie($user_group_id,$user_filter_used,$year)
 	{
-		$sql_controls = "SELECT COUNT(`id`) AS `controls` FROM `pima_control`";
+		$sql_controls = "CALL pima_controls(".$user_group_id.",".$user_filter_used.",".$year.")";
 
-		$sql_test = "SELECT COUNT(`id`) AS `tests` FROM `pima_test`";
+		$sql_test = "CALL pima_tests(".$user_group_id.",".$user_filter_used.",".$year.")";
 
 		$controls = R::getAll($sql_controls);
 		$tests 	  = R::getAll($sql_test);

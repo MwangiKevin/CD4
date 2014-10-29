@@ -9,7 +9,7 @@ $('#div2').highcharts({
                 height:200
             },
             title: {
-                text: 'Tests Vs Controls'
+                text: 'Tests Vs Controls(<?php echo $year; ?>)'
             },
             tooltip: {
                 pointFormat: '{series.name}: <div><b>{point.y}, </b><br/>Percentage Share: <b>{point.percentage:.1f}%</b></div>'

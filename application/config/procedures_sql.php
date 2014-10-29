@@ -48,10 +48,14 @@ $db_procedures["drop_tests_detailed_report"]					= 	"DROP PROCEDURE IF EXISTS `t
 $db_procedures["drop_errors_detailed_report"]					=	"DROP PROCEDURE IF EXISTS `errors_detailed_report`";
 $db_procedures["drop_tests_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `tests_summarized_report`";
 $db_procedures["drop_errors_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `errors_summarized_report`";
+
 $db_procedures["drop_get_pima_controls_reported"]				=  	"DROP PROCEDURE IF EXISTS `get_pima_controls_reported`";
 $db_procedures["drop_get_pima_controls_chart"]					=	" DROP PROCEDURE IF EXISTS `get_pima_controls_chart` ";
 $db_procedures["drop_pima_control_reported"]					=	"DROP PROCEDURE IF EXISTS `pima_control_reported`";
 $db_procedures["drop_pima_control_errors"]						=	"DROP PROCEDURE IF EXISTS `pima_control_errors`";
+$db_procedures["drop_pima_controls"]							=	"DROP PROCEDURE IF EXISTS `pima_controls`";
+$db_procedures["drop_pima_tests"]								=	"DROP PROCEDURE IF EXISTS `pima_tests`";
+
 $db_procedures["drop_test_n_errors_summarized_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_summarized_report`";
 $db_procedures["drop_test_n_errors_detailed_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_detailed_report`";
 $db_procedures["drop_report_summarized_by_month"]				=	"DROP PROCEDURE IF EXISTS `report_summarized_by_month`";
@@ -6156,6 +6160,258 @@ BEGIN
 					AND `f_e`.`id` = `user_filter_used`
 					
 					GROUP BY `month`;
+
+
+			END CASE;
+		END CASE;
+	END
+	";
+
+$db_procedures["pima_controls"] = "CREATE PROCEDURE `pima_controls`(user_group_id int(11),user_filter_used int(11),year int(11))
+BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN
+		SELECT
+			COUNT(`p_c`.`id`) AS `controls`
+		FROM `pima_control` `p_c`
+			LEFT JOIN `facility_equipment` `f_e`
+				ON `f_e`.`id` = `p_c`.`facility_equipment_id`
+					LEFT JOIN `facility` `f`
+						ON `f`.`id`=`f_e`.`facility_id`	
+							LEFT JOIN `partner` `p`
+								ON `f`.`partner_id` =`p`.`id`
+									LEFT JOIN `district` `d`
+										ON `f`.`district_id` = `d`.`id`
+											LEFT JOIN `region` `r`
+											ON `d`.`region_id` = `r`.`id`
+		WHERE YEAR(`p_c`.`result_date`) = `year`
+		AND `p_c`.`result_date`<=CURDATE();
+
+		ELSE
+			CASE `user_group_id`
+			WHEN 3 THEN
+			SELECT
+				COUNT(`p_c`.`id`) AS `controls`
+			FROM `pima_control` `p_c`
+				LEFT JOIN `facility_equipment` `f_e`
+					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
+						LEFT JOIN `facility` `f`
+							ON `f`.`id`=`f_e`.`facility_id`	
+								LEFT JOIN `partner` `p`
+									ON `f`.`partner_id` =`p`.`id`
+										LEFT JOIN `district` `d`
+											ON `f`.`district_id` = `d`.`id`
+												LEFT JOIN `region` `r`
+												ON `d`.`region_id` = `r`.`id`
+			WHERE YEAR(`p_c`.`result_date`) = `year`
+			AND `p_c`.`result_date`<=CURDATE()
+			AND `f`.`id` = `user_filter_used`;
+
+
+			WHEN 6 THEN
+			SELECT
+				COUNT(`p_c`.`id`) AS `controls`
+			FROM `pima_control` `p_c`
+				LEFT JOIN `facility_equipment` `f_e`
+					ON `f_e`.`id` = `p_c`.`facility_equipment_id`
+						LEFT JOIN `facility` `f`
+							ON `f`.`id`=`f_e`.`facility_id`	
+								LEFT JOIN `partner` `p`
+									ON `f`.`partner_id` =`p`.`id`
+										LEFT JOIN `district` `d`
+											ON `f`.`district_id` = `d`.`id`
+												LEFT JOIN `region` `r`
+												ON `d`.`region_id` = `r`.`id`
+			WHERE YEAR(`p_c`.`result_date`) = `year`
+			AND `p_c`.`result_date`<=CURDATE()
+				AND `p`.`id` = `user_filter_used`;
+
+			WHEN 8 THEN
+				SELECT
+					COUNT(`p_c`.`id`) AS `controls`
+				FROM `pima_control` `p_c`
+					LEFT JOIN `facility_equipment` `f_e`
+						ON `f_e`.`id` = `p_c`.`facility_equipment_id`
+							LEFT JOIN `facility` `f`
+								ON `f`.`id`=`f_e`.`facility_id`	
+									LEFT JOIN `partner` `p`
+										ON `f`.`partner_id` =`p`.`id`
+											LEFT JOIN `district` `d`
+												ON `f`.`district_id` = `d`.`id`
+													LEFT JOIN `region` `r`
+													ON `d`.`region_id` = `r`.`id`
+				WHERE YEAR(`p_c`.`result_date`) = `year`
+				AND `p_c`.`result_date`<=CURDATE()
+					AND `d`.`id` = `user_filter_used`;
+
+
+			WHEN 9 THEN
+				SELECT
+					COUNT(`p_c`.`id`) AS `controls`
+				FROM `pima_control` `p_c`
+					LEFT JOIN `facility_equipment` `f_e`
+						ON `f_e`.`id` = `p_c`.`facility_equipment_id`
+							LEFT JOIN `facility` `f`
+								ON `f`.`id`=`f_e`.`facility_id`	
+									LEFT JOIN `partner` `p`
+										ON `f`.`partner_id` =`p`.`id`
+											LEFT JOIN `district` `d`
+												ON `f`.`district_id` = `d`.`id`
+													LEFT JOIN `region` `r`
+													ON `d`.`region_id` = `r`.`id`
+				WHERE YEAR(`p_c`.`result_date`) = `year`
+				AND `p_c`.`result_date`<=CURDATE()
+				AND `r`.`id` = `user_filter_used`;
+
+			WHEN 12 THEN
+				SELECT
+					COUNT(`p_c`.`id`) AS `controls`
+				FROM `pima_control` `p_c`
+					LEFT JOIN `facility_equipment` `f_e`
+						ON `f_e`.`id` = `p_c`.`facility_equipment_id`
+							LEFT JOIN `facility` `f`
+								ON `f`.`id`=`f_e`.`facility_id`	
+									LEFT JOIN `partner` `p`
+										ON `f`.`partner_id` =`p`.`id`
+											LEFT JOIN `district` `d`
+												ON `f`.`district_id` = `d`.`id`
+													LEFT JOIN `region` `r`
+													ON `d`.`region_id` = `r`.`id`
+				WHERE YEAR(`p_c`.`result_date`) = `year`
+				AND `p_c`.`result_date`<=CURDATE()
+					AND `f_e`.`id` = `user_filter_used`;
+
+
+			END CASE;
+		END CASE;
+	END
+	";
+
+	$db_procedures["pima_tests"] = "CREATE PROCEDURE `pima_tests`(user_group_id int(11),user_filter_used int(11),year int(11))
+BEGIN
+		CASE `user_filter_used`
+		WHEN 0 THEN
+		SELECT
+			COUNT(`p_t`.`id`) AS `tests`
+		FROM `pima_test` `p_t`
+			LEFT JOIN `cd4_test` `cd4t`
+			ON `p_t`.`cd4_test_id` = `cd4t`.`id`
+				LEFT JOIN `facility_equipment` `f_e`
+							ON `f_e`.`id` = `cd4t`.`facility_equipment_id`
+								LEFT JOIN `facility` `f`
+								ON `f`.`id`=`f_e`.`facility_id`	
+									LEFT JOIN `partner` `p`
+									ON `f`.`partner_id` =`p`.`id`
+										LEFT JOIN `district` `d`
+										ON `f`.`district_id` = `d`.`id`
+											LEFT JOIN `region` `r`
+											ON `d`.`region_id` = `r`.`id`
+		WHERE YEAR(`cd4t`.`result_date`) = `year`
+		AND `cd4t`.`result_date`<=CURDATE();
+
+		ELSE
+			CASE `user_group_id`
+			WHEN 3 THEN
+			SELECT
+				COUNT(`p_t`.`id`) AS `tests`
+			FROM `pima_test` `p_t`
+				LEFT JOIN `cd4_test` `cd4t`
+				ON `p_t`.`cd4_test_id` = `cd4t`.`id`
+					LEFT JOIN `facility_equipment` `f_e`
+								ON `f_e`.`id` = `cd4t`.`facility_equipment_id`
+									LEFT JOIN `facility` `f`
+									ON `f`.`id`=`f_e`.`facility_id`	
+										LEFT JOIN `partner` `p`
+										ON `f`.`partner_id` =`p`.`id`
+											LEFT JOIN `district` `d`
+											ON `f`.`district_id` = `d`.`id`
+												LEFT JOIN `region` `r`
+												ON `d`.`region_id` = `r`.`id`
+			WHERE YEAR(`cd4t`.`result_date`) = `year`
+			AND `cd4t`.`result_date`<=CURDATE()
+			AND `f`.`id` = `user_filter_used`;
+
+
+			WHEN 6 THEN
+				SELECT
+					COUNT(`p_t`.`id`) AS `tests`
+				FROM `pima_test` `p_t`
+					LEFT JOIN `cd4_test` `cd4t`
+					ON `p_t`.`cd4_test_id` = `cd4t`.`id`
+						LEFT JOIN `facility_equipment` `f_e`
+									ON `f_e`.`id` = `cd4t`.`facility_equipment_id`
+										LEFT JOIN `facility` `f`
+										ON `f`.`id`=`f_e`.`facility_id`	
+											LEFT JOIN `partner` `p`
+											ON `f`.`partner_id` =`p`.`id`
+												LEFT JOIN `district` `d`
+												ON `f`.`district_id` = `d`.`id`
+													LEFT JOIN `region` `r`
+													ON `d`.`region_id` = `r`.`id`
+				WHERE YEAR(`cd4t`.`result_date`) = `year`
+				AND `cd4t`.`result_date`<=CURDATE()
+				AND `p`.`id` = `user_filter_used`;
+
+			WHEN 8 THEN
+				SELECT
+						COUNT(`p_t`.`id`) AS `tests`
+					FROM `pima_test` `p_t`
+						LEFT JOIN `cd4_test` `cd4t`
+						ON `p_t`.`cd4_test_id` = `cd4t`.`id`
+							LEFT JOIN `facility_equipment` `f_e`
+										ON `f_e`.`id` = `cd4t`.`facility_equipment_id`
+											LEFT JOIN `facility` `f`
+											ON `f`.`id`=`f_e`.`facility_id`	
+												LEFT JOIN `partner` `p`
+												ON `f`.`partner_id` =`p`.`id`
+													LEFT JOIN `district` `d`
+													ON `f`.`district_id` = `d`.`id`
+														LEFT JOIN `region` `r`
+														ON `d`.`region_id` = `r`.`id`
+					WHERE YEAR(`cd4t`.`result_date`) = `year`
+					AND `cd4t`.`result_date`<=CURDATE()
+					AND `d`.`id` = `user_filter_used`;
+
+
+			WHEN 9 THEN
+				SELECT
+					COUNT(`p_t`.`id`) AS `tests`
+				FROM `pima_test` `p_t`
+					LEFT JOIN `cd4_test` `cd4t`
+					ON `p_t`.`cd4_test_id` = `cd4t`.`id`
+						LEFT JOIN `facility_equipment` `f_e`
+									ON `f_e`.`id` = `cd4t`.`facility_equipment_id`
+										LEFT JOIN `facility` `f`
+										ON `f`.`id`=`f_e`.`facility_id`	
+											LEFT JOIN `partner` `p`
+											ON `f`.`partner_id` =`p`.`id`
+												LEFT JOIN `district` `d`
+												ON `f`.`district_id` = `d`.`id`
+													LEFT JOIN `region` `r`
+													ON `d`.`region_id` = `r`.`id`
+				WHERE YEAR(`cd4t`.`result_date`) = `year`
+				AND `cd4t`.`result_date`<=CURDATE()
+				AND `r`.`id` = `user_filter_used`;
+
+			WHEN 12 THEN
+				SELECT
+					COUNT(`p_t`.`id`) AS `tests`
+				FROM `pima_test` `p_t`
+					LEFT JOIN `cd4_test` `cd4t`
+					ON `p_t`.`cd4_test_id` = `cd4t`.`id`
+						LEFT JOIN `facility_equipment` `f_e`
+									ON `f_e`.`id` = `cd4t`.`facility_equipment_id`
+										LEFT JOIN `facility` `f`
+										ON `f`.`id`=`f_e`.`facility_id`	
+											LEFT JOIN `partner` `p`
+											ON `f`.`partner_id` =`p`.`id`
+												LEFT JOIN `district` `d`
+												ON `f`.`district_id` = `d`.`id`
+													LEFT JOIN `region` `r`
+													ON `d`.`region_id` = `r`.`id`
+				WHERE YEAR(`cd4t`.`result_date`) = `year`
+				AND `cd4t`.`result_date`<=CURDATE()
+					AND `f_e`.`id` = `user_filter_used`;
 
 
 			END CASE;
