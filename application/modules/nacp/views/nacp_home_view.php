@@ -1,67 +1,33 @@
 <div class="row">
 	<div class="tabbable span12">
 		<ul class="nav nav-tabs">
-			<li id ="tabPima" class="active"><a id = "linkPima" href="#tabs1-pima" data-toggle="tab">PIMA</a></li>
+			<li id ="tabPima" class="active"><a id = "linkPima" href="#tabs1-pima" data-toggle="tab">ALERE PIMA</a></li>
 		</ul>
 		<div class="tab-content">
 
 			<!-- PIMA -->
-			<div class="tab-pane  active" id="tabs1-pima">					
-				<table>
-					<tr>
-						<td style="height:130px;width:40%; top;">
-							<center>
-								<div class="section-title" ><center>Above 350 below 350 curve </center></div>
-								<div id="cd4_test_trends">
-									<div class="loader" style"">Loading...</div>
-								</div>
-						    </center>     
-						</td>
-					
-						<td style="height:130px;width:25%;vertical-align: top;">
-							<center>
-								<div class="section-title" ><center>Device Tests Graphs</center></div>
-                                    <div id="equipment_tests_column">
-										<div class="loader" style"">Loading...</div>
-									</div>	
-							</center>
-						</td>
-						
-					</tr>
-					
-					<tr>
-						<td style="height:130px;width:30%;vertical-align: top;" >
-							<center><div class="section-title" ><center>CD4 Equipment/Equipment and tests</center></div>
-								<table class="data-table" style=" margin-left:0px;">
-				                    <tbody>
-						                <tr>						                	
-						                    <td style="background-color:#fff; width:50%" >
-												<div id="equipment_pie">
-													<div class="loader" style"">Loading...</div>
-												</div>
-                                            </td>
-						                    <td style="background-color:#fff; width:50%" >
-                                            	<div id="equipment_tests_pie">
-													<div class="loader" style"">Loading...</div>
-												</div>
-                                            </td>					                   					                   
-						                </tr>
-				           	 		</tbody>
-				        		</table>
-						    </center>       
-						</td>
-						<td style="height:130px;width:30%;vertical-align: top;">
-							<center>
-								<div class="section-title" ><center>PIMA Tests for <?php echo $date_filter_desc; ?> </center></div>                          
-                            	<div id="tests_table">
-									<div class="loader" style"">Loading...</div>
-								</div>
-								<div id="yearlyTestReportingRates" style="align:center;"></div>
-						
-						    </center>     
-						</td>
-					</tr>
-				</table>
+			<div class="tab-pane  active" id="tabs1-pima">
+				<div class="row" style="margin-top:10px;">
+					<div id="cd4_test_trends" class="col-md-6">
+						<div class="loader" style"">Loading...</div>
+					</div>
+
+					<div id="equipment_tests_column" class="col-md-6">
+						<div class="loader" style"">Loading...</div>
+					</div>	
+				</div>
+				<div class="row" style="margin-top:10px;">
+
+					<div id="equipment_pie" class="col-md-3">
+						<div class="loader" style"">Loading...</div>
+					</div>
+					<div id="equipment_tests_pie" class="col-md-3">
+						<div class="loader" style"">Loading...</div>
+					</div>                        
+					<div id="tests_table" class="col-md-6">
+						<div class="loader" style"">Loading...</div>
+					</div>
+				</div>
 			</div>				
 		</div><!-- /.tab-content -->
 	</div><!-- /.tabbable -->

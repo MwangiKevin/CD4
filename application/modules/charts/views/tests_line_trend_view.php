@@ -32,6 +32,7 @@
                     }
                 },
                 yAxis: {
+                    gridLineWidth: 2,
                     title: {
                         text: '# Tests'
                     },
@@ -47,8 +48,9 @@
                         lineColor: '#666666',
                         lineWidth: 1,
                         marker: {
-                            lineWidth: 1,
-                            lineColor: '#666666'
+                            lineWidth: 0,
+                            lineColor: '#666666',
+                            radius: 0
                         }                
                     }            
                 },            

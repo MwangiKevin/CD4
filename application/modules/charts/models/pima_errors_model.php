@@ -56,6 +56,7 @@ class pima_errors_model extends MY_Model{
 		$user_delimiter =$this->sql_user_delimiter($user_group_id,$user_filter_used);
 
 		$sql = "CALL error_yearly_trends(".$user_group_id.",".$user_filter_used.",".$year.")";
+		
 
 		$res 	=	R::getAll($sql);
 

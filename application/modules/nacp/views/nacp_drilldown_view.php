@@ -62,7 +62,6 @@
 						<td id="bottom-sec" style="height:130px;width:40%;vertical-align: top;">
 							<center>
 								<div>
-									<div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?></center></div>
 									<div>
 										<table id="data-table">
 											<thead>

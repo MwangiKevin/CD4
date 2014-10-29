@@ -13,6 +13,7 @@ BEGIN
                 ON `c_t`.`equipment_id` = `e`.`id`
 			WHERE 1
 				AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
+				AND `c_t`.`result_date` <= CURDATE() 
             GROUP BY `equipment_name`
 			ORDER BY `equipment_name` ASC;
 		
@@ -35,7 +36,8 @@ BEGIN
 					ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `partner_id` = user_filter_used
+					AND  `partner_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 			
@@ -58,7 +60,8 @@ BEGIN
 						ON `d`.`id` = `f`.`district_id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `region_id` = user_filter_used
+					AND  `region_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 				
@@ -79,7 +82,8 @@ BEGIN
 				ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `district_id` = user_filter_used
+					AND  `district_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 			
@@ -100,7 +104,8 @@ BEGIN
 				ON `c_t`.`facility_id` = `f`.`id`
 				WHERE 1
 					AND `c_t`.`result_date` BETWEEN `from_date` AND  `to_date`
-					AND  `facility_id` = user_filter_used
+					AND  `facility_id` = `user_filter_used`
+					AND `c_t`.`result_date` <= CURDATE()
 	            GROUP BY `equipment_name`
 				ORDER BY `equipment_name` ASC;
 			

@@ -33,7 +33,7 @@
 								),
 						array(	'num'			=>	5,
 								'name'			=>	'Reports',
-								'url'			=>	base_url()."admin/reports/reporting_view",
+								'url'			=>	base_url()."admin/reports",
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
@@ -142,6 +142,7 @@
 									ON `reg`.`id` = `par_reg`.`region_id`
 										LEFT JOIN `partner` `par`
 										ON `par_reg`.`partner_id`=`par`.`id`
+							GROUP BY `reg`.`name`
 							ORDER BY `region_name`
 							");
 	}
@@ -163,6 +164,7 @@
 										ON `reg`.`id` = `par_reg`.`region_id`
 											LEFT JOIN `partner` `par`
 											ON `par_reg`.`partner_id`=`par`.`id`
+							GROUP BY `dis`.`name`
 							ORDER BY `district_name`
 							");
 	}

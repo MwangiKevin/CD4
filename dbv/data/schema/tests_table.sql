@@ -11,10 +11,13 @@ BEGIN
 				SUM(CASE WHEN `c_t`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid`				
 			FROM `cd4_test` `c_t`
 
-			WHERE `result_date` BETWEEN from_date AND to_date;
+			WHERE `result_date` BETWEEN `from_date` AND `to_date`
+			AND `result_date` <= CURDATE()
+			;
 		ELSE				
 			CASE `user_group_id`
 			WHEN 3 THEN
+			
 				SELECT 
 					COUNT(*) AS `total`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
@@ -24,9 +27,13 @@ BEGIN
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `partner_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `partner_id` = `user_filter_used`
+				AND `result_date` <= CURDATE() 
+				;
+				
 			WHEN 6 THEN
+			
 				SELECT 
 					COUNT(*) AS `total`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
@@ -36,9 +43,13 @@ BEGIN
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `c_t`.`facility_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `c_t`.`facility_id` = `user_filter_used`
+				AND `result_date` <= CURDATE() 
+				;
+				
 			WHEN 9 THEN
+			
 				SELECT 
 					COUNT(*) AS `total`,
 					SUM(CASE WHEN `c_t`.`patient_age_group_id`='3' AND `c_t`.`valid`= '1' AND `c_t`.`cd4_count` < 350 THEN 1 ELSE 0 END ) AS `failed`,
@@ -51,8 +62,11 @@ BEGIN
 					ON `c_t`.`facility_id` = `f`.`id`
 				LEFT JOIN `district` `d`
 					ON `d`.`id` = `f`.`district_id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `region_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `region_id` = `user_filter_used`
+				AND `result_date` <= CURDATE() 
+				;
+				
 			WHEN 8 THEN
 				SELECT 
 					COUNT(*) AS `total`,
@@ -64,8 +78,11 @@ BEGIN
 				FROM `cd4_test` `c_t`
 				LEFT JOIN facility `f`
 					ON `c_t`.`facility_id` = `f`.`id`
-				WHERE `result_date` BETWEEN from_date AND to_date
-				AND `district_id` = user_filter_used;
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
+				AND `district_id` = `user_filter_used`
+				AND `result_date` <= CURDATE()
+				
+				;
 			END CASE;
 		END CASE;
 	END
