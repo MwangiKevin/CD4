@@ -25,7 +25,7 @@ $(function () {
                 },
                 yAxis: {
                     title: {
-                        text: '# Pima Devices'
+                        text: '# of Controls Reported'
                     },
                     plotLines: [{
                         value: 0,
@@ -35,7 +35,7 @@ $(function () {
                 },
                 plotOptions: {
                     area: {
-                        stacking: null,
+                        stacking: 'percent',
                         lineColor: '#666666',
                         lineWidth: 1,
                         marker: {
@@ -49,9 +49,9 @@ $(function () {
                 },
                 tooltip: {
                     shared: true,
-                    valueSuffix: ' Devices',
+                    valueSuffix: ' Controls',
                     crosshairs: [true,false],
-                    //pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>{series.data.percentage:.1f}%</b></div>'
+                    pointFormat: '<br/><br/>{series.name}: <div><b>{point.y}, </b><b>({point.percentage:.2f}) %</b></div>'
                 },
                 series: <?php echo json_encode($chart);?>
     });

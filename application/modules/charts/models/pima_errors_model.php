@@ -83,7 +83,7 @@ class pima_errors_model extends MY_Model{
 				}
 			}
 		}
-
+		// print_r($data);die();
 		return $data;
 	}
 	public function error_types_col($user_group_id,$user_filter_used,$from,$to){

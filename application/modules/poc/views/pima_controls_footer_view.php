@@ -1,15 +1,20 @@
 <script>
+function get_data_table (user_type,id) {
+  $('#pima_controls_table').dataTable({
+    "bJQueryUI":true, 
+    "sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/"+user_type+"/"+id ,
+    "aoColumnDefs": [
+    { "bSortable": false, "aTargets": [ 0 ] }
+    ],
+    "aaSorting": [[1, 'asc']]
+
+  }); 
+
+}
+
 $( document ).ready(function() {
 
-	$('#pima_controls_table').dataTable({
-		"bJQueryUI":true, 
-		"sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>" ,
-		"aoColumnDefs": [
-		{ "bSortable": false, "aTargets": [ 0 ] }
-		],
-		"aaSorting": [[1, 'asc']]
-
-	});	
+	get_data_table("<?php echo "$user_group_id"?>","<?php echo "$user_filter_used"?>");
 
 	 $.ajax({
       type:"POST",
@@ -72,4 +77,25 @@ $( document ).ready(function() {
  //            }]
  //        }); 
 });
+
+function load_tree_data(type,id,type_identifier){
+ 
+    $("#filter-identifier").html(type_identifier);
+
+    $("#div1").html('<div class="loader" style"">Loading...</div>'); 
+    $("#div2").html('<div class="loader" style"">Loading...</div>'); 
+    $("#div3").html('<div class="loader" style"">Loading...</div>');
+    $("#div4").html('<div class="loader" style"">Loading...</div>'); 
+    $("#pima_controls_table").html('<div class="loader" style"">Loading...</div>'); 
+
+
+    $("#div1").load("<?php echo base_url()."charts/pima_controls/get_pima_controls_failed_successful_pie/"; ?>"+type+"/"+id );  
+    $("#div2").load("<?php echo base_url()."charts/pima_controls/get_pima_controls_tests_pie/"; ?>"+type+"/"+id ); 
+    $("#div3").load("<?php echo base_url('charts/pima_controls/get_pima_controls_errors'); ?>/"+type+"/"+id ); 
+    $("#div4").load("<?php echo base_url('charts/pima_controls/get_pima_controls_tests_errors_controls'); ?>/"+type+"/"+id ); 
+
+   get_data_table(type,id);
+
+
+}
 </script>
