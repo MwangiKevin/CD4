@@ -2,68 +2,43 @@
 <div class = "row tree-outer">
     <div class="col-md-12 well" id ="desc" style=" min-height: 10px;  padding: 8px;  margin-bottom: 0px; ">
         <div class="" style=" height:13px;  ">
-
             <b><center><div id="filter-identifier">National<div></div></div></center></b>
         </div>
     </div>
-    <div class="col-md-3 well " style="overflow-y: auto; height: 560px !important;" id="tree">
-                    <div class="loader" style"">Loading...</div>  
-    </div>
-
-        <div class="row">
-            <div class="col-md-4" id="">
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
-                    <div id="div1">              
-                        <div class="loader" style"">Loading...</div>      
-                    </div>  
-                </div> 
-                
-            </div>
-            <div class="col-md-4" id="">        
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
-                    <div id="div2">
-                        <div class="loader" style"">Loading...</div>    
-                    </div>
-                </div> 
-            </div>
-            <div class="col-md-5" id="">        
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
-                    <div id="div3">
-                        <div class="loader" style"">Loading...</div>    
-                    </div>
-                </div> 
-            </div>
-            <div class="col-md-3" id="" style="">
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;height:250px;" >
-                    <div id="div4">              
-                        <div class="loader" style"">Loading...</div>      
-                    </div>  
-                </div> 
-            </div>
-            <!-- <div class="col-md-4" id="">        
-               
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
-                    <div id="div5">
-                        <div class="loader" style"">Loading...</div>    
-                    </div>
-                </div> 
-            </div>
-            <div class="col-md-4" id="">        
-               
-                <div class="panel panel-default" style="width:100%;padding:30px;box-shadow: 4px 4px 4px #888888;" >
-                    <div id="div6">
-                        <div class="loader" style"">Loading...</div>    
-                    </div>
-                </div> 
-            </div> -->
+    <div class="row" style=" margin-top: 10px;">
+        <div class="col-md-3 wellm " style="overflow-y: auto; height: 480px !important;" id="tree">
+            <div class="loader" style"">Loading...</div>  
         </div>
-    
 
-    <div class="col-md-12" style="overflow-y: auto; height: 560px !important;">
+        <div class="col-md-9 row">
+            <div class="col-md-6" style=" margin-bottom: 15px;">
+                <div id="div1">              
+                    <div class="loader" style"">Loading...</div>      
+                </div>  
+
+            </div>
+            <div class="col-md-6" style=" margin-bottom: 15px;">        
+                <div id="div2">
+                    <div class="loader" style"">Loading...</div>    
+                </div>
+            </div>
+            <div class="col-md-8" style=" margin-bottom: 15px;">        
+                <div id="div3">
+                    <div class="loader" style"">Loading...</div>    
+                </div> 
+            </div>
+            <div class="col-md-4" style=" margin-bottom: 15px;">
+                <div id="div4">              
+                    <div class="loader" style"">Loading...</div>      
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="overflow-y: auto; <!-- height: 560px !important; -->">
         <div class="row">
             <div class="row">
-            <div class="col-md-12" id="">   
-                <div class="section-title" ><center>Failed Controls</center></div>
+                <div class="col-md-12" id="">   
+                    <div class="section-title" ><center>Failed Controls</center></div>
                     <div>
                         <table id="pima_controls_table">
                             <thead>
@@ -84,15 +59,15 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                
+
+                </div>
             </div>
-        </div>
-            
-            
+
+
         </div>
     </div>
-    
-   
+
+
 </div>
 
 

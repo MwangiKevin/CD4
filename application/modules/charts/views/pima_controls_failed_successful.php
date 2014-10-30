@@ -4,8 +4,8 @@ $('#div1').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: false,                
-                height:200
+                plotShadow: false,
+                height:<?php echo $height;?>
             },
             title: {
                 text: 'Failed Vs Successful Controls'

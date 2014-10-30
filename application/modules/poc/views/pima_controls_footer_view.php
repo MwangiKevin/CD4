@@ -40,56 +40,12 @@ $( document ).ready(function() {
         }
     });
 
-    $('#div1').load("<?php echo base_url("charts/pima_controls/get_pima_controls_failed_successful_pie/$user_group_id/$user_filter_used"); ?>");
-    $('#div2').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_pie/$user_group_id/$user_filter_used"); ?>");
+    $('#div1').load("<?php echo base_url("charts/pima_controls/get_pima_controls_failed_successful_pie/$user_group_id/$user_filter_used"); ?>/195");
+    $('#div2').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_pie/$user_group_id/$user_filter_used"); ?>/195");
     $('#div3').load("<?php echo base_url("charts/pima_controls/get_pima_controls_errors/$user_group_id/$user_filter_used"); ?>");
     $('#div4').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_errors_controls/$user_group_id/$user_filter_used"); ?>");
 
 
- // $('#div4').highcharts({
- //            chart: {
- //                plotBackgroundColor: null,
- //                plotBorderWidth: null,
- //                plotShadow: false,                
- //                height:200
- //            },
- //            title: {
- //                text: 'Control Tests Vs Control Errors'
- //            },
- //            tooltip: {
- //                pointFormat: '{series.name}: <div><b>{point.y}, </b><br/>Percentage Share: <b>{point.percentage:.1f}%</b></div>'
- //            },
- //            plotOptions: {
- //                pie: {
- //                    allowPointSelect: true,
- //                    cursor: 'pointer',
- //                    dataLabels: {
- //                        enabled: false
- //                    },
- //                    showInLegend: true
- //                }
- //            },            
- //            credits:{
- //                enabled:false
- //            },
- //            series: [{
- //                type: 'pie',
- //                name: 'Devices',
- //                size: '140%',
- //                data: [
- //                <?php echo json_encode($tests)?>,
- //                {
- //                    name: 'Control Errors', 
- //                    y: 30,
- //                    sliced: true,
- //                    selected: true,
- //                }
-                
-                
- //            ]
-                
- //            }]
- //        }); 
 });
 
 function load_tree_data(type,id,type_identifier){
@@ -103,8 +59,8 @@ function load_tree_data(type,id,type_identifier){
     $("#pima_controls_table").html('<div class="loader" style"">Loading...</div>'); 
 
 
-    $("#div1").load("<?php echo base_url()."charts/pima_controls/get_pima_controls_failed_successful_pie/"; ?>"+type+"/"+id );  
-    $("#div2").load("<?php echo base_url()."charts/pima_controls/get_pima_controls_tests_pie/"; ?>"+type+"/"+id ); 
+    $("#div1").load("<?php echo base_url()."charts/pima_controls/get_pima_controls_failed_successful_pie/"; ?>"+type+"/"+id+"/195" );  
+    $("#div2").load("<?php echo base_url()."charts/pima_controls/get_pima_controls_tests_pie/"; ?>"+type+"/"+id+"/195" ); 
     $("#div3").load("<?php echo base_url('charts/pima_controls/get_pima_controls_errors'); ?>/"+type+"/"+id ); 
     $("#div4").load("<?php echo base_url('charts/pima_controls/get_pima_controls_tests_errors_controls'); ?>/"+type+"/"+id ); 
 
