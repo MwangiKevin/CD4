@@ -120,7 +120,7 @@ class pima_errors extends MY_Controller {
     $chart_data = $this->config->item("hgc_column_stacked_grouped");
     $chart_data["xAxis"]["categories"]= $categories;
     $chart_data["yAxis"]['title']['text'] = "# Reported";
-    //$chart_data["chart"]["width"] = "1150";
+    //$chart_data["chart"]["width"] = '100%';
     $chart_data["chart"]["height"] = $height;
 
 
