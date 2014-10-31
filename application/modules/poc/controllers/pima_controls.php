@@ -95,17 +95,20 @@ class pima_controls extends MY_Controller {
 		                		<span class='badge badge-success ' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
 		                		<a href='#' onclick='load_tree_data(6,".$f_value["facility_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."\")'>".$f_value["facility_name"]."</a>
                 				<a href='#'> <span class='badge pull-right' style='background-color: #5bc0de;'>F</span></a>
-		                	</li>
+		                		<ul>
 		                    ";
 		            $device_schema = $this->get_deveices_schema($f_value["facility_id"]);
 		            foreach ($device_schema as $e_key => $e_value) {
 		            	$str .="<li style='display:none'>
 		            				<span class='badge badge-success' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign '></i></span>
-		            				<a href='#' onclick ='load_tree_data(12,".$e_value["facility_equipment_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."&nbsp;>>&nbsp;".$e_value["equipment"]."\")'>".$e_value["equipment"]."</a>
+		            				<a href='#' onclick ='load_tree_data(12,".$e_value["facility_equipment_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."&nbsp;>>&nbsp;".$e_value["equipment"]."[".$e_value["serial_number"]."]\")'>".$e_value["equipment"]."(".$e_value["serial_number"].")</a>
 		            				<a href='#'><span class='badge pull-right' style='background-color:#D5D500;'>E</span></a>
 		            			</li>
 		            			";
 		            }
+			     	$str.="	</ul>
+			     			</li>
+			     			";
 	            }
 		     	$str.="	</ul>
 		     			</li>
