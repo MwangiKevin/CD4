@@ -20,6 +20,7 @@ class pima_controls extends MY_Controller {
 		$this->data["user_filter_used"] = $this->session->userdata("user_filter_used");
 		//$this->data['tests'] = $this->poc_model->pima_controls_success();
 		$this->data['menus']	= 	$this->poc_model->menus(9);
+		$this->data['hide_user_filter']	=	true;
 	
 		$this->load->module("charts/pima_controls");	
 

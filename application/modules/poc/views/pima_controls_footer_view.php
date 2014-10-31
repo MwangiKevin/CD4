@@ -2,7 +2,7 @@
 var pima_controls_table;
 pima_controls_table =  $('#pima_controls_table').dataTable({
                                     "bJQueryUI":true, 
-                                    "sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/<?php echo "$user_group_id"?>/<?php echo "$user_filter_used"?>" ,
+                                    "sAjaxSource": "<?php echo base_url('poc/pima_controls/ss_pima_controls'); ?>/0/0" ,
                                     "aoColumnDefs": [
                                     { "bSortable": false, "aTargets": [ 0 ] }
                                     ],
@@ -40,10 +40,10 @@ $( document ).ready(function() {
         }
     });
 
-    $('#div1').load("<?php echo base_url("charts/pima_controls/get_pima_controls_failed_successful_pie/$user_group_id/$user_filter_used"); ?>/195");
-    $('#div2').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_pie/$user_group_id/$user_filter_used"); ?>/195");
-    $('#div3').load("<?php echo base_url("charts/pima_controls/get_pima_controls_errors/$user_group_id/$user_filter_used"); ?>");
-    $('#div4').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_errors_controls/$user_group_id/$user_filter_used"); ?>");
+    $('#div1').load("<?php echo base_url("charts/pima_controls/get_pima_controls_failed_successful_pie/0/0"); ?>/195");
+    $('#div2').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_pie/0/0"); ?>/195");
+    $('#div3').load("<?php echo base_url("charts/pima_controls/get_pima_controls_errors/0/0"); ?>");
+    $('#div4').load("<?php echo base_url("charts/pima_controls/get_pima_controls_tests_errors_controls/0/0"); ?>");
 
 
 });
