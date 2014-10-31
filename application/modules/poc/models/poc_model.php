@@ -11,7 +11,7 @@ class poc_model extends MY_Model{
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	2,
-								'name'			=>	'POC Device Uploads',
+								'name'			=>	'PIMA Uploads',
 								'url'			=>	base_url()."poc/upload",
 								'other'			=>	"",
 					 			'selected'		=>	false,
@@ -39,8 +39,15 @@ class poc_model extends MY_Model{
 					 			'selectedString'=>	"",							
 								),
 						array(	'num'			=>	5,
-								'name'			=>	'POC Device Errors',
+								'name'			=>	'PIMA Errors',
 								'url'			=>	base_url()."poc/errors",
+								'other'			=>	"",
+					 			'selected'		=>	false,
+					 			'selectedString'=>	"",							
+								),
+						array(	'num'			=>	9,
+								'name'			=>	'PIMA Controls',
+								'url'			=>	base_url()."poc/pima_controls",
 								'other'			=>	"",
 					 			'selected'		=>	false,
 					 			'selectedString'=>	"",							
@@ -171,6 +178,45 @@ class poc_model extends MY_Model{
 
 		return $facilities_requested = R::getAll($sql);
 	}
+
+	function pima_controls()
+	{
+		$sql = "SELECT 
+					`pc`.`id` AS `PC ID`,
+					`pc`.`sample_code`,
+					`pc`.`cd4_count`,
+					`pc`.`facility_equipment_id` AS `PC FE ID`,
+					`pc`.`result_date`,
+					`fe`.`id` AS `FE ID` ,
+					`fe`.`facility_id` AS `FE FID`,
+					`fe`.`date_added`,
+					`fc`.`id` AS `FC ID`,
+					`fc`.`name`,
+					`eq`.`id`,
+					`eq`.`description`
+				FROM `pima_control` `pc`
+				LEFT JOIN `facility_equipment` `fe`
+				ON `pc`.`facility_equipment_id` = `fe`.`id`
+				LEFT JOIN `facility` `fc`
+				ON `fe`.`facility_id` = `fc`.`id`
+				LEFT JOIN `equipment` `eq`
+				ON `fe`.`equipment_id` = `eq`.`id`
+
+				WHERE `sample_code` = 'LOW' AND  `cd4_count` > 350 || `sample_code` = 'NORMAL' AND  `cd4_count` < 350	";
+
+		return $failed_controls = R::getAll($sql);
+	}
+
+	public function get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to)
+	{
+		$sql = "CALL get_pima_controls_reported('".$from."','".$to."',".$user_group_id.",".$user_filter_used.")";
+
+		$res = R::getAll($sql);
+		// print_r($res);die();
+		return $res;
+	}
+
+	
 
 }
 /* End of file poc_model.php */
