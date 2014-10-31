@@ -56,12 +56,13 @@ class pima_controls_model extends MY_Model{
 		$res   = R::getAll($sql_controls);
 
 		$months = array(1,2,3,4,5,6,7,8,9,10,11,12);
-		// print_r($controls);die();
-		$data["chart"][0]["name"]	=  "Successful Controls";
-		$data["chart"][0]["color"]	=  "#a4d53a";
+
+		$data["chart"][0]["name"]	=  "Failed Controls";
+		$data["chart"][0]["color"]	=  "#aa1919";
+
+		$data["chart"][1]["name"]	=  "Successful Controls";
+		$data["chart"][1]["color"]	=  "#a4d53a";
 		
-		$data["chart"][1]["name"]	=  "Failed Controls";
-		$data["chart"][1]["color"]	=  "#aa1919";
 
 		foreach ($months as $key => $value) {	
 
@@ -72,8 +73,8 @@ class pima_controls_model extends MY_Model{
 				
 				if( (int)$value == (int) $value1["month"]){
 
-					$data["chart"][0]["data"][$key]	=  (int) $value1["successful_confirmed_controls"];
-					$data["chart"][1]["data"][$key]	=  (int) $value1["failed_confirmed_controls"];
+					$data["chart"][0]["data"][$key]	=  (int) $value1["failed_confirmed_controls"];
+					$data["chart"][1]["data"][$key]	=  (int) $value1["successful_confirmed_controls"];
 
 				}
 			}
