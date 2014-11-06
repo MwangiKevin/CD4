@@ -3,6 +3,7 @@ class pima_controls_model extends MY_Model{
 	
 	public function get_pima_controls_reported($user_group_id,$user_filter_used,$from,$to)
 	{
+		// echo $user_group_id; die();
 		// echo $user_filter_used;die();
 		$sql_controls = "CALL pima_control_reported(".$user_group_id.",".$user_filter_used.",'".$from."','".$to."')";
 		// echo $sql_controls;die();
@@ -24,12 +25,13 @@ class pima_controls_model extends MY_Model{
 		return $data;
 	}
 
-	public function pima_controls_tests_pie($user_group_id,$user_filter_used,$year)
+	public function pima_controls_tests_pie($user_group_id,$user_filter_used,$from,$to)
 	{
-		$sql_controls = "CALL pima_controls(".$user_group_id.",".$user_filter_used.",".$year.")";
-
-		$sql_test = "CALL pima_tests(".$user_group_id.",".$user_filter_used.",".$year.")";
-
+		// echo $from." to ".$to;
+		$sql_controls = "CALL pima_controls(".$user_group_id.",".$user_filter_used.",'".$from."','".$to."')";
+		// echo " ".$sql_controls;
+		$sql_test = "CALL pima_tests(".$user_group_id.",".$user_filter_used.",'".$from."','".$to."')";
+		// echo " ".$sql_test;die();
 		$controls = R::getAll($sql_controls);
 		$tests 	  = R::getAll($sql_test);
 
