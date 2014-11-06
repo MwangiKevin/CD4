@@ -6167,7 +6167,7 @@ BEGIN
 	END
 	";
 
-$db_procedures["pima_controls"] = "CREATE PROCEDURE `pima_controls`(user_group_id int(11),user_filter_used int(11),year int(11))
+$db_procedures["pima_controls"] = "CREATE PROCEDURE `pima_controls`(user_group_id int(11),user_filter_used int(11),from_date date, to_date date)
 BEGIN
 		CASE `user_filter_used`
 		WHEN 0 THEN
@@ -6184,7 +6184,7 @@ BEGIN
 										ON `f`.`district_id` = `d`.`id`
 											LEFT JOIN `region` `r`
 											ON `d`.`region_id` = `r`.`id`
-		WHERE YEAR(`p_c`.`result_date`) = `year`
+		WHERE `result_date` BETWEEN `from_date` AND `to_date`
 		AND `p_c`.`result_date`<=CURDATE();
 
 		ELSE
@@ -6203,7 +6203,7 @@ BEGIN
 											ON `f`.`district_id` = `d`.`id`
 												LEFT JOIN `region` `r`
 												ON `d`.`region_id` = `r`.`id`
-			WHERE YEAR(`p_c`.`result_date`) = `year`
+			WHERE `result_date` BETWEEN `from_date` AND `to_date`
 			AND `p_c`.`result_date`<=CURDATE()
 			AND `f`.`id` = `user_filter_used`;
 
@@ -6222,7 +6222,7 @@ BEGIN
 											ON `f`.`district_id` = `d`.`id`
 												LEFT JOIN `region` `r`
 												ON `d`.`region_id` = `r`.`id`
-			WHERE YEAR(`p_c`.`result_date`) = `year`
+			WHERE `result_date` BETWEEN `from_date` AND `to_date`
 			AND `p_c`.`result_date`<=CURDATE()
 				AND `p`.`id` = `user_filter_used`;
 
@@ -6240,7 +6240,7 @@ BEGIN
 												ON `f`.`district_id` = `d`.`id`
 													LEFT JOIN `region` `r`
 													ON `d`.`region_id` = `r`.`id`
-				WHERE YEAR(`p_c`.`result_date`) = `year`
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
 				AND `p_c`.`result_date`<=CURDATE()
 					AND `d`.`id` = `user_filter_used`;
 
@@ -6259,7 +6259,7 @@ BEGIN
 												ON `f`.`district_id` = `d`.`id`
 													LEFT JOIN `region` `r`
 													ON `d`.`region_id` = `r`.`id`
-				WHERE YEAR(`p_c`.`result_date`) = `year`
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
 				AND `p_c`.`result_date`<=CURDATE()
 				AND `r`.`id` = `user_filter_used`;
 
@@ -6277,7 +6277,7 @@ BEGIN
 												ON `f`.`district_id` = `d`.`id`
 													LEFT JOIN `region` `r`
 													ON `d`.`region_id` = `r`.`id`
-				WHERE YEAR(`p_c`.`result_date`) = `year`
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
 				AND `p_c`.`result_date`<=CURDATE()
 					AND `f_e`.`id` = `user_filter_used`;
 
@@ -6287,7 +6287,7 @@ BEGIN
 	END
 	";
 
-	$db_procedures["pima_tests"] = "CREATE PROCEDURE `pima_tests`(user_group_id int(11),user_filter_used int(11),year int(11))
+	$db_procedures["pima_tests"] = "CREATE PROCEDURE `pima_tests`(user_group_id int(11),user_filter_used int(11),from_date date, to_date date)
 BEGIN
 		CASE `user_filter_used`
 		WHEN 0 THEN
@@ -6306,7 +6306,7 @@ BEGIN
 										ON `f`.`district_id` = `d`.`id`
 											LEFT JOIN `region` `r`
 											ON `d`.`region_id` = `r`.`id`
-		WHERE YEAR(`cd4t`.`result_date`) = `year`
+		WHERE `result_date` BETWEEN `from_date` AND `to_date`
 		AND `cd4t`.`result_date`<=CURDATE();
 
 		ELSE
@@ -6327,7 +6327,7 @@ BEGIN
 											ON `f`.`district_id` = `d`.`id`
 												LEFT JOIN `region` `r`
 												ON `d`.`region_id` = `r`.`id`
-			WHERE YEAR(`cd4t`.`result_date`) = `year`
+			WHERE `result_date` BETWEEN `from_date` AND `to_date`
 			AND `cd4t`.`result_date`<=CURDATE()
 			AND `f`.`id` = `user_filter_used`;
 
@@ -6348,7 +6348,7 @@ BEGIN
 												ON `f`.`district_id` = `d`.`id`
 													LEFT JOIN `region` `r`
 													ON `d`.`region_id` = `r`.`id`
-				WHERE YEAR(`cd4t`.`result_date`) = `year`
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
 				AND `cd4t`.`result_date`<=CURDATE()
 				AND `p`.`id` = `user_filter_used`;
 
@@ -6368,7 +6368,7 @@ BEGIN
 													ON `f`.`district_id` = `d`.`id`
 														LEFT JOIN `region` `r`
 														ON `d`.`region_id` = `r`.`id`
-					WHERE YEAR(`cd4t`.`result_date`) = `year`
+					WHERE `result_date` BETWEEN `from_date` AND `to_date`
 					AND `cd4t`.`result_date`<=CURDATE()
 					AND `d`.`id` = `user_filter_used`;
 
@@ -6389,7 +6389,7 @@ BEGIN
 												ON `f`.`district_id` = `d`.`id`
 													LEFT JOIN `region` `r`
 													ON `d`.`region_id` = `r`.`id`
-				WHERE YEAR(`cd4t`.`result_date`) = `year`
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
 				AND `cd4t`.`result_date`<=CURDATE()
 				AND `r`.`id` = `user_filter_used`;
 
@@ -6409,7 +6409,7 @@ BEGIN
 												ON `f`.`district_id` = `d`.`id`
 													LEFT JOIN `region` `r`
 													ON `d`.`region_id` = `r`.`id`
-				WHERE YEAR(`cd4t`.`result_date`) = `year`
+				WHERE `result_date` BETWEEN `from_date` AND `to_date`
 				AND `cd4t`.`result_date`<=CURDATE()
 					AND `f_e`.`id` = `user_filter_used`;
 

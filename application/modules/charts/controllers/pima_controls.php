@@ -19,7 +19,7 @@ class pima_controls extends MY_Controller {
   public function get_pima_controls_tests_pie($user_group_id,$user_filter_used,$height=250)
   {
     $year = $this->get_date_filter_year();
-  	$data = $this->pima_controls_model->pima_controls_tests_pie($user_group_id,$user_filter_used,$year);
+  	$data = $this->pima_controls_model->pima_controls_tests_pie($user_group_id,$user_filter_used,$this->get_filter_start_date(),$this->get_filter_stop_date());
     $data["year"] = $this->get_date_filter_year();
     $data["height"] = $height;
 
