@@ -1936,6 +1936,7 @@ BEGIN
             	ON `fac_eq`.`equipment_id`= `eq`.`id`
 			WHERE `fac_eq`.`date_added` <> '0000-00-00'
 			AND `eq`.`id` = '4' 
+			AND `fac_eq`.`status` <> '4' 
 			GROUP BY `yearmonth`) AS `t1` 
 		INNER JOIN 
 			(SELECT 	CONCAT(YEAR(`fac_eq`.`date_added`),'-',MONTH(`fac_eq`.`date_added`)) AS `yearmonth`,
@@ -1947,6 +1948,7 @@ BEGIN
 		        ON `fac_eq`.`equipment_id`= `eq`.`id`
 			WHERE `fac_eq`.`date_added` <> '0000-00-00'
 			AND `eq`.`id` = '4' 
+			AND `fac_eq`.`status` <> '4' 
 			GROUP BY `yearmonth`) AS `t2` 
 		ON `t1`.`date_added` >= `t2`.`date_added` 
 		group by `t1`.`date_added`;
@@ -1976,6 +1978,7 @@ BEGIN
         			ON	`fac_eq`.`facility_id` = `fac`.`id`
 				WHERE `fac_eq`.`date_added` <> '0000-00-00'
 				AND `eq`.`id` = '4'
+				AND `fac_eq`.`status` <> '4' 
 				AND `fac`.`partner_id` = `user_filter_used`
 				GROUP BY `yearmonth`) AS `t1`
 			INNER JOIN 
@@ -1993,6 +1996,7 @@ BEGIN
 			        ON	`fac_eq`.`facility_id` = `fac`.`id`
 				WHERE `fac_eq`.`date_added` <> '0000-00-00'
 				AND `eq`.`id` = '4' 
+				AND `fac_eq`.`status` <> '4' 
 				AND `fac`.`partner_id` = `user_filter_used`
 				GROUP BY `yearmonth`) AS `t2` 
 			ON `t1`.`date_added` >= `t2`.`date_added` 
@@ -2023,6 +2027,7 @@ BEGIN
 					ON `fac`.`district_id` = `dis`.`id`
 			WHERE `fac_eq`.`date_added` <> '0000-00-00'
 			AND `eq`.`id` = '4'
+			AND `fac_eq`.`status` <> '4' 
 			AND `dis`.`region_id` = `user_filter_used`
 			GROUP BY `yearmonth`) AS `t1`
 		INNER JOIN 
@@ -2042,6 +2047,7 @@ BEGIN
 				ON `fac`.`district_id` = `dis`.`id`
 			WHERE `fac_eq`.`date_added` <> '0000-00-00'
 			AND `eq`.`id` = '4' 
+			AND `fac_eq`.`status` <> '4' 
 			AND `dis`.`region_id` = `user_filter_used`
 			GROUP BY `yearmonth`) AS `t2` 
 		ON `t1`.`date_added` >= `t2`.`date_added` 
@@ -2071,6 +2077,7 @@ BEGIN
 					ON `fac`.`district_id` = `dis`.`id`
 				WHERE `fac_eq`.`date_added` <> '0000-00-00'
 				AND `eq`.`id` = '4'
+				AND `fac_eq`.`status` <> '4' 
 				AND `fac`.`district_id` = `user_filter_used`
 				GROUP BY `yearmonth`) AS `t1` 
 			INNER JOIN 
@@ -2089,6 +2096,7 @@ BEGIN
 
 				WHERE `fac_eq`.`date_added` <> '0000-00-00'
 				AND `eq`.`id` = '4' 
+				AND `fac_eq`.`status` <> '4' 
 				AND `fac`.`district_id` = `user_filter_used`
 				GROUP BY `yearmonth`) AS `t2` 
 			ON `t1`.`date_added` >= `t2`.`date_added` 
@@ -2119,6 +2127,7 @@ BEGIN
 				ON `fac`.`district_id` = `dis`.`id`
 				WHERE `fac_eq`.`date_added` <> '0000-00-00'
 				AND `eq`.`id` = '4'
+				AND `fac_eq`.`status` <> '4' 
 				AND `fac`.`id` = `user_filter_used`
 				GROUP BY `yearmonth`) AS `t1` 
 			INNER JOIN 
@@ -2137,7 +2146,8 @@ BEGIN
 
 				WHERE `fac_eq`.`date_added` <> '0000-00-00'
 				AND `eq`.`id` = '4' 
-				AND `fac`.`id` = 11
+				AND `fac_eq`.`status` <> '4' 
+				AND `fac`.`id` = `user_filter_used`
 				GROUP BY `yearmonth`) AS `t2` 
 			ON `t1`.`date_added` >= `t2`.`date_added` 
 			group by `t1`.`date_added`;
