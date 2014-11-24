@@ -42,6 +42,7 @@ class equipment extends MY_Controller {
 							($key+1),
 							$value["facility_name"],
 							$value["equipment_category"],
+							$value["facility_phone"],
 							'<a href="uploads">Do upload</a>'
 						);
 			$recordsTotal++;
@@ -129,4 +130,6 @@ class equipment extends MY_Controller {
 		echo json_encode($json_req);
 
 	}
+
+	
 }

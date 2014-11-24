@@ -41,7 +41,7 @@ class tree extends MY_Controller {
 			$str.="	<li style=''>
                 		<span class='badge badge-warning' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
                 		<a href='#' onclick='load_tree_data(9,".$r_value["region_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."\")'>".$r_value["region_name"]."</a>
-                		<a href='#''> <span class='badge pull-right' style='background-color: #428bca;'>R</span></a>
+                		<a href='#'> <span class='badge pull-right' style='background-color: #428bca;'>R</span></a>
                 		<ul>
                     ";
 
@@ -50,7 +50,7 @@ class tree extends MY_Controller {
 				$str.="	<li style='display:none'>
 	                		<span class='active badge badge-success' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
 	                		<a href='#' onclick='load_tree_data(8,".$d_value["district_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."\")'>".$d_value["district_name"]."</a>
-                			<a href='#''> <span class='badge pull-right' style='background-color: #5cb85c;'>D</span></a>
+                			<a href='#'> <span class='badge pull-right' style='background-color: #5cb85c;'>D</span></a>
 	                		<ul>
 	                    ";
 
@@ -60,7 +60,7 @@ class tree extends MY_Controller {
 					$str.="	<li style='display:none'>
 		                		<span class='badge badge-success ' style='font-size: 0.8em;'><i class='glyphicon glyphicon-plus-sign'></i> </span>
 		                		<a href='#' onclick='load_tree_data(6,".$f_value["facility_id"].",\"National&nbsp;>>&nbsp;".$r_value["region_name"]."&nbsp;>>&nbsp; ".$d_value["district_name"]."&nbsp;>>&nbsp;".$f_value["facility_name"]."\")'>".$f_value["facility_name"]."</a>
-                				<a href='#''> <span class='badge pull-right' style='background-color: #5bc0de;'>F</span></a>
+                				<a href='#'> <span class='badge pull-right' style='background-color: #5bc0de;'>F</span></a>
 		                	</li>
 		                    ";
 	            }

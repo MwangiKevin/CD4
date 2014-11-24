@@ -104,10 +104,10 @@ class pima_model extends MY_Model{
 		$data["chart"][0]["data"] 	= 	$this->expected_reporting_dev_array($user_group_id,$user_filter_used,$year);
 
 		$data["chart"][1]["name"] 	= 	"Reported Devices";
-		$data["chart"][1]["color"] 	= 	"#a4d53a";
-		
-		$data["chart"][1]["data"] 	= 	$this->reported_devices($user_group_id, $user_filter_used,$year);
+		$data["chart"][1]["color"] 	= 	"#a4d53a";		
 
+	    $data["chart"][1]["data"] 	= 	$this->reported_devices($user_group_id, $user_filter_used,$year);
+	    // print_r($data);die();
 		return $data;
 
 	}
@@ -132,9 +132,11 @@ class pima_model extends MY_Model{
 		$current_cummulative_removed 	= 0;
 
 		//assisgn $current_cummulative_added and $current_cummulative_removed to last years ending
-
+		//print_r($devices_added_assoc);die();
+		//print_r($devices_removed_assoc);die();
 		foreach ($devices_added_assoc as $value) {
 			$curr_year = (int) Date("Y",strtotime($value["rank_date"]));
+
 			if($curr_year< (int) $year){
 				//echo $curr_year."  ".$year."  ".$value["cumulative"]."<br/>" ;				
 				$current_cummulative_added 		= (int) $value["cumulative"];
@@ -182,14 +184,14 @@ class pima_model extends MY_Model{
 		// print_r($consolidated_array);
 		// echo "</pre>";
 		
-
+		//print_r($consolidated_array); die();
 		return $consolidated_array;
 	}
 	private function reported_devices($user_group_id,$user_filter_used, $year){
 		
 		$sql = "CALL reported_devices(".$user_group_id.",".$user_filter_used.",".$year.")";
 		$res = R::getAll($sql);
-
+		// print_r($res);die();
 		$reported_array = array(); 
 		for($i=0;$i<12;$i++){
 

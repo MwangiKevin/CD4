@@ -22,6 +22,7 @@ BEGIN
 							ON `f_e`.`equipment_id` = `eq`.`id`
 
 					WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
+					AND `tst`.`result_date` <= CURDATE()
 
 				GROUP BY `equipment_name`
 				ORDER BY `equipment_name` DESC;
@@ -50,6 +51,7 @@ BEGIN
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `p`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -75,6 +77,7 @@ BEGIN
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `f`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -101,6 +104,7 @@ BEGIN
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `d`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -127,6 +131,7 @@ BEGIN
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `r`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;
@@ -153,6 +158,7 @@ BEGIN
 
 						WHERE `tst`.`result_date` BETWEEN `from_date` AND `to_date`
 						AND `f_e`.`id` = `user_filter_used`
+						AND `tst`.`result_date` <= CURDATE()
 
 					GROUP BY `equipment_name`
 					ORDER BY `equipment_name` DESC;

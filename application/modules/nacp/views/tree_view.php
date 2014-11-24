@@ -5,33 +5,31 @@
             <b><center><div id="filter-identifier">National<div></div></div></center></b>
         </div>
     </div>
-    <div class="col-md-3 well " style="overflow-y: auto; height: 560px !important;" id="tree">
+    <div class="col-md-3 well " style="overflow-y: auto; height: 740px !important;" id="tree">
                     <div class="loader" style"">Loading...</div>  
     </div>
-    <div class="col-md-9" style="overflow-y: auto; height: 560px !important;">
+    <div class="col-md-9" style="overflow-y: auto; height: 740px !important;">
         <div class="row">
-            <div class="col-md-7" id="">
-                <div class="section-title" ><center>CD4 Tests for <?php echo $date_filter_desc;?> </center></div>
+            <div class="col-md-7" style="margin-bottom:15px;">
                 <div id="tests-table">              
                     <div class="loader" style"">Loading...</div>    
                 </div>  
             </div>
-            <div class="col-md-5" id="">        
-                <div class="section-title" ><center>Equipment Tests for <?php echo $date_filter_desc;?></center></div>                      
+            <div class="col-md-5" style="margin-bottom:15px;">                             
                 <div id="equipment-test-table">
                     <div class="loader" style"">Loading...</div>    
                 </div>
             </div>
-            <div class="col-md-12" id="">   
-                <div class="panel panel-default" style="width:100%;float:left;padding:30px;box-shadow: 4px 4px 4px #888888;" id="cd4testtrends">
+            <div class="col-md-12" style="margin-bottom:15px;">   
+                <div id="cd4testtrends">
                     <div class="loader" style"">Loading...</div>
                 </div>  
             </div>
-        </div>
-    </div>
-    <div class="col-md-11" style="">
-        <div id="monthly_error_trend">
-            <div class="loader" style"">Loading...</div>
+            <div class="col-md-12" style="">
+                <div id="monthly_error_trend">
+                    <div class="loader" style"">Loading...</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

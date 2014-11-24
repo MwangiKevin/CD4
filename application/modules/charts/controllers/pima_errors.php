@@ -120,8 +120,9 @@ class pima_errors extends MY_Controller {
     $chart_data = $this->config->item("hgc_column_stacked_grouped");
     $chart_data["xAxis"]["categories"]= $categories;
     $chart_data["yAxis"]['title']['text'] = "# Reported";
-    //$chart_data["chart"]["width"] = "1150";
+    //$chart_data["chart"]["width"] = '100%';
     $chart_data["chart"]["height"] = $height;
+
 
     $series =   array(
       array(
@@ -154,14 +155,26 @@ class pima_errors extends MY_Controller {
 
     $json       =     json_encode($chart_data);     
 
-    $json       =str_replace('"tooltip":"null"', "tooltip: {
+    $json       =str_replace('"tooltip":"null"', "tooltip: {  
+
       formatter: function() {
-        var perc = ((this.y)/(this.point.stackTotal))*100
-        return '<b>'+ this.x +'</b><br/>'+
-        this.series.name +': '+ this.y +'<br/>'+
-        'Percentage: '+ perc +'%<br/>'+
-        'Total: '+ this.point.stackTotal;
-      }
+        var s = '<b>'+ this.x +'</b>',
+            sum = 0;
+
+        $.each(this.points, function(i, point) {
+
+            s += '<br/>'+ point.series.name +': '+
+                point.y ;
+                if(point.series.name!='Total Errors'){
+                  sum += point.y;
+                }
+        });
+
+        s += '<br/>--------------<br/>Total Attempted: '+sum
+
+        return s;
+    },
+    shared: true
     }", $json) ;
 
     $script = "

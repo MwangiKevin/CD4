@@ -1,4 +1,4 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `equipment_tests_column`(user_group_id int(11),user_filter_used int(11), today date)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `equipment_tests_column`(user_group_id int(11),user_filter_used int(11))
 BEGIN
 			CASE `user_filter_used`
 			WHEN 0 THEN
@@ -12,7 +12,7 @@ BEGIN
                     LEFT JOIN cd4_test `c_t`
                     ON `c_t`.`equipment_id` = `e`.`id`
 				WHERE 1
-					AND `c_t`.`result_date`<= 'today'
+					AND `c_t`.`result_date`<= CURDATE()
 				GROUP BY `e`.`description`,`year` 
 				ORDER BY `e`.`description` ASC;
 			ELSE	
@@ -30,8 +30,8 @@ BEGIN
 	                    LEFT JOIN facility `f`
 							ON `c_t`.`facility_id` = `f`.`id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
-							AND `partner_id` = user_filter_used
+							AND `c_t`.`result_date`<= CURDATE()
+							AND `partner_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 						
@@ -50,8 +50,8 @@ BEGIN
 	                    	LEFT JOIN `district` `d`
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
-							AND `region_id` = user_filter_used
+							AND `c_t`.`result_date`<= CURDATE()
+							AND `region_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 						
@@ -69,8 +69,8 @@ BEGIN
 	                    	LEFT JOIN `district` `d`
 							ON `d`.`id` = `f`.`district_id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
-							AND `district_id` = user_filter_used
+							AND `c_t`.`result_date`<= CURDATE()
+							AND `district_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 					WHEN 6 THEN
@@ -85,8 +85,8 @@ BEGIN
 	                    LEFT JOIN facility `f`
 							ON `c_t`.`facility_id ` = `f`.`id`
 						WHERE 1
-							AND `c_t`.`result_date`<= `today`
-							AND `facility_id` = user_filter_used
+							AND `c_t`.`result_date`<= CURDATE()
+							AND `facility_id` = `user_filter_used`
 						GROUP BY `e`.`description`,`year` 
 						ORDER BY `e`.`description` ASC;
 					

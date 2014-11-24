@@ -15,6 +15,7 @@ BEGIN
 			
 			WHERE 1 
 			AND YEAR(`tst`.`result_date`) = `year` 
+			AND `tst`.`result_date` <= CURDATE()
 			GROUP BY `yearmonth`;
 		ELSE			
 			CASE `user_group_id`
@@ -33,6 +34,7 @@ BEGIN
 				 WHERE 1 
 				 AND YEAR(`tst`.`result_date`) = `year` 
 				 AND `fac`.`partner_id` = `user_filter_used`
+				 AND `tst`.`result_date` <= CURDATE()
 				 GROUP BY `yearmonth`;
 			
 			WHEN 9 THEN
@@ -52,6 +54,7 @@ BEGIN
 				WHERE 1 
 				AND YEAR(`tst`.`result_date`) = `year`
 				AND `dis`.`region_id` = `user_filter_used`
+				AND `tst`.`result_date` <= CURDATE()
 				GROUP BY `yearmonth`;
 			WHEN 8 THEN
 			
@@ -68,6 +71,7 @@ BEGIN
 				WHERE 1 
 				AND YEAR(`tst`.`result_date`) = `year`
 				AND `fac`.`district_id` = `user_filter_used`
+				AND `tst`.`result_date` <= CURDATE()
 				GROUP BY `yearmonth`;
 				
 			WHEN 6 THEN
@@ -85,6 +89,7 @@ BEGIN
 				WHERE 1 
 				AND YEAR(`tst`.`result_date`) = `year`
 				AND `fac`.`id` = `user_filter_used`
+				AND `tst`.`result_date` <= CURDATE()
 				GROUP BY `yearmonth`;
 
 			END CASE;
