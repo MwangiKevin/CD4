@@ -4,6 +4,7 @@ class uploads_model extends MY_Model{
 
 	public function get_Upload_details($last_upl){
 
+/*
 		$user_delimiter =$this->sql_user_delimiter(0,0);
 
 		$sql 	=	"SELECT 
@@ -24,6 +25,11 @@ class uploads_model extends MY_Model{
 						GROUP BY `pima_upload_id`
 						ORDER BY `upload_date` DESC
 					";
+*/
+
+
+		$sql = "CALL get_last_upload_details(".$last_upl.")";
+
 		return $res 	=	R::getAll($sql);
 	}
 }
