@@ -57,7 +57,9 @@ $db_procedures["drop_pima_tests"]								=	"DROP PROCEDURE IF EXISTS `pima_tests
 $db_procedures["drop_test_n_errors_summarized_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_summarized_report`";
 $db_procedures["drop_test_n_errors_detailed_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_detailed_report`";
 $db_procedures["drop_report_summarized_by_month"]				=	"DROP PROCEDURE IF EXISTS `report_summarized_by_month`";
-$db_procedures["get_last_upload_details"]						=	"DROP PROCEDURE IF EXISTS `get_last_upload_details`";
+$db_procedures["drop_get_last_upload_details"]					=	"DROP PROCEDURE IF EXISTS `get_last_upload_details`";
+$db_procedures["drop_get_num_of_upl_tests"]						=	"DROP PROCEDURE IF EXISTS `get_num_of_upl_tests`";
+$db_procedures["drop_get_num_of_upl_ctrls"]						=	"DROP PROCEDURE IF EXISTS `get_num_of_upl_ctrls`";
 
 
 
@@ -7272,7 +7274,6 @@ BEGIN
 END;
 ";
 
-
 $db_procedures["get_last_upload_details"]  			=	
 				"CREATE PROCEDURE  get_last_upload_details (`last_upl_id` int(11)) 
 					BEGIN
@@ -7320,6 +7321,34 @@ $db_procedures["get_last_upload_details"]  			=
 
 
 
+
+$db_procedures["get_num_of_upl_tests"]  			=	
+				"CREATE PROCEDURE  get_num_of_upl_tests (`dev_test_id` int(11),`sa_code` varchar(120) ,`res_date` varchar(50)) 
+					BEGIN
+							SELECT 
+												COUNT(*) AS `num`
+											FROM `pima_test` 
+											LEFT JOIN `cd4_test`
+												ON `cd4_test`.`id`=`pima_test`.`cd4_test_id` 
+											WHERE 	`device_test_id`			= 	`dev_test_id`
+											AND		`sample_code` 				=	`sa_code`
+											AND		`cd4_test`.`result_date`	=	`res_date`;
+
+					END;
+				";
+
+$db_procedures["get_num_of_upl_ctrls"]  			=	
+				"CREATE PROCEDURE  get_num_of_upl_ctrls (`dev_test_id` int(11),`sa_code` varchar(120) ,`res_date` varchar(50)) 
+					BEGIN
+							SELECT 
+									COUNT(*) AS `num`
+								FROM `pima_control` 
+								WHERE 	`device_test_id`			= 	`dev_test_id`
+								AND		`sample_code` 				=	`sa_code`
+								AND		`result_date`				=	`res_date`;
+
+					END;
+				";
 
 
 $config["procedures_sql"] = $db_procedures;

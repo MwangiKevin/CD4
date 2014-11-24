@@ -645,7 +645,18 @@ class uploads extends MY_Controller {
 			$sample_code	=	$row['sample'];
 			$result_date	=	$row['result_date']." ".$row['start_time'].":00";
 
-			$count_res = R::getAll("	SELECT 
+			// echo "CALL get_num_of_upl_tests(".$device_test_id.",'".$sample_code."','".$result_date."') ";
+
+			// echo "SELECT 
+			// 									COUNT(*) AS `num`
+			// 								FROM `pima_test` 
+			// 								LEFT JOIN `cd4_test`
+			// 									ON `cd4_test`.`id`=`pima_test`.`cd4_test_id` 
+			// 								WHERE 	`device_test_id`			= 	'$device_test_id'
+			// 								AND		`sample_code` 				=	'$sample_code'
+			// 								AND		`cd4_test`.`result_date`	=	'$result_date'";
+
+		/*	$count_res = R::getAll("	SELECT 
 												COUNT(*) AS `num`
 											FROM `pima_test` 
 											LEFT JOIN `cd4_test`
@@ -654,7 +665,11 @@ class uploads extends MY_Controller {
 											AND		`sample_code` 				=	'$sample_code'
 											AND		`cd4_test`.`result_date`	=	'$result_date' "
 				);
+			*/
 
+
+			$count_res = R::getAll("CALL get_num_of_upl_tests(".$device_test_id.",'".$sample_code."','".$result_date."')  ");
+			//die();
 			if($count_res[0]['num']>0){
 				if (($key = array_search($row, $data)) !== false) {	//
 	    			unset($data[$key]);								// removing the data
@@ -682,6 +697,15 @@ class uploads extends MY_Controller {
 			$sample_code	=	$row['sample'];
 			$result_date	=	$row['result_date']." ".$row['start_time'].":00";
 
+			// echo "	CALL get_num_of_upl_ctrls(".$device_test_id.",'".$sample_code."','".$result_date."') ";
+			// echo "	SELECT 
+			// 									COUNT(*) AS `num`
+			// 								FROM `pima_control` 
+
+			// 								WHERE 	`device_test_id`			= 	'$device_test_id'
+			// 								AND		`sample_code` 				=	'$sample_code'
+			// 								AND		`result_date`				=	'$result_date' ";
+			/*
 			$count_res = R::getAll("	SELECT 
 												COUNT(*) AS `num`
 											FROM `pima_control` 
@@ -689,7 +713,10 @@ class uploads extends MY_Controller {
 											WHERE 	`device_test_id`			= 	'$device_test_id'
 											AND		`sample_code` 				=	'$sample_code'
 											AND		`result_date`				=	'$result_date' "
-				);
+				);*/
+			
+			$count_res = R::getAll("	CALL get_num_of_upl_ctrls(".$device_test_id.",'".$sample_code."','".$result_date."') ");
+			//die();
 
 			if($count_res[0]['num']>0){
 				if (($key = array_search($row, $data)) !== false) {	//
