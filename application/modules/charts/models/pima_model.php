@@ -14,7 +14,7 @@ class pima_model extends MY_Model{
 		
 
 		$expected_res  	= R::getAll($sql_expected);			
-		$reported_res  	= R::getAll($sql_reported);	
+		$reported_res  	= R::getAll($sql_reported);
 
 		$data["chart"][0]["name"] 		= "Devices Not Reported";
 		$data["chart"][0]["y"] 			= (int) $expected_res[0]["expected"] - (int) $reported_res[0]["reported"];
@@ -104,8 +104,8 @@ class pima_model extends MY_Model{
 		$data["chart"][0]["data"] 	= 	$this->expected_reporting_dev_array($user_group_id,$user_filter_used,$year);
 
 		$data["chart"][1]["name"] 	= 	"Reported Devices";
-		$data["chart"][1]["color"] 	= 	"#a4d53a";
-		
+		$data["chart"][1]["color"] 	= 	"#a4d53a";		
+
 	    $data["chart"][1]["data"] 	= 	$this->reported_devices($user_group_id, $user_filter_used,$year);
 	    // print_r($data);die();
 		return $data;
@@ -117,7 +117,7 @@ class pima_model extends MY_Model{
 		$sql_added = "CALL expected_reporting_dev_array_added(".$user_group_id.", ".$user_filter_used.")";
 
 		$sql_removed = "CALL expected_reporting_dev_array_removed(".$user_group_id.", ".$user_filter_used.")";
-	
+
 
 		$devices_added_assoc 	=	R::getAll($sql_added);
 		$devices_removed_assoc 	=	R::getAll($sql_removed);
@@ -190,24 +190,6 @@ class pima_model extends MY_Model{
 	private function reported_devices($user_group_id,$user_filter_used, $year){
 		
 		$sql = "CALL reported_devices(".$user_group_id.",".$user_filter_used.",".$year.")";
-		
-		// echo $sql = 	"SELECT 
-						// `t1`.`month`,
-						// COUNT(`t1`.`facility_equipment_id`) AS `reported_devices`
-// 
-					// FROM (
-							// SELECT 
-								// DISTINCT `facility_equipment_id`,
-								// MONTH(`result_date`) AS `month`
-							// FROM `v_tests_details`
-							// WHERE 1 
-// 
-							// AND YEAR(`result_date`) = '$year' 
-// 
-							// $user_delimiter
-						// )AS `t1`					
-					// GROUP BY `t1`.`month`
-				// ";
 		$res = R::getAll($sql);
 		// print_r($res);die();
 		$reported_array = array(); 
@@ -225,6 +207,16 @@ class pima_model extends MY_Model{
 					$reported_array[$i] = (int) $value["reported_devices"]; 
 
 				}
+			}
+		}
+
+
+		for($i=11;$i>=0;$i--){
+			if($reported_array[$i] == 0 ){
+				$reported_array[$i] = null; 
+			}
+			else{
+				break;
 			}
 		}
 
