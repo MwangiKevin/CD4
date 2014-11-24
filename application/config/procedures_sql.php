@@ -48,17 +48,18 @@ $db_procedures["drop_tests_detailed_report"]					= 	"DROP PROCEDURE IF EXISTS `t
 $db_procedures["drop_errors_detailed_report"]					=	"DROP PROCEDURE IF EXISTS `errors_detailed_report`";
 $db_procedures["drop_tests_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `tests_summarized_report`";
 $db_procedures["drop_errors_summarized_report"]					=	"DROP PROCEDURE IF EXISTS `errors_summarized_report`";
-
 $db_procedures["drop_get_pima_controls_reported"]				=  	"DROP PROCEDURE IF EXISTS `get_pima_controls_reported`";
 $db_procedures["drop_get_pima_controls_chart"]					=	" DROP PROCEDURE IF EXISTS `get_pima_controls_chart` ";
 $db_procedures["drop_pima_control_reported"]					=	"DROP PROCEDURE IF EXISTS `pima_control_reported`";
 $db_procedures["drop_pima_control_errors"]						=	"DROP PROCEDURE IF EXISTS `pima_control_errors`";
 $db_procedures["drop_pima_controls"]							=	"DROP PROCEDURE IF EXISTS `pima_controls`";
 $db_procedures["drop_pima_tests"]								=	"DROP PROCEDURE IF EXISTS `pima_tests`";
-
 $db_procedures["drop_test_n_errors_summarized_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_summarized_report`";
 $db_procedures["drop_test_n_errors_detailed_report"]			=	"DROP PROCEDURE IF EXISTS `test_n_errors_detailed_report`";
 $db_procedures["drop_report_summarized_by_month"]				=	"DROP PROCEDURE IF EXISTS `report_summarized_by_month`";
+$db_procedures["get_last_upload_details"]						=	"DROP PROCEDURE IF EXISTS `get_last_upload_details`";
+
+
 
 $db_procedures["get_facility_details"]  		=	
 					"CREATE PROCEDURE  get_facility_details (user_group_id int(11), user_filter_used int(11)) 
@@ -7270,6 +7271,53 @@ BEGIN
 	
 END;
 ";
+
+
+$db_procedures["get_last_upload_details"]  			=	
+				"CREATE PROCEDURE  get_last_upload_details (`last_upl_id` int(11)) 
+					BEGIN
+						SELECT 
+							`pu`.`id` AS `pima_upload_id`,
+							`pu`.`upload_date`,
+							`f_e`.`serial_number`  AS `equipment_serial_number`,
+							`f`.`name` AS `facility_name`,
+							`u`.`name` AS `uploader_name`,
+							`pu`.`uploaded_by`,
+							COUNT(`pt`.`id`) AS `total_tests`,
+							SUM(CASE WHEN `tst`.`valid`= '1'    THEN 1 ELSE 0 END) AS `valid_tests`,
+							SUM(CASE WHEN `tst`.`valid`= '0'    THEN 1 ELSE 0 END) AS `errors`,
+							SUM(CASE WHEN `tst`.`valid`= '1'  AND  `tst`.`cd4_count` < 350 THEN 1 ELSE 0 END) AS `failed`,
+							SUM(CASE WHEN `tst`.`valid`= '1'  AND  `tst`.`cd4_count` >= 350 THEN 1 ELSE 0 END) AS `passed`	
+						FROM `pima_upload` `pu`
+							LEFT JOIN `pima_test` `pt`
+							ON `pu`.`id`=`pt`.`pima_upload_id`
+								LEFT JOIN `cd4_test`  `tst`
+								ON `pt`.`cd4_test_id`=`tst`.`id`
+									LEFT JOIN `facility` `f`
+									ON `tst`.`facility_id`=`f`.`id`			
+										LEFT JOIN `partner` `p`
+										ON `f`.`partner_id` =`p`.`id`
+										LEFT JOIN `district` `d`
+										ON `f`.`district_id` = `d`.`id`
+											LEFT JOIN `region` `r`
+											ON `d`.`region_id` = `r`.`id`
+										LEFT JOIN `facility_equipment` `f_e`
+										ON `tst`.`facility_equipment_id`=`f_e`.`id`
+											LEFT JOIN `equipment` `eq`
+											ON `f_e`.`equipment_id` = `eq`.`id`
+							LEFT JOIN `user` `u`
+							ON 	`pu`.`uploaded_by`=`u`.`id`
+
+							WHERE `tst`.`result_date`<=CURDATE()	
+														
+							AND `pu`.`id` > `last_upl_id` 
+
+							GROUP BY `pt`.`pima_upload_id`
+							ORDER BY `pu`.`upload_date` DESC;
+
+					END;
+				";
+
 
 
 
