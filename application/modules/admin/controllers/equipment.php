@@ -216,9 +216,7 @@ class equipment extends MY_Controller {
 				$facility_name = $value['facility_name'];
 				$equipment = $value['equipment'];
 				if($value['equipment']=="Alere PIMA"){
-				?>
-								
-								<?php 
+				
 							}
 				
 				$serial_number = $value['serial_number'];
@@ -253,7 +251,7 @@ class equipment extends MY_Controller {
 				$data[] = array(
 								($key+1)       ,
 								$facility_name ,
-								$facility_name ,
+								$equipment ,
 								$serial_number,
 								Date("Y, M, d",strtotime($date_added)),
 								$date_removed,
