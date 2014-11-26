@@ -95,6 +95,7 @@ class uploads extends MY_Controller {
 
 		$root_folder 		= $this->config->item("pima_export");
 		$uploaded_folder 	= $this->config->item("pima_uploaded");
+		$pima_extras_folder	= $this->config->item("pima_extras_folder");
 
 		$files_to_move = array();
 
@@ -112,6 +113,12 @@ class uploads extends MY_Controller {
 
 					    $i++;
 					}
+		        }elseif($entry!="."&& $entry!=".."){
+
+	        		$files_to_move[$i]["source"] 		= 	$root_folder."/".$entry;
+				    $files_to_move[$i]["destination"]	= 	$pima_extras_folder."/".$entry;
+
+				    $i++;
 		        }
 		    }
 		    closedir($handle);
