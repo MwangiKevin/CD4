@@ -16,6 +16,7 @@ $config['default_user_password']  	= "123456";
 $config['pima_export']				=	"C:/FTP/PIMA-Export";
 $config['pima_uploaded']			=	"C:/FTP/PIMA-Uploaded";
 $config['pima_user_uploaded']		=	"C:/FTP/PIMA-User-Uploaded";
+$config['pima_extras_folder']		=	"C:/FTP/PIMA-Extra";
 
 /*Tables*/
 $config['user_table'] = 'user';
