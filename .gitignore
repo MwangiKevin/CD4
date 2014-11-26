@@ -13,3 +13,4 @@ backup
 ver.txt
 application/config/database.php
 downloads
+bat/server_uploads/outputs
