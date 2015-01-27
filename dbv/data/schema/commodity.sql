@@ -1,4 +1,4 @@
-CREATE TABLE `commodity` (
+CREATE TABLE `fcdrr_commodity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fcdrr_id` int(11) NOT NULL COMMENT 'FK to fcdrr',
   `beginning_bal` int(11) NOT NULL,

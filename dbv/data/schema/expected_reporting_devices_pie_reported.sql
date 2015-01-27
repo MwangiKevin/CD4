@@ -27,7 +27,7 @@ BEGIN
 			SELECT 
 				COUNT(DISTINCT `tst`.`facility_equipment_id`) AS `reported`
 			FROM `cd4_test` `tst`
-			LEFT JOIN `facility``f`
+			LEFT JOIN `facility` `f`
 				ON `f`.`id` = `tst`.`facility_id`
 			LEFT JOIN `district` `d`
 				ON `d`.`id` = `f`.`district_id`
@@ -40,7 +40,7 @@ BEGIN
 			SELECT 
 				COUNT(DISTINCT `tst`.`facility_equipment_id`) AS `reported`
 			FROM `cd4_test` `tst`
-			LEFT JOIN `facility``f`
+			LEFT JOIN `facility` `f`
 				ON `f`.`id` = `tst`.`facility_id`
 			WHERE 1
 			AND `tst`.`result_date` BETWEEN `from_date` AND `to_date`
@@ -51,7 +51,7 @@ BEGIN
 			SELECT 
 				COUNT(DISTINCT `tst`.`facility_equipment_id`) AS `reported`
 			FROM `cd4_test` `tst`
-			LEFT JOIN `facility``f`
+			LEFT JOIN `facility` `f`
 				ON `f`.`id` = `tst`.`facility_id`
 			WHERE 1
 			AND `tst`.`result_date` BETWEEN `from_date` AND `to_date`
