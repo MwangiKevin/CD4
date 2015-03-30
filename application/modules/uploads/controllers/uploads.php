@@ -11,6 +11,7 @@ class uploads extends MY_Controller {
 		parent::__construct();
 		$this -> load -> library('PHPexcel');
 		ini_set('memory_size', '2048M');
+		set_time_limit (0);
 	}
 
 	public function read_slk($file_dir){
