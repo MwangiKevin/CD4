@@ -3,7 +3,11 @@
 
 $config['copyrights']				=	"&copy ".date('Y')." NACP. All Rights Reserved";
 
-$config['starting_year']			=	2011;
+
+$yr = (int) Date("Y");
+$yr-=4;
+
+$config['starting_year']			=	$yr;
 
 $config["fusion_Renderer"]			=	'javascript';
 $config["fusion_maps_entity_prefix"]=	'TZ.';

@@ -5,10 +5,12 @@ BEGIN
 			SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
 				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
 				MONTH(`tst`.`result_date`) AS `month`
 				
 	
@@ -55,10 +57,12 @@ BEGIN
 			SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
 				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
 				MONTH(`tst`.`result_date`) AS `month`
 	
 			FROM 
@@ -103,10 +107,12 @@ BEGIN
 		SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
 				`pim_tst`.`operator`  AS `operator`,
+				`tst`.`result_date`,
 				MONTH(`tst`.`result_date`) AS `month`
 	
 			FROM 
@@ -151,6 +157,7 @@ BEGIN
 			SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
@@ -200,6 +207,7 @@ BEGIN
 		SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,
@@ -249,6 +257,7 @@ BEGIN
 		SELECT
 				`fac`.`name` 			AS `facility_name`,
 				`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+				`pim_tst`.`sample_code`,
 				COUNT(`pim_tst`.`sample_code`) AS tests_done,
 				`p_e_ty`.`description` AS `error_type_description`,
 				`pima_err`.`error_detail`,

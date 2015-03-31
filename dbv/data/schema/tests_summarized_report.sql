@@ -5,9 +5,11 @@ BEGIN
 				SELECT 
 					`fac`.`name` 	AS `facility_name`,
 					`facility_equipment`.`serial_number` AS `equipment_serial_number`,
+					`pim_tst`.`sample_code`,
 					COUNT(`pim_tst`.`sample_code`) AS tests_done,
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator` AS `operator`,
+					`tst`.`result_date`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -53,6 +55,8 @@ BEGIN
 					COUNT(`pim_tst`.`sample_code`) AS tests_done,
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
+					`pim_tst`.`sample_code`,
+					`tst`.`result_date`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				
@@ -98,6 +102,8 @@ BEGIN
 					COUNT(`pim_tst`.`sample_code`) as tests_done,
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
+					`pim_tst`.`sample_code`,
+					`tst`.`result_date`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -188,6 +194,7 @@ BEGIN
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
 					`tst`.`result_date`,
+					`pim_tst`.`sample_code`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
@@ -232,6 +239,7 @@ BEGIN
 					`tst`.`cd4_count`,
 					`pim_tst`.`operator`  AS `operator`,
 					`tst`.`result_date`,
+					`pim_tst`.`sample_code`,
 					MONTH(`tst`.`result_date`) AS `month`
 					
 				FROM `pima_test`  `pim_tst`
