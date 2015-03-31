@@ -5,7 +5,7 @@ $config['copyrights']				=	"&copy ".date('Y')." NACP. All Rights Reserved";
 
 
 $yr = (int) Date("Y");
-$yr-=4;
+$yr-=3;
 
 $config['starting_year']			=	$yr;
 
