@@ -300,9 +300,9 @@ class uploads extends MY_Controller {
 				$test_data[$key]["start_time"]			=	$data[$key]["start_time"];
 				$test_data[$key]["barcode"]				=	$data[$key]["barcode"];
 				$test_data[$key]["expiry_date"]			=	$data[$key]["expiry_date"];
-				$test_data[$key]["volume"]				=	"";
+				$test_data[$key]["volume"]				=	"0";
 				$test_data[$key]["device"]				=	$data[$key]["device"];
-				$test_data[$key]["reagent"]				=	"";
+				$test_data[$key]["reagent"]				=	"0";
 				$test_data[$key]["software_version"]	=	$data[$key]["software_version"];
 			}
 
@@ -313,18 +313,18 @@ class uploads extends MY_Controller {
 				$test_data[$key]["device_id"]			=	$data[$key]["device_id"];
 				$test_data[$key]["assay_id"]			=	$data[$key]["assay_id"];
 				$test_data[$key]["assay_name"]			=	"DEV";
-				$test_data[$key]["sample"]				=	"";
-				$test_data[$key]["cd3_cd4_value"]		=	"";
+				$test_data[$key]["sample"]				=	"n/a";
+				$test_data[$key]["cd3_cd4_value"]		=	"0";
 				$test_data[$key]["errormessage"]		=	$data[$key]["export_error_message"]."210";
-				$test_data[$key]["operator"]			=	"";
+				$test_data[$key]["operator"]			=	"n/a";
 				$test_data[$key]["result_date"]			=	Date("Y/m/d");
 				$test_data[$key]["start_time"]			=	"12:00";
-				$test_data[$key]["barcode"]				=	"";
-				$test_data[$key]["expiry_date"]			=	"";
-				$test_data[$key]["volume"]				=	"";
-				$test_data[$key]["device"]				=	"";
-				$test_data[$key]["reagent"]				=	"";
-				$test_data[$key]["software_version"]	=	"";
+				$test_data[$key]["barcode"]				=	"0";
+				$test_data[$key]["expiry_date"]			=	"0";
+				$test_data[$key]["volume"]				=	"0";
+				$test_data[$key]["device"]				=	"0";
+				$test_data[$key]["reagent"]				=	"0";
+				$test_data[$key]["software_version"]	=	"0.39.1";
 
 			}
 
@@ -375,7 +375,7 @@ class uploads extends MY_Controller {
 				
 				foreach ($data as $row) {
 
-					$pima_error_id 	=	"";
+					$pima_error_id 	=	"0";
 					$barcode		=	3;
 					$expiry_date	=	3;
 					$volume			=	3;
@@ -422,6 +422,8 @@ class uploads extends MY_Controller {
 
 					if( $assay_type	==	3 ){
 
+						$cd4_cnt = (int) $row['cd3_cd4_value'];
+
 						$this->db->query("INSERT INTO `pima_control` 
 										(
 											`device_test_id`,
@@ -450,7 +452,7 @@ class uploads extends MY_Controller {
 												'$expiry_date',
 												'$device ',
 												'".$row['software_version']."',
-												'".$row['cd3_cd4_value']."',
+												'".$cd4_cnt."',
 												'$facility_equipment_id',
 												'".$row['result_date']." ".$row['start_time'].":00'
 										)");
@@ -523,7 +525,7 @@ class uploads extends MY_Controller {
 
 					//initialize 
 					$validity 	=	1;
-					$pima_error_id 	=	"";
+					$pima_error_id 	=	"0";
 					$barcode		=	3;
 					$expiry_date	=	3;
 					$volume			=	3;
@@ -571,6 +573,8 @@ class uploads extends MY_Controller {
 
 					if( $assay_type	!=	3 ){
 
+						$cd4_cnt = (int) $row['cd3_cd4_value'];
+
 						$this->db->query("INSERT INTO `cd4_test` 
 											(
 												`id`,
@@ -584,7 +588,7 @@ class uploads extends MY_Controller {
 											VALUES
 												(
 													'$cd4_tst_auto_id',
-													'".$row['cd3_cd4_value']."',
+													'".$cd4_cnt."',
 													'4',
 													'$facility_equipment_id',
 													'$facility_id',
