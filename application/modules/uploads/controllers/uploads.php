@@ -336,6 +336,8 @@ class uploads extends MY_Controller {
 
 	private function control_file_upload($data){
 
+
+		$data =	$this->standardize_start_time($data);
 		$data =	$this->trim_uploaded_controls($data);
 
 		if(sizeof($data) > 0) {
@@ -480,6 +482,8 @@ class uploads extends MY_Controller {
 
 	private function tests_file_upload($data){
 
+
+		$data =	$this->standardize_start_time($data);
 		$data = $this->trim_uploaded_tests($data);
 
 		if( sizeof($data) > 0){
@@ -759,5 +763,22 @@ class uploads extends MY_Controller {
 		return $data;
 
 	}
-	
+
+
+		/**
+		*  This function makes sure that the start_time is of the same length 
+		*	irregardless of the software version on the pima
+		*/
+	private function standardize_start_time($data){
+
+		foreach ($data as $key => $row) {
+			$data[$key]['start_time'] = substr($row['start_time'], 0,5);
+		}
+
+		// echo "<pre>";
+		// print_r($data);
+		// die;
+
+		return $data;
+	}
 }
