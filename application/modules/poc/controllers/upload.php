@@ -77,8 +77,9 @@ class upload extends MY_Controller {
 		}
 		$data =json_decode($data,true);
 
-		//echo "<pre>";
-		//print_r($data);
+		// echo "<pre>";
+		// print_r($data);
+		// die;
 
 		$this->data['message'] = $this->uploads->upload_commit($data);
 
