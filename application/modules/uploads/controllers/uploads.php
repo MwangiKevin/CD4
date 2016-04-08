@@ -290,7 +290,7 @@ class uploads extends MY_Controller {
 
 				$test_data[$key]["test_id"]				=	$data[$key]["test_id"];
 				$test_data[$key]["device_id"]			=	$data[$key]["device_id"];
-				$test_data[$key]["assay_id"]			=	$data[$key]["assay_id"];
+				$test_data[$key]["assay_id"]			=	(int) $data[$key]["assay_id"];
 				$test_data[$key]["assay_name"]			=	$data[$key]["assay_name"];
 				$test_data[$key]["sample"]				=	$data[$key]["sample"];
 				$test_data[$key]["cd3_cd4_value"]		=	$data[$key]["cd3_cd4_value"];
@@ -311,7 +311,7 @@ class uploads extends MY_Controller {
 
 				$test_data[$key]["test_id"]				=	$data[$key]["test_id"];
 				$test_data[$key]["device_id"]			=	$data[$key]["device_id"];
-				$test_data[$key]["assay_id"]			=	$data[$key]["assay_id"];
+				$test_data[$key]["assay_id"]			=	(int) $data[$key]["assay_id"];
 				$test_data[$key]["assay_name"]			=	"DEV";
 				$test_data[$key]["sample"]				=	"n/a";
 				$test_data[$key]["cd3_cd4_value"]		=	"0";
